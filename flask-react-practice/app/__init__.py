@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template
 from .forms import SimpleForm
 from .config import Configuration
-from .models import SimplePerson, db
+from .models import db
 from flask_migrate import Migrate
 
 
