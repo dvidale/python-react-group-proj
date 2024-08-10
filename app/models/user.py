@@ -11,8 +11,13 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
     email = db.Column(db.String(255), nullable=False, unique=True)
+    address = db.Column(db.String(225), nullable=False)
+    phone_number = db.Column(db.Integer, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
 
     @property
     def password(self):
