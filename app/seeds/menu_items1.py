@@ -917,6 +917,107 @@ def seed_menu_items1():
             quantity=100,
             ratings_count=75
         ),
+        #Restaurant 10
+        MenuItem(
+            restaurant_id=10,
+            name="Spaghetti Bolognese",
+            like_percentage=93,
+            description="Classic spaghetti pasta served with a rich and hearty beef Bolognese sauce.",
+            price=12.99,
+            image_url="https://example.com/images/spaghetti_bolognese.jpg",
+            quantity=120,
+            ratings_count=85
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Margherita Pizza",
+            like_percentage=95,
+            description="Traditional Italian pizza topped with fresh tomatoes, mozzarella, and basil.",
+            price=10.99,
+            image_url="https://example.com/images/margherita_pizza.jpg",
+            quantity=150,
+            ratings_count=90
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Lasagna",
+            like_percentage=92,
+            description="Layers of pasta, ricotta cheese, meat sauce, and mozzarella, baked to perfection.",
+            price=13.99,
+            image_url="https://example.com/images/lasagna.jpg",
+            quantity=100,
+            ratings_count=80
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Fettuccine Alfredo",
+            like_percentage=91,
+            description="Fettuccine pasta tossed in a creamy Alfredo sauce made with Parmesan cheese and butter.",
+            price=11.99,
+            image_url="https://example.com/images/fettuccine_alfredo.jpg",
+            quantity=130,
+            ratings_count=75
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Chicken Parmesan",
+            like_percentage=94,
+            description="Breaded chicken breast topped with marinara sauce and melted mozzarella, served over spaghetti.",
+            price=14.99,
+            image_url="https://example.com/images/chicken_parmesan.jpg",
+            quantity=90,
+            ratings_count=85
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Risotto",
+            like_percentage=90,
+            description="Creamy Arborio rice cooked with white wine, Parmesan, and your choice of mushrooms or seafood.",
+            price=13.49,
+            image_url="https://example.com/images/risotto.jpg",
+            quantity=80,
+            ratings_count=65
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Bruschetta",
+            like_percentage=89,
+            description="Grilled bread topped with a fresh mixture of tomatoes, garlic, and basil, drizzled with olive oil.",
+            price=6.99,
+            image_url="https://example.com/images/bruschetta.jpg",
+            quantity=140,
+            ratings_count=60
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Tiramisu",
+            like_percentage=96,
+            description="Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream.",
+            price=7.49,
+            image_url="https://example.com/images/tiramisu.jpg",
+            quantity=110,
+            ratings_count=95
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Penne Arrabbiata",
+            like_percentage=91,
+            description="Penne pasta served in a spicy tomato sauce with garlic, red chili peppers, and parsley.",
+            price=11.49,
+            image_url="https://example.com/images/penne_arrabbiata.jpg",
+            quantity=100,
+            ratings_count=70
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Cannoli",
+            like_percentage=94,
+            description="Crispy pastry tubes filled with sweet ricotta cheese and chocolate chips, dusted with powdered sugar.",
+            price=5.99,
+            image_url="https://example.com/images/cannoli.jpg",
+            quantity=130,
+            ratings_count=85
+        ),
     ]
 
     db.session.bulk_save_objects(menu_items)
