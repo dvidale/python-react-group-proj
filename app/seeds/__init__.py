@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .restaurant import seed_rest, undo_rest
 from .menu_items1 import seed_menu_items1, undo_menu_items1
+from .menu_items2 import seed_menu_items2, undo_menu_items2
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,9 +22,11 @@ def seed():
         undo_users()
         undo_rest()
         undo_menu_items1()
+        undo_menu_items2()
     seed_users()
     seed_rest()
     seed_menu_items1()
+    seed_menu_items2()
     # Add other seed functions here
 
 
@@ -33,4 +36,5 @@ def undo():
     undo_users()
     undo_rest()
     undo_menu_items1()
+    undo_menu_items2()
     # Add other undo functions here
