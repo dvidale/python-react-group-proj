@@ -11,4 +11,3 @@ __pycache__
 .devcontainer
 README.CONTAINER.md
 instance/dev.db
-
