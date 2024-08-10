@@ -9,4 +9,4 @@ class CartItem(db.Model):
     shopping_cart_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('shopping_carts.id')), nullable=False)
     menu_item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menu_items.id')), nullable=False)
 
-    shopping_cart = db.relationship('ShoppingCart', back_populates='cart_item')
+    shopping_cart = db.relationship('ShoppingCart', back_populates='cart_items')
