@@ -19,16 +19,16 @@ const MenuItemsList = () => {
 	return (
 		<div>
 			<h2>Menu Items</h2>
-			<ul>
+			<div>
 				{menuItems.map((item) => (
-					<li key={item.id}>
+					<div key={item.id}>
 						<h3>{item.name}</h3>
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>
 						<p>Rating: {item.like_percentage}%</p>
-					</li>
+					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 };
