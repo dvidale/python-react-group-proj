@@ -4,7 +4,7 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        user_name='Demo',
+        username='Demo',
         first_name='Demo',
         last_name='User',
         email='demo@aa.io',
@@ -16,7 +16,7 @@ def seed_users():
         password='password'
     )
     marnie = User(
-        user_name='marnie',
+        username='marnie',
         first_name='Marnie',
         last_name='Smith',
         email='marnie@aa.io',
@@ -28,7 +28,7 @@ def seed_users():
         password='password'
     )
     bobbie = User(
-        user_name='bobbie',
+        username='bobbie',
         first_name='Bobbie',
         last_name='Jones',
         email='bobbie@aa.io',
@@ -42,7 +42,7 @@ def seed_users():
 
     # Additional users
     user4 = User(
-        user_name='alice',
+        username='alice',
         first_name='Alice',
         last_name='Wonderland',
         email='alice@example.com',
@@ -54,7 +54,7 @@ def seed_users():
         password='password'
     )
     user5 = User(
-        user_name='charlie',
+        username='charlie',
         first_name='Charlie',
         last_name='Brown',
         email='charlie@example.com',
@@ -66,7 +66,7 @@ def seed_users():
         password='password'
     )
     user6 = User(
-        user_name='eve',
+        username='eve',
         first_name='Eve',
         last_name='Doe',
         email='eve@example.com',
@@ -78,7 +78,7 @@ def seed_users():
         password='password'
     )
     user7 = User(
-        user_name='frank',
+        username='frank',
         first_name='Frank',
         last_name='Sinatra',
         email='frank@example.com',
@@ -90,7 +90,7 @@ def seed_users():
         password='password'
     )
     user8 = User(
-        user_name='grace',
+        username='grace',
         first_name='Grace',
         last_name='Hopper',
         email='grace@example.com',
@@ -102,7 +102,7 @@ def seed_users():
         password='password'
     )
     user9 = User(
-        user_name='heidi',
+        username='heidi',
         first_name='Heidi',
         last_name='Klum',
         email='heidi@example.com',
@@ -114,7 +114,7 @@ def seed_users():
         password='password'
     )
     user10 = User(
-        user_name='ivan',
+        username='ivan',
         first_name='Ivan',
         last_name='Drago',
         email='ivan@example.com',
@@ -126,7 +126,7 @@ def seed_users():
         password='password'
     )
     user11 = User(
-        user_name='judy',
+        username='judy',
         first_name='Judy',
         last_name='Jetson',
         email='judy@example.com',
@@ -138,7 +138,7 @@ def seed_users():
         password='password'
     )
     user12 = User(
-        user_name='mallory',
+        username='mallory',
         first_name='Mallory',
         last_name='Archer',
         email='mallory@example.com',
@@ -150,7 +150,7 @@ def seed_users():
         password='password'
     )
     user13 = User(
-        user_name='oscar',
+        username='oscar',
         first_name='Oscar',
         last_name='Wilde',
         email='oscar@example.com',
@@ -162,7 +162,7 @@ def seed_users():
         password='password'
     )
     user14 = User(
-        user_name='peggy',
+        username='peggy',
         first_name='Peggy',
         last_name='Carter',
         email='peggy@example.com',
@@ -174,7 +174,7 @@ def seed_users():
         password='password'
     )
     user15 = User(
-        user_name='trent',
+        username='trent',
         first_name='Trent',
         last_name='Reznor',
         email='trent@example.com',
@@ -186,7 +186,7 @@ def seed_users():
         password='password'
     )
     user16 = User(
-        user_name='victor',
+        username='victor',
         first_name='Victor',
         last_name='Frankenstein',
         email='victor@example.com',
@@ -198,7 +198,7 @@ def seed_users():
         password='password'
     )
     user17 = User(
-        user_name='walter',
+        username='walter',
         first_name='Walter',
         last_name='White',
         email='walter@example.com',
@@ -210,7 +210,7 @@ def seed_users():
         password='password'
     )
     user18 = User(
-        user_name='xena',
+        username='xena',
         first_name='Xena',
         last_name='Warrior',
         email='xena@example.com',
@@ -222,7 +222,7 @@ def seed_users():
         password='password'
     )
     user19 = User(
-        user_name='yolanda',
+        username='yolanda',
         first_name='Yolanda',
         last_name='Foster',
         email='yolanda@example.com',
@@ -234,7 +234,7 @@ def seed_users():
         password='password'
     )
     user20 = User(
-        user_name='zack',
+        username='zack',
         first_name='Zack',
         last_name='Morris',
         email='zack@example.com',
