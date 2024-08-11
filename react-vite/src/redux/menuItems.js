@@ -1,8 +1,8 @@
-// *ACTION TYPES
+//*------------------------------------ACTION TYPES
 
 const GET_MENU_ITEMS = 'menuItems/GET_MENU_ITEMS';
 
-// *ACTION CREATORS
+//*-----------------------------------ACTION CREATORS
 
 export const getMenuItems = (menuItems) => {
 	return {
@@ -11,9 +11,9 @@ export const getMenuItems = (menuItems) => {
 	};
 };
 
-// *THUNKS
+//* -------------------------------------THUNKS
 
-// ? GET ALL MENU ITEMS
+//?---------------------------------GET ALL MENU ITEMS
 export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/menu-items`);
 	if (response.ok) {
@@ -22,14 +22,16 @@ export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 	}
 };
 
-// ! INITIAL STATE
-const initialState = {};
+//!---------------------------------- INITIAL STATE
+const initialState = {
+	itemArr: [],
+};
 
-// ! REDUCER
+//!---------------------------------- REDUCER
 const menuItemsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_MENU_ITEMS:
-			return { ...state, itemArr: [...action.payload] };
+			return { ...state, itemArr: action.payload };
 		default:
 			return state;
 	}

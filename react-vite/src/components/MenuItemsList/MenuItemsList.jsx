@@ -6,7 +6,7 @@ import { fetchMenuItems } from '../../redux/menuItems';
 const MenuItemsList = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const menuItems = useSelector((state) => state.menuItems);
+	const menuItems = useSelector((state) => state.menuItems.itemArr);
 	console.log(menuItems);
 
 	useEffect(() => {
@@ -16,16 +16,16 @@ const MenuItemsList = () => {
 	return (
 		<div>
 			<h2>Menu Items</h2>
-			<ul>
-				{menuItems.itemArr.map((item) => (
-					<li key={item.id}>
+			<div>
+				{menuItems.map((item) => (
+					<div key={item.id}>
 						<h3>{item.name}</h3>
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>
 						<p>Rating: {item.like_percentage}%</p>
-					</li>
+					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	);
 };
