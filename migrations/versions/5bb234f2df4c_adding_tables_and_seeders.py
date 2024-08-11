@@ -1,8 +1,8 @@
-"""Created All Seeders
+"""adding tables and seeders
 
-Revision ID: 1bb4fe1faf42
+Revision ID: 5bb234f2df4c
 Revises: 
-Create Date: 2024-08-11 01:22:35.431361
+Create Date: 2024-08-11 11:19:34.392920
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1bb4fe1faf42'
+revision = '5bb234f2df4c'
 down_revision = None
 branch_labels = None
 depends_on = None
