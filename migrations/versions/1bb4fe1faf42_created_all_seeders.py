@@ -1,8 +1,8 @@
-"""Created Reviews Seeder
+"""Created All Seeders
 
-Revision ID: f76e19d806d3
+Revision ID: 1bb4fe1faf42
 Revises: 
-Create Date: 2024-08-10 23:29:40.667058
+Create Date: 2024-08-11 01:22:35.431361
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'f76e19d806d3'
+revision = '1bb4fe1faf42'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,7 +28,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('first_name', sa.String(length=30), nullable=False),
     sa.Column('last_name', sa.String(length=30), nullable=False),
-    sa.Column('user_name', sa.String(length=40), nullable=False),
+    sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('address', sa.String(length=100), nullable=False),
     sa.Column('city', sa.String(length=40), nullable=False),
@@ -39,7 +39,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('address'),
     sa.UniqueConstraint('email'),
-    sa.UniqueConstraint('user_name')
+    sa.UniqueConstraint('username')
     )
     op.create_table('restaurants',
     sa.Column('id', sa.Integer(), nullable=False),

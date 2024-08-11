@@ -306,21 +306,6 @@ def seed_rest():
             delivery_time='25-35 mins',
             delivery_fee=3.99
         ),
-        Restaurant(
-            owner_id=1,
-            name='Vegan Vibes',
-            address='789 Green Ave',
-            phone_number='5551234567',
-            email='contact@veganvibes.com',
-            description='Delicious vegan dishes that will make you forget about meat.',
-            banner_img='https://example.com/images/vegan_vibes_banner.jpg',
-            avg_rating=4.5,
-            day_of_week=0,
-            open_time=datetime.strptime('2024-08-28 16:00:00', '%Y-%m-%d %H:%M:%S'),
-            close_time=datetime.strptime('2024-08-28 22:00:00', '%Y-%m-%d %H:%M:%S'),
-            delivery_time='20-30 mins',
-            delivery_fee=3.49
-        ),
     ]
 
     db.session.bulk_save_objects(restaurants)
@@ -331,5 +316,5 @@ def undo_rest():
         db.session.execute(f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM restaurants"))
-        
+
     db.session.commit()

@@ -5,7 +5,9 @@ from .menu_items1 import seed_menu_items1, undo_menu_items1
 from .menu_items2 import seed_menu_items2, undo_menu_items2
 from .category import seed_categories_and_restaurant_categories, undo_categories_and_restaurant_categories
 from .reviews import seed_reviews, undo_reviews
-
+from .menu_item_rating import seed_menu_item_ratings, undo_menu_item_ratings
+from .shopping_cart import seed_shopping_carts, undo_shopping_carts
+from .cart_items import seed_cart_items, undo_cart_items
 
 from app.models.db import db, environment, SCHEMA
 
@@ -28,12 +30,19 @@ def seed():
         undo_menu_items2()
         undo_categories_and_restaurant_categories()
         undo_reviews()
+        undo_menu_item_ratings()
+        undo_shopping_carts()
+        undo_cart_items()
+
     seed_users()
     seed_rest()
     seed_menu_items1()
     seed_menu_items2()
     seed_categories_and_restaurant_categories()
     seed_reviews()
+    seed_menu_item_ratings()
+    seed_shopping_carts()
+    seed_cart_items()
     # Add other seed functions here
 
 
@@ -46,4 +55,7 @@ def undo():
     undo_menu_items2()
     undo_categories_and_restaurant_categories()
     undo_reviews()
+    undo_menu_item_ratings()
+    undo_shopping_carts()
+    undo_cart_items()
     # Add other undo functions here
