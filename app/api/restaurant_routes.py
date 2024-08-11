@@ -3,6 +3,8 @@ from app.models import db, Restaurant, MenuItem, MenuItemRating
 
 restaurant_routes = Blueprint('restaurant', __name__)
 
+
+# ? GET ALL MENU ITEMS ROUTE
 @restaurant_routes.route('/<int:id>/menu-items')
 def get_all_menu_items(id):
     restaurant = Restaurant.query.get(id)

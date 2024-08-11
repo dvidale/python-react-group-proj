@@ -1,34 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMenuItems } from '../../redux/menuItems';
 
 const MenuItemsList = () => {
 	const { id } = useParams();
-	const [menuItems, setMenuItems] = useState([]);
+	const dispatch = useDispatch();
+	const menuItems = useSelector((state) => state.menuItems);
+	console.log(menuItems);
 
 	useEffect(() => {
-		const fetchMenuItems = async () => {
-			const response = await fetch(
-				`http://localhost:8000/api/restaurants/${id}/menu-items`
-			);
-			const data = await response.json();
-			setMenuItems(data);
-		};
-		fetchMenuItems();
-	}, [id]); // Re-run effect if the id changes
+		dispatch(fetchMenuItems(id));
+	}, [dispatch, id]);
 
 	return (
 		<div>
 			<h2>Menu Items</h2>
-			<div>
-				{menuItems.map((item) => (
-					<div key={item.id}>
+			<ul>
+				{menuItems.itemArr.map((item) => (
+					<li key={item.id}>
 						<h3>{item.name}</h3>
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>
 						<p>Rating: {item.like_percentage}%</p>
-					</div>
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	);
 };
