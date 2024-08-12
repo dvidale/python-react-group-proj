@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenuItems } from '../../redux/menuItems';
+import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 
 const MenuItemsList = (id) => {
 	const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const MenuItemsList = (id) => {
 		<div>
 			<h2>Menu Items</h2>
 			<div>
+				<AddMenuItemButton />
 				{menuItems.map((item) => (
 					<div key={item.id}>
 						<h3>{item.name}</h3>

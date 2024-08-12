@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { createMenuItem } from '../../redux/menuItems';
+import { fetchAddMenuItem } from '../../redux/menuItems';
 import { useModal } from '../../context/Modal';
 import { useState } from 'react';
 
@@ -23,7 +23,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 			image_url: imageUrl,
 		};
 
-		dispatch(createMenuItem(restaurantId, menuItemData)).then(() => {
+		dispatch(fetchAddMenuItem(restaurantId, menuItemData)).then(() => {
 			closeModal();
 		});
 	};
