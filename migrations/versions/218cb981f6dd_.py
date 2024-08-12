@@ -4,8 +4,6 @@ Revision ID: 218cb981f6dd
 Revises: 
 Create Date: 2024-08-11 18:02:26.024700
 
-Adding a note to push a commit 08-01-2024 4:37PM PT
-
 """
 from alembic import op
 import sqlalchemy as sa
