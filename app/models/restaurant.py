@@ -22,7 +22,12 @@ class Restaurant(db.Model):
     delivery_time = db.Column(db.String(50), nullable=False)
     delivery_fee = db.Column(db.Float, nullable=False)
 
-    categories = db.relationship('Category', secondary='restaurant_categories', back_populates='restaurants')
+    categories = db.relationship('Category', secondary=f'{SCHEMA}.restaurant_categories', back_populates='restaurants')
 
     def __repr__(self):
         return f'<Restaurant {self.name}>'
+    
+    def print_run():
+        print(">>>> inside restaurant model")
+
+    print_run()
