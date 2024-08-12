@@ -1,4 +1,4 @@
-from app.models import db, Category, RestaurantCategory
+from app.models import db, Category, RestaurantCategory, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_restaurant_categories():
@@ -90,5 +90,5 @@ def seed_restaurant_categories():
     db.session.commit()
 
 def undo_restaurant_categories():
-    db.session.execute('TRUNCATE restaurant_categories RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE {SCHEMA}.restaurant_categories RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -71,7 +71,7 @@ def undo():
         db.session.execute(f"TRUNCATE table {SCHEMA}.menu_items2 RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.menu_items1 RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.reviews RESTART IDENTITY CASCADE;")
-        db.session.execute(f"TRUNCATE table {SCHEMA}.rest RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM cart_items")
@@ -82,7 +82,7 @@ def undo():
         db.session.execute("DELETE FROM menu_items2")
         db.session.execute("DELETE FROM menu_items1")
         db.session.execute("DELETE FROM reviews")
-        db.session.execute("DELETE FROM rest")
+        db.session.execute("DELETE FROM restaurants")
         db.session.execute("DELETE FROM users")
         
         db.session.commit()
