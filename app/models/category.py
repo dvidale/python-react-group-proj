@@ -1,7 +1,5 @@
 from .db import db, environment, SCHEMA
 
-print(">>>> inside category model")
-
 class Category(db.Model):
     __tablename__ = 'categories'
 
