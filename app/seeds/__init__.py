@@ -24,38 +24,45 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        undo_users()
-        undo_rest()
-        undo_menu_items1()
-        undo_menu_items2()
-        undo_categories_and_restaurant_categories()
-        undo_reviews()
+        undo_cart_items()
         undo_menu_item_ratings()
         undo_shopping_carts()
-        undo_cart_items()
+        undo_categories_and_restaurant_categories()
+        undo_menu_items2()
+        undo_menu_items1()
+        undo_reviews()
+        undo_rest()
+        undo_users()
 
     seed_users()
     seed_rest()
+    seed_reviews()
     seed_menu_items1()
     seed_menu_items2()
     seed_categories_and_restaurant_categories()
-    seed_reviews()
-    seed_menu_item_ratings()
     seed_shopping_carts()
+    seed_menu_item_ratings()
     seed_cart_items()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
-def undo():
-    undo_users()
-    undo_rest()
-    undo_menu_items1()
-    undo_menu_items2()
-    undo_categories_and_restaurant_categories()
-    undo_reviews()
+def undo():    
+    undo_cart_items()
     undo_menu_item_ratings()
     undo_shopping_carts()
-    undo_cart_items()
+    undo_categories_and_restaurant_categories()
+    undo_menu_items2()
+    undo_menu_items1()
+    undo_reviews()
+    undo_rest()
+    undo_users()
+
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM users")
+        
+        db.session.commit()
     # Add other undo functions here
