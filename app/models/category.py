@@ -12,7 +12,12 @@ class Category(db.Model):
     img_url = db.Column(db.String(100), nullable=False)
 
     # Relationship with Restaurant through RestaurantCategory
-    restaurants = db.relationship('Restaurant', secondary='restaurant_categories', back_populates='categories')
+    restaurants = db.relationship('Restaurant', secondary=f'{SCHEMA}.restaurant_categories', back_populates='categories')
 
     def __repr__(self):
         return f'<Category {self.categ_name}>'
+    
+    def print_run():
+        print(">>>> inside category model")
+
+    print_run()

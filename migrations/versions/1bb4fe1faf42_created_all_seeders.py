@@ -62,6 +62,19 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
+    op.create_table('restaurant_categories',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('restaurant_id', sa.Integer(), nullable=False),
+    sa.Column('category_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
+    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+
+    if environment == "restaurant_categories":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
+
     op.create_table('restaurants',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -119,23 +132,6 @@ def upgrade():
 
     if environment == "menu_items":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-
-
-    op.create_table('restaurant_categories',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('restaurant_id', sa.Integer(), nullable=False),
-    sa.Column('category_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-
-    if environment == "restaurant_categories":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-
-
 
     
     op.create_table('reviews',
