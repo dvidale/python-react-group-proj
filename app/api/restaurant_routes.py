@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Restaurant, MenuItem, MenuItemRating, Review, User
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -16,8 +16,9 @@ def get_all_menu_items(id):
     return menu_items_list
 
 
+
 # GET ALL REVIEWS FOR SPECIFIC RESTAURANT
-@restaurant_routes.route('/<int:id>/reviews', methods=["GET", "POST", "PUT"])
+@restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):
 
     if request.method == "GET":
@@ -30,22 +31,27 @@ def get_restaurant_reviews(id):
 
         return reviews_list
 
-    if request.method == "POST":
-        data = request.get_json()
 
-@restaurant_routes.route('/<int:id>/reviews', methods=["POST", "PUT"])
-@login_required
-def create_or_update_review(id):
+# CREATE A REVIEW
+@restaurant_routes.route('/<int:restaurant_id>/reviews', methods=["POST"])
+# @login_required
+def create_review(restaurant_id):
+    restaurant = Restaurant.query.get(restaurant_id)
+
+    if not restaurant:
+        return { 'Error': 'Restaurant Not Found'}, 404
 
     if request.method == "POST":
         data = request.get_json()
 
         new_review = Review (
             rating = data['rating'],
-            comments = data['comments']
+            comments = data['comments'],
+            restaurant_id = restaurant.id,
+            user_id = current_user.id
         )
 
         db.session.add(new_review)
         db.session.commit()
 
-        return new_review.to_dict()
+        return new_review.to_dict(), 200

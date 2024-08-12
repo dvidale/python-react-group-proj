@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Category(db.Model):
     __tablename__ = 'categories'
@@ -12,7 +12,7 @@ class Category(db.Model):
     img_url = db.Column(db.String(100), nullable=False)
 
     # Relationship with Restaurant through RestaurantCategory
-    restaurants = db.relationship('Restaurant', secondary=f'{SCHEMA}.restaurant_categories', back_populates='categories')
+    restaurants = db.relationship('Restaurant', secondary=add_prefix_for_prod('restaurant_categories'), back_populates='categories')
 
     def __repr__(self):
         return f'<Category {self.categ_name}>'
