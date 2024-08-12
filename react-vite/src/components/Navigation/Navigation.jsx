@@ -5,18 +5,19 @@ import ShoppingCartButton from '../ShoppingCartModal/ShoppingCartButton';
 
 function Navigation() {
 	return (
-		<ul>
-			<li>
-				<NavLink to='/'>Home</NavLink>
-			</li>
-
-			<li>
+		<nav className='navbar'>
+			<NavLink
+				className='logo'
+				to='/'
+			>
+				Home
+			</NavLink>
+			<div className='nav-btn-holder'>
 				<ProfileButton />
-			</li>
-			<li>
+
 				<ShoppingCartButton />
-			</li>
-		</ul>
+			</div>
+		</nav>
 	);
 }
 
