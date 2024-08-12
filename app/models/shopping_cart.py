@@ -11,5 +11,3 @@ class ShoppingCart(db.Model):
     user_id=db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     
     cart_items = db.relationship('CartItem', back_populates='shopping_cart')
-
-    

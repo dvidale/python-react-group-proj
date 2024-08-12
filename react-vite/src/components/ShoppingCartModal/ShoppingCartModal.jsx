@@ -1,28 +1,47 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './ShoppingCartModal.css';
+import { useEffect } from 'react';
+import { fetchCartItems } from '../../redux/shoppingCart';
 
 const ShoppingCartModal = () => {
+	const dispatch = useDispatch();
 	const { closeModal } = useModal();
-	const shoppingCart = useSelector((state) => state.shoppingCart);
+	const shoppingCart = useSelector((state) => state.shoppingCart.items);
+	console.log(shoppingCart);
+
+	useEffect(() => {
+		dispatch(fetchCartItems());
+	}, [dispatch]);
+
+	// ! FUTURE WORK FOR  REMOVING AND CLEARING
+	// const handleRemoveItem = (itemId) => {
+	// 	dispatch(removeCartItemThunk(itemId));
+	// };
+
+	// const handleClearCart = () => {
+	// 	dispatch(clearCartThunk());
+	// };
 
 	return (
 		<div className='shopping-cart-modal'>
 			<h2>Your Shopping Cart</h2>
-			{shoppingCart && shoppingCart.items.length > 0 ? (
-				<ul>
-					{shoppingCart.items.map((item) => (
-						<li key={item.id}>
-							<img
-								src={item.menu_item.image_url}
-								alt={item.menu_item.name}
-							/>
-							<h3>{item.menu_item.name}</h3>
-							<p>{item.menu_item.description}</p>
-							<p>Price: ${item.menu_item.price}</p>
-						</li>
-					))}
-				</ul>
+			{shoppingCart.length > 0 ? (
+				<>
+					<div>
+						{shoppingCart.map((item) => (
+							<div key={item.id}>
+								<img
+									src={item.image_url}
+									alt={item.name}
+								/>
+								<h3>{item.name}</h3>
+								<p>{item.description}</p>
+								<p>Price: ${item.price}</p>
+							</div>
+						))}
+					</div>
+				</>
 			) : (
 				<p>Your cart is empty.</p>
 			)}

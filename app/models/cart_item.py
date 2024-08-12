@@ -1,10 +1,5 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 
-
-
-
-
-
 class CartItem(db.Model):
     __tablename__ = 'cart_items'
 
@@ -16,10 +11,4 @@ class CartItem(db.Model):
     menu_item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menu_items.id')), nullable=False)
 
     shopping_cart = db.relationship('ShoppingCart', back_populates='cart_items')
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'shopping_cart_id': self.shopping_cart_id,
-            'menu_item': self.menu_item.to_dict(),
-        }
+    menu_item = db.relationship('MenuItem', back_populates='cart_items')
