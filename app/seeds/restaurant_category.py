@@ -90,5 +90,5 @@ def seed_restaurant_categories():
     db.session.commit()
 
 def undo_restaurant_categories():
-    db.session.execute(f'TRUNCATE {SCHEMA}.restaurant_categories RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE table {SCHEMA}.restaurant_categories RESTART IDENTITY CASCADE;')
     db.session.commit()
