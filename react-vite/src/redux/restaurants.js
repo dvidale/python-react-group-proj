@@ -1,7 +1,4 @@
 
-
-
-
 //*------------------------------------ACTION TYPES
 
 const GET_ALL_CATEGORIES = 'categories/GET_ALL_CATEGORIES'
@@ -30,7 +27,7 @@ export const getCategories = () => async (dispatch) =>{
     
         return data
     }else{
-        console.log(">>>> error <<<<<")
+        
         return "Error"
     }
    

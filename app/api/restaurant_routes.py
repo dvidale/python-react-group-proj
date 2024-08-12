@@ -3,7 +3,7 @@ from app.models import db, Restaurant, MenuItem, MenuItemRating, Category
 
 restaurant_routes = Blueprint('restaurant', __name__)
 
-
+# Get All Categories
 @restaurant_routes.route('/categories')
 def get_all_categories():
     categories = Category.query.all()
@@ -11,6 +11,13 @@ def get_all_categories():
  
     return categories_list
 
+#  Get All Restaurants
+@restaurant_routes.route('/')
+def get_all_restaurants():
+    restaurants = Restaurant.query.all()
+    restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
+
+    return restaurants_list
 
 # ? GET ALL MENU ITEMS ROUTE
 @restaurant_routes.route('/<int:id>/menu-items')
