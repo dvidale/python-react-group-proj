@@ -1,11 +1,12 @@
-from .db import db
-from .user import User
-from .db import environment, SCHEMA
-from .restaurant import Restaurant
+from .db import db, environment, SCHEMA
 from .category import Category
+from .user import User
+from .shopping_cart import ShoppingCart
+from .cart_item import CartItem
+from .restaurant import Restaurant
+from .reviews import Review
 from .restaurant_category import RestaurantCategory
 from .menu_item import MenuItem
-from .cart_item import CartItem
 from .menu_item_rating import MenuItemRating
-from .shopping_cart import ShoppingCart
-from .reviews import Review
+
+
