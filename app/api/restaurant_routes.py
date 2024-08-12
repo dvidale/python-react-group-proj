@@ -5,7 +5,7 @@ from app.forms.add_menu_item import MenuItemForm
 restaurant_routes = Blueprint('restaurant', __name__)
 
 
-# ? GET ALL MENU ITEMS ROUTE
+# ? GET ALL MENU ITEMS 
 @restaurant_routes.route('/<int:id>/menu-items')
 def get_all_menu_items(id):
     restaurant = Restaurant.query.get(id)

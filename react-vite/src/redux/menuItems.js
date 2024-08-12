@@ -26,6 +26,7 @@ export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/menu-items`);
 	if (response.ok) {
 		const data = await response.json();
+		console.log('data =====>', data);
 		dispatch(getMenuItems(data));
 	}
 };

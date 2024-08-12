@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
+import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 
 export const router = createBrowserRouter([
 	{
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'restaurants/:id/menu-items',
-				element: <MenuItemsList />,
+				element: <RestaurantPage />,
 			},
 		],
 	},
