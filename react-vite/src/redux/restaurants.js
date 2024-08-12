@@ -37,8 +37,7 @@ export const getCategories = () => async (dispatch) =>{
 
 const initialState = {
     allCategories :[],
-    AllRestaurants:[],
-    AllRestaurantsDetails:{}
+    AllRestaurants:[]
 }
 
 const restaurantsReducer = (state = initialState, action) =>{
