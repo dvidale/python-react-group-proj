@@ -30,4 +30,4 @@ class Restaurant(db.Model):
     def print_run():
         print(">>>> inside restaurant model")
 
-    print_run()
+    # print_run()

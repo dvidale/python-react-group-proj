@@ -17,7 +17,14 @@ class Category(db.Model):
     def __repr__(self):
         return f'<Category {self.categ_name}>'
     
+    def to_dict(self):
+       return {
+           'id': self.id,
+           'categ_name':self.categ_name,
+           'img_url':self.img_url
+       }
+
     def print_run():
         print(">>>> inside category model")
 
-    print_run()
+    # print_run()

@@ -1,7 +1,15 @@
 from flask import Blueprint, jsonify
-from app.models import db, Restaurant, MenuItem, MenuItemRating
+from app.models import db, Restaurant, MenuItem, MenuItemRating, Category
 
 restaurant_routes = Blueprint('restaurant', __name__)
+
+
+@restaurant_routes.route('/categories')
+def get_all_categories():
+    categories = Category.query.all()
+    categories_list = [category.to_dict() for category in categories]
+ 
+    return categories_list
 
 
 # ? GET ALL MENU ITEMS ROUTE
