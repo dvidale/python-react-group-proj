@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required
 from ..models import db, Review, User, Restaurant
 
 reviews = Blueprint('reviews', __name__)

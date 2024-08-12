@@ -10,5 +10,10 @@ __pycache__
 .docker
 .devcontainer
 README.CONTAINER.md
+<<<<<<< HEAD
 instance/
 .migrations
+=======
+
+
+>>>>>>> 02c8f2c3dbd872ed2196044b41fa17fb3cc38b62
