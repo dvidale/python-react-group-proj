@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
     city = db.Column(db.String(40), nullable=False)
     state = db.Column(db.String(40), nullable=False)
     zip = db.Column(db.Integer, nullable=False)
-    phone_number=db.Column(db.Integer, nullable=False)
+    phone_number=db.Column(db.BigInteger(), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     @property
