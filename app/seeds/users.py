@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    print(">>>> inside users seeder")
     demo = User(
         username='Demo',
         first_name='Demo',
@@ -264,6 +265,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
-    db.session.commit()
 
+    db.session.commit()
