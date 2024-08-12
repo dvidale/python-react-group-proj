@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
 
+
 export const router = createBrowserRouter([
 	{
 		element: <Layout />,
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
 			{
 				path: 'restaurants/:id/menu-items',
 				element: <MenuItemsList />,
-			},
+			}
 		],
 	},
 ]);
