@@ -16,3 +16,10 @@ class CartItem(db.Model):
     menu_item_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('menu_items.id')), nullable=False)
 
     shopping_cart = db.relationship('ShoppingCart', back_populates='cart_items')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'shopping_cart_id': self.shopping_cart_id,
+            'menu_item': self.menu_item.to_dict(),
+        }
