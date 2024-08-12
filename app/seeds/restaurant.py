@@ -5,6 +5,7 @@ from datetime import datetime
 
 def seed_rest():
     # Manually added restaurants
+    print(">>>> inside restaurants seeder")
     restaurants = [
         Restaurant(
             owner_id=1,

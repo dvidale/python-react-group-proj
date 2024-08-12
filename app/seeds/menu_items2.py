@@ -1,4 +1,4 @@
-from app.models import db, MenuItem
+from app.models import db, MenuItem, SCHEMA
 
 def seed_menu_items2():
     menu_items = [
@@ -1025,5 +1025,5 @@ def seed_menu_items2():
     db.session.commit()
 
 def undo_menu_items2():
-    db.session.execute('TRUNCATE menu_items RESTART IDENTITY CASCADE;')
+    db.session.execute(f'TRUNCATE table {SCHEMA}.menu_items RESTART IDENTITY CASCADE;')
     db.session.commit()

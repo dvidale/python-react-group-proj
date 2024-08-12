@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    print(">>>> inside users seeder")
     demo = User(
         username='Demo',
         first_name='Demo',
