@@ -1,19 +1,24 @@
-import { NavLink } from "react-router-dom";
-import ProfileButton from "./ProfileButton";
-import "./Navigation.css";
+import { NavLink } from 'react-router-dom';
+import ProfileButton from './ProfileButton';
+import './Navigation.css';
+import ShoppingCartButton from '../ShoppingCartModal/ShoppingCartButton';
 
 function Navigation() {
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
+	return (
+		<nav className='navbar'>
+			<NavLink
+				className='logo'
+				to='/'
+			>
+				Home
+			</NavLink>
+			<div className='nav-btn-holder'>
+				<ProfileButton />
 
-      <li>
-        <ProfileButton />
-      </li>
-    </ul>
-  );
+				<ShoppingCartButton />
+			</div>
+		</nav>
+	);
 }
 
 export default Navigation;
