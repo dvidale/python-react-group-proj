@@ -41,7 +41,7 @@ def create_or_update_review(id):
         data = request.get_json()
 
         new_review = Review (
-            ratings = data['ratings'],
+            rating = data['rating'],
             comments = data['comments']
         )
 
