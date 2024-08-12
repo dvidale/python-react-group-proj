@@ -1,15 +1,15 @@
-from flask import Blueprint
-from ..models import Review
+from flask import Blueprint, request
+from ..models import db, Review, User, Restaurant
 
-bp = Blueprint('reviews', __name__, url_prefix='/reviews')
+reviews = Blueprint('reviews', __name__)
 
 
-@bp.route('/<int:review_id>', methods=["PUT"])
-def update_review():
+@reviews.route('/<int:review_id>', methods=["PUT"])
+def update_review(review_id):
 
     data = request.get_json()
 
-    review = Review.query.get(id)
+    review = Review.query.get(review_id)
 
     if 'rating' in data:
         review.rating = data['rating']
@@ -31,4 +31,4 @@ def update_review():
         "restaurant_id": restaurant.id
     }
 
-    return user.to_dict()
+    return response_data

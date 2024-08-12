@@ -11,3 +11,14 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     menu_items = db.relationship('MenuItemRating', back_populates='review')
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'restaurant_id': self.restaurant_id,
+            'rating': self.rating,
+            'comments': self.comments,
+            'created_at': self.created_at
+        }

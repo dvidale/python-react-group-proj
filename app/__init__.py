@@ -5,13 +5,15 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
-from app import api
+from .api.user_routes import user_routes
+from .api.auth_routes import auth_routes
+from .api.reviews import reviews
+from .api.restaurants import restaurants_route
 from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
-app.register_blueprint(api.reviews.bp)
 
 # Setup login manager
 login = LoginManager(app)
@@ -29,6 +31,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(reviews, url_prefix='/api/reviews' )
+app.register_blueprint(restaurants_route, url_prefix='/api/restaurants')
 db.init_app(app)
 Migrate(app, db)
 
