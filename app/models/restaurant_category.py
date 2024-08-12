@@ -1,5 +1,7 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 
+print(">>>> inside restaurant category seeder")
+
 class RestaurantCategory(db.Model):
     __tablename__ = 'restaurant_categories'
 
