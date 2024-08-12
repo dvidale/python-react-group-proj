@@ -8,7 +8,7 @@ class Restaurant(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(225), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
