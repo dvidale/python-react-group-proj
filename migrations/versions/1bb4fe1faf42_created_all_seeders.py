@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7e9485248027
+Revision ID: 1bb4fe1faf42
 Revises: 
-Create Date: 2024-08-11 16:12:46.340338
+Create Date: 2024-08-11 17:01:53.601436
 
 Adding a note to push a commit 08-01-2024 4:37PM PT
 
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7e9485248027'
+revision = '1bb4fe1faf42'
 down_revision = None
 branch_labels = None
 depends_on = None
