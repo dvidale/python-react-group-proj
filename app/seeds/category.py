@@ -3,6 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_categories_and_restaurant_categories():
     # Seed Categories
+    print(">>>> inside categories seeder")
     categories = [
         Category(categ_name='Italian', img_url='https://example.com/images/italian.jpg'),
         Category(categ_name='Mexican', img_url='https://example.com/images/mexican.jpg'),
@@ -20,6 +21,7 @@ def seed_categories_and_restaurant_categories():
     db.session.commit()
 
     # Seed RestaurantCategory (join table)
+    print(">>>> inside restaurant category seeder")
     restaurant_categories = [
         # Restaurant 1 (The Gourmet Kitchen) belongs to 'Italian' and 'French'
         RestaurantCategory(restaurant_id=1, category_id=1),  # Italian
