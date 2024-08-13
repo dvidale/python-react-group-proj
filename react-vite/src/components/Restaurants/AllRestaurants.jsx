@@ -17,8 +17,6 @@ const all_restaurants = useSelector(state => state.restaurants.AllRestaurants)
 
   return ( 
     <>
-    <h1>Restaurants</h1>
-   
         {all_restaurants.map((restaurant) => 
        (
         
@@ -27,12 +25,7 @@ const all_restaurants = useSelector(state => state.restaurants.AllRestaurants)
                <div>{restaurant.banner_img}   </div> 
                 <div> {restaurant.name}  </div>
                <div> {restaurant.avg_rating}  </div> 
-                <div>{restaurant.categories.map(category =>{
-                  return(
-                    <span key={restaurant.categories.indexOf(category)}>{category}</span>
-
-                  )
-                })} </div>
+                <div>{restaurant.categories.join(" • ")}</div>
                 <div>{restaurant.description}   </div> 
                <div> {restaurant.address} City, State   </div>
              
