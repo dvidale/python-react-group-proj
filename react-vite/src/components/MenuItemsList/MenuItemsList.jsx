@@ -4,6 +4,7 @@ import { fetchMenuItems } from '../../redux/menuItems';
 import { useParams } from 'react-router-dom';
 import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 import '../MenuItemsList/MenuItemsList.css';
+import { fetchAddCartItem } from '../../redux/shoppingCart';
 
 const MenuItemsList = () => {
 	const { id } = useParams();
@@ -13,6 +14,11 @@ const MenuItemsList = () => {
 	useEffect(() => {
 		dispatch(fetchMenuItems(id));
 	}, [dispatch, id]);
+
+	const handleAddToCart = (menuItemId) => {
+		dispatch(fetchAddCartItem(menuItemId));
+	};
+
 	return (
 		<div>
 			<h2>Menu Items</h2>
@@ -27,6 +33,9 @@ const MenuItemsList = () => {
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>
 						<p>Rating: {item.like_percentage}%</p>
+						<button onClick={() => handleAddToCart(item.id)}>
+							Add to Cart
+						</button>
 					</div>
 				))}
 			</div>

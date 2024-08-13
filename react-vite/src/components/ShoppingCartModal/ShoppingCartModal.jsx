@@ -2,7 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './ShoppingCartModal.css';
 import { useEffect } from 'react';
-import { fetchCartItems, fetchRemoveCartItem } from '../../redux/shoppingCart';
+import {
+	fetchCartItems,
+	fetchRemoveCartItem,
+	fetchAddCartItem,
+} from '../../redux/shoppingCart';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
@@ -13,8 +17,16 @@ const ShoppingCartModal = () => {
 		dispatch(fetchCartItems());
 	}, [dispatch]);
 
+	const handleAddToCart = (menuItemId) => {
+		dispatch(fetchAddCartItem(menuItemId)).then(() => {
+			dispatch(fetchCartItems());
+		});
+	};
+
 	const handleRemoveItem = (itemId) => {
-		dispatch(fetchRemoveCartItem(itemId));
+		dispatch(fetchRemoveCartItem(itemId)).then(() => {
+			dispatch(fetchCartItems());
+		});
 	};
 
 	return (
@@ -35,6 +47,11 @@ const ShoppingCartModal = () => {
 								<h3>{item.name}</h3>
 								<p>{item.description}</p>
 								<p>Price: ${item.price}</p>
+								<p>Quantity: {item.item_quantity}</p>{' '}
+								{/* Display the quantity */}
+								<button onClick={() => handleAddToCart(item.menu_item_id)}>
+									Add to Cart
+								</button>
 								<button onClick={() => handleRemoveItem(item.id)}>
 									Remove
 								</button>
