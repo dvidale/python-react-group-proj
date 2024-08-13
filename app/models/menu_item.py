@@ -18,7 +18,7 @@ class MenuItem(db.Model):
 
     reviews = db.relationship('MenuItemRating', back_populates='menu_item')
     cart_items = db.relationship('CartItem', back_populates='menu_item')
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -30,4 +30,17 @@ class MenuItem(db.Model):
             'image_url': self.image_url,
             'quantity': self.quantity,
             'ratings_count': self.ratings_count,
+        }
+
+    def to_dict_review(self):
+        return {
+            'id': self.id,
+        }
+
+    def to_dict_ratings(self):
+        return {
+            'id': self.id,
+            'ratings_count': self.ratings_count,
+            'like_percentage': self.like_percentage,
+            'reviews': [review.to_dict_review() for review in self.reviews]
         }

@@ -2,7 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
-
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 import AllRestaurants from '../components/Restaurants/AllRestaurants';
 
@@ -29,6 +28,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'restaurants/:id/menu-items',
 				element: <RestaurantPage />,
+			},
+			{
+				path: 'restaurants/:id/reviews',
+				element: <Reviews />,
 			},
 		],
 	},
