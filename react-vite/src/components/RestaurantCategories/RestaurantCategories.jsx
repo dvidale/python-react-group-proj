@@ -7,10 +7,7 @@ function RestaurantCategories(){
     
     const dispatch = useDispatch()
 
-
     const categories = useSelector(state => state.restaurants.allCategories)
-
-
 
     useEffect( () =>{
 
@@ -19,8 +16,6 @@ function RestaurantCategories(){
 
     },[dispatch])
 
-    
-    
     return(
     <>{!categories ? (
         <></>
@@ -37,8 +32,6 @@ function RestaurantCategories(){
             </div>
             )
         })}
-
-
 
     </>    
     )}
