@@ -8,7 +8,7 @@ class Restaurant(db.Model):
 
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False, primary_key=True)
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(225), nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
@@ -26,7 +26,8 @@ class Restaurant(db.Model):
 
     def __repr__(self):
         return f'<Restaurant {self.name}>'
-    
+
+
     def to_dict(self):
         return {
             'id':self.id,
@@ -46,9 +47,7 @@ class Restaurant(db.Model):
 
 
 
-
-
     def print_run():
         print(">>>> inside restaurant model")
 
-    # print_run()
+    print_run()

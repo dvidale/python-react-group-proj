@@ -1,14 +1,16 @@
-from flask import Blueprint, jsonify
-from app.models import db, Restaurant, MenuItem, MenuItemRating, Category
+from flask import Blueprint, jsonify, render_template, request
+from flask_login import login_required, current_user
+from app.models import db, Restaurant, MenuItem, MenuItemRating, Category, Review, User
+from app.forms.add_menu_item import MenuItemForm
 
-restaurant_routes = Blueprint('restaurant', __name__)
+restaurant_routes = Blueprint('restaurants', __name__)
 
 # Get All Categories
 @restaurant_routes.route('/categories')
 def get_all_categories():
     categories = Category.query.all()
     categories_list = [category.to_dict() for category in categories]
- 
+
     return categories_list
 
 #  Get All Restaurants
@@ -19,7 +21,7 @@ def get_all_restaurants():
 
     return restaurants_list
 
-# ? GET ALL MENU ITEMS ROUTE
+# ? GET ALL MENU ITEMS
 @restaurant_routes.route('/<int:id>/menu-items')
 def get_all_menu_items(id):
     restaurant = Restaurant.query.get(id)

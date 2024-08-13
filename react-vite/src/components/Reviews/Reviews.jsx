@@ -1,20 +1,22 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenuItems } from '../../redux/menuItems';
-import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 
-const MenuItemsList = (id) => {
+const MenuItemsList = () => {
+	const { id } = useParams();
 	const dispatch = useDispatch();
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
+	console.log(menuItems);
 
 	useEffect(() => {
 		dispatch(fetchMenuItems(id));
 	}, [dispatch, id]);
+
 	return (
 		<div>
-			<h2>Menu Items</h2>
+			<h2>Reviews</h2>
 			<div>
-				<AddMenuItemButton />
 				{menuItems.map((item) => (
 					<div key={item.id}>
 						<h3>{item.name}</h3>
