@@ -1,6 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as restaurantsActions from "../../redux/restaurants";
+
+import { Link } from "react-router-dom";
 
 function AllRestaurants() {
   const dispatch = useDispatch();
@@ -9,9 +11,9 @@ function AllRestaurants() {
     dispatch(restaurantsActions.getRestaurants());
   }, [dispatch]);
 
-  const restaurants_state = useSelector((state) => state.restaurants);
+const restaurants_state = useSelector(state => state.restaurants);
 
-  const restaurant_Ids = restaurants_state.Restaurant_Ids;
+const restaurant_Ids = restaurants_state.Restaurant_Ids;
   
 const all_restaurants = restaurants_state.AllRestaurants;
 
@@ -25,7 +27,8 @@ const all_restaurants = restaurants_state.AllRestaurants;
 
       {restaurant_Ids.map((idx) => {
         return(
-             <div key={idx}>
+             <Link key={idx} to={`/restaurants/${idx}`}>  
+             <div className="restaurant-tile">
                <div>{all_restaurants[idx].banner_img}   </div> 
                 <div> {all_restaurants[idx].name}  </div>
                <div> {all_restaurants[idx].avg_rating}  </div> 
@@ -37,8 +40,9 @@ const all_restaurants = restaurants_state.AllRestaurants;
                 })} </div>
                 <div>{all_restaurants[idx].description}   </div> 
                <div> {all_restaurants[idx].address} City, State   </div>
-              
+             
              </div>
+             </Link>
         )
       })}
 
