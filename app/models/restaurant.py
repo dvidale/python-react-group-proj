@@ -1,4 +1,6 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
+from .category import Category
+from .restaurant_category import RestaurantCategory
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
@@ -42,12 +44,7 @@ class Restaurant(db.Model):
             'open_time':self.open_time,
             'close_time':self.close_time,
             'delivery_item':self.delivery_time,
-            'delivery_fee': self.delivery_fee
+            'delivery_fee': self.delivery_fee,
+            'categories': [category.to_dict()['categ_name'] for category in (Category.query.join(RestaurantCategory).filter(RestaurantCategory.restaurant_id== self.id).all())]
         }
 
-
-
-    def print_run():
-        print(">>>> inside restaurant model")
-
-    print_run()

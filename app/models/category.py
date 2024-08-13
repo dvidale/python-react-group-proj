@@ -23,8 +23,3 @@ class Category(db.Model):
            'categ_name':self.categ_name,
            'img_url':self.img_url
        }
-
-    def print_run():
-        print(">>>> inside category model")
-
-    # print_run()

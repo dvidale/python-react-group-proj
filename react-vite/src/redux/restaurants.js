@@ -1,7 +1,7 @@
 
 //*------------------------------------ACTION TYPES
 
-import AllRestaurants from "../components/Restaurants/AllRestaurants";
+
 
 const GET_ALL_CATEGORIES = '/restaurants/categories/GET_ALL_CATEGORIES'
 
@@ -82,7 +82,7 @@ const restaurantsReducer = (state = initialState, action) =>{
                 ...state, allCategories: action.payload
             }
         case GET_RESTAURANTS:
-            let newArr = []; 
+            let newArr = []; // eslint-disable-line
             {action.payload.forEach( restaurant=>{
                 state.AllRestaurants[restaurant.id] = restaurant;        
                 newArr.push(restaurant.id)

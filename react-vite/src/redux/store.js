@@ -8,9 +8,11 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import menuItemsReducer from './menuItems';
 import shoppingCartReducer from './shoppingCart';
+import restaurantsReducer from './restaurants';
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
+	restaurants: restaurantsReducer,
 	menuItems: menuItemsReducer,
 	shoppingCart: shoppingCartReducer,
 });
