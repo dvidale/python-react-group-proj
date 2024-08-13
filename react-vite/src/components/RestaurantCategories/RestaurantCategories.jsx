@@ -4,7 +4,7 @@ import * as restaurantsActions from '../../redux/restaurants'
 
 
 function RestaurantCategories(){
-    
+
     const dispatch = useDispatch()
 
     const categories = useSelector(state => state.restaurants.allCategories)
@@ -33,9 +33,9 @@ function RestaurantCategories(){
             )
         })}
 
-    </>    
+    </>
     )}
-     </>    
+     </>
     )
 }
 
