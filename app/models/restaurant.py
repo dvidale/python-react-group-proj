@@ -27,6 +27,26 @@ class Restaurant(db.Model):
     def __repr__(self):
         return f'<Restaurant {self.name}>'
 
+
+    def to_dict(self):
+        return {
+            'id':self.id,
+            'owner_id':self.owner_id,
+            'name':self.name,
+            'address':self.address,
+            'phone_number':self.phone_number,
+            'description':self.description,
+            'banner_img':self.banner_img,
+            'avg_rating':self.avg_rating,
+            'day_of_week':self.day_of_week,
+            'open_time':self.open_time,
+            'close_time':self.close_time,
+            'delivery_item':self.delivery_time,
+            'delivery_fee': self.delivery_fee
+        }
+
+
+
     def print_run():
         print(">>>> inside restaurant model")
 

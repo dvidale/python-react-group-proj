@@ -16,4 +16,4 @@ class RestaurantCategory(db.Model):
     def print_run():
         print(">>>> inside restaurant category model")
 
-    print_run()
+    # print_run()

@@ -1,3 +1,20 @@
 .profile-dropdown {
-  position: absolute;
+	position: absolute;
+}
+
+.navbar {
+	display: flex;
+	gap: 1rem;
+	padding: 0.5rem 1rem;
+}
+
+.logo {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.nav-btn-holder {
+	display: flex;
+	gap: 1rem;
 }

@@ -44,4 +44,4 @@ class User(db.Model, UserMixin):
     def print_run():
         print(">>>> inside user model")
 
-    print_run()
+    # print_run()
