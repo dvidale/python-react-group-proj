@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { ModalProvider, Modal } from '../context/Modal';
 import { thunkAuthenticate } from '../redux/session';
 import Navigation from '../components/Navigation/Navigation';
-import RestaurantCategories from '../components/RestaurantCategories/RestaurantCategories';
+
+import AllRestaurants from '../components/Restaurants/AllRestaurants';
 
 export default function Layout() {
 	const dispatch = useDispatch();
@@ -20,7 +21,6 @@ export default function Layout() {
 			
 				{isLoaded && <Outlet />}
 			
-				<RestaurantCategories/>
 				<Modal />
 			</ModalProvider>
 		</>

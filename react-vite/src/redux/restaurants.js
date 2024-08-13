@@ -1,8 +1,11 @@
 
 //*------------------------------------ACTION TYPES
 
-const GET_ALL_CATEGORIES = 'categories/GET_ALL_CATEGORIES'
+import AllRestaurants from "../components/Restaurants/AllRestaurants";
 
+const GET_ALL_CATEGORIES = '/restaurants/categories/GET_ALL_CATEGORIES'
+
+const GET_RESTAURANTS = '/restaurants/GET_RESTAURANTS'
 
 //*-----------------------------------ACTION CREATORS
 
@@ -14,6 +17,15 @@ export function getAllCategories(data){
     }
 
 }
+
+export function getAllRestaurants(data){
+
+    return{
+        type:GET_RESTAURANTS,
+        payload:data
+    }
+}
+
 
 
 //* -------------------------------------THUNKS
@@ -33,11 +45,34 @@ export const getCategories = () => async (dispatch) =>{
    
 };
 
+
+export const getRestaurants = () => async (dispatch) =>{
+
+const response = await fetch('/api/restaurants')
+
+if(response.ok){
+    const data=await response.json();
+    dispatch(getAllRestaurants(data))
+
+    return data
+}
+else{
+    return 'Error: No Restaurants'
+}
+
+
+
+
+
+
+}
+
 //* -------------------------------------REDUCERS
 
 const initialState = {
     allCategories :[],
-    AllRestaurants:[]
+    AllRestaurants:{},
+    Restaurant_Ids:[]
 }
 
 const restaurantsReducer = (state = initialState, action) =>{
@@ -46,8 +81,19 @@ const restaurantsReducer = (state = initialState, action) =>{
             return{
                 ...state, allCategories: action.payload
             }
-            default:
+        case GET_RESTAURANTS:
+            let newArr = [];
+            {action.payload.forEach( restaurant=>{
+                state.AllRestaurants[restaurant.id] = restaurant;        
+                newArr.push(restaurant.id)
+            }
+            )}
+            state.Restaurant_Ids=newArr
+            return state
+        default:
                 return state
+      
+
     }
 
 
