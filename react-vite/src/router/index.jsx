@@ -22,16 +22,12 @@ export const router = createBrowserRouter([
 				element: <SignupFormPage />,
 			},
 			{
-				path: '/restaurants',
+				path: 'restaurants',
 				element: <AllRestaurants />,
 			},
 			{
-				path: 'restaurants/:id/menu-items',
+				path: 'restaurants/:id',
 				element: <RestaurantPage />,
-			},
-			{
-				path: 'restaurants/:id/reviews',
-				element: <Reviews />,
 			},
 		],
 	},

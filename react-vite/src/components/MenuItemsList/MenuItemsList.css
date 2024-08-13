@@ -1,0 +1,12 @@
+.menu-items-wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 1rem 3rem;
+}
+
+.menu-item-structure {
+	border: solid 2px green;
+	padding: 1rem 3rem;
+	display: flex;
+	flex-direction: column;
+}

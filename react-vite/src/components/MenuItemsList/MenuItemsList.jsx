@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMenuItems } from '../../redux/menuItems';
+import { useParams } from 'react-router-dom';
 import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
+import '../MenuItemsList/MenuItemsList.css';
 
-const MenuItemsList = (id) => {
+const MenuItemsList = () => {
+	const { id } = useParams();
 	const dispatch = useDispatch();
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
 
@@ -13,10 +16,13 @@ const MenuItemsList = (id) => {
 	return (
 		<div>
 			<h2>Menu Items</h2>
-			<div>
-				<AddMenuItemButton />
+			<AddMenuItemButton />
+			<div className='menu-items-wrapper'>
 				{menuItems.map((item) => (
-					<div key={item.id}>
+					<div
+						key={item.id}
+						className='menu-item-structure'
+					>
 						<h3>{item.name}</h3>
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>

@@ -13,7 +13,7 @@ class MenuItem(db.Model):
     description = db.Column(db.String(2000))
     price = db.Column(db.Float(2, 1), nullable=False)
     image_url = db.Column(db.String(225))
-    quantity = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer)
     ratings_count = db.Column(db.Integer)
 
     reviews = db.relationship('MenuItemRating', back_populates='menu_item')

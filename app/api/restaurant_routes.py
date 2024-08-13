@@ -22,11 +22,11 @@ def get_all_restaurants():
 
     return restaurants_list
 
-# # ? GET A RESTAURANT BY ID
-# @restaurant_routes.route('/<int:id>')
-# def get_restaurant_by_id(id): 
-#     restaurant_by_id = Restaurant.query.get(id)
-#     return restaurant_by_id
+# ? GET A RESTAURANT BY ID
+@restaurant_routes.route('/<int:id>')
+def get_restaurant_by_id(id): 
+    restaurant_by_id = Restaurant.query.get(id)
+    return restaurant_by_id.to_dict()
 
 # ? GET ALL MENU ITEMS
 @restaurant_routes.route('/<int:id>/menu-items')
@@ -37,6 +37,34 @@ def get_all_menu_items(id):
     menu_items = MenuItem.query.filter_by(restaurant_id=id).all()
     menu_items_list = [item.to_dict() for item in menu_items]
     return menu_items_list
+
+
+# ? ADD NEW MENU ITEM 
+@restaurant_routes.route('/<int:id>/menu-items/new', methods=['POST'])
+def add_new_menu_item(id):
+    restaurant = Restaurant.query.get(id)
+    if not restaurant:
+        return { 'Error': 'Restaurant Not Found'}, 404
+
+    form = MenuItemForm()
+    if form.validate_on_submit():
+        new_menu_item = MenuItem(
+            restaurant_id=id,
+            name=form.name.data,
+            like_percentage=0,
+            price=form.price.data,
+            image_url=form.image_url.data,
+            description=form.description.data,
+            quantity=form.quantity.data,
+            ratings_count=0  
+        )
+
+        db.session.add(new_menu_item)
+        db.session.commit()
+
+        return new_menu_item.to_dict(), 200
+
+    return {"errors": form.errors}, 400
 
 # ? GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 @restaurant_routes.route('/<int:id>/reviews')
