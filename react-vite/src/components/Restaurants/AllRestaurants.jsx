@@ -1,18 +1,10 @@
-import {useDispatch, useState} from 'react-redux'
-import { useEffect } from 'react'
+// import { useDispatch, useState } from 'react-redux';
+// import { useEffect } from 'react';
 
-function AllRestaurants(){
+function AllRestaurants() {
+	// const dispatch = useDispatch();
 
-const dispatch = useDispatch()
-
-
-
-
-    return (
-        <>
-        
-        </>
-    )
+	return <>ALL RESTAURANTS</>;
 }
 
-export default AllRestaurants
+export default AllRestaurants;

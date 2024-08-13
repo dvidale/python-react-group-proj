@@ -4,7 +4,7 @@ from app.forms.add_menu_item import MenuItemForm
 
 restaurant_routes = Blueprint('restaurant', __name__)
 
-# Get All Categories
+# ? GET ALL CATEGORIES
 @restaurant_routes.route('/categories')
 def get_all_categories():
     categories = Category.query.all()
@@ -12,13 +12,19 @@ def get_all_categories():
  
     return categories_list
 
-#  Get All Restaurants
+# ?  GET ALL RESTAURANTS
 @restaurant_routes.route('/')
 def get_all_restaurants():
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
     return restaurants_list
+
+# # ? GET A RESTAURANT BY ID
+# @restaurant_routes.route('/<int:id>')
+# def get_restaurant_by_id(id): 
+#     restaurant_by_id = Restaurant.query.get(id)
+#     return restaurant_by_id
 
 # ? GET ALL MENU ITEMS 
 @restaurant_routes.route('/<int:id>/menu-items')
@@ -30,7 +36,7 @@ def get_all_menu_items(id):
     menu_items_list = [item.to_dict() for item in menu_items]
     return menu_items_list
 
-#? ADD NEW MENU ITEM 
+# ? ADD NEW MENU ITEM 
 @restaurant_routes.route('/<int:id>/menu-items/new', methods=['POST'])
 def add_new_menu_item(id):
     restaurant = Restaurant.query.get(id)
