@@ -71,9 +71,8 @@ else{
 
 const initialState = {
     allCategories :[],
-    AllRestaurants:{},
-    Restaurant_Ids:[]
-}
+    AllRestaurants:[]
+    }
 
 const restaurantsReducer = (state = initialState, action) =>{
     switch (action.type) {
@@ -81,15 +80,11 @@ const restaurantsReducer = (state = initialState, action) =>{
             return{
                 ...state, allCategories: action.payload
             }
-        case GET_RESTAURANTS:
-            let newArr = []; // eslint-disable-line
-            {action.payload.forEach( restaurant=>{
-                state.AllRestaurants[restaurant.id] = restaurant;        
-                newArr.push(restaurant.id)
-            }
-            )}
-            state.Restaurant_Ids=newArr
-            return state
+        case GET_RESTAURANTS:{
+      
+        return {...state, AllRestaurants:action.payload}
+            
+        }
         default:
                 return state
       

@@ -23,10 +23,8 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/restaurants',
-				element:<AllRestaurants/>,
-				loader: (()=> {
-					return fetch('/api/restaurants')
-				})
+				element:<AllRestaurants/>
+				
 			},
 			{
 				path: '/restaurants/:id',
