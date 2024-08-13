@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
-import Layout from './Layout'
+import Layout from './Layout';
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 import AllRestaurants from '../components/Restaurants/AllRestaurants';
 import HomePage from '../components/HomePage/HomePage';
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <HomePage/>,
+				element: <HomePage />,
 			},
 			{
 				path: '/login',
@@ -24,13 +24,12 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/restaurants',
-				element:<AllRestaurants/>
-				
+				element: <AllRestaurants />,
 			},
 			{
 				path: '/restaurants/:id',
-				element: <RestaurantPage />
-			}
+				element: <RestaurantPage />,
+			},
 		],
 	},
 ]);

@@ -26,7 +26,6 @@ export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/menu-items`);
 	if (response.ok) {
 		const data = await response.json();
-		console.log('data =====>', data);
 		dispatch(getMenuItems(data));
 	}
 };
@@ -44,6 +43,7 @@ export const fetchAddMenuItem =
 				body: JSON.stringify(menuItemData),
 			}
 		);
+		console.log('THIS IS THE RES>BODY', response.body);
 		if (response.ok) {
 			const data = await response.json();
 			dispatch(addMenuItem(data));

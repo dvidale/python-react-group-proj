@@ -10,3 +10,6 @@ def get_menu_item_ratings(menuitem_id):
     ratings = menu_item.reviews
 
     return ratings.to_dict()
+
+
+#? DELETE MENU_ITEM

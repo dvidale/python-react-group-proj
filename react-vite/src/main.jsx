@@ -7,7 +7,7 @@ import { router } from './router';
 import * as sessionActions from './redux/session';
 import './index.css';
 
-const store = configureStore();
+const store = configureStore(); // Create the store instance
 
 if (import.meta.env.MODE !== 'production') {
 	window.store = store;

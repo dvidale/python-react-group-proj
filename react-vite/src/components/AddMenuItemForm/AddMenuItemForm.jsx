@@ -9,7 +9,6 @@ const AddMenuItemForm = ({ restaurantId }) => {
 	const [name, setName] = useState('');
 	const [price, setPrice] = useState('');
 	const [description, setDescription] = useState('');
-	const [likePercentage, setLikePercentage] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
 
 	const handleSubmit = (e) => {
@@ -19,9 +18,10 @@ const AddMenuItemForm = ({ restaurantId }) => {
 			name,
 			price: parseFloat(price),
 			description,
-			like_percentage: parseInt(likePercentage, 10),
 			image_url: imageUrl,
 		};
+
+		console.log('THIS IS THE FORM DATA', menuItemData);
 
 		dispatch(fetchAddMenuItem(restaurantId, menuItemData)).then(() => {
 			closeModal();
@@ -54,15 +54,6 @@ const AddMenuItemForm = ({ restaurantId }) => {
 				<textarea
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
-					required
-				/>
-			</label>
-			<label>
-				Like Percentage:
-				<input
-					type='number'
-					value={likePercentage}
-					onChange={(e) => setLikePercentage(e.target.value)}
 					required
 				/>
 			</label>
