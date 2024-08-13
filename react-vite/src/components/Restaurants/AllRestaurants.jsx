@@ -18,6 +18,7 @@ const all_restaurants = restaurants_state.AllRestaurants;
 
   return (
     <>
+    <h1>Restaurants</h1>
       {restaurant_Ids.map((idx) => {
         return(
              <div key={idx}>{all_restaurants[idx].name}</div>

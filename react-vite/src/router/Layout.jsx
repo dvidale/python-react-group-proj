@@ -5,7 +5,6 @@ import { ModalProvider, Modal } from '../context/Modal';
 import { thunkAuthenticate } from '../redux/session';
 import Navigation from '../components/Navigation/Navigation';
 
-import AllRestaurants from '../components/Restaurants/AllRestaurants';
 
 export default function Layout() {
 	const dispatch = useDispatch();
