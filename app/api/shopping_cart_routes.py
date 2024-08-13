@@ -1,4 +1,4 @@
-from flask import Blueprint, session
+from flask import Blueprint, session, jsonify
 from app.models import ShoppingCart,CartItem,MenuItem, db
 from flask_login import current_user
 
@@ -19,3 +19,14 @@ def get_current_shopping_cart():
             for item in cart_items
         ]
     return cart_items_data
+
+@shopping_cart_routes.route('/current/<int:cart_item_id>/remove', methods=['DELETE'])
+def remove_cart_item(cart_item_id):
+    cart_item = CartItem.query.get(cart_item_id)
+    if not cart_item:
+        return {"error": "Cart item not found"}, 404
+    
+    db.session.delete(cart_item)
+    db.session.commit()
+    
+    return {"message": "Cart item removed successfully"}, 200

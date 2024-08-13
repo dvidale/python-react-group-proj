@@ -2,26 +2,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './ShoppingCartModal.css';
 import { useEffect } from 'react';
-import { fetchCartItems } from '../../redux/shoppingCart';
+import { fetchCartItems, fetchRemoveCartItem } from '../../redux/shoppingCart';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
-	console.log(shoppingCart);
 
 	useEffect(() => {
 		dispatch(fetchCartItems());
 	}, [dispatch]);
 
-	// ! FUTURE WORK FOR  REMOVING AND CLEARING
-	// const handleRemoveItem = (itemId) => {
-	// 	dispatch(removeCartItemThunk(itemId));
-	// };
-
-	// const handleClearCart = () => {
-	// 	dispatch(clearCartThunk());
-	// };
+	const handleRemoveItem = (itemId) => {
+		dispatch(fetchRemoveCartItem(itemId));
+	};
 
 	return (
 		<div className='shopping-cart-modal'>
@@ -30,7 +24,10 @@ const ShoppingCartModal = () => {
 				<>
 					<div>
 						{shoppingCart.map((item) => (
-							<div key={item.id}>
+							<div
+								key={item.id}
+								className='cart-item'
+							>
 								<img
 									src={item.image_url}
 									alt={item.name}
@@ -38,6 +35,9 @@ const ShoppingCartModal = () => {
 								<h3>{item.name}</h3>
 								<p>{item.description}</p>
 								<p>Price: ${item.price}</p>
+								<button onClick={() => handleRemoveItem(item.id)}>
+									Remove
+								</button>
 							</div>
 						))}
 					</div>
