@@ -42,7 +42,6 @@ def get_restaurant_reviews(id):
             return {"Error": "No reviews found for this restaurant"}, 404
 
         reviews_list = [review.to_dict() for review in reviews]
-
         return reviews_list
 
 # CREATE A REVIEW

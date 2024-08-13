@@ -1,6 +1,6 @@
 import './test_component.css'
 import { useDispatch, useSelector } from 'react-redux'
-import * as restaurantsActions from '../../redux/restaurants'
+// import * as restaurantsActions from '../../redux/restaurants'
 
 
 function TestComponent(){

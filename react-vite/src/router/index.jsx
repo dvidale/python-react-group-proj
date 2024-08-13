@@ -2,13 +2,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
-<<<<<<< HEAD
-
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
-=======
-import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
-import Reviews from '../components/Reviews/Reviews';
->>>>>>> nk-feature
+// import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
+import ReviewsList from '../components/Reviews/ReviewsList';
 
 export const router = createBrowserRouter([
 	{
@@ -32,7 +28,7 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: 'restaurants/:id/reviews',
-				element: <Reviews />
+				element: <ReviewsList />
 			}
 		],
 	},
