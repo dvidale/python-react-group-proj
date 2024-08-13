@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	padding: 1rem 3rem;
+	gap: 1rem;
 }
 
 .menu-item-structure {
@@ -9,4 +10,9 @@
 	padding: 1rem 3rem;
 	display: flex;
 	flex-direction: column;
+}
+
+.add-item-btn {
+	max-width: fit-content;
+	border-radius: 50%;
 }

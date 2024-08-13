@@ -33,8 +33,11 @@ const MenuItemsList = () => {
 						<p>{item.description}</p>
 						<p>Price: ${item.price}</p>
 						<p>Rating: {item.like_percentage}%</p>
-						<button onClick={() => handleAddToCart(item.id)}>
-							Add to Cart
+						<button
+							className='add-item-btn'
+							onClick={() => handleAddToCart(item.id)}
+						>
+							+
 						</button>
 					</div>
 				))}
