@@ -85,7 +85,17 @@ def update_cart_item(cart_item_id):
     if not cart_item:
         return {"error": "Cart item not found"}, 404
     
-    cart_item.item_quantity += 1  # Increment the quantity
+    data = request.get_json()
+    if 'decrement' in data and data['decrement']:
+        cart_item.item_quantity -= 1
+    else:
+        cart_item.item_quantity += 1
+
+    if cart_item.item_quantity <= 0:
+        db.session.delete(cart_item)
+    else:
+        db.session.add(cart_item)
+    
     db.session.commit()
     
     return {

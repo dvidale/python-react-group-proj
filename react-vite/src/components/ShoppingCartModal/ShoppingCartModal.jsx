@@ -50,11 +50,9 @@ const ShoppingCartModal = () => {
 								<p>Quantity: {item.item_quantity}</p>{' '}
 								{/* Display the quantity */}
 								<button onClick={() => handleAddToCart(item.menu_item_id)}>
-									Add to Cart
+									+
 								</button>
-								<button onClick={() => handleRemoveItem(item.id)}>
-									Remove
-								</button>
+								<button onClick={() => handleRemoveItem(item.id)}>-</button>
 							</div>
 						))}
 					</div>

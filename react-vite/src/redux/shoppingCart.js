@@ -30,18 +30,41 @@ export const fetchCartItems = () => async (dispatch) => {
 };
 
 // ?-------------------------REMOVE A CART ITEM
-export const fetchRemoveCartItem = (cartItemId) => async (dispatch) => {
-	const response = await fetch(
-		`/api/shopping-cart/current/${cartItemId}/remove`,
-		{
-			method: 'DELETE',
-		}
-	);
+export const fetchRemoveCartItem =
+	(cartItemId) => async (dispatch, getState) => {
+		const state = getState();
+		const existingItem = state.shoppingCart.items.find(
+			(item) => item.id === cartItemId
+		);
 
-	if (response.ok) {
-		dispatch(removeCartItem(cartItemId));
-	}
-};
+		if (existingItem && existingItem.item_quantity > 1) {
+			const response = await fetch(
+				`/api/shopping-cart/current/${cartItemId}/update`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ decrement: true }),
+				}
+			);
+			if (response.ok) {
+				const updatedItem = await response.json();
+				dispatch(addCartItem(updatedItem));
+			}
+		} else {
+			// If the item quantity is 1 or less, remove it from the cart
+			const response = await fetch(
+				`/api/shopping-cart/current/${cartItemId}/remove`,
+				{
+					method: 'DELETE',
+				}
+			);
+			if (response.ok) {
+				dispatch(removeCartItem(cartItemId));
+			}
+		}
+	};
 
 // ?--------------------------ADD A CART ITEM
 export const fetchAddCartItem = (menuItemId) => async (dispatch, getState) => {
@@ -55,6 +78,10 @@ export const fetchAddCartItem = (menuItemId) => async (dispatch, getState) => {
 			`/api/shopping-cart/current/${existingItem.id}/update`,
 			{
 				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ decrement: false }), // Ensure that the body is being sent
 			}
 		);
 		if (response.ok) {
