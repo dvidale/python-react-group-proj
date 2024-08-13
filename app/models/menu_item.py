@@ -32,10 +32,15 @@ class MenuItem(db.Model):
             'ratings_count': self.ratings_count,
         }
 
+    def to_dict_review(self):
+        return {
+            'id': self.id,
+        }
+
     def to_dict_ratings(self):
         return {
             'id': self.id,
             'ratings_count': self.ratings_count,
             'like_percentage': self.like_percentage,
-            'reviews': self.reviews
+            'reviews': [review.to_dict_review() for review in self.reviews]
         }
