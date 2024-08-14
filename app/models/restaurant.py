@@ -43,7 +43,7 @@ class Restaurant(db.Model):
             'day_of_week':self.day_of_week,
             'open_time':self.open_time,
             'close_time':self.close_time,
-            'delivery_item':self.delivery_time,
+            'delivery_time':self.delivery_time,
             'delivery_fee': self.delivery_fee,
             'categories': [category.to_dict()['categ_name'] for category in (Category.query.join(RestaurantCategory).filter(RestaurantCategory.restaurant_id== self.id).all())]
         }

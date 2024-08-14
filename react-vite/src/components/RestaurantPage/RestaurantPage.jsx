@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReviewsList from '../Reviews/ReviewsList';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
+import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
+
+//  !BUG: This page crashes if it is manually refreshed 
 
 export const RestaurantPage = () => {
 	const { id } = useParams();
@@ -24,7 +27,7 @@ export const RestaurantPage = () => {
 	return (
 		<>
 			<RestaurantHeader restaurant={restaurant} />
-			
+			<RestaurantInfoBox restaurant={restaurant}/>
 			<MenuItemsList id={id} />
 			<ReviewsList id={id}/>
 		</>
