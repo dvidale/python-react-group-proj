@@ -1,43 +1,81 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './restaurant_form.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
-
+import { useParams } from 'react-router-dom'
 
 function RestaurantForm(){
 
     //if an id is not provided, present this form blank for creating a new restaurant
     //if an id IS provided, load the data for that restaurant in each field and present as an update form for that restaurant 
 
-    const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
+    const {id} = useParams()
+
+    const restaurant = useSelector(state => state.restaurants.AllRestaurants[id])
+
+    const method = restaurant ? "PUT": "POST"
+
+    const [name, setName] = useState(restaurant ? restaurant.name : "")
+    const [address, setAddress] = useState(restaurant ? restaurant.address : "")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [zip, setZip] = useState("")
-    const [phone_number, setPhoneNumber] = useState("")
-    const [description, setDescription] = useState("")
-    const [categories, setCategories] = useState("")
-    const [open_time, setOpenTime] = useState("")
-    const [close_time, setCloseTime] = useState("")
-    const [delivery_time, setDeliveryTime] = useState("")
-    const [delivery_fee, setDeliveryFee] = useState("")
-    const [banner_img, setBannerImg] = useState("")
+    const [phone_number, setPhoneNumber] = useState(restaurant ? restaurant.phone_number : "")
+    const [description, setDescription] = useState(restaurant ? restaurant.description : "")
+    const [categories, setCategories] = useState(restaurant ? restaurant.categories : "")
+    const [open_time, setOpenTime] = useState(restaurant ? restaurant.open_time : "")
+    const [close_time, setCloseTime] = useState(restaurant ? restaurant.close_time : "")
+    const [delivery_time, setDeliveryTime] = useState(restaurant ? restaurant.delivery_time : "")
+    const [delivery_fee, setDeliveryFee] = useState(restaurant ? restaurant.delivery_fee : "")
+    const [banner_img, setBannerImg] = useState(restaurant ? restaurant.banner_img : "")
 
+    const [error, setError] = useState({})
    
 
-
+    
     const dispatch = useDispatch()
 
+useEffect(()=>{
 
+    const err = {}
+
+    name.length < 2 ? err[name] = "Name must have at least two characters" : ""
+
+    setError(err)
+
+},[name])
+
+// Load current categories for multi-select options
+
+useEffect(()=>{
+
+dispatch(restaurantsActions.getCategories())
+
+},[dispatch])
+
+// create categories list
+
+const category_list = useSelector(state => state.restaurants.allCategories)
 
 
 
 
 const submitHandler = (e) =>{
     e.preventDefault()
+
+    
   
     const formData = {
-        name
+        name,
+        address,
+        phone_number,
+        description,
+        categories,
+        open_time,
+        close_time,
+        delivery_time,
+        delivery_fee,
+        banner_img
     }
 
     dispatch(restaurantsActions.newRestaurant(JSON.stringify(formData)))
@@ -48,7 +86,8 @@ const submitHandler = (e) =>{
     return(
         <>
         <div id="form-container">
-        <form onSubmit={submitHandler}>
+            <h1>{restaurant ? "Update" : "Submit"} A {!restaurant && "New"} Restaurant</h1>
+        <form onSubmit={submitHandler} method={method} >
             <div>
             <label htmlFor='name'> Name
             <input type='text' id='name' name='name' value={name} onChange={e => setName(e.target.value)}></input>
@@ -60,11 +99,15 @@ const submitHandler = (e) =>{
             <input type='text' id='address' name='address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
+
+            {!restaurant && 
             <div>
             <label htmlFor='city'> City
             <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)}></input>
             </label>
             </div>
+            }
+
             <div>
             <label htmlFor='state'> State
             <input type='text' id='state' name='state' value={state} onChange={e => setState(e.target.value)}></input>
@@ -91,6 +134,14 @@ const submitHandler = (e) =>{
             <label htmlFor='categories'> Categories (choose all that apply)
             <input type='text' id='categories' name='categories' value={categories} onChange={e => setCategories(e.target.value)}></input>
             </label>
+
+            {category_list.map( category =>
+                (
+                    <input key={category.id}type='checkbox' id={category.categ_name} name={category.categ_name} value={category.categ_name} ></input>
+                )
+            )
+
+}
             </div>
             <div>Open and Closing Hours</div>
             <div>
@@ -182,7 +233,7 @@ const submitHandler = (e) =>{
             </label>
             </div>
            
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={Object.keys(error).length > 0}>Submit</button>
             
            
         </form>
