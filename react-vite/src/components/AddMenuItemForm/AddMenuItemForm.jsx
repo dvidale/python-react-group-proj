@@ -2,9 +2,11 @@ import { useDispatch } from 'react-redux';
 import { fetchAddMenuItem } from '../../redux/menuItems';
 import { useModal } from '../../context/Modal';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './AddMenuItem.css'; // Import the CSS file
 
-const AddMenuItemForm = ({ restaurantId }) => {
+const AddMenuItemForm = () => {
+	const { id } = useParams();
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
 	const [name, setName] = useState('');
@@ -25,7 +27,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 			quantity: parseInt(quantity),
 		};
 
-		dispatch(fetchAddMenuItem(restaurantId, menuItemData)).then(() => {
+		dispatch(fetchAddMenuItem(id, menuItemData)).then(() => {
 			closeModal();
 		});
 	};
@@ -43,6 +45,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 					required
+					placeholder='Double Cheese Burger, Pepperoni pizza...'
 				/>
 			</label>
 			<label>
@@ -52,6 +55,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 					value={price}
 					onChange={(e) => setPrice(e.target.value)}
 					required
+					placeholder='10'
 				/>
 			</label>
 			<label>
@@ -60,6 +64,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 					required
+					placeholder='Describe your dish or item'
 				/>
 			</label>
 			<label>
@@ -69,6 +74,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 					value={imageUrl}
 					onChange={(e) => setImageUrl(e.target.value)}
 					required
+					placeholder='https://exampleurl.com'
 				/>
 			</label>
 			<label>
@@ -78,6 +84,7 @@ const AddMenuItemForm = ({ restaurantId }) => {
 					value={quantity}
 					onChange={(e) => setQuantity(e.target.value)}
 					required
+					placeholder='10'
 				/>
 			</label>
 			<button type='submit'>Add Menu Item</button>

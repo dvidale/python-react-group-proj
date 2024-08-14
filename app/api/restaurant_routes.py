@@ -14,7 +14,6 @@ def get_all_categories():
     return categories_list
 
 # ?  GET ALL RESTAURANTS
-
 @restaurant_routes.route('/')
 def get_all_restaurants():
     restaurants = Restaurant.query.all()
@@ -28,11 +27,6 @@ def get_a_restaurant(id):
     restaurant = Restaurant.query.get(id)
     return restaurant.to_dict()
 
-
-
-
-
-
 # ? GET ALL MENU ITEMS
 @restaurant_routes.route('/<int:id>/menu-items')
 def get_all_menu_items(id):
@@ -43,7 +37,6 @@ def get_all_menu_items(id):
     menu_items_list = [item.to_dict() for item in menu_items]
     return menu_items_list
 
-
 # ? ADD NEW MENU ITEM 
 @restaurant_routes.route('/<int:id>/menu-items/new', methods=['POST'])
 def add_new_menu_item(id):
@@ -52,6 +45,7 @@ def add_new_menu_item(id):
         return { 'Error': 'Restaurant Not Found'}, 404
 
     form = MenuItemForm()
+    form['csrf_token'].data =request.cookies['csrf_token']
     if form.validate_on_submit():
         new_menu_item = MenuItem(
             restaurant_id=id,

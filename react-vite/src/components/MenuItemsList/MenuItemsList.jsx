@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMenuItems } from '../../redux/menuItems';
+import { fetchDeleteMenuItem, fetchMenuItems } from '../../redux/menuItems';
 import { useParams } from 'react-router-dom';
 import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 import '../MenuItemsList/MenuItemsList.css';
@@ -28,6 +28,10 @@ const MenuItemsList = () => {
 		dispatch(fetchAddCartItem(menuItemId));
 	};
 
+	const handleDelete = (menuItemId) => {
+		dispatch(fetchDeleteMenuItem(menuItemId));
+	};
+
 	return (
 		<div className='menu-holder'>
 			<h2>The Menu</h2>
@@ -38,6 +42,14 @@ const MenuItemsList = () => {
 						key={item.id}
 						className='menu-item-structure'
 					>
+						{isOwner && (
+							<button
+								className='delete-btn'
+								onClick={() => handleDelete(item.id)}
+							>
+								delete
+							</button>
+						)}
 						<div className='menu-item-details'>
 							<div>
 								<h3 className='item-title'>{item.name}</h3>

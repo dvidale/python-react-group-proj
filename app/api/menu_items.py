@@ -57,3 +57,13 @@ def create_menu_item_ratings(menuitem_id):
 
 
 #? DELETE MENU_ITEM
+@menuitem_routes.route('/<int:id>', methods=["DELETE"])
+def delete_menu_item(id):
+    menu_item = MenuItem.query.get(id)
+    if not menu_item:
+        return {"message": "Menu item not found"}, 404  # Return 404 for not found
+    
+    db.session.delete(menu_item)
+    db.session.commit()
+    
+    return {"message": "Successfully Deleted Item"}, 200 
