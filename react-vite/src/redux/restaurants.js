@@ -59,10 +59,10 @@ export const newRestaurant = (formData) => async () =>{
 	const options = {method, headers, body}
 
 	const response = await fetch(url, options);
-	console.log(">>>> response received:", response);
+	// console.log(">>>> response received:", response);
 
 	const data = await response.json()
-	console.log("data from flask POST route:", data)
+	console.log(">>> data from flask POST route:", data)
 	return data
 
 	

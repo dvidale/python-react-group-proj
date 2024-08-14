@@ -29,13 +29,14 @@ def get_all_restaurants():
 
 @restaurant_routes.route('/new', methods=['POST', 'PUT'])
 def restaurant_form():
-    data = request.json
-    name = data['name']
-    
-    form = RestaurantForm()
-    if form.validate_on_submit():
+       
+    restaurant_form = RestaurantForm()
+    print("form data:", restaurant_form.data['name'])
+    print(">>>>form errors", restaurant_form.errors)
+    if restaurant_form.validate_on_submit():
+        print(">>> I'm validated")
         return {"message":"success"}
-    # print('>>>>>> hitting the backend form route')
+   
     return {'no dice':'sorry'}
 
    
