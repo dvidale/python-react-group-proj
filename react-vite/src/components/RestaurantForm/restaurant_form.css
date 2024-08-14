@@ -1,9 +1,9 @@
 #form-container{
 
-    max-width: 300px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: no-wrap;
     justify-content: center;
     align-items: center;
     border: 1px greenyellow dotted;

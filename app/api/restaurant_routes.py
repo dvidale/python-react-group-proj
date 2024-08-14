@@ -31,12 +31,13 @@ def get_all_restaurants():
 def restaurant_form():
        
     restaurant_form = RestaurantForm()
+    restaurant_form['csrf_token'].data = request.cookies['csrf_token']
     print("form data:", restaurant_form.data['name'])
-    print(">>>>form errors", restaurant_form.errors)
     if restaurant_form.validate_on_submit():
-        print(">>> I'm validated")
+        
         return {"message":"success"}
    
+    print(">>>>form errors", restaurant_form.errors)
     return {'no dice':'sorry'}
 
    
