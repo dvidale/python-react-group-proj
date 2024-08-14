@@ -10,6 +10,7 @@ import menuItemsReducer from './menuItems';
 import shoppingCartReducer from './shoppingCart';
 import restaurantsReducer from './restaurants';
 import reviewsListReducer from './reviews';
+import locationReducer from './location';
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	menuItems: menuItemsReducer,
 	shoppingCart: shoppingCartReducer,
 	reviewsList: reviewsListReducer,
+	location: locationReducer,
 });
 
 let enhancer;

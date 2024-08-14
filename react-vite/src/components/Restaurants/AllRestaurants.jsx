@@ -1,14 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
-// import { div } from 'react-router-dom';
 import './all_restaurants.css';
 import { useNavigate } from 'react-router-dom';
 
-function AllRestaurants() {
+function AllRestaurants({ city, state }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const sessionUser = useSelector((state) => state.session.user);
 
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
@@ -19,13 +17,11 @@ function AllRestaurants() {
 	}, [dispatch]);
 
 	const handleRedirect = (id) => {
-		if (!sessionUser || sessionUser) {
-			navigate(`/restaurants/${id}`);
-		}
+		navigate(`/restaurants/${id}`);
 	};
 
 	return (
-		<>
+		<div className='restaurant-list'>
 			{all_restaurants.map((restaurant) => (
 				<div
 					key={restaurant.id}
@@ -34,16 +30,22 @@ function AllRestaurants() {
 				>
 					<img
 						src={restaurant.banner_img}
-						alt=''
+						alt={restaurant.name}
+						className='restaurant-image'
 					/>
 					<h2> {restaurant.name} </h2>
 					<p> {restaurant.avg_rating} </p>
 					<p>{restaurant.categories.join(' • ')}</p>
 					<div>{restaurant.description} </div>
-					<div> {restaurant.address} City, State </div>
+					{(city && state) || (restaurant.city && restaurant.state) ? (
+						<div>
+							{restaurant.address}, {city || restaurant.city},{' '}
+							{state || restaurant.state}
+						</div>
+					) : null}
 				</div>
 			))}
-		</>
+		</div>
 	);
 }
 
