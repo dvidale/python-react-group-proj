@@ -31,12 +31,16 @@ const MenuItemsList = () => {
 						className='menu-item-structure'
 					>
 						<div className='menu-item-details'>
-							<h3>{item.name}</h3>
-							<p>
-								<FaThumbsUp /> {item.like_percentage}%
-							</p>
-							<p>{item.description}</p>
-							<p>Price: ${item.price}</p>
+							<div>
+								<h3 className='item-title'>{item.name}</h3>
+								<p className='item-details'>
+									<FaThumbsUp /> {item.like_percentage}%
+								</p>
+							</div>
+							<div>
+								<p className='item-details'>{item.description}</p>
+								<p className='item-details'>Price: ${item.price}</p>
+							</div>
 						</div>
 						<div className='menu-item-img-holder'>
 							<img

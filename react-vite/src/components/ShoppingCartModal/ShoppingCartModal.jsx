@@ -40,19 +40,26 @@ const ShoppingCartModal = () => {
 								key={item.id}
 								className='cart-item'
 							>
-								<img
-									src={item.image_url}
-									alt={item.name}
-								/>
-								<h3>{item.name}</h3>
-								<p>{item.description}</p>
-								<p>Price: ${item.price}</p>
-								<p>Quantity: {item.item_quantity}</p>{' '}
-								{/* Display the quantity */}
-								<button onClick={() => handleAddToCart(item.menu_item_id)}>
-									+
-								</button>
-								<button onClick={() => handleRemoveItem(item.id)}>-</button>
+								<div className='cart-img-holder'>
+									<img
+										src={item.image_url}
+										alt={item.name}
+									/>
+									<div>
+										<h3>{item.name}</h3>
+										<p>{item.description}</p>
+										<p>Price: ${item.price}</p>
+									</div>
+								</div>
+								<div className='cart-quantity'>
+									<p className='quantity'>{item.item_quantity}</p>{' '}
+									<div className='quantity-btns'>
+										<button onClick={() => handleAddToCart(item.menu_item_id)}>
+											+
+										</button>
+										<button onClick={() => handleRemoveItem(item.id)}>-</button>
+									</div>
+								</div>
 							</div>
 						))}
 					</div>
