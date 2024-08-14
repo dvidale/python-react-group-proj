@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { fetchAddMenuItem } from '../../redux/menuItems';
 import { useModal } from '../../context/Modal';
 import { useState } from 'react';
+import './AddMenuItem.css'; // Import the CSS file
 
 const AddMenuItemForm = ({ restaurantId }) => {
 	const dispatch = useDispatch();
@@ -21,15 +22,16 @@ const AddMenuItemForm = ({ restaurantId }) => {
 			image_url: imageUrl,
 		};
 
-		console.log('THIS IS THE FORM DATA', menuItemData);
-
 		dispatch(fetchAddMenuItem(restaurantId, menuItemData)).then(() => {
 			closeModal();
 		});
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form
+			className='add-menu-item-form'
+			onSubmit={handleSubmit}
+		>
 			<h2>Add Menu Item</h2>
 			<label>
 				Name:
