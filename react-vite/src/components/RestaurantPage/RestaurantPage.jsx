@@ -6,6 +6,7 @@ import ReviewsList from '../Reviews/ReviewsList';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
+import LocationCallOutForm from '../LocationCallOutForm/LocationCallOutForm';
 
 //  !BUG: This page crashes if it is manually refreshed 
 
@@ -17,7 +18,7 @@ export const RestaurantPage = () => {
 	const restaurant = useSelector(
 		(state) => state.restaurants.AllRestaurants[id]
 	);
-
+	const location = true
 
 	useEffect(() =>{
 		
@@ -27,6 +28,7 @@ export const RestaurantPage = () => {
 	return (
 		<>
 			<RestaurantHeader restaurant={restaurant} />
+			{location && < LocationCallOutForm />}
 			<RestaurantInfoBox restaurant={restaurant}/>
 			<MenuItemsList id={id} />
 			<ReviewsList id={id}/>
