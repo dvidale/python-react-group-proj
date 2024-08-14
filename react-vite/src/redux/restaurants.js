@@ -48,6 +48,26 @@ export const getRestaurants = () => async (dispatch) => {
 	}
 };
 
+
+export const newRestaurant = (formData) => async () =>{
+
+	const url = '/api/restaurants/new'
+	const method = "POST"
+	
+	const body = JSON.stringify(formData)
+	const options = {method, body}
+
+	const response = await fetch(url, options);
+
+	const data = await response.json()
+	console.log("data from flask POST route:", data)
+	return data
+
+	
+
+
+}
+
 //* -------------------------------------REDUCERS
 
 const initialState = {
