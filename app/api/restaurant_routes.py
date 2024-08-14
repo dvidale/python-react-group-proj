@@ -22,6 +22,12 @@ def get_all_restaurants():
 
     return restaurants_list
 
+# ? GET A RESTAURANT
+@restaurant_routes.route('/<int:id>')
+def get_a_restaurant(id):
+    restaurant = Restaurant.query.get(id)
+    return restaurant.to_dict()
+
 
 
 

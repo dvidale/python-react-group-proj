@@ -33,17 +33,20 @@ export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 //?--------------------------------ADD MENU ITEM
 export const fetchAddMenuItem =
 	(restaurantId, menuItemData) => async (dispatch) => {
+		const csrfToken = document
+			.querySelector('meta[name="csrf-token"]')
+			.getAttribute('content');
 		const response = await fetch(
 			`/api/restaurants/${restaurantId}/menu-items/new`,
 			{
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					'X-CSRFToken': csrfToken,
 				},
 				body: JSON.stringify(menuItemData),
 			}
 		);
-		console.log('THIS IS THE RES>BODY', response.body);
 		if (response.ok) {
 			const data = await response.json();
 			dispatch(addMenuItem(data));

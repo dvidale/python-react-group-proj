@@ -18,9 +18,10 @@ const AddMenuItemForm = ({ restaurantId }) => {
 
 		const menuItemData = {
 			name,
+			like_percentage: 0,
 			price: parseFloat(price),
-			description,
 			image_url: imageUrl,
+			description,
 			quantity: parseInt(quantity),
 		};
 
