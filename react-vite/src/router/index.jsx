@@ -3,9 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
-import AllRestaurants from '../components/Restaurants/AllRestaurants';
 import HomePage from '../components/HomePage/HomePage';
-import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
 import ReviewsList from '../components/Reviews/ReviewsList';
 
 export const router = createBrowserRouter([
@@ -25,12 +23,9 @@ export const router = createBrowserRouter([
 				element: <SignupFormPage />,
 			},
 			{
-				path: '/restaurants',
-				element: <AllRestaurants />,
-			},
-			{
 				path: '/restaurants/:id',
-				element: <RestaurantPage />,
+				element: <RestaurantPage />
+
 			},{
 				path: 'restaurants/:id/reviews',
 				element: <ReviewsList />

@@ -11,13 +11,15 @@ function AllRestaurants() {
 		(state) => state.restaurants.AllRestaurants
 	);
 
+	const restaurantsArr = Object.values(all_restaurants)
+
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
 	return (
 		<>
-			{all_restaurants.map((restaurant) => (
+			{restaurantsArr.map((restaurant) => (
 				<Link
 					key={restaurant.id}
 					to={`/restaurants/${restaurant.id}`}

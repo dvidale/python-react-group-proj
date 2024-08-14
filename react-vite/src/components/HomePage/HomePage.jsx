@@ -5,7 +5,7 @@ import HomeDeliveryHeader from "../HomeDeliveryHeader/HomeDeliveryHeader";
 
 function HomePage() {
 
-  const location = false;
+  const location = true;
 
   return (
     // needs to render a logged-out / no address version vs logged-out w/ address version vs logged-in version

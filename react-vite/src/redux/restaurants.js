@@ -35,6 +35,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getRestaurants = () => async (dispatch) => {
+
 	const response = await fetch('/api/restaurants');
 
 	if (response.ok) {
@@ -51,7 +52,7 @@ export const getRestaurants = () => async (dispatch) => {
 
 const initialState = {
 	allCategories: [],
-	AllRestaurants: [],
+	AllRestaurants: {},
 };
 
 const restaurantsReducer = (state = initialState, action) => {
@@ -62,7 +63,13 @@ const restaurantsReducer = (state = initialState, action) => {
 				allCategories: action.payload,
 			};
 		case GET_RESTAURANTS: {
-			return { ...state, AllRestaurants: action.payload };
+			const newState = {AllRestaurants: {}}
+
+			action.payload.forEach(restaurant => {
+				newState.AllRestaurants[restaurant.id] = restaurant
+			});
+
+			return {...state, ...newState };
 		}
 		default:
 			return state;
