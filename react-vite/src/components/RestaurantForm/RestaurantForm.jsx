@@ -10,6 +10,7 @@ function RestaurantForm(){
     //if an id IS provided, load the data for that restaurant in each field and present as an update form for that restaurant 
 
     const {id} = useParams()
+    const dispatch = useDispatch()
 
     const restaurant = useSelector(state => state.restaurants.AllRestaurants[id])
 
@@ -20,20 +21,38 @@ function RestaurantForm(){
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [zip, setZip] = useState("")
-    const [phone_number, setPhoneNumber] = useState(restaurant ? restaurant.phone_number : "")
-    const [description, setDescription] = useState(restaurant ? restaurant.description : "")
-    const [categories, setCategories] = useState(restaurant ? restaurant.categories : "")
-    const [open_time, setOpenTime] = useState(restaurant ? restaurant.open_time : "")
-    const [close_time, setCloseTime] = useState(restaurant ? restaurant.close_time : "")
-    const [delivery_time, setDeliveryTime] = useState(restaurant ? restaurant.delivery_time : "")
-    const [delivery_fee, setDeliveryFee] = useState(restaurant ? restaurant.delivery_fee : "")
-    const [banner_img, setBannerImg] = useState(restaurant ? restaurant.banner_img : "")
-
+    const [phone_number, setPhoneNumber] = useState("")
+    const [description, setDescription] = useState("")
+    const [categories, setCategories] = useState([])
+    const [open_time, setOpenTime] = useState("")
+    const [close_time, setCloseTime] = useState("")
+    const [delivery_time, setDeliveryTime] = useState("")
+    const [delivery_fee, setDeliveryFee] = useState("")
+    const [banner_img, setBannerImg] = useState("")
+     
     const [error, setError] = useState({})
-   
 
+
+    useEffect(()=>{
+
+        if(restaurant){
+            setName(restaurant.name)
+            setAddress(restaurant.address)
+            setPhoneNumber(restaurant.phone_number)
+            setDescription(restaurant.description)
+            setCategories(restaurant.categories)
+            setOpenTime(restaurant.open_time)
+            setCloseTime(restaurant.close_time)
+            setDeliveryTime(restaurant.delivery_time)
+            setDeliveryFee(restaurant.delivery_fee)
+            setBannerImg(restaurant.banner_img)
+        }
+
+
+    },[restaurant])
     
-    const dispatch = useDispatch()
+ 
+// * VALIDATIONS    
 
 useEffect(()=>{
 
@@ -47,9 +66,11 @@ useEffect(()=>{
 
 // Load current categories for multi-select options
 
+
 useEffect(()=>{
 
 dispatch(restaurantsActions.getCategories())
+dispatch(restaurantsActions.getRestaurants())
 
 },[dispatch])
 
@@ -86,7 +107,7 @@ const submitHandler = (e) =>{
     return(
         <>
         <div id="form-container">
-            <h1>{restaurant ? "Update" : "Submit"} A {!restaurant && "New"} Restaurant</h1>
+            <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
             <label htmlFor='name'> Name
@@ -131,17 +152,32 @@ const submitHandler = (e) =>{
             </label>
             </div>
             <div>
-            <label htmlFor='categories'> Categories (choose all that apply)
-            <input type='text' id='categories' name='categories' value={categories} onChange={e => setCategories(e.target.value)}></input>
-            </label>
-
+                <label htmlFor='categories'>
+            Categories (choose all that apply)    
+            <select name="categories" value={categories} multiple={true}
+             onChange={e => {
+                const options = [...e.target.selectedOptions];
+                const values = options.map(option => option.value);
+                setCategories(values)}}
+            >
             {category_list.map( category =>
                 (
-                    <input key={category.id}type='checkbox' id={category.categ_name} name={category.categ_name} value={category.categ_name} ></input>
+                    <>
+                    <option key={category.id} 
+                    id={category.categ_name} 
+                    name={category.categ_name} 
+                    value={category.categ_name}
+                    > 
+                    {category.categ_name}
+                    </option>
+                    </>
                 )
             )
 
-}
+}            
+                </select>   
+                </label>   
+            
             </div>
             <div>Open and Closing Hours</div>
             <div>

@@ -16,7 +16,6 @@ const rootReducer = combineReducers({
 	restaurants: restaurantsReducer,
 	menuItems: menuItemsReducer,
 	shoppingCart: shoppingCartReducer,
-	restaurants: restaurantsReducer,
 	reviewsList: reviewsListReducer
 });
 

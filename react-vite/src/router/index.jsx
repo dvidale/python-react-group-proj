@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
 			{
 				path:'/restaurants/new',
 				element: <RestaurantForm/>
+			},
+			{
+				path:'/restaurants/current/:id',
+				element:<RestaurantForm/>
 			}
 		],
 	},
