@@ -53,11 +53,13 @@ export const newRestaurant = (formData) => async () =>{
 
 	const url = '/api/restaurants/new'
 	const method = "POST"
-	
-	const body = JSON.stringify(formData)
-	const options = {method, body}
+	const headers = {'Content-Type': 'application/json'}
+	const body = formData
+
+	const options = {method, headers, body}
 
 	const response = await fetch(url, options);
+	console.log(">>>> response received:", response);
 
 	const data = await response.json()
 	console.log("data from flask POST route:", data)

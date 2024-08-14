@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 from app.models import db, Restaurant, MenuItem, RestaurantCategory, MenuItemRating, Category, Review, User
 from app.forms.add_menu_item import MenuItemForm
-from app.forms.new_and_update_restaurant_form import RestaurantForm
+from app.forms.restaurant_form import RestaurantForm
 
 
 restaurant_routes = Blueprint('restaurants', __name__)
@@ -23,17 +23,22 @@ def get_all_restaurants():
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
     return restaurants_list
-    
+
 
 # ?  CREATE A NEW RESTAURANT
 
 @restaurant_routes.route('/new', methods=['POST', 'PUT'])
-def restaurant_form(req):
-    print("form request body", req.body)
+def restaurant_form():
+    data = request.json
+    name = data['name']
+    
     form = RestaurantForm()
-    res = form.name
-    print(">>> res", res)
-    return res
+    if form.validate_on_submit():
+        return {"message":"success"}
+    # print('>>>>>> hitting the backend form route')
+    return {'no dice':'sorry'}
+
+   
 
 
 
