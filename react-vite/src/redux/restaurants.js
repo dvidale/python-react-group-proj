@@ -49,10 +49,9 @@ export const getRestaurants = () => async (dispatch) => {
 };
 
 
-export const newRestaurant = (formData) => async () =>{
+export const newRestaurant = (method, formData) => async () =>{
 
 	const url = '/api/restaurants/new'
-	const method = "POST"
 	const headers = {'Content-Type': 'application/json'}
 	const body = formData
 

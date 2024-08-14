@@ -16,6 +16,9 @@ function RestaurantForm(){
 
     const method = restaurant ? "PUT": "POST"
 
+ 
+   
+
     const [name, setName] = useState(restaurant ? restaurant.name : "")
     const [address, setAddress] = useState(restaurant ? restaurant.address : "")
     const [city, setCity] = useState("")
@@ -79,13 +82,15 @@ dispatch(restaurantsActions.getRestaurants())
 const category_list = useSelector(state => state.restaurants.allCategories)
 
 
+const user = useSelector(state => state.session)
 
 
 const submitHandler = (e) =>{
     e.preventDefault()
-
-    
   
+   
+    
+
     const formData = {
         name,
         address,
@@ -99,7 +104,19 @@ const submitHandler = (e) =>{
         banner_img
     }
 
-    dispatch(restaurantsActions.newRestaurant(JSON.stringify(formData)))
+    
+    if(restaurant){
+    
+        dispatch(restaurantsActions.updateRestaurant(JSON.stringify(method, formData)))
+    }else{
+
+           // ! add user id info! If it's an update we don't need it, but if it's a new restaurant, the current user Id is the ownerId!
+
+        formData['ownerId'] = user.id
+
+        dispatch(restaurantsActions.newRestaurant(JSON.stringify(method, formData)))
+    }
+    
 
     setName("")
 }

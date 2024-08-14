@@ -33,6 +33,8 @@ def restaurant_form():
     restaurant_form = RestaurantForm()
     restaurant_form['csrf_token'].data = request.cookies['csrf_token']
     print("form data:", restaurant_form.data['name'])
+
+    name = restaurant_form.data['name']
     if restaurant_form.validate_on_submit():
         
         return {"message":"success"}
