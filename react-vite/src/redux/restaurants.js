@@ -77,6 +77,7 @@ export const newRestaurant = (method, formData) => async () =>{
 	const headers = {'Content-Type': 'application/json'}
 	const body = formData
 
+
 	const options = {method, headers, body}
 
 	const response = await fetch(url, options);
@@ -85,6 +86,28 @@ export const newRestaurant = (method, formData) => async () =>{
 	const data = await response.json()
 	console.log(">>> data from flask POST route:", data)
 	return data
+}
+
+export const updateRestaurant = (method, formData) => async () => {
+
+	const url = '/api/restaurants/current/:id'
+
+	const headers = {'Content-Type': 'application/json'}
+
+	const body = formData
+
+	const options = {method, headers, body}
+
+	const response = await fetch(url, options);
+	
+
+	const data = await response.json()
+
+	return data
+
+
+
+
 }
 
 //* -------------------------------------REDUCERS

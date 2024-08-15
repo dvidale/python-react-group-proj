@@ -15,7 +15,7 @@ function RestaurantForm(){
     const restaurant = useSelector(state => state.restaurants.AllRestaurants[id])
 
 //set method for api route for update or new restaurant
-    const method = restaurant ? "PUT": "POST"
+    const method = restaurant ? `PUT` : `POST`
 
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
@@ -25,14 +25,17 @@ function RestaurantForm(){
     const [phone_number, setPhoneNumber] = useState("")
     const [description, setDescription] = useState("")
     const [categories, setCategories] = useState([])
-    const [open_time, setOpenTime] = useState("")
-    const [close_time, setCloseTime] = useState("")
+    const [open_time, setOpenTime] = useState("10:00")
+    const [close_time, setCloseTime] = useState("22:00")
     const [delivery_time, setDeliveryTime] = useState("")
     const [delivery_fee, setDeliveryFee] = useState("")
-    const [banner_img, setBannerImg] = useState("")
+    const [banner_img, setBannerImg] = useState("http://")
      
+
+
     const [error, setError] = useState({})
 
+    //load restaurant data in the form for updates
     useEffect(()=>{
 
         if(restaurant){
@@ -78,6 +81,10 @@ const category_list = useSelector(state => state.restaurants.allCategories)
 
 const user = useSelector(state => state.session.user)
 
+
+
+
+
 const submitHandler = (e) =>{
     e.preventDefault()
   
@@ -98,10 +105,10 @@ const submitHandler = (e) =>{
     
     if(restaurant){
     
-        dispatch(restaurantsActions.updateRestaurant(JSON.stringify(method, formData)))
+        dispatch(restaurantsActions.updateRestaurant(method, JSON.stringify(formData)))
     }else{
 
-        dispatch(restaurantsActions.newRestaurant(JSON.stringify(method, formData)))
+        dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
     }
     
 
@@ -133,16 +140,21 @@ const submitHandler = (e) =>{
             </div>
             }
 
+            {!restaurant && 
             <div>
             <label htmlFor='state'> State
             <input type='text' id='state' name='state' value={state} onChange={e => setState(e.target.value)}></input>
             </label>
             </div>
+            }
+
+            {!restaurant && 
             <div>
             <label htmlFor='zip'> Zip
             <input type='text' id='zip' name='zip' value={zip} onChange={e => setZip(e.target.value)}></input>
             </label>
             </div>
+            }
             
             <div>
             <label htmlFor='phone'> Phone
@@ -197,56 +209,56 @@ const submitHandler = (e) =>{
         
             <div>
             <label htmlFor='open_time'> Tuesday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Wednesday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='w_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='w_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Thursday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Friday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='f_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Saturday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Sunday
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' value={open_time}></input>
             </label>
             
             <label htmlFor='close_time'>
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
 
