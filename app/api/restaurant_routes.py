@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
 from app.models import db, Restaurant, MenuItem, RestaurantCategory, MenuItemRating, Category, Review, User
 from app.forms.add_menu_item import MenuItemForm
+from app.forms.restaurant_form import RestaurantForm
+
 
 restaurant_routes = Blueprint('restaurants', __name__)
 
@@ -21,7 +23,50 @@ def get_all_restaurants():
 
     return restaurants_list
 
-# ? GET A RESTAURANT
+
+# ?  CREATE A NEW RESTAURANT
+
+@restaurant_routes.route('/new', methods=['POST', 'PUT'])
+def restaurant_form():
+       
+    restaurant_form = RestaurantForm()
+    restaurant_form['csrf_token'].data = request.cookies['csrf_token']
+    print("form data:", restaurant_form.data['name'])
+
+    name = restaurant_form.data['name']
+    address = restaurant_form.data['address']
+    phone_number = restaurant_form.data['phone_number']
+    description = restaurant_form.data['description']
+    open_time = restaurant_form.data['open_time']
+    close_time = restaurant_form.data['close_time']
+    delivery_time = restaurant_form.data['delivery_time']
+    delivery_fee = restaurant_form.data['delivery_fee']
+    banner_img = restaurant_form.data['banner_img']
+    categories = restaurant_form.data['categories']
+
+    formData = {
+        'name': name,
+        'address': address,
+        'phone_number': phone_number,
+        'description': description,
+        'open_time':open_time,
+        'close_time': close_time,
+        'delivery_time': delivery_time,
+        'delivery_fee': delivery_fee,
+        'banner_img': banner_img,
+        'categories': categories
+    }
+
+    print(">>>>> formData from form:", formData)
+
+    if restaurant_form.validate_on_submit():
+        
+        return {"message":"success"}
+   
+    print(">>>>form errors", restaurant_form.errors)
+    return {'no dice':'sorry'}
+
+   # ? GET A RESTAURANT
 @restaurant_routes.route('/<int:id>')
 def get_a_restaurant(id):
     restaurant = Restaurant.query.get(id)

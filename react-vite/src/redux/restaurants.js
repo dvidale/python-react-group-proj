@@ -44,6 +44,7 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const getRestaurants = () => async (dispatch) => {
+
 	const response = await fetch('/api/restaurants');
 
 	if (response.ok) {
@@ -69,11 +70,28 @@ export const fetchARestaurant = (id) => async (dispatch) => {
 	}
 };
 
+
+export const newRestaurant = (method, formData) => async () =>{
+
+	const url = '/api/restaurants/new'
+	const headers = {'Content-Type': 'application/json'}
+	const body = formData
+
+	const options = {method, headers, body}
+
+	const response = await fetch(url, options);
+	
+
+	const data = await response.json()
+	console.log(">>> data from flask POST route:", data)
+	return data
+}
+
 //* -------------------------------------REDUCERS
 
 const initialState = {
 	allCategories: [],
-	AllRestaurants: [],
+	AllRestaurants: {},
 	selectedRestaurant: {},
 };
 
@@ -85,7 +103,13 @@ const restaurantsReducer = (state = initialState, action) => {
 				allCategories: action.payload,
 			};
 		case GET_RESTAURANTS: {
-			return { ...state, AllRestaurants: action.payload };
+			const newState = {AllRestaurants: {}}
+
+			action.payload.forEach(restaurant => {
+				newState.AllRestaurants[restaurant.id] = restaurant
+			});
+
+			return {...state, ...newState };
 		}
 		case GET_A_RESTAURANT:
 			return { ...state, selectedRestaurant: action.payload };
