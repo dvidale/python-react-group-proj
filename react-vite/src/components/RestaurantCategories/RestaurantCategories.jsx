@@ -3,16 +3,18 @@ import { useDispatch, useSelector } from "react-redux"
 import * as restaurantsActions from '../../redux/restaurants'
 
 
-function RestaurantCategories(){
+function RestaurantCategories(
+
+){
 
     const dispatch = useDispatch()
 
     const categories = useSelector(state => state.restaurants.allCategories)
 
+
     useEffect( () =>{
 
         dispatch(restaurantsActions.getCategories())
-
 
     },[dispatch])
 
@@ -26,7 +28,7 @@ function RestaurantCategories(){
     </h2>
     {categories.map( category =>{
             return(
-            <div key={category.id} >
+            <div key={category.id}>
                 {category.categ_name}
                 <img alt={category.categ_name} src={category.img_url}/>
             </div>

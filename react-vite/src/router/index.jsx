@@ -7,7 +7,8 @@ import HomePage from '../components/HomePage/HomePage';
 // import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
 import MenuItemRating from '../components/MenuItemRating/MenuItemRating'
 import ReviewsList from '../components/Reviews/ReviewsList';
-import RestaurantForm from '../components/RestaurantForm/RestaurantForm';
+import RestaurantForm from '../components/RestaurantForm';
+import RestaurantManagement from '../components/RestaurantManagement';
 
 export const router = createBrowserRouter([
 	{
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/menu-items/:id/ratings',
 				element: <MenuItemRating />
+			}
+			{
+				path:'/restaurants/current',
+				element:<RestaurantManagement/>
 			}
 		],
 	},

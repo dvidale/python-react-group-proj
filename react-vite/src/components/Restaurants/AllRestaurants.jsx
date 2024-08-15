@@ -18,13 +18,15 @@ function AllRestaurants({ city, state }) {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
+
+
 	const handleRedirect = (id) => {
 		navigate(`/restaurants/${id}`);
 	};
 
 	return (
 		<div className='restaurant-list'>
-			{all_restaurants.map((restaurant) => (
+			{restaurantsArr.map((restaurant) => (
 				<div
 					key={restaurant.id}
 					onClick={() => handleRedirect(restaurant.id)}

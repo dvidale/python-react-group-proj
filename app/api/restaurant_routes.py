@@ -1,79 +1,237 @@
 from flask import Blueprint, jsonify, render_template, request
 from flask_login import login_required, current_user
-from app.models import db, Restaurant, MenuItem, RestaurantCategory, MenuItemRating, Category, Review, User
+from app.models import (
+    db,
+    Restaurant,
+    MenuItem,
+    RestaurantCategory,
+    MenuItemRating,
+    Category,
+    Review,
+    User,
+)
 from app.forms.add_menu_item import MenuItemForm
 from app.forms.restaurant_form import RestaurantForm
 
 
-restaurant_routes = Blueprint('restaurants', __name__)
+restaurant_routes = Blueprint("restaurants", __name__)
+
 
 # ? GET ALL CATEGORIES
-@restaurant_routes.route('/categories')
+@restaurant_routes.route("/categories")
 def get_all_categories():
     categories = Category.query.all()
     categories_list = [category.to_dict() for category in categories]
 
     return categories_list
 
+
 # ?  GET ALL RESTAURANTS
-@restaurant_routes.route('/')
+@restaurant_routes.route("/")
 def get_all_restaurants():
+    print(">>>>>>> inside get restaurants route")
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
+    print(">>>>>restaurants from get all route:", restaurants_list)
+
     return restaurants_list
 
-
-# ?  CREATE A NEW RESTAURANT
-
-@restaurant_routes.route('/new', methods=['POST', 'PUT'])
-def restaurant_form():
-
-    restaurant_form = RestaurantForm()
-    restaurant_form['csrf_token'].data = request.cookies['csrf_token']
-    print("form data:", restaurant_form.data['name'])
-
-    name = restaurant_form.data['name']
-    address = restaurant_form.data['address']
-    phone_number = restaurant_form.data['phone_number']
-    description = restaurant_form.data['description']
-    open_time = restaurant_form.data['open_time']
-    close_time = restaurant_form.data['close_time']
-    delivery_time = restaurant_form.data['delivery_time']
-    delivery_fee = restaurant_form.data['delivery_fee']
-    banner_img = restaurant_form.data['banner_img']
-    categories = restaurant_form.data['categories']
-
-    formData = {
-        'name': name,
-        'address': address,
-        'phone_number': phone_number,
-        'description': description,
-        'open_time':open_time,
-        'close_time': close_time,
-        'delivery_time': delivery_time,
-        'delivery_fee': delivery_fee,
-        'banner_img': banner_img,
-        'categories': categories
-    }
-
-    print(">>>>> formData from form:", formData)
-
-    if restaurant_form.validate_on_submit():
-
-        return {"message":"success"}
-
-    print(">>>>form errors", restaurant_form.errors)
-    return {'no dice':'sorry'}
-
-   # ? GET A RESTAURANT
-@restaurant_routes.route('/<int:id>')
+# ? GET A RESTAURANT
+@restaurant_routes.route("/<int:id>")
 def get_a_restaurant(id):
     restaurant = Restaurant.query.get(id)
     return restaurant.to_dict()
 
+
+# ?  CREATE A NEW RESTAURANT
+
+
+@restaurant_routes.route("/new", methods=["POST"])
+def new_restaurant_form():
+
+    restaurant_form = RestaurantForm()
+    restaurant_form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if restaurant_form.validate_on_submit():
+
+        new_restaurant = Restaurant(
+            owner_id=restaurant_form.data['owner_id'],
+            name=restaurant_form.data["name"],
+            address=restaurant_form.data["address"],
+            phone_number=restaurant_form.data["phone_number"],
+            description=restaurant_form.data["description"],
+            open_time=restaurant_form.data["open_time"],
+            close_time=restaurant_form.data["close_time"],
+            delivery_time=restaurant_form.data["delivery_time"],
+            delivery_fee=restaurant_form.data["delivery_fee"],
+            banner_img=restaurant_form.data["banner_img"]
+            
+        )
+
+       
+        db.session.add(new_restaurant)
+        db.session.commit()
+
+        # Add the restaurant's category associations
+        # recall the newly created restaurant record
+
+        restaurant_results = db.select(Restaurant.id, Restaurant.name).where(Restaurant.name == new_restaurant.name)
+
+        restaurant_lst = [dict(restaurant) for restaurant in db.session.execute(restaurant_results) ]
+
+
+        # target submitted categories from form
+        categories=restaurant_form.data["categories"]
+
+        # find matching category records
+        query = db.select(Category.id, Category.categ_name).where(Category.categ_name.in_(categories))
+
+        category_lst = [dict(category) for category in db.session.execute(query)]
+     
+        # create a record in RestaurantCategories for every category listed for the new restaurant
+
+        for category in category_lst:
+            record = RestaurantCategory(
+                restaurant_id = restaurant_lst[0]['id'],
+                category_id = category['id']
+            )
+            db.session.add(record)
+            db.session.commit()
+
+        # return the newly created restaurant with its categories
+        
+        res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict() 
+        return res
+
+    print(">>>>form errors", restaurant_form.errors)
+    return {"no dice": "sorry"}
+
+
+# ?  UPDATE A RESTAURANT
+
+@restaurant_routes.route("/current/<int:id>", methods=["PUT"])
+def update_restaurant_form(id):
+
+
+
+    restaurant_form = RestaurantForm()
+    restaurant_form["csrf_token"].data = request.cookies["csrf_token"]
+
+   
+    owner_id=restaurant_form.data['owner_id'],
+    name=restaurant_form.data["name"],
+    address=restaurant_form.data["address"],
+    phone_number=restaurant_form.data["phone_number"],
+    description=restaurant_form.data["description"],
+    open_time=restaurant_form.data["open_time"],
+    close_time=restaurant_form.data["close_time"],
+    delivery_time=restaurant_form.data["delivery_time"],
+    delivery_fee=restaurant_form.data["delivery_fee"],
+    banner_img=restaurant_form.data["banner_img"]
+    categories=restaurant_form.data["categories"]
+
+    if restaurant_form.validate_on_submit():
+
+        # call up the record for the restaurant
+        restaurant = (Restaurant).query.get(id)
+
+        # update the record with the form data
+        restaurant.owner_id = owner_id[0]
+        restaurant.name = name[0]
+        restaurant.address = address[0]
+        restaurant.phone_number = phone_number[0]
+        restaurant.description = description[0]
+        restaurant.open_time = open_time[0]
+        restaurant.close_time = close_time[0]
+        restaurant.delivery_time = delivery_time[0]
+        restaurant.delivery_fee = delivery_fee[0]
+        restaurant.banner_img = banner_img
+
+        #  target the current RestaurantCategories records for this restaurant
+
+        rc_query = db.select(RestaurantCategory.category_id).where(RestaurantCategory.restaurant_id == restaurant.id)
+
+        rc_lst = [rest_category for rest_category in db.session.execute(rc_query)]
+
+     
+         # *find matching category records for categories from form submission
+        categ_query = db.select(Category.id).where(Category.categ_name.in_(categories))
+
+        category_lst = [category for category in db.session.execute(categ_query)]
+
+        # print(">>>>>> cat_lst:", category_lst, "   >>>>rc_lst: ", rc_lst)
+        #  OUTPUT: cat_lst: [(1,), (5,)]    rc_lst:  [(1,), (3,)]
+
+        # *compare the current RestaurantCategory records against the categories submitted in the form
+
+        cat_set = set(category_lst)
+        rc_set = set(rc_lst)
+
+        # print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
+        # OUTPUT: cat_set: {(1,), (5,)}    rc_set:  {(1,), (3,)}
+
+
+        # * identify any record that does not match the categories submitted, and delete that record
+
+        to_delete = rc_set - cat_set
+
+        # print(">>>> to delete:", to_delete)
+        # OUTPUT: to_delete: {(3,)}
+
+        # iterate over the set, target the category id, run a query for the rc record with the category and restaurant ids
+        # delete the resulting record
+
+        for ele in to_delete:
+            cat_id = ele[0]
+            to_delete_query = db.select(RestaurantCategory).where(RestaurantCategory.restaurant_id == restaurant.id, RestaurantCategory.category_id == cat_id)
+
+            rc_record = db.session.execute(to_delete_query).first()[0]
+
+            # print(">>>>> rc_record", rc_record)
+            # OUTPUT: rc_record: <RestaurantCategory 44>
+
+            db.session.delete(rc_record)
+
+        # identify any submitted category that does not match a current record, and add a new RestaurantCategory record associating that category with the restaurant
+
+        to_add = cat_set - rc_set
+
+        # iterate over the set, target the category id, create an instance of a RestaurantCategory record, and save that record with the restaurant id and category id to the db
+
+        for ele in to_add:
+            cat_id = ele[0]
+            new_rc_record = RestaurantCategory(
+                restaurant_id = restaurant.id,
+                category_id = cat_id
+            )
+            db.session.add(new_rc_record)
+
+        db.session.commit()       
+          
+        
+        # return the newly updated restaurant with its categories
+        res = db.session.query(Restaurant).get(id).to_dict() 
+        return res
+     
+    
+    print(">>>>form errors", restaurant_form.errors)
+    return {"sorry":"something didn't work"}
+
+
+# ? DELETE A RESTAURANT
+# !Untested before merge so do not use yet
+# @restaurant_routes.route('/<int:id>', methods=["DELETE"])
+# def delete_restaurant(id):
+#     query = Restaurant.query.get(id)
+
+#     print(">>>>>> query", query)
+#     db.session.delete(query)
+#     db.session.commit()
+
+
 # ? GET ALL MENU ITEMS
-@restaurant_routes.route('/<int:id>/menu-items')
+@restaurant_routes.route("/<int:id>/menu-items")
 def get_all_menu_items(id):
     restaurant = Restaurant.query.get(id)
     if not restaurant:
@@ -82,15 +240,16 @@ def get_all_menu_items(id):
     menu_items_list = [item.to_dict() for item in menu_items]
     return menu_items_list
 
+
 # ? ADD NEW MENU ITEM
-@restaurant_routes.route('/<int:id>/menu-items/new', methods=['POST'])
+@restaurant_routes.route("/<int:id>/menu-items/new", methods=["POST"])
 def add_new_menu_item(id):
     restaurant = Restaurant.query.get(id)
     if not restaurant:
-        return { 'Error': 'Restaurant Not Found'}, 404
+        return {"Error": "Restaurant Not Found"}, 404
 
     form = MenuItemForm()
-    form['csrf_token'].data =request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         new_menu_item = MenuItem(
             restaurant_id=id,
@@ -100,7 +259,7 @@ def add_new_menu_item(id):
             image_url=form.image_url.data,
             description=form.description.data,
             quantity=form.quantity.data,
-            ratings_count=0
+            ratings_count=0,
         )
 
         db.session.add(new_menu_item)
@@ -110,6 +269,9 @@ def add_new_menu_item(id):
 
     return {"errors": form.errors}, 400
 
+
+# ? GET ALL REVIEWS FOR SPECIFIC RESTAURANT
+@restaurant_routes.route("/<int:id>/reviews")
 # GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 @restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):
