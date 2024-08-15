@@ -1,3 +1,27 @@
+/* Layout.css */
+
 .layout {
-	height: 90dvh;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	max-width: 1200px; /* Set your preferred max width */
+	margin: 0 auto; /* Center the container horizontally */
+	padding: 0 15px; /* Add padding on the sides */
+	flex-grow: 1; /* Allow the container to grow and fill available space */
+}
+
+/* Ensure the footer sticks to the bottom when content is short */
+footer {
+	margin-top: auto;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+	.container {
+		max-width: 100%;
+		padding: 0 10px;
+	}
 }

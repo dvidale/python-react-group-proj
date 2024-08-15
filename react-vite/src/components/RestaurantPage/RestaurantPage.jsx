@@ -6,32 +6,35 @@ import ReviewsList from '../Reviews/ReviewsList';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
-import LocationCallOutForm from '../LocationCallOutForm/LocationCallOutForm';
+import LocationForm from '../LocationForm/LocationForm';
 
-//  !BUG: This page crashes if it is manually refreshed 
+//  !BUG: This page crashes if it is manually refreshed
 
 export const RestaurantPage = () => {
 	const { id } = useParams();
-
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const restaurant = useSelector(
 		(state) => state.restaurants.AllRestaurants[id]
 	);
-	const location = true
 
-	useEffect(() =>{
-		
-		dispatch(restaurantsActions.getRestaurants())
-	}, [dispatch])
+	const sessionUser = useSelector((state) => state.session.user);
+	const savedLocation = useSelector((state) => state.location);
+
+	const city = sessionUser?.city || savedLocation.city;
+	const state = sessionUser?.state || savedLocation.state;
+
+	useEffect(() => {
+		dispatch(restaurantsActions.getRestaurants());
+	}, [dispatch]);
 
 	return (
 		<>
 			<RestaurantHeader restaurant={restaurant} />
-			{location && < LocationCallOutForm />}
-			<RestaurantInfoBox restaurant={restaurant}/>
+			{!city || !state ? <LocationForm /> : null}
+			<RestaurantInfoBox restaurant={restaurant} />
 			<MenuItemsList id={id} />
-			<ReviewsList id={id}/>
+			<ReviewsList id={id} />
 		</>
 	);
 };

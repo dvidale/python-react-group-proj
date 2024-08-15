@@ -13,12 +13,8 @@ function Navigation() {
 				DashDine
 			</NavLink>
 			<div className='nav-btn-holder'>
-				<a href=''>
-					<ProfileButton />
-				</a>
-				<a href=''>
-					<ShoppingCartButton />
-				</a>
+				<ProfileButton />
+				<ShoppingCartButton />
 			</div>
 		</nav>
 	);
