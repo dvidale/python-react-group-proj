@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
-import { fetchReviews, createReview } from '../../redux/reviews';
+import { fetchReviews, postReview } from '../../redux/reviews';
 import { FaStar } from "react-icons/fa6";
 import { FaRegStar } from "react-icons/fa";
 
@@ -67,7 +67,7 @@ const CreateReview = () => {
         comments,
         };
 
-        dispatch(createReview(newReview, restaurantId))
+        dispatch(postReview(newReview, restaurantId))
         .then(closeModal)
         .then(() => dispatch(fetchReviews(restaurantId)))
 

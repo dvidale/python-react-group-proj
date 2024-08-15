@@ -8,8 +8,9 @@ import { fetchAddCartItem } from '../../redux/shoppingCart';
 import { FaThumbsUp } from 'react-icons/fa';
 import { fetchARestaurant } from '../../redux/restaurants';
 
-const MenuItemsList = (id) => {
+const MenuItemsList = () => {
 	const dispatch = useDispatch();
+	const { id } = useParams();
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
 	const currentUser = useSelector((state) => state.session.user);
 	const restaurant = useSelector(

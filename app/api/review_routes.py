@@ -4,13 +4,23 @@ from ..models import db, Review, User, Restaurant
 
 review_routes = Blueprint('reviews', __name__)
 
+
+# GET A SPECIFIC REVIEW
+@review_routes.route('/<int:review_id>')
+def get_one_review(review_id):
+
+    review = Review.query.get(review_id)
+    return review.to_dict()
+
 # EDIT A REVIEW
 @review_routes.route('/<int:review_id>', methods=["PUT"])
 def update_review(review_id):
 
     data = request.get_json()
     review = Review.query.get(review_id)
-    restaurant = Restaurant.query.get(review.restaurant_id)
+
+    if not review:
+        return {"Error": "There is no review to edit"}
 
     if 'rating' in data:
         review.rating = data['rating']
