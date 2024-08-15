@@ -1,15 +1,20 @@
+// import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
+import { useParams } from 'react-router-dom'
 import { delReview, fetchReviews } from "../../redux/reviews"
 import { useModal } from "../../context/Modal";
 
-const DeleteReview = ({ review }) => {
+
+const DeleteReview = ({ reviewId }) => {
   const { closeModal } = useModal();
+  const { restaurantId } = useParams();
   const dispatch = useDispatch();
 
-  const handleDelete = async () => {
-    dispatch(delReview(review.id))
+
+  const handleDelete = () => {
+      dispatch(delReview(reviewId))
       .then(closeModal)
-      .then(() => dispatch(fetchReviews(review.id)))
+      .then(() => dispatch(fetchReviews(restaurantId)))
   };
 
   return (

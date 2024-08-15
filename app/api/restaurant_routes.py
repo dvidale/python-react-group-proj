@@ -122,8 +122,7 @@ def get_restaurant_reviews(id):
 
         reviews_list = [review.to_dict() for review in reviews]
         return reviews_list
-
-
+    
 
 # CREATE A REVIEW
 @restaurant_routes.route('/<int:restaurant_id>/reviews', methods=["POST"])

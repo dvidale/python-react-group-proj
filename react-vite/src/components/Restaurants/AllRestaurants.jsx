@@ -12,7 +12,7 @@ function AllRestaurants({ city, state }) {
 		(state) => state.restaurants.AllRestaurants
 	);
 
-	const restaurantsArr = Object.values(all_restaurants)
+	// const restaurantsArr = Object.values(all_restaurants)
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());

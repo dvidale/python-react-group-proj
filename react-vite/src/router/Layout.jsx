@@ -18,7 +18,7 @@ export default function Layout() {
 			<ModalProvider>
 				<Navigation />
 
-				<RestaurantCategories />
+				{/* <RestaurantCategories /> */}
 				{isLoaded && <Outlet />}
 
 				<Modal />
