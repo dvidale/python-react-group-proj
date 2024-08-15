@@ -29,8 +29,11 @@ def get_all_categories():
 # ?  GET ALL RESTAURANTS
 @restaurant_routes.route("/")
 def get_all_restaurants():
+    print(">>>>>>> inside get restaurants route")
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
+
+    print(">>>>>restaurants from get all route:", restaurants_list)
 
     return restaurants_list
 
@@ -143,7 +146,7 @@ def update_restaurant_form(id):
         restaurant.close_time = close_time[0]
         restaurant.delivery_time = delivery_time[0]
         restaurant.delivery_fee = delivery_fee[0]
-        restaurant.banner_img = banner_img[0]
+        restaurant.banner_img = banner_img
 
         #  target the current RestaurantCategories records for this restaurant
 
@@ -152,7 +155,7 @@ def update_restaurant_form(id):
         rc_lst = [rest_category for rest_category in db.session.execute(rc_query)]
 
      
-         # find matching category records for categories from form submission
+         # *find matching category records for categories from form submission
         categ_query = db.select(Category.id).where(Category.categ_name.in_(categories))
 
         category_lst = [category for category in db.session.execute(categ_query)]
@@ -160,7 +163,7 @@ def update_restaurant_form(id):
         # print(">>>>>> cat_lst:", category_lst, "   >>>>rc_lst: ", rc_lst)
         #  OUTPUT: cat_lst: [(1,), (5,)]    rc_lst:  [(1,), (3,)]
 
-        # compare the current RestaurantCategory records against the categories submitted in the form
+        # *compare the current RestaurantCategory records against the categories submitted in the form
 
         cat_set = set(category_lst)
         rc_set = set(rc_lst)
@@ -169,7 +172,7 @@ def update_restaurant_form(id):
         # OUTPUT: cat_set: {(1,), (5,)}    rc_set:  {(1,), (3,)}
 
 
-        # identify any record that does not match the categories submitted, and delete that record
+        # * identify any record that does not match the categories submitted, and delete that record
 
         to_delete = rc_set - cat_set
 
@@ -216,6 +219,15 @@ def update_restaurant_form(id):
     return {"sorry":"something didn't work"}
 
 
+# ? DELETE A RESTAURANT
+# !Untested before merge so do not use yet
+# @restaurant_routes.route('/<int:id>', methods=["DELETE"])
+# def delete_restaurant(id):
+#     query = Restaurant.query.get(id)
+
+#     print(">>>>>> query", query)
+#     db.session.delete(query)
+#     db.session.commit()
 
 
 # ? GET ALL MENU ITEMS

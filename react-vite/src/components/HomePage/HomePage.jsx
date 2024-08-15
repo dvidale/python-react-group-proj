@@ -5,6 +5,8 @@ import HomeDeliveryHeader from '../HomeDeliveryHeader/HomeDeliveryHeader';
 import LocationForm from '../LocationForm/LocationForm';
 import { useSelector } from 'react-redux';
 
+
+
 function HomePage() {
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -12,6 +14,9 @@ function HomePage() {
 	// Determine the city and state to be used
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
+
+
+
 
 	return (
 		<div className='home-page'>

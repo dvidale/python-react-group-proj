@@ -5,7 +5,8 @@ import Layout from './Layout';
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 import HomePage from '../components/HomePage/HomePage';
 import ReviewsList from '../components/Reviews/ReviewsList';
-import RestaurantForm from '../components/RestaurantForm/RestaurantForm';
+import RestaurantForm from '../components/RestaurantForm';
+import RestaurantManagement from '../components/RestaurantManagement';
 
 export const router = createBrowserRouter([
 	{
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
 				path:'/restaurants/current/:id',
 				element:<RestaurantForm/>
 			},
+			{
+				path:'/restaurants/current',
+				element:<RestaurantManagement/>
+			}
 		],
 	},
 ]);

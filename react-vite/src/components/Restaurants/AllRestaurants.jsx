@@ -18,6 +18,8 @@ function AllRestaurants({ city, state }) {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
+
+
 	const handleRedirect = (id) => {
 		navigate(`/restaurants/${id}`);
 	};

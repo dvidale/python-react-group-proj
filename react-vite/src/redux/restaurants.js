@@ -8,7 +8,7 @@ const GET_A_RESTAURANT = 'restaurants/GET_A_RESTAURANT';
 
 const ADD_UPDATE_RESTAURANT = '/restaurants/ADD_OR_UPDATE_RESTAURANT';
 
-
+const DELETE_RESTAURANT = '/restaurants/DELETE_RESTAURANT'
 //*-----------------------------------ACTION CREATORS
 
 export function getAllCategories(data) {
@@ -39,6 +39,14 @@ export function add_Or_Update_Restaurant(data){
 	}
 }
 
+export function deleteARestaurant(id){
+	return {
+		type: DELETE_RESTAURANT,
+		payload: id
+
+	}
+}
+
 //* -------------------------------------THUNKS
 
 export const getCategories = () => async (dispatch) => {
@@ -56,7 +64,7 @@ export const getCategories = () => async (dispatch) => {
 export const getRestaurants = () => async (dispatch) => {
 
 	const response = await fetch('/api/restaurants');
-
+	
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(getAllRestaurants(data));
@@ -117,8 +125,23 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 	dispatch(add_Or_Update_Restaurant(data))
 	return data
 
+}
 
+// !untested before merge
+export const deleteRestaurant = (id) => async (dispatch) =>{
 
+const url = `api/restaurants/${id}`
+const method = 'DELETE'
+
+const options = {method}
+
+const response = await fetch(url, options)
+
+const data = await response.json()
+
+dispatch(deleteARestaurant(id))
+
+return data
 
 }
 
@@ -159,6 +182,13 @@ const restaurantsReducer = (state = initialState, action) => {
 
 			return newState
 		}	
+		case DELETE_RESTAURANT:{
+			// !untested before merge
+			const newState = {...state}
+			const id = action.payload
+			delete newState.AllRestaurants[id]
+			return newState
+		}
 		default:
 			return state;
 	}
