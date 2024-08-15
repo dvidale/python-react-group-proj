@@ -6,6 +6,8 @@ const GET_RESTAURANTS = '/restaurants/GET_RESTAURANTS';
 
 const GET_A_RESTAURANT = 'restaurants/GET_A_RESTAURANT';
 
+const ADD_NEW_RESTAURANT = '/restaurants/ADD_NEW_RESTAURANT';
+
 //*-----------------------------------ACTION CREATORS
 
 export function getAllCategories(data) {
@@ -27,6 +29,13 @@ export function getARestaurant(data) {
 		type: GET_A_RESTAURANT,
 		payload: data,
 	};
+}
+
+export function addNewRestaurant(data){
+	return {
+		type: ADD_NEW_RESTAURANT,
+		payload: data
+	}
 }
 
 //* -------------------------------------THUNKS
@@ -71,7 +80,8 @@ export const fetchARestaurant = (id) => async (dispatch) => {
 };
 
 
-export const newRestaurant = (method, formData) => async () =>{
+
+export const newRestaurant = (method, formData) => async (dispatch) =>{
 
 	const url = '/api/restaurants/new'
 	const headers = {'Content-Type': 'application/json'}
@@ -85,6 +95,8 @@ export const newRestaurant = (method, formData) => async () =>{
 
 	const data = await response.json()
 	console.log(">>> data from flask POST route:", data)
+	dispatch(addNewRestaurant(data))
+
 	return data
 }
 
@@ -136,6 +148,17 @@ const restaurantsReducer = (state = initialState, action) => {
 		}
 		case GET_A_RESTAURANT:
 			return { ...state, selectedRestaurant: action.payload };
+
+			
+		case ADD_NEW_RESTAURANT:{
+			const newState = {...state}
+
+			const new_restaurant = action.payload;
+
+			newState.AllRestaurants[new_restaurant.id] = new_restaurant;
+
+			return newState
+		}	
 		default:
 			return state;
 	}

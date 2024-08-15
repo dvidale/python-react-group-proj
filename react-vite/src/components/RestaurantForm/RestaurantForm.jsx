@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
-import { useParams } from 'react-router-dom'
+import { redirect, useParams } from 'react-router-dom'
 
 function RestaurantForm(){
 
@@ -104,11 +104,19 @@ const submitHandler = (e) =>{
 
     
     if(restaurant){
-    
+    // update the restaurant
         dispatch(restaurantsActions.updateRestaurant(method, JSON.stringify(formData)))
-    }else{
 
+        // redirect to updated restaurant page
+
+        redirect(`/restaurants/${restaurant.id}`)
+    }else{
+    // create a new restaurant
         dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
+
+    // redirect to restaurant management portal
+    // TODO: create restaurant management portal!
+    // redirect('/restaurants/current')
     }
     
 

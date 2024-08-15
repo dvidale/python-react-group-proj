@@ -70,7 +70,6 @@ def restaurant_form():
 
         restaurant_lst = [dict(restaurant) for restaurant in db.session.execute(restaurant_results) ]
 
-        print(">>>> restaurant_record", restaurant_lst[0])
 
         # target submitted categories from form
         categories=restaurant_form.data["categories"]
@@ -79,8 +78,7 @@ def restaurant_form():
         query = db.select(Category.id, Category.categ_name).where(Category.categ_name.in_(categories))
 
         category_lst = [dict(category) for category in db.session.execute(query)]
-        print(">>>> category query results:", category_lst)
-
+     
         # create a record in RestaurantCategories for every category listed for the new restaurant
 
         for category in category_lst:
@@ -91,7 +89,10 @@ def restaurant_form():
             db.session.add(record)
             db.session.commit()
 
-        return {"message": "success"}
+        # return the newly created restaurant with its categories
+        
+        res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict() 
+        return res
 
     print(">>>>form errors", restaurant_form.errors)
     return {"no dice": "sorry"}
