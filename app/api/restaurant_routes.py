@@ -134,29 +134,30 @@ def update_restaurant_form(id):
         restaurant = (Restaurant).query.get(id)
 
         # update the record with the form data
-        restaurant.owner_id = owner_id
-        restaurant.name = name
-        restaurant.address = address
-        restaurant.phone_number = phone_number
-        restaurant.description = description
-        restaurant.open_time = open_time
-        restaurant.close_time = close_time
-        restaurant.delivery_time = delivery_time
-        restaurant.delivery_fee = delivery_fee
-        restaurant.banner_img = banner_img
+        restaurant.owner_id = owner_id[0]
+        restaurant.name = name[0]
+        restaurant.address = address[0]
+        restaurant.phone_number = phone_number[0]
+        restaurant.description = description[0]
+        restaurant.open_time = open_time[0]
+        restaurant.close_time = close_time[0]
+        restaurant.delivery_time = delivery_time[0]
+        restaurant.delivery_fee = delivery_fee[0]
+        restaurant.banner_img = banner_img[0]
 
         #  target the current RestaurantCategories records for this restaurant
 
-        rc_query = db.select(RestaurantCategory).where(RestaurantCategory.restaurant_id == restaurant.id)
+        rc_query = db.select(RestaurantCategory.category_id).where(RestaurantCategory.restaurant_id == restaurant.id)
 
-        rc_lst = [dict(rest_category) for rest_category in db.session.execute(rc_query)]
+        rc_lst = [rest_category for rest_category in db.session.execute(rc_query)]
 
      
          # find matching category records for categories from form submission
-        categ_query = db.select(Category.id, Category.categ_name).where(Category.categ_name.in_(categories))
+        categ_query = db.select(Category.id).where(Category.categ_name.in_(categories))
 
-        category_lst = [dict(category) for category in db.session.execute(categ_query)]
+        category_lst = [category for category in db.session.execute(categ_query)]
 
+        print(">>>>>> cat_lst:", category_lst, "   >>>>rc_lst: ", rc_lst)
 
         # compare the current RestaurantCategory records against the categories submitted in the form
 
@@ -164,9 +165,25 @@ def update_restaurant_form(id):
         rc_set = set(rc_lst)
 
         print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
-        # if any record does not match the categories submitted, delete that record
+        # identify any record that does not match the categories submitted, and delete that record
 
-        # if a submitted category does not match a current record, add a new RestaurantCategory record associating that record with the restaurant
+        to_delete = rc_set - cat_set
+
+        print(">>>> to delete:", to_delete)
+
+        # iterate over the set, target the category id, run a query for the rc record with the category and restaurant ids
+        # delete the resulting record
+
+        for ele in to_delete:
+            cat_id = ele[0]
+            to_delete_query = db.select(RestaurantCategory).where(RestaurantCategory.restaurant_id == restaurant.id, RestaurantCategory.category_id == cat_id)
+
+            rc_record = db.session.execute(to_delete_query).first()[0]
+
+            print(">>>> to_delete_query:", rc_record)
+            
+
+        # identify any submitted category that does not match a current record, and add a new RestaurantCategory record associating that category with the restaurant
 
 
 
@@ -185,6 +202,7 @@ def update_restaurant_form(id):
         # return res
         return None
     
+    print(">>>>form errors", restaurant_form.errors)
     return {"sorry":"something didn't work"}
 
 
