@@ -25,66 +25,68 @@ export const deleteReview = (data) => {
 	};
 };
 
-
 //-------------------- THUNKS --------------------//
 
 //GET REVIEW THUNK
 export const fetchReviews = (restaurantId) => async (dispatch) => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`);
+	const response = await fetch(`/api/restaurants/${restaurantId}/reviews`);
 
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(getAllReviews(data))
-    }
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getAllReviews(data));
+	}
 };
 
 //CREATE REVIEW THUNK
 export const postReview = (newReview, restaurantId) => async (dispatch) => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newReview)
-    });
+	const response = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(newReview),
+	});
 
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(createReview(data))
-    }
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(createReview(data));
+	}
 };
 
 //DELETE REVIEW THUNK
 export const delReview = (reviewId) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/${reviewId}`, {
-        method: "DELETE"
-    });
+	const response = await fetch(`/api/reviews/${reviewId}`, {
+		method: 'DELETE',
+	});
 
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(deleteReview(reviewId))
-    }
-}
+	if (response.ok) {
+		dispatch(deleteReview(reviewId));
+	}
+};
 
 //-------------------- REDUCER --------------------//
 
 const initialState = {
-    reviewsListArr: [],
-    createReview: [],
-    deleteReview: {}
+	reviewsListArr: [],
+	createReview: [],
+	deleteReview: {},
 };
 
 const reviewsListReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case GET_ALL_REVIEWS:
-            return {...state, reviewsListArr: action.payload}
-        case CREATE_REVIEW:
-            return {...state, createReviews: action.payload}
-        case DELETE_REVIEW:
-            let newState = {...state }
-            delete newState.deleteReview[action.payload]
-            return newState
-        default:
-            return state;
-    }
-}
+	switch (action.type) {
+		case GET_ALL_REVIEWS:
+			return { ...state, reviewsListArr: action.payload };
+		case CREATE_REVIEW:
+			return { ...state, createReviews: action.payload };
+		case DELETE_REVIEW: {
+			return {
+				...state,
+				reviewsListArr: state.reviewsListArr.filter(
+					(review) => review.id !== action.payload
+				),
+			};
+		}
+		default:
+			return state;
+	}
+};
 
 export default reviewsListReducer;
