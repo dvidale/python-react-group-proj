@@ -157,19 +157,24 @@ def update_restaurant_form(id):
 
         category_lst = [category for category in db.session.execute(categ_query)]
 
-        print(">>>>>> cat_lst:", category_lst, "   >>>>rc_lst: ", rc_lst)
+        # print(">>>>>> cat_lst:", category_lst, "   >>>>rc_lst: ", rc_lst)
+        #  OUTPUT: cat_lst: [(1,), (5,)]    rc_lst:  [(1,), (3,)]
 
         # compare the current RestaurantCategory records against the categories submitted in the form
 
         cat_set = set(category_lst)
         rc_set = set(rc_lst)
 
-        print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
+        # print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
+        # OUTPUT: cat_set: {(1,), (5,)}    rc_set:  {(1,), (3,)}
+
+
         # identify any record that does not match the categories submitted, and delete that record
 
         to_delete = rc_set - cat_set
 
-        print(">>>> to delete:", to_delete)
+        # print(">>>> to delete:", to_delete)
+        # OUTPUT: to_delete: {(3,)}
 
         # iterate over the set, target the category id, run a query for the rc record with the category and restaurant ids
         # delete the resulting record
@@ -180,27 +185,32 @@ def update_restaurant_form(id):
 
             rc_record = db.session.execute(to_delete_query).first()[0]
 
-            print(">>>> to_delete_query:", rc_record)
-            
+            # print(">>>>> rc_record", rc_record)
+            # OUTPUT: rc_record: <RestaurantCategory 44>
+
+            db.session.delete(rc_record)
 
         # identify any submitted category that does not match a current record, and add a new RestaurantCategory record associating that category with the restaurant
 
+        to_add = cat_set - rc_set
 
+        # iterate over the set, target the category id, create an instance of a RestaurantCategory record, and save that record with the restaurant id and category id to the db
 
+        for ele in to_add:
+            cat_id = ele[0]
+            new_rc_record = RestaurantCategory(
+                restaurant_id = restaurant.id,
+                category_id = cat_id
+            )
+            db.session.add(new_rc_record)
 
-
-       
+        db.session.commit()       
           
-            
         
-       
-  
-        # db.session.commit()
-
         # return the newly updated restaurant with its categories
-        # res = db.session.query(Restaurant).get(id).to_dict() 
-        # return res
-        return None
+        res = db.session.query(Restaurant).get(id).to_dict() 
+        return res
+     
     
     print(">>>>form errors", restaurant_form.errors)
     return {"sorry":"something didn't work"}
