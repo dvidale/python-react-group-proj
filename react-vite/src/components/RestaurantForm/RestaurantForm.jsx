@@ -14,13 +14,11 @@ function RestaurantForm(){
 
     const restaurant = useSelector(state => state.restaurants.AllRestaurants[id])
 
+//set method for api route for update or new restaurant
     const method = restaurant ? "PUT": "POST"
 
- 
-   
-
-    const [name, setName] = useState(restaurant ? restaurant.name : "")
-    const [address, setAddress] = useState(restaurant ? restaurant.address : "")
+    const [name, setName] = useState("")
+    const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [zip, setZip] = useState("")
@@ -34,7 +32,6 @@ function RestaurantForm(){
     const [banner_img, setBannerImg] = useState("")
      
     const [error, setError] = useState({})
-
 
     useEffect(()=>{
 
@@ -51,7 +48,6 @@ function RestaurantForm(){
             setBannerImg(restaurant.banner_img)
         }
 
-
     },[restaurant])
     
  
@@ -67,8 +63,8 @@ useEffect(()=>{
 
 },[name])
 
-// Load current categories for multi-select options
-
+// Fetch current categories for multi-select options
+// Fetch restaurant data
 
 useEffect(()=>{
 
@@ -78,20 +74,15 @@ dispatch(restaurantsActions.getRestaurants())
 },[dispatch])
 
 // create categories list
-
 const category_list = useSelector(state => state.restaurants.allCategories)
 
-
-const user = useSelector(state => state.session)
-
+const user = useSelector(state => state.session.user)
 
 const submitHandler = (e) =>{
     e.preventDefault()
   
-   
-    
-
     const formData = {
+        owner_id: user.id,
         name,
         address,
         phone_number,
@@ -110,15 +101,11 @@ const submitHandler = (e) =>{
         dispatch(restaurantsActions.updateRestaurant(JSON.stringify(method, formData)))
     }else{
 
-           // ! add user id info! If it's an update we don't need it, but if it's a new restaurant, the current user Id is the ownerId!
-
-        formData['ownerId'] = user.id
-
         dispatch(restaurantsActions.newRestaurant(JSON.stringify(method, formData)))
     }
     
 
-    setName("")
+   
 }
 // TODO: Refactor these form fields as a form field component, passing in the specifics as props
     return(

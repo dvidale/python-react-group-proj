@@ -22,6 +22,10 @@ export const thunkAuthenticate = () => async (dispatch) => {
 	}
 };
 
+/*------------ 
+    Log In
+--------------*/
+
 export const thunkLogin = (credentials) => async dispatch => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -40,6 +44,10 @@ export const thunkLogin = (credentials) => async dispatch => {
   }
 };
 
+/*------------ 
+    Sign Up
+--------------*/
+
 export const thunkSignup = (user) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
@@ -57,6 +65,10 @@ export const thunkSignup = (user) => async (dispatch) => {
     return { server: "Something went wrong. Please try again" }
   }
 };
+
+/*------------ 
+    Log Out
+--------------*/
 
 export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");

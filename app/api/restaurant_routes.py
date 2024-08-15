@@ -35,6 +35,31 @@ def restaurant_form():
     print("form data:", restaurant_form.data['name'])
 
     name = restaurant_form.data['name']
+    address = restaurant_form.data['address']
+    phone_number = restaurant_form.data['phone_number']
+    description = restaurant_form.data['description']
+    open_time = restaurant_form.data['open_time']
+    close_time = restaurant_form.data['close_time']
+    delivery_time = restaurant_form.data['delivery_time']
+    delivery_fee = restaurant_form.data['delivery_fee']
+    banner_img = restaurant_form.data['banner_img']
+    categories = restaurant_form.data['categories']
+
+    formData = {
+        'name': name,
+        'address': address,
+        'phone_number': phone_number,
+        'description': description,
+        'open_time':open_time,
+        'close_time': close_time,
+        'delivery_time': delivery_time,
+        'delivery_fee': delivery_fee,
+        'banner_img': banner_img,
+        'categories': categories
+    }
+
+    print(">>>>> formData from form:", formData)
+
     if restaurant_form.validate_on_submit():
         
         return {"message":"success"}
