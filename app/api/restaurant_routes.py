@@ -10,7 +10,7 @@ restaurant_routes = Blueprint('restaurants', __name__)
 def get_all_categories():
     categories = Category.query.all()
     categories_list = [category.to_dict() for category in categories]
-    
+
     return categories_list
 
 # ?  GET ALL RESTAURANTS
@@ -21,10 +21,6 @@ def get_all_restaurants():
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
     return restaurants_list
-
-
-
-
 
 
 # ? GET ALL MENU ITEMS
@@ -38,7 +34,7 @@ def get_all_menu_items(id):
     return menu_items_list
 
 
-# ? ADD NEW MENU ITEM 
+# ? ADD NEW MENU ITEM
 @restaurant_routes.route('/<int:id>/menu-items/new', methods=['POST'])
 def add_new_menu_item(id):
     restaurant = Restaurant.query.get(id)
@@ -55,7 +51,7 @@ def add_new_menu_item(id):
             image_url=form.image_url.data,
             description=form.description.data,
             quantity=form.quantity.data,
-            ratings_count=0  
+            ratings_count=0
         )
 
         db.session.add(new_menu_item)
@@ -65,7 +61,7 @@ def add_new_menu_item(id):
 
     return {"errors": form.errors}, 400
 
-# ? GET ALL REVIEWS FOR SPECIFIC RESTAURANT
+# GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 @restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):
 
@@ -78,8 +74,28 @@ def get_restaurant_reviews(id):
         reviews_list = [review.to_dict() for review in reviews]
         return reviews_list
 
-# ? CREATE A REVIEW
+
+
+# CREATE A REVIEW
 @restaurant_routes.route('/<int:restaurant_id>/reviews', methods=["POST"])
 # @login_required
 def create_review(restaurant_id):
     restaurant = Restaurant.query.get(restaurant_id)
+
+    if not restaurant:
+        return { 'Error': 'Restaurant Not Found'}, 404
+
+    if request.method == "POST":
+        data = request.get_json()
+
+        new_review = Review (
+            rating = data['rating'],
+            comments = data['comments'],
+            restaurant_id = restaurant.id,
+            user_id = current_user.id
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review.to_dict(), 200

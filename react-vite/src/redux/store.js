@@ -10,14 +10,15 @@ import menuItemsReducer from './menuItems';
 import shoppingCartReducer from './shoppingCart';
 import restaurantsReducer from './restaurants';
 import reviewsListReducer from './reviews';
+import menuItemRatingsReducer from './menuItemRating';
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
 	restaurants: restaurantsReducer,
 	menuItems: menuItemsReducer,
 	shoppingCart: shoppingCartReducer,
-	restaurants: restaurantsReducer,
-	reviewsList: reviewsListReducer
+	reviewsList: reviewsListReducer,
+	menuItemRating: menuItemRatingsReducer
 });
 
 let enhancer;

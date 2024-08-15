@@ -20,18 +20,24 @@ def get_menu_item_ratings(menuitem_id):
         return {'Error': 'There is no rating for this Menu Item'}, 404
 
 
-    # CALCULATING THE NUMBER OF VOTES AND PERCENTAGE OF LIKED VOTES
+    #---- CALCULATING THE NUMBER OF VOTES AND PERCENTAGE OF LIKED VOTES ----#
+
+    #-- counts the number of ratings by grabbing the length of menu_item_ratings
     ratings_count = len(menu_item_ratings)
+
+    #-- sums the number of "like" votes (e.g. 'if rating.vote' grabs all votes that are True and omits votes that are False.
     like_votes = sum([1 for rating in menu_item_ratings if rating.vote])
+
+    #-- divides 'like_votes' by 'ratings_count' to calculate % of liked votes. If there are no ratings, then % is equal to 0.
     percentage_liked_votes = (like_votes / ratings_count) * 100 if ratings_count > 0 else 0
 
-    menu_item_ratings_data = {
-        'menu_item_id': menu_item.id,
-        'number_of_votes': ratings_count,
-        'percentage_of_liked_votes': percentage_liked_votes,
+    data = {
+            'menu_item_id': menu_item.id,
+            'number_of_votes': ratings_count,
+            'percentage_of_liked_votes': percentage_liked_votes,
     }
 
-    return jsonify(menu_item_ratings_data)
+    return jsonify(data)
 
 # CREATE MENU ITEM RATING
 @menuitem_routes.route('/<int:menuitem_id>/ratings', methods=["POST"])
