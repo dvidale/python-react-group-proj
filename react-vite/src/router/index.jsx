@@ -4,6 +4,8 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 import HomePage from '../components/HomePage/HomePage';
+// import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
+import MenuItemRating from '../components/MenuItemRating/MenuItemRating'
 import ReviewsList from '../components/Reviews/ReviewsList';
 import RestaurantForm from '../components/RestaurantForm/RestaurantForm';
 
@@ -29,10 +31,6 @@ export const router = createBrowserRouter([
 
 			},
 			{
-				path: '/restaurants/:id/reviews',
-				element: <ReviewsList />,
-			},
-			{
 				path:'/restaurants/new',
 				element: <RestaurantForm/>
 			},
@@ -40,6 +38,14 @@ export const router = createBrowserRouter([
 				path:'/restaurants/current/:id',
 				element:<RestaurantForm/>
 			},
+			{
+				path: '/restaurants/:id/reviews',
+				element: <ReviewsList />
+			},
+			{
+				path: '/menu-items/:id/ratings',
+				element: <MenuItemRating />
+			}
 		],
 	},
 ]);
