@@ -105,7 +105,12 @@ const submitHandler = (e) =>{
     
     if(restaurant){
     // update the restaurant
-        dispatch(restaurantsActions.updateRestaurant(method, JSON.stringify(formData)))
+
+        // add the restaurant id to request
+
+        const id = restaurant.id
+
+        dispatch(restaurantsActions.updateRestaurant(id, method, JSON.stringify(formData)))
 
         // redirect to updated restaurant page
 

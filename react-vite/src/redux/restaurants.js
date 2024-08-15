@@ -94,27 +94,25 @@ export const newRestaurant = (method, formData) => async (dispatch) =>{
 	
 
 	const data = await response.json()
-	console.log(">>> data from flask POST route:", data)
+	
 	dispatch(addNewRestaurant(data))
 
 	return data
 }
 
-export const updateRestaurant = (method, formData) => async () => {
+export const updateRestaurant = (id, method, formData) => async () => {
 
-	const url = '/api/restaurants/current/:id'
-
+	const url = `/api/restaurants/current/${id}`
 	const headers = {'Content-Type': 'application/json'}
-
 	const body = formData
-
 	const options = {method, headers, body}
 
 	const response = await fetch(url, options);
 	
-
 	const data = await response.json()
 
+	console.log(">>> data from flask POST route:", data)
+	
 	return data
 
 
