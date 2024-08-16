@@ -53,10 +53,13 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className='signu'>
 			<h1>Sign Up</h1>
 			{errors.server && <p>{errors.server}</p>}
-			<form onSubmit={handleSubmit}>
+			<form
+				onSubmit={handleSubmit}
+				className='signup-form-modal'
+			>
 				<label>
 					First Name
 					<input
@@ -169,7 +172,7 @@ function SignupFormModal() {
 				{errors.phone_number && <p>{errors.phone_number}</p>}
 				<button type='submit'>Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

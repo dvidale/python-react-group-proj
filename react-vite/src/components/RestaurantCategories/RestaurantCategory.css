@@ -1,0 +1,40 @@
+.category-section {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem 0;
+	gap: 1rem;
+}
+
+.category-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1rem;
+}
+
+.category-structure {
+	display: flex;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+	border: solid 2px green;
+	text-align: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.category-structure img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 4px;
+	margin-bottom: 5px;
+}
+
+.category-structure:hover {
+	background-color: #f0f0f0;
+}
+
+.category-structure.selected {
+	background-color: #007bff;
+	color: white;
+}
