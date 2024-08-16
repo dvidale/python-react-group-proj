@@ -18,13 +18,14 @@ function RestaurantHeader({ restaurant }) {
 						alt={restaurant.name}
 						src={restaurant.banner_img}
 					/>
+				<h1 className='restaurant-title'>{restaurant.name}</h1>
+				
 				</div>
-				<h1>{restaurant.name}</h1>
 				<p>
-					{restaurant.avg_rating} (review count) •{' '}
+					{restaurant.avg_rating} •{' '}
 					{restaurant.categories.join(' • ')}<br />
 					{restaurant.address}
-					{city && state ? `, ${city}, ${state}` : ''}
+					{city && state ? `${city}, ${state}` : ''}
 				</p>
 				<p>{restaurant.description}</p>
 			</div>
