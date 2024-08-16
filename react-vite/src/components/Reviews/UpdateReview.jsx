@@ -3,14 +3,16 @@ import { useDispatch } from 'react-redux';
 import { updateReview, fetchReviews, getSingleReview } from '../../redux/reviews';
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
+import { FaStar } from 'react-icons/fa';
+import { FaRegStar } from 'react-icons/fa';
 
 const UpdateReview = ({ reviewId }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const { restaurantId } = useParams();
-
+    const [rating, setRating] = useState(0);
     const [reviewDetails, setReviewDetails] = useState({ rating: 0, comments: "" });
-    const [hoverRating, setHoverRating] = useState(0);
+    const [hoveredStars, setHoveredStars] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -18,8 +20,8 @@ const UpdateReview = ({ reviewId }) => {
         (async () => {
             try {
                 const data = await dispatch(getSingleReview(reviewId));
-                console.log('Review data:', data);
                 setReviewDetails({ rating: data.rating, comments: data.comments });
+                setRating(data.rating); // Set initial rating state
                 setIsLoading(false);
             } catch (err) {
                 console.error('Error fetching review:', err);
@@ -32,39 +34,45 @@ const UpdateReview = ({ reviewId }) => {
     const handleInputChange = ({ target: { name, value } }) =>
         setReviewDetails(prev => ({ ...prev, [name]: value }));
 
-    const handleStarClick = (rating) => {
-        setReviewDetails(prev => ({ ...prev, rating }));
-        setHoverRating(0); // Reset hover rating after clicking
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await dispatch(updateReview(reviewDetails, reviewId));
+            await dispatch(updateReview({ ...reviewDetails, rating }, reviewId));
             closeModal();
-            dispatch(fetchReviews(restaurantId));
+            dispatch(fetchReviews(restaurantId)); // Ensure updated review list
         } catch (err) {
             console.error('Error updating review:', err);
             setError('Failed to update review.');
         }
     };
 
-    const renderStars = () =>
-        Array.from({ length: 5 }, (_, i) => {
-            const starValue = i + 1;
-            return (
-                <span
-                    key={starValue}
-                    className={`star ${starValue <= (hoverRating || reviewDetails.rating) ? 'filled' : ''}`}
-                    onClick={() => handleStarClick(starValue)}
-                    onMouseEnter={() => setHoverRating(starValue)}
-                    onMouseLeave={() => setHoverRating(0)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    &#9733;
-                </span>
-            );
-        });
+    const handleMouseEnter = (stars) => {
+        setHoveredStars(stars);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredStars(0);
+    };
+
+    const handleClick = (stars) => {
+        setRating(stars);
+        setReviewDetails(prev => ({ ...prev, rating: stars }));
+    };
+
+    const renderStars = () => {
+        return [1, 2, 3, 4, 5].map((stars) => (
+            <div
+                key={stars}
+                onMouseEnter={() => handleMouseEnter(stars)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => handleClick(stars)}
+                className="star"
+                style={{ cursor: 'pointer', display: 'inline-block' }}
+            >
+                {stars <= (hoveredStars || rating) ? <FaStar /> : <FaRegStar />}
+            </div>
+        ));
+    };
 
     return (
         <div>
