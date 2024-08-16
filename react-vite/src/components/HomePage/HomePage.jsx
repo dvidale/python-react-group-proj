@@ -4,7 +4,6 @@ import AllRestaurants from '../Restaurants/AllRestaurants';
 import HomeDeliveryHeader from '../HomeDeliveryHeader/HomeDeliveryHeader';
 import LocationForm from '../LocationForm/LocationForm';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 
 function HomePage() {
 	const sessionUser = useSelector((state) => state.session.user);
@@ -14,25 +13,22 @@ function HomePage() {
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
 
-	const [selectedCategory, setSelectedCategory] = useState(null);
-
 	return (
 		<div className='home-page'>
 			{city && state ? (
 				<>
 					<HomeDeliveryHeader />
-					<RestaurantCategories setSelectedCategory={setSelectedCategory} />
+					<RestaurantCategories />
 					<hr />
 					<AllRestaurants
 						city={city}
 						state={state}
-						selectedCategory={selectedCategory}
 					/>
 				</>
 			) : (
 				<>
 					<LocationForm />
-					<RestaurantCategories setSelectedCategory={setSelectedCategory} />
+					<RestaurantCategories />
 					<hr />
 					<AllRestaurants />
 				</>

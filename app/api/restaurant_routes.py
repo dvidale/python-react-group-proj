@@ -270,8 +270,6 @@ def add_new_menu_item(id):
     return {"errors": form.errors}, 400
 
 
-# ? GET ALL REVIEWS FOR SPECIFIC RESTAURANT
-@restaurant_routes.route("/<int:id>/reviews")
 # GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 @restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):

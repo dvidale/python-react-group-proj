@@ -1,6 +1,43 @@
+.restaurant-list {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1rem;
+}
+
 .restaurant-tile {
-	border: 1px gray solid;
-	padding: 5px;
-	margin-bottom: 5px;
-	cursor: pointer;
+	position: relative;
+	border: solid 1px gray;
+	display: flex;
+	border-radius: 12px;
+	transition: box-shadow 0.3s ease;
+	min-height: 165px;
+}
+
+.restaurant-image {
+	display: flex;
+	height: 100%;
+	width: 30%;
+	border: solid 2px red;
+	border-radius: 12px;
+}
+
+.restaurant-info {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	padding: 1rem;
+	gap: 0.4rem;
+}
+
+.restaurant-info h2 {
+	font-size: var(--fs-small);
+}
+
+.restaurant-info p {
+	opacity: 0.6;
+}
+
+.restaurant-address {
+	opacity: 0.6;
+	font-style: var(--ff-primary);
 }
