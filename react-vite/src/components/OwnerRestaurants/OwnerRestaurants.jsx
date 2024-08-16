@@ -1,45 +1,28 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import * as restaurantsActions from '../../redux/restaurants';
-import { useNavigate } from 'react-router-dom';
-import './all_restaurants.css';
+import { getRestaurants } from '../../redux/restaurants';
 
-function AllRestaurants({ city, state }) {
+function OwnerRestaurants({ city, state }) {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
+	const owner = useSelector((state) => state.session.user);
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
 	);
-	const selectedCategory = useSelector(
-		(state) => state.restaurants.selectedCategory
-	);
 
 	useEffect(() => {
-		dispatch(restaurantsActions.getRestaurants());
+		dispatch(getRestaurants());
 	}, [dispatch]);
 
-	let filteredRestaurants = Object.values(all_restaurants);
-
-	if (selectedCategory) {
-		filteredRestaurants = filteredRestaurants.filter((restaurant) =>
-			restaurant.categories.includes(selectedCategory)
-		);
-	}else if(ownerFilter){
-		filteredRestaurants = restaurantsArr.filter((restaurant) =>
-		restaurant.owner_id === user.id)
-	}
-
-	const handleRedirect = (id) => {
-		navigate(`/restaurants/${id}`);
-	};
+	// Filter restaurants by owner_id
+	const filteredRestaurants = Object.values(all_restaurants).filter(
+		(restaurant) => restaurant.owner_id === owner.id
+	);
 
 	return (
 		<div className='restaurant-list'>
 			{filteredRestaurants.map((restaurant) => (
 				<div
 					key={restaurant.id}
-					onClick={() => handleRedirect(restaurant.id)}
 					className='restaurant-tile'
 				>
 					<img
@@ -65,4 +48,4 @@ function AllRestaurants({ city, state }) {
 	);
 }
 
-export default AllRestaurants;
+export default OwnerRestaurants;

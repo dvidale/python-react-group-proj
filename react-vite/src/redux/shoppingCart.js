@@ -2,6 +2,7 @@
 const GET_CART_ITEMS = 'shoppingCart/GET_CART_ITEMS';
 const REMOVE_CART_ITEM = 'cart/REMOVE_CART_ITEM';
 const ADD_CART_ITEM = 'cart/ADD_CART_ITEM';
+const CLEAR_CART_ITEMS = 'cart/CLEAR_CART_ITEMS';
 
 // *ACTION CREATORS
 export const getCartItems = (cartItems) => ({
@@ -19,13 +20,24 @@ export const addCartItem = (cartItem) => ({
 	payload: cartItem,
 });
 
+export const clearCartItems = () => ({
+	type: CLEAR_CART_ITEMS,
+});
+
 // *THUNKS
 // ?-------------------------GET ALL CART ITEMS
-export const fetchCartItems = () => async (dispatch) => {
-	const response = await fetch('/api/shopping-cart/current');
-	if (response.ok) {
-		const data = await response.json();
-		dispatch(getCartItems(data));
+export const fetchCartItems = () => async (dispatch, getState) => {
+	const state = getState();
+	const sessionUser = state.session.user;
+
+	if (sessionUser) {
+		const response = await fetch('/api/shopping-cart/current');
+		if (response.ok) {
+			const data = await response.json();
+			dispatch(getCartItems(data));
+		}
+	} else {
+		dispatch(clearCartItems());
 	}
 };
 
@@ -136,6 +148,8 @@ const shoppingCartReducer = (state = initialState, action) => {
 				};
 			}
 		}
+		case CLEAR_CART_ITEMS:
+			return { ...state, items: [] };
 		default:
 			return state;
 	}
