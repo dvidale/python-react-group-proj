@@ -221,13 +221,13 @@ def update_restaurant_form(id):
 
 # ? DELETE A RESTAURANT
 # !Untested before merge so do not use yet
-# @restaurant_routes.route('/<int:id>', methods=["DELETE"])
-# def delete_restaurant(id):
-#     query = Restaurant.query.get(id)
+@restaurant_routes.route('/<int:id>', methods=["DELETE"])
+def delete_restaurant(id):
+    query = Restaurant.query.get(id)
 
-#     print(">>>>>> query", query)
-#     db.session.delete(query)
-#     db.session.commit()
+    print(">>>>>> query", query)
+    db.session.delete(query)
+    db.session.commit()
 
 
 # ? GET ALL MENU ITEMS
