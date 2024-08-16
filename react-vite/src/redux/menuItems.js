@@ -3,8 +3,16 @@
 const GET_MENU_ITEMS = 'menuItems/GET_MENU_ITEMS';
 const ADD_MENU_ITEM = 'menuItems/ADD_MENU_ITEMS';
 const DELETE_MENU_ITEM = 'menuItems/DELETE_MENU_ITEM';
+const GET_EVERY_ITEM = 'menuItems/GET_EVERY_ITEM';
 
 //*-----------------------------------ACTION CREATORS
+
+export const getEveryMenuItem = (data) => {
+	return {
+		type: GET_EVERY_ITEM,
+		payload: data,
+	};
+};
 
 export const getMenuItems = (menuItems) => {
 	return {
@@ -28,8 +36,23 @@ export const deleteMenuItem = (id) => {
 };
 
 //* -------------------------------------THUNKS
+// ? --------------------------------GET ALL EXISTING MENU ITEMS
+export const fetchAllMenuItems = () => async (dispatch) => {
+	try {
+		const response = await fetch(`/api/menu-items/all`);
+		if (response.ok) {
+			const data = await response.json();
+			console.log('Data fetched:', data); // Debug log
+			dispatch(getEveryMenuItem(data));
+		} else {
+			console.error('Failed to fetch all menu items');
+		}
+	} catch (error) {
+		console.error('Error fetching all menu items:', error);
+	}
+};
 
-//?---------------------------------GET ALL MENU ITEMS
+//?---------------------------------GET ALL MENU ITEMS FOR RESTAURANT
 export const fetchMenuItems = (restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/menu-items`);
 	if (response.ok) {
@@ -86,11 +109,14 @@ export const fetchDeleteMenuItem = (id) => async (dispatch) => {
 //!---------------------------------- INITIAL STATE
 const initialState = {
 	itemArr: [],
+	allArr: [],
 };
 
 //!---------------------------------- REDUCER
 const menuItemsReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case GET_EVERY_ITEM:
+			return { ...state, allArr: action.payload };
 		case GET_MENU_ITEMS:
 			return { ...state, itemArr: action.payload };
 		case ADD_MENU_ITEM:

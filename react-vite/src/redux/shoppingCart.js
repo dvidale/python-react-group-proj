@@ -3,6 +3,7 @@ const GET_CART_ITEMS = 'shoppingCart/GET_CART_ITEMS';
 const REMOVE_CART_ITEM = 'cart/REMOVE_CART_ITEM';
 const ADD_CART_ITEM = 'cart/ADD_CART_ITEM';
 const CLEAR_CART_ITEMS = 'cart/CLEAR_CART_ITEMS';
+const RESET_CART = 'cart/RESET_CART';
 
 // *ACTION CREATORS
 export const getCartItems = (cartItems) => ({
@@ -22,6 +23,10 @@ export const addCartItem = (cartItem) => ({
 
 export const clearCartItems = () => ({
 	type: CLEAR_CART_ITEMS,
+});
+
+export const resetCartItems = () => ({
+	type: RESET_CART,
 });
 
 // *THUNKS
@@ -149,6 +154,8 @@ const shoppingCartReducer = (state = initialState, action) => {
 			}
 		}
 		case CLEAR_CART_ITEMS:
+			return { ...state, items: [] };
+		case RESET_CART:
 			return { ...state, items: [] };
 		default:
 			return state;

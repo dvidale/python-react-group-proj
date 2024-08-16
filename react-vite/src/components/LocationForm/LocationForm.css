@@ -9,9 +9,8 @@
 	/* max-width: fit-content; */
 }
 
-.location-form-body h2,
-label {
-	color: black;
+.location-text {
+	color: white;
 }
 
 .location-form-inputs {
