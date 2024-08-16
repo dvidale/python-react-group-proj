@@ -6,8 +6,8 @@ import './SignupForm.css';
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
+	const [first_name, setFirstName] = useState('');
+	const [last_name, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -16,7 +16,7 @@ function SignupFormModal() {
 	const [city, setCity] = useState('');
 	const [state, setState] = useState('');
 	const [zip, setZip] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
+	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
 	const { closeModal } = useModal();
 
@@ -30,23 +30,20 @@ function SignupFormModal() {
 			});
 		}
 
-		const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+		const formData = {
+			first_name, // matches Flask-WTF form field name
+			last_name, // matches Flask-WTF form field name
+			email, // matches Flask-WTF form field name
+			username, // matches Flask-WTF form field name
+			password, // matches Flask-WTF form field name
+			address, // matches Flask-WTF form field name
+			city, // matches Flask-WTF form field name
+			state, // matches Flask-WTF form field name
+			zip, // matches Flask-WTF form field name
+			phone_number, // matches Flask-WTF form field name
+		};
 
-		const serverResponse = await dispatch(
-			thunkSignup({
-				firstName,
-				lastName,
-				email,
-				username,
-				password,
-				address,
-				city,
-				state,
-				zip,
-				phoneNumber,
-				csrf_token: csrfToken,
-			})
-		);
+		const serverResponse = await dispatch(thunkSignup(formData));
 
 		if (serverResponse) {
 			setErrors(serverResponse);
@@ -60,33 +57,26 @@ function SignupFormModal() {
 			<h1>Sign Up</h1>
 			{errors.server && <p>{errors.server}</p>}
 			<form onSubmit={handleSubmit}>
-				<input
-					type='hidden'
-					name='csrf_token'
-					value={document
-						.querySelector('meta[name="csrf-token"]')
-						.getAttribute('content')}
-				/>
 				<label>
 					First Name
 					<input
 						type='text'
-						value={firstName}
+						value={first_name}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
 				</label>
-				{errors.firstName && <p>{errors.firstName}</p>}
+				{errors.first_name && <p>{errors.first_name}</p>}
 				<label>
 					Last Name
 					<input
 						type='text'
-						value={lastName}
+						value={last_name}
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
 				</label>
-				{errors.lastName && <p>{errors.lastName}</p>}
+				{errors.last_name && <p>{errors.last_name}</p>}
 				<label>
 					Email
 					<input
@@ -110,7 +100,7 @@ function SignupFormModal() {
 				<label>
 					Password
 					<input
-						type='password'
+						type='new-password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
@@ -120,7 +110,7 @@ function SignupFormModal() {
 				<label>
 					Confirm Password
 					<input
-						type='password'
+						type='confirm-password'
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
@@ -171,12 +161,12 @@ function SignupFormModal() {
 					Phone Number
 					<input
 						type='text'
-						value={phoneNumber}
+						value={phone_number}
 						onChange={(e) => setPhoneNumber(e.target.value)}
 						required
 					/>
 				</label>
-				{errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+				{errors.phone_number && <p>{errors.phone_number}</p>}
 				<button type='submit'>Sign Up</button>
 			</form>
 		</>

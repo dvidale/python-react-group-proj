@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
-import './all_restaurants.css';
 import { useNavigate } from 'react-router-dom';
+import './all_restaurants.css';
 
-function AllRestaurants({ city, state }) {
+function AllRestaurants({ city, state, selectedCategory }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -12,13 +12,19 @@ function AllRestaurants({ city, state }) {
 		(state) => state.restaurants.AllRestaurants
 	);
 
-	// const restaurantsArr = Object.values(all_restaurants)
+	const restaurantsArr = Object.values(all_restaurants);
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
+	let filteredRestaurants = restaurantsArr;
 
+	if (selectedCategory) {
+		filteredRestaurants = restaurantsArr.filter((restaurant) =>
+			restaurant.categories.includes(selectedCategory)
+		);
+	}
 
 	const handleRedirect = (id) => {
 		navigate(`/restaurants/${id}`);
@@ -26,7 +32,7 @@ function AllRestaurants({ city, state }) {
 
 	return (
 		<div className='restaurant-list'>
-			{restaurantsArr.map((restaurant) => (
+			{filteredRestaurants.map((restaurant) => (
 				<div
 					key={restaurant.id}
 					onClick={() => handleRedirect(restaurant.id)}

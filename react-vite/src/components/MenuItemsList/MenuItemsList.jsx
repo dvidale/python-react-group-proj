@@ -1,16 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDeleteMenuItem, fetchMenuItems } from '../../redux/menuItems';
 import { useParams } from 'react-router-dom';
-import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
-import '../MenuItemsList/MenuItemsList.css';
-import { fetchAddCartItem } from '../../redux/shoppingCart';
 import { FaThumbsUp } from 'react-icons/fa';
+import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
+import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
+import { fetchAddCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
+import { useModal } from '../../context/Modal'; // Import the useModal hook
+import LoginFormModal from '../LoginFormModal/LoginFormModal';
+import './MenuItemsList.css';
 
 const MenuItemsList = () => {
-	const dispatch = useDispatch();
 	const { id } = useParams();
+	const dispatch = useDispatch();
+	const { setModalContent } = useModal(); // Destructure the setModalContent from the context
+
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
 	const currentUser = useSelector((state) => state.session.user);
 	const restaurant = useSelector(
@@ -25,7 +29,13 @@ const MenuItemsList = () => {
 	const isOwner = currentUser && currentUser.id === restaurant.owner_id;
 
 	const handleAddToCart = (menuItemId) => {
-		dispatch(fetchAddCartItem(menuItemId));
+		if (!currentUser) {
+			// Open the login modal if the user is not logged in
+			setModalContent(<LoginFormModal />);
+		} else {
+			// If the user is logged in, proceed with adding the item to the cart
+			dispatch(fetchAddCartItem(menuItemId));
+		}
 	};
 
 	const handleDelete = (menuItemId) => {

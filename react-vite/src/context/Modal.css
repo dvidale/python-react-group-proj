@@ -25,3 +25,23 @@
 	z-index: 1001;
 	background-color: white;
 }
+
+.add-to-cart-btn {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: white;
+	font-weight: bold;
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background-color: #f0f0f0; /* Add any hover effect you like */
+}

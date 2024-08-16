@@ -81,7 +81,7 @@ export const fetchAddCartItem = (menuItemId) => async (dispatch, getState) => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ decrement: false }), // Ensure that the body is being sent
+				body: JSON.stringify({ decrement: false }),
 			}
 		);
 		if (response.ok) {
@@ -125,7 +125,7 @@ const shoppingCartReducer = (state = initialState, action) => {
 					...state,
 					items: state.items.map((item) =>
 						item.menu_item_id === action.payload.menu_item_id
-							? { ...item, item_quantity: action.payload.item_quantity } // Update the quantity with the server response
+							? { ...item, item_quantity: action.payload.item_quantity }
 							: item
 					),
 				};

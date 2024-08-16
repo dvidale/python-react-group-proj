@@ -1,0 +1,42 @@
+.footer-component {
+	background-color: lightgray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 1rem 0;
+}
+
+.footer-info-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-info-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-info-section a {
+	color: black;
+	opacity: 0.6;
+	font-size: var(--fs-small);
+}
+
+.footer-info-section a:hover {
+	color: black;
+	opacity: 1;
+}
+
+.footer-info-section a:visited {
+	color: black;
+	opacity: 0.6;
+}
+
+.footer-ul {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

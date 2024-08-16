@@ -10,11 +10,10 @@ function Navigation() {
 				className='logo'
 				to='/'
 			>
-				Home
+				DashDine
 			</NavLink>
 			<div className='nav-btn-holder'>
 				<ProfileButton />
-
 				<ShoppingCartButton />
 			</div>
 		</nav>

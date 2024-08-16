@@ -1,0 +1,76 @@
+/* LoginForm.css */
+
+/* Modal container */
+.login-form-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2rem;
+	background-color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	margin: auto;
+}
+
+/* Title */
+.login-form-modal h1 {
+	margin-bottom: 1.5rem;
+	font-size: 1.8rem;
+	color: #333;
+	text-align: center;
+}
+
+/* Form */
+.login-form-modal form {
+	width: 100%;
+}
+
+/* Form label */
+.login-form-modal label {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	color: #555;
+}
+
+/* Input fields */
+.login-form-modal input {
+	width: 100%;
+	padding: 0.75rem;
+	margin-bottom: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 1rem;
+	color: #333;
+}
+
+.login-form-modal input:focus {
+	outline: none;
+	border-color: #007bff;
+}
+
+/* Error messages */
+.login-form-modal p {
+	color: #ff4d4f;
+	margin-top: -0.75rem;
+	margin-bottom: 0.75rem;
+	font-size: 0.875rem;
+}
+
+/* Submit button */
+.login-form-modal button {
+	width: 100%;
+	padding: 0.75rem;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.login-form-modal button:hover {
+	background-color: #0056b3;
+}
