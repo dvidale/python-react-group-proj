@@ -5,7 +5,7 @@ import Layout from './Layout';
 import { RestaurantPage } from '../components/RestaurantPage/RestaurantPage';
 import HomePage from '../components/HomePage/HomePage';
 // import MenuItemsList from '../components/MenuItemsList/MenuItemsList';
-import MenuItemRating from '../components/MenuItemRating/MenuItemRating'
+import MenuItemRating from '../components/MenuItemRating/MenuItemRating';
 import ReviewsList from '../components/Reviews/ReviewsList';
 import RestaurantForm from '../components/RestaurantForm';
 import RestaurantManagement from '../components/RestaurantManagement';
@@ -28,29 +28,28 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/restaurants/:id',
-				element: <RestaurantPage />
-
+				element: <RestaurantPage />,
 			},
 			{
-				path:'/restaurants/new',
-				element: <RestaurantForm/>
+				path: '/restaurants/new',
+				element: <RestaurantForm />,
 			},
 			{
-				path:'/restaurants/current/:id',
-				element:<RestaurantForm/>
+				path: '/restaurants/current/:id',
+				element: <RestaurantForm />,
 			},
 			{
 				path: '/restaurants/:id/reviews',
-				element: <ReviewsList />
+				element: <ReviewsList />,
 			},
 			{
 				path: '/menu-items/:id/ratings',
-				element: <MenuItemRating />
+				element: <MenuItemRating />,
 			},
 			{
-				path:'/restaurants/current',
-				element:<RestaurantManagement/>
-			}
+				path: '/restaurants/current',
+				element: <RestaurantManagement />,
+			},
 		],
 	},
 ]);
