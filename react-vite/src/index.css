@@ -18,6 +18,7 @@
 	--ff-headings: 'Montserrat', sans-serif;
 	--ff-primary: 'Roboto Mono', monospace;
 	/* ! COLORS */
+	--accent-clr: #04bd64;
 }
 
 body,
@@ -62,4 +63,8 @@ a {
 li {
 	list-style: none;
 	font-family: var(--ff-primary);
+}
+
+button {
+	border-radius: 12px;
 }
