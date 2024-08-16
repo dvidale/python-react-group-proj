@@ -89,7 +89,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "shopping_carts":
+    if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('menu_items',
@@ -106,7 +106,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "menu_items":
+    if environment == "production":
         op.execute(f"ALTER TABLE shopping_carts SET SCHEMA {SCHEMA};")
 
 
@@ -121,7 +121,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "restaurant_categories":
+    if environment == "production":
         op.execute(f"ALTER TABLE restaurant_categories SET SCHEMA {SCHEMA};")
 
 
@@ -137,7 +137,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "reviews":
+    if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
 
 
@@ -151,7 +151,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "cart_items":
+    if environment == "production":
         op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
 
 
@@ -165,7 +165,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "menu_item_ratings":
+    if environment == "production":
         op.execute(f"ALTER TABLE menu_item_ratings SET SCHEMA {SCHEMA};")
 
 
