@@ -1,28 +1,26 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as restaurantsActions from '../../redux/restaurants';
+import { setSelectedCategory } from '../../redux/restaurants';
 import './RestaurantCategory.css';
 
-function RestaurantCategories({ selectedCategory, setSelectedCategory }) {
+function RestaurantCategories() {
 	const dispatch = useDispatch();
-
 	const categories = useSelector((state) => state.restaurants.allCategories);
+	const selectedCategory = useSelector(
+		(state) => state.restaurants.selectedCategory
+	);
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getCategories());
 	}, [dispatch]);
 
-	// Log selectedCategory on change
-	useEffect(() => {
-		console.log('Selected Category:', selectedCategory); // Debugging: Check selectedCategory
-	}, [selectedCategory]);
-
 	const handleCategoryClick = (category) => {
-		setSelectedCategory(category.categ_name); // Ensure this is the correct key for category name
-	};
-
-	const handleSetNull = () => {
-		setSelectedCategory(null); // Clear the category selection
+		if (selectedCategory === category.categ_name) {
+			dispatch(setSelectedCategory(null));
+		} else {
+			dispatch(setSelectedCategory(category.categ_name));
+		}
 	};
 
 	return (
@@ -46,10 +44,12 @@ function RestaurantCategories({ selectedCategory, setSelectedCategory }) {
 						</div>
 					))}
 					<div
-						className='category-structure'
-						onClick={handleSetNull}
+						className={`category-structure ${
+							!selectedCategory ? 'selected' : ''
+						}`}
+						onClick={() => dispatch(setSelectedCategory(null))}
 					>
-						<p>all categories</p>
+						<p>All Categories</p>
 					</div>
 				</div>
 			)}

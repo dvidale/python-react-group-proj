@@ -4,14 +4,15 @@ import * as restaurantsActions from '../../redux/restaurants';
 import { useNavigate } from 'react-router-dom';
 import './all_restaurants.css';
 
-function AllRestaurants({ city, state, selectedCategory }) {
-	console.log('THIS IS SELECTED ============>', selectedCategory); // Debugging: Check selectedCategory
-
+function AllRestaurants({ city, state }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
+	);
+	const selectedCategory = useSelector(
+		(state) => state.restaurants.selectedCategory
 	);
 
 	useEffect(() => {
@@ -21,14 +22,9 @@ function AllRestaurants({ city, state, selectedCategory }) {
 	let filteredRestaurants = Object.values(all_restaurants);
 
 	if (selectedCategory) {
-		filteredRestaurants = filteredRestaurants.filter((restaurant) => {
-			// Ensure restaurant.categories exists and is an array
-			if (Array.isArray(restaurant.categories)) {
-				// Check if selectedCategory is included in the restaurant's categories
-				return restaurant.categories.includes(selectedCategory);
-			}
-			return false;
-		});
+		filteredRestaurants = filteredRestaurants.filter((restaurant) =>
+			restaurant.categories.includes(selectedCategory)
+		);
 	}
 
 	const handleRedirect = (id) => {
