@@ -6,16 +6,21 @@ import {
 	fetchCartItems,
 	fetchRemoveCartItem,
 	fetchAddCartItem,
+	clearCartItems,
 } from '../../redux/shoppingCart';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
 	const { closeModal } = useModal();
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
+	const sessionUser = useSelector((state) => state.session.user);
 
 	useEffect(() => {
+		if (!sessionUser) {
+			dispatch(clearCartItems());
+		}
 		dispatch(fetchCartItems());
-	}, [dispatch]);
+	}, [dispatch, sessionUser]);
 
 	const handleAddToCart = (menuItemId) => {
 		dispatch(fetchAddCartItem(menuItemId)).then(() => {

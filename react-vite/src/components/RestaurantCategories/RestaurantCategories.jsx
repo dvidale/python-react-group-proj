@@ -18,7 +18,7 @@ function RestaurantCategories({ setSelectedCategory }) {
 	return (
 		<div className=''>
 			{categories && categories.length > 0 && (
-				<div className='categories'>
+				<div className={'categories' }>
 					<h2>Explore by Category</h2>
 					{categories.map((category) => (
 						<div

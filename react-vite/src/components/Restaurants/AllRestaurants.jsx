@@ -43,16 +43,18 @@ function AllRestaurants({ city, state, selectedCategory }) {
 						alt={restaurant.name}
 						className='restaurant-image'
 					/>
-					<h2> {restaurant.name} </h2>
-					<p> {restaurant.avg_rating} </p>
-					<p>{restaurant.categories.join(' • ')}</p>
-					<div>{restaurant.description} </div>
-					{(city && state) || (restaurant.city && restaurant.state) ? (
-						<div>
-							{restaurant.address}, {city || restaurant.city},{' '}
-							{state || restaurant.state}
-						</div>
-					) : null}
+					<div className='restaurant-info'>
+						<h2> {restaurant.name} </h2>
+						<p> {restaurant.avg_rating} </p>
+						<p>{restaurant.categories.join(' • ')}</p>
+						<p>{restaurant.description} </p>
+						{(city && state) || (restaurant.city && restaurant.state) ? (
+							<div className='restaurant-address'>
+								{restaurant.address}, {city || restaurant.city},{' '}
+								{state || restaurant.state}
+							</div>
+						) : null}
+					</div>
 				</div>
 			))}
 		</div>
