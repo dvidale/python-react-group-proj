@@ -1,16 +1,24 @@
-// import { useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import AllRestaurants from "../Restaurants/AllRestaurants"
 
 
 function RestaurantManagement(){
 
 
-    // const owner = useSelector(state => state.session.user)
+    
+
+    
+    const ownerFilter = (toggle) =>{
+        return toggle
+
+    }    
+
+    ownerFilter(true)
 
     return(
         <>
         <h1>Restaurant Management</h1>
-        <AllRestaurants />
+        <AllRestaurants ownerFilter={ownerFilter} />
         </>
     )
 }

@@ -4,13 +4,17 @@ import * as restaurantsActions from '../../redux/restaurants';
 import { useNavigate } from 'react-router-dom';
 import './all_restaurants.css';
 
-function AllRestaurants({ city, state, selectedCategory }) {
+function AllRestaurants({ city, state, selectedCategory, ownerFilter }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
 	);
+	const user = useSelector(
+		state => state.session.user
+	)
+
 
 	const restaurantsArr = Object.values(all_restaurants);
 
@@ -24,6 +28,9 @@ function AllRestaurants({ city, state, selectedCategory }) {
 		filteredRestaurants = restaurantsArr.filter((restaurant) =>
 			restaurant.categories.includes(selectedCategory)
 		);
+	}else if(ownerFilter){
+		filteredRestaurants = restaurantsArr.filter((restaurant) =>
+		restaurant.owner_id === user.id)
 	}
 
 	const handleRedirect = (id) => {
