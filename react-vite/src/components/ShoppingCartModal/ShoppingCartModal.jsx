@@ -7,6 +7,7 @@ import {
 	fetchRemoveCartItem,
 	fetchAddCartItem,
 	clearCartItems,
+	resetCartItems,
 } from '../../redux/shoppingCart';
 import CreateReview from '../Reviews/CreateReview';
 
@@ -36,9 +37,16 @@ const ShoppingCartModal = () => {
 	};
 
 	const handlePurchase = () => {
-		alert('Purchase feature in development');
-		// Open the review modal
-		setModalContent(<CreateReview />);
+		if (shoppingCart.length === 0) {
+			dispatch(resetCartItems());
+			alert(
+				'Your cart is empty. Please add items to your cart before purchasing.'
+			);
+		} else {
+			alert('Purchase feature in development');
+			// Open the review modal
+			setModalContent(<CreateReview id={1} />);
+		}
 	};
 
 	return (
