@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
 			{
 				path: '/menu-items/:id/ratings',
 				element: <MenuItemRating />
-			}
+			},
 			{
 				path:'/restaurants/current',
 				element:<RestaurantManagement/>
