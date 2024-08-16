@@ -73,3 +73,9 @@ def delete_menu_item(id):
     db.session.commit()
     
     return {"message": "Successfully Deleted Item"}, 200 
+
+@menuitem_routes.route('/all')
+def get_all_menu_items():
+    menu_items = MenuItem.query.all()
+    menu_items_list = [menu_item.to_dict() for menu_item in menu_items] 
+    return menu_items_list.to_dict()
