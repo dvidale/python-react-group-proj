@@ -1,4 +1,5 @@
 const GET_ALL_REVIEWS = 'reviewsList/GET_ALL_REVIEWS';
+const GET_REVIEW_SUMMARY = 'reviewsList/GET_REVIEW_SUMMARY'
 const CREATE_REVIEW = 'reviewsList/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviewsList/DELETE_REVIEW';
 const EDIT_REVIEW = 'reviewsList/EDIT_REVIEW';
@@ -19,6 +20,13 @@ export const singleReview = (data) => {
 		payload: data,
 	};
 };
+
+export const setReviewSummary = (data) => {
+    return {
+        type: GET_REVIEW_SUMMARY,
+        payload: data
+    }
+}
 
 export const createReview = (data) => {
 	return {
@@ -67,6 +75,17 @@ export const getSingleReview = (review_id) => async (dispatch) => {
 	}
 };
 
+// GET REVIEW SUMMARY: TOTAL REVIEWS AND AVERAGE RATING
+export const reviewSummary = (restaurantId) => async (dispatch) => {
+    const response = await fetch(`/api/restaurants/${restaurantId}/totalreviews`)
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(setReviewSummary(data))
+        return data;
+    }
+};  
+
 //CREATE REVIEW
 export const postReview = (newReview, restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/reviews`, {
@@ -114,6 +133,7 @@ export const delReview = (reviewId) => async (dispatch) => {
 const initialState = {
 	reviewsListArr: [],
 	singleReview: {},
+    reviewSummary: {},
 	createReview: {},
 	editReview: {},
 };
@@ -124,6 +144,8 @@ const reviewsListReducer = (state = initialState, action) => {
 			return { ...state, reviewsListArr: action.payload };
 		case SINGLE_REVIEW:
 			return { ...state, singleReview: action.payload };
+        case GET_REVIEW_SUMMARY:
+            return {...state, reviewSummary: action.payload };
 		case CREATE_REVIEW:
 			return {
 				...state,
