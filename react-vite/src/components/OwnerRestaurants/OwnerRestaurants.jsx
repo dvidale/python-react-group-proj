@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getRestaurants } from '../../redux/restaurants';
+import  OpenModalButton from '../../components/OpenModalButton'
+import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal';
+
 
 function OwnerRestaurants({ city, state }) {
 	const dispatch = useDispatch();
@@ -41,6 +44,13 @@ function OwnerRestaurants({ city, state }) {
 								{state || restaurant.state}
 							</div>
 						) : null}
+					</div>
+					<div>  
+						<OpenModalButton id='delete-restaurant-modal-button' 
+						buttonText='Test'
+						modalComponent={<DeleteRestaurantModal restaurantId={restaurant.id}/>} />
+						<button>Update</button>
+						<button>Delete</button>
 					</div>
 				</div>
 			))}

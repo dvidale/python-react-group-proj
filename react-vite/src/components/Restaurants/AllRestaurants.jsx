@@ -25,9 +25,6 @@ function AllRestaurants({ city, state }) {
 		filteredRestaurants = filteredRestaurants.filter((restaurant) =>
 			restaurant.categories.includes(selectedCategory)
 		);
-	}else if(ownerFilter){
-		filteredRestaurants = restaurantsArr.filter((restaurant) =>
-		restaurant.owner_id === user.id)
 	}
 
 	const handleRedirect = (id) => {
