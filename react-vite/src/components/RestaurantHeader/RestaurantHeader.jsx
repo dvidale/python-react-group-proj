@@ -22,7 +22,7 @@ function RestaurantHeader({ restaurant }) {
 				<h1>{restaurant.name}</h1>
 				<p>
 					{restaurant.avg_rating} (review count) •{' '}
-					{restaurant.categories.join(' • ')} • *$ avg price* <br />
+					{restaurant.categories.join(' • ')}<br />
 					{restaurant.address}
 					{city && state ? `, ${city}, ${state}` : ''}
 				</p>

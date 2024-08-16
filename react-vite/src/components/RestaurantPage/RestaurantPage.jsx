@@ -34,7 +34,7 @@ export const RestaurantPage = () => {
 			<RestaurantHeader restaurant={restaurant} />
 			{!city || !state ? <LocationForm /> : null}
 			<MainReview restaurantId={id}/>
-			<RestaurantInfoBox restaurant={restaurant} />
+			<RestaurantInfoBox restaurant={restaurant} city={city} state={state} />
 			<MenuItemsList id={id} />
 			<ReviewsList id={id} />
 		</>
