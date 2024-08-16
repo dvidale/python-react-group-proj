@@ -46,7 +46,7 @@ const CreateReview = () => {
             key={ratings}
             onMouseEnter={() => handleMouseEnter(ratings)}
             onMouseLeave={handleMouseLeave}
-            onClick={() => handleClick(ratings)}
+            onClick={() => handleClick(ratings)}f
             className="star"
           >
             {ratings <= (hoveredStars || rating) ? <FaStar /> : <FaRegStar />}
