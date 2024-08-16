@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import MenuItemsList from '../MenuItemsList/MenuItemsList';
 import RestaurantHeader from '../RestaurantHeader';
+import MainReview from '../Reviews/MainReview'
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewsList from '../Reviews/ReviewsList';
 import { useEffect } from 'react';
@@ -32,6 +33,7 @@ export const RestaurantPage = () => {
 		<>
 			<RestaurantHeader restaurant={restaurant} />
 			{!city || !state ? <LocationForm /> : null}
+			<MainReview restaurantId={id}/>
 			<RestaurantInfoBox restaurant={restaurant} />
 			<MenuItemsList id={id} />
 			<ReviewsList id={id} />

@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { delReview, fetchReviews } from "../../redux/reviews"
