@@ -152,7 +152,7 @@ def seed_menu_item_ratings():
 
 def undo_menu_item_ratings():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.restaurants RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.menu_item_ratings RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM menu_item_ratings"))
 
