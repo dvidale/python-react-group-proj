@@ -12,7 +12,7 @@ function RestaurantInfoBox({restaurant, city, state}){
             <div>
                 {restaurant.address}
                 <br/>
-                {city}, {state}
+                {city && state ? `${city}, ${state}` : ''}
             </div>
             <div>
             Sun - Sat<br/>
