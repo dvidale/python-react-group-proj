@@ -29,6 +29,9 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
+    if environment == "production":
+        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
+
 
 
     op.create_table('users',
@@ -48,6 +51,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 
@@ -72,7 +78,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-
+    if environment == "production":
+        op.execute(f"ALTER TABLE restaurants SET SCHEMA {SCHEMA};")
 
 
     op.create_table('shopping_carts',
@@ -81,6 +88,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "shopping_carts":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('menu_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=True),
@@ -95,6 +106,9 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
+    if environment == "menu_items":
+        op.execute(f"ALTER TABLE shopping_carts SET SCHEMA {SCHEMA};")
+
 
 
 
@@ -107,6 +121,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
+    if environment == "restaurant_categories":
+        op.execute(f"ALTER TABLE restaurant_categories SET SCHEMA {SCHEMA};")
 
 
     op.create_table('reviews',
@@ -120,6 +136,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "reviews":
+        op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+
+
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('shopping_cart_id', sa.Integer(), nullable=False),
@@ -130,6 +151,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
+    if environment == "cart_items":
+        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
 
 
     op.create_table('menu_item_ratings',
@@ -141,6 +164,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['review_id'], ['reviews.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "menu_item_ratings":
+        op.execute(f"ALTER TABLE menu_item_ratings SET SCHEMA {SCHEMA};")
+
+
     # ### end Alembic commands ###
 
 
