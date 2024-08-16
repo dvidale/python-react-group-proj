@@ -50,9 +50,7 @@ function OwnerRestaurants({ city, state }) {
 					</div>
 					<div>  
 					<button id="update-restaurant-button" >
-						<Link to={`/restaurants/current/${restaurant.id}`}   >
-					
-					Update</Link> </button>
+						<Link to={`/restaurants/current/${restaurant.id}`} >Update</Link> </button>
 						<OpenModalButton id='delete-restaurant-modal-button' 
 						buttonText='Delete'
 						modalComponent={<DeleteRestaurantModal restaurantId={restaurant.id}/>} />

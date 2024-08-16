@@ -168,7 +168,7 @@ def update_restaurant_form(id):
         cat_set = set(category_lst)
         rc_set = set(rc_lst)
 
-        # print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
+        print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
         # OUTPUT: cat_set: {(1,), (5,)}    rc_set:  {(1,), (3,)}
 
 
@@ -176,7 +176,7 @@ def update_restaurant_form(id):
 
         to_delete = rc_set - cat_set
 
-        # print(">>>> to delete:", to_delete)
+        print(">>>> to delete:", to_delete)
         # OUTPUT: to_delete: {(3,)}
 
         # iterate over the set, target the category id, run a query for the rc record with the category and restaurant ids
@@ -188,10 +188,11 @@ def update_restaurant_form(id):
 
             rc_record = db.session.execute(to_delete_query).first()[0]
 
-            # print(">>>>> rc_record", rc_record)
+            print(">>>>> delete rc_record: ", rc_record)
             # OUTPUT: rc_record: <RestaurantCategory 44>
 
             db.session.delete(rc_record)
+            db.session.commit()
 
         # identify any submitted category that does not match a current record, and add a new RestaurantCategory record associating that category with the restaurant
 
@@ -206,6 +207,7 @@ def update_restaurant_form(id):
                 category_id = cat_id
             )
             db.session.add(new_rc_record)
+            db.session.commit()
 
         db.session.commit()
 
@@ -228,6 +230,8 @@ def delete_restaurant(id):
     print(">>>>>> query", query)
     db.session.delete(query)
     db.session.commit()
+
+    return {"message" : "Delete Successful"}
 
 
 # ? GET ALL MENU ITEMS
