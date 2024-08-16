@@ -18,9 +18,9 @@ function LocationForm() {
 			onSubmit={handleSubmit}
 			className='location-form-body'
 		>
-			<h2>Enter your location</h2>
+			<h2 className='location-text'>Enter your location</h2>
 			<div className='location-form-inputs'>
-				<label>
+				<label className='location-text'>
 					City:
 					<input
 						type='text'
@@ -30,7 +30,7 @@ function LocationForm() {
 						required
 					/>
 				</label>
-				<label>
+				<label className='location-text'>
 					State:
 					<input
 						type='text'

@@ -7,11 +7,13 @@ import {
 	fetchRemoveCartItem,
 	fetchAddCartItem,
 	clearCartItems,
+	resetCartItems,
 } from '../../redux/shoppingCart';
+import CreateReview from '../Reviews/CreateReview';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
-	const { closeModal } = useModal();
+	const { closeModal, setModalContent } = useModal();
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
 	const sessionUser = useSelector((state) => state.session.user);
 
@@ -32,6 +34,19 @@ const ShoppingCartModal = () => {
 		dispatch(fetchRemoveCartItem(itemId)).then(() => {
 			dispatch(fetchCartItems());
 		});
+	};
+
+	const handlePurchase = () => {
+		if (shoppingCart.length === 0) {
+			dispatch(resetCartItems());
+			alert(
+				'Your cart is empty. Please add items to your cart before purchasing.'
+			);
+		} else {
+			alert('Purchase feature in development');
+			// Open the review modal
+			setModalContent(<CreateReview id={1} />);
+		}
 	};
 
 	return (
@@ -75,7 +90,7 @@ const ShoppingCartModal = () => {
 			) : (
 				<p>Your cart is empty.</p>
 			)}
-			<button>Purchase</button>
+			{sessionUser && <button onClick={handlePurchase}>Purchase</button>}
 		</div>
 	);
 };
