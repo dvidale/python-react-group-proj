@@ -8,21 +8,15 @@ shopping_cart_routes = Blueprint('shopping_cart', __name__)
 @shopping_cart_routes.route('/current', methods=['GET'])
 def get_current_shopping_cart():
     shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).first()
+    
     if not shopping_cart:
-        return [] # Return an empty list if no shopping cart exists
+        return []  # Return an empty list if no shopping cart exists
 
     cart_items = CartItem.query.filter_by(shopping_cart_id=shopping_cart.id).all()
-    cart_items_data = [
-        {
-            'id': item.id,
-            'menu_item_id': item.menu_item.id,
-            'name': item.menu_item.name,
-            'price': f"{item.menu_item.price:.2f}",
-            'image_url': item.menu_item.image_url,
-            'item_quantity': item.item_quantity  # Include quantity in the response
-        }
-        for item in cart_items
-    ]
+    
+    # Use the to_dict method for each cart item
+    cart_items_data = [item.to_dict() for item in cart_items]
+    
     return cart_items_data
 
 

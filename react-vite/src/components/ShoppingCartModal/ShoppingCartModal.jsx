@@ -36,7 +36,7 @@ const ShoppingCartModal = () => {
 		});
 	};
 
-	const handlePurchase = () => {
+	const handlePurchase = (id) => {
 		if (shoppingCart.length === 0) {
 			dispatch(resetCartItems());
 			alert(
@@ -45,7 +45,7 @@ const ShoppingCartModal = () => {
 		} else {
 			alert('Purchase feature in development');
 			// Open the review modal
-			setModalContent(<CreateReview id={1} />);
+			setModalContent(<CreateReview id={shoppingCart[0].restaurant_id} />);
 		}
 	};
 
