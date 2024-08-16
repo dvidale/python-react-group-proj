@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1bb4fe1faf42
+Revision ID: 38bdfe458578
 Revises: 
-Create Date: 2024-08-11 18:02:26.024700
+Create Date: 2024-08-15 21:34:51.039227
 
 """
 from alembic import op
@@ -13,9 +13,8 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
-
 # revision identifiers, used by Alembic.
-revision = '1bb4fe1faf42'
+revision = '38bdfe458578'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,13 +30,6 @@ def upgrade():
     )
 
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
-
-
-
-
-
 
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -49,17 +41,16 @@ def upgrade():
     sa.Column('city', sa.String(length=40), nullable=False),
     sa.Column('state', sa.String(length=40), nullable=False),
     sa.Column('zip', sa.Integer(), nullable=False),
-    sa.Column('phone_number', sa.Integer(), nullable=False),
+    sa.Column('phone_number', sa.BigInteger(), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('address'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    
 
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
+
 
 
     op.create_table('restaurants',
@@ -68,23 +59,18 @@ def upgrade():
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('address', sa.String(length=225), nullable=False),
     sa.Column('phone_number', sa.String(length=10), nullable=False),
-    sa.Column('email', sa.String(length=225), nullable=False),
+    sa.Column('email', sa.String(length=225), nullable=True),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('banner_img', sa.String(length=225), nullable=False),
-    sa.Column('avg_rating', sa.Numeric(precision=2, scale=1), nullable=False),
-    sa.Column('day_of_week', sa.Integer(), nullable=False),
-    sa.Column('open_time', sa.DateTime(), nullable=False),
-    sa.Column('close_time', sa.DateTime(), nullable=False),
-    sa.Column('delivery_time', sa.String(length=50), nullable=False),
+    sa.Column('avg_rating', sa.Numeric(precision=2, scale=1), nullable=True),
+    sa.Column('day_of_week', sa.Integer(), nullable=True),
+    sa.Column('open_time', sa.String(length=5), nullable=False),
+    sa.Column('close_time', sa.String(length=5), nullable=False),
+    sa.Column('delivery_time', sa.String(length=5), nullable=False),
     sa.Column('delivery_fee', sa.Float(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE restaurants SET SCHEMA {SCHEMA};")
-
 
 
 
@@ -95,14 +81,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    
-    if environment == "shopping_carts":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-
-
-
-
     op.create_table('menu_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('restaurant_id', sa.Integer(), nullable=True),
@@ -111,14 +89,12 @@ def upgrade():
     sa.Column('description', sa.String(length=2000), nullable=True),
     sa.Column('price', sa.Float(precision=2, asdecimal=1), nullable=False),
     sa.Column('image_url', sa.String(length=225), nullable=True),
-    sa.Column('quantity', sa.Integer(), nullable=False),
+    sa.Column('quantity', sa.Integer(), nullable=True),
     sa.Column('ratings_count', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "menu_items":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 
@@ -131,13 +107,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
 
-    if environment == "restaurant_categories":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
-
-
-    
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -149,22 +120,15 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "reviews":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
-
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('shopping_cart_id', sa.Integer(), nullable=False),
     sa.Column('menu_item_id', sa.Integer(), nullable=False),
+    sa.Column('item_quantity', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['menu_item_id'], ['menu_items.id'], ),
     sa.ForeignKeyConstraint(['shopping_cart_id'], ['shopping_carts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "cart_items":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
 
 
@@ -177,12 +141,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['review_id'], ['reviews.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-    if environment == "menu_item_ratings":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
-
-
     # ### end Alembic commands ###
 
 
