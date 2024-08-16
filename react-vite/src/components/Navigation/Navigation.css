@@ -1,6 +1,6 @@
 .profile-dropdown {
 	position: absolute;
-	right: 34px;
+	right: 5px;
 	top: 50px;
 	border: solid 3px gray;
 	border-radius: 12px;
@@ -11,6 +11,7 @@
 	gap: 0.5rem;
 	padding: 0.5rem;
 	cursor: pointer;
+	background-color: gray;
 }
 
 /* Navbar container */

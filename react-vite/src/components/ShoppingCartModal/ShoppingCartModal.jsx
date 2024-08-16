@@ -36,7 +36,10 @@ const ShoppingCartModal = () => {
 
 	return (
 		<div className='shopping-cart-modal'>
-			<h2>Your Shopping Cart</h2>
+			<div>
+				<h2>Your Shopping Cart</h2>
+				<button onClick={closeModal}>Close</button>
+			</div>
 			{shoppingCart.length > 0 ? (
 				<>
 					<div>
@@ -72,7 +75,7 @@ const ShoppingCartModal = () => {
 			) : (
 				<p>Your cart is empty.</p>
 			)}
-			<button onClick={closeModal}>Close</button>
+			<button>Purchase</button>
 		</div>
 	);
 };
