@@ -12,12 +12,17 @@ function RestaurantCategories({ selectedCategory, setSelectedCategory }) {
 		dispatch(restaurantsActions.getCategories());
 	}, [dispatch]);
 
+	// Log selectedCategory on change
+	useEffect(() => {
+		console.log('Selected Category:', selectedCategory); // Debugging: Check selectedCategory
+	}, [selectedCategory]);
+
 	const handleCategoryClick = (category) => {
-		if (selectedCategory === category.categ_name) {
-			setSelectedCategory(null);
-		} else {
-			setSelectedCategory(category.categ_name);
-		}
+		setSelectedCategory(category.categ_name); // Ensure this is the correct key for category name
+	};
+
+	const handleSetNull = () => {
+		setSelectedCategory(null); // Clear the category selection
 	};
 
 	return (
@@ -40,6 +45,12 @@ function RestaurantCategories({ selectedCategory, setSelectedCategory }) {
 							<p>{category.categ_name}</p>
 						</div>
 					))}
+					<div
+						className='category-structure'
+						onClick={handleSetNull}
+					>
+						<p>all categories</p>
+					</div>
 				</div>
 			)}
 		</div>

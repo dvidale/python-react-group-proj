@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import './all_restaurants.css';
 
 function AllRestaurants({ city, state, selectedCategory }) {
+	console.log('THIS IS SELECTED ============>', selectedCategory); // Debugging: Check selectedCategory
+
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -12,18 +14,21 @@ function AllRestaurants({ city, state, selectedCategory }) {
 		(state) => state.restaurants.AllRestaurants
 	);
 
-	const restaurantsArr = Object.values(all_restaurants);
-
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
-	let filteredRestaurants = restaurantsArr;
+	let filteredRestaurants = Object.values(all_restaurants);
 
 	if (selectedCategory) {
-		filteredRestaurants = restaurantsArr.filter((restaurant) =>
-			restaurant.categories.includes(selectedCategory)
-		);
+		filteredRestaurants = filteredRestaurants.filter((restaurant) => {
+			// Ensure restaurant.categories exists and is an array
+			if (Array.isArray(restaurant.categories)) {
+				// Check if selectedCategory is included in the restaurant's categories
+				return restaurant.categories.includes(selectedCategory);
+			}
+			return false;
+		});
 	}
 
 	const handleRedirect = (id) => {
@@ -44,10 +49,10 @@ function AllRestaurants({ city, state, selectedCategory }) {
 						className='restaurant-image'
 					/>
 					<div className='restaurant-info'>
-						<h2> {restaurant.name} </h2>
-						<p> {restaurant.avg_rating} </p>
+						<h2>{restaurant.name}</h2>
+						<p>{restaurant.avg_rating}</p>
 						<p>{restaurant.categories.join(' • ')}</p>
-						<p>{restaurant.description} </p>
+						<p>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (
 							<div className='restaurant-address'>
 								{restaurant.address}, {city || restaurant.city},{' '}

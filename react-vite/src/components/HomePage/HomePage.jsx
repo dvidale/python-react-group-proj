@@ -21,7 +21,10 @@ function HomePage() {
 			{city && state ? (
 				<>
 					<HomeDeliveryHeader />
-					<RestaurantCategories setSelectedCategory={setSelectedCategory} />
+					<RestaurantCategories
+						selectedCategory={selectedCategory}
+						setSelectedCategory={setSelectedCategory}
+					/>
 					<hr />
 					<AllRestaurants
 						city={city}
@@ -32,7 +35,10 @@ function HomePage() {
 			) : (
 				<>
 					<LocationForm />
-					<RestaurantCategories setSelectedCategory={setSelectedCategory} />
+					<RestaurantCategories
+						selectedCategory={selectedCategory}
+						setSelectedCategory={setSelectedCategory}
+					/>
 					<hr />
 					<AllRestaurants />
 				</>
