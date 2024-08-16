@@ -1,0 +1,32 @@
+.category-section {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem 0;
+	gap: 1rem;
+}
+.category-wrapper {
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(150px, 1fr)
+	); /* Adjust the 150px value based on your preferred minimum size */
+	gap: 1rem; /* Adjust the gap between grid items */
+}
+
+.category-structure {
+	display: flex;
+	cursor: pointer;
+	padding: 10px;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+	border: solid 2px green;
+}
+
+.category-structure:hover {
+	background-color: #f0f0f0;
+}
+
+.category-structure.selected {
+	background-color: #007bff; /* Example color for selected category */
+	color: white;
+}
