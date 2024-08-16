@@ -1,4 +1,5 @@
 from .db import add_prefix_for_prod, db, environment, SCHEMA
+from ..models import User
 from datetime import datetime
 
 class Review(db.Model):
@@ -16,3 +17,17 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
     menu_items = db.relationship('MenuItemRating', back_populates='review')
+
+
+    def to_dict(self):
+        user = User.query.get(self.user_id)
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'user_first_name': user.first_name,
+            'user_last_name': user.last_name,
+            'restaurant_id': self.restaurant_id,
+            'rating': self.rating,
+            'comments': self.comments,
+            'created_at': self.created_at,
+        }

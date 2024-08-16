@@ -1,24 +1,47 @@
 #modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
 }
 
 #modal-background {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 999;
 }
 
 #modal-content {
-  position: absolute;
-  background-color:white;
+	position: absolute;
+	z-index: 1001;
+	background-color: white;
+}
+
+.add-to-cart-btn {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	background-color: white;
+	font-weight: bold;
+	font-size: 1.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+	background-color: #f0f0f0; /* Add any hover effect you like */
 }

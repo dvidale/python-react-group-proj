@@ -1,1 +1,65 @@
 /* TODO: Add sitewide styles */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+:root {
+	/* ! DEFAULT FONT-SIZES */
+	--fs-small: 14px;
+	--fs-medium: 22px;
+	--fs-large: 32px;
+	--fs-x-large: 68px;
+
+	/* ! DEFAULT FONT WEIGHTS */
+	--fw-light: 200;
+	--fw-medium: 500;
+	--fw-heavy: 700;
+	--fw-bold: 900;
+
+	/* ! FONT FAMILIES */
+	--ff-headings: 'Montserrat', sans-serif;
+	--ff-primary: 'Roboto Mono', monospace;
+	/* ! COLORS */
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+a,
+li,
+img,
+label {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: var(--fs-x-large);
+	font-family: var(--ff-headings);
+}
+
+h2 {
+	font-size: var(--fs-large);
+	font-family: var(--ff-headings);
+}
+
+h3 {
+	font-size: var(--fs-medium);
+	font-family: var(--ff-primary);
+}
+
+p,
+label {
+	font-size: var(--fs-small);
+	font-family: var(--ff-primary);
+}
+
+a {
+	text-decoration: none;
+	font-family: var(--ff-primary);
+}
+
+li {
+	list-style: none;
+	font-family: var(--ff-primary);
+}

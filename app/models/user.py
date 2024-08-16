@@ -38,10 +38,12 @@ class User(db.Model, UserMixin):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'city': self.city,
+            'state': self.state
         }
     
     def print_run():
         print(">>>> inside user model")
 
-    print_run()
+    # print_run()

@@ -1,0 +1,6 @@
+.restaurant-tile {
+	border: 1px gray solid;
+	padding: 5px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}

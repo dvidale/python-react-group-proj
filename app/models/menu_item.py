@@ -13,11 +13,12 @@ class MenuItem(db.Model):
     description = db.Column(db.String(2000))
     price = db.Column(db.Float(2, 1), nullable=False)
     image_url = db.Column(db.String(225))
-    quantity = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer)
     ratings_count = db.Column(db.Integer)
 
     reviews = db.relationship('MenuItemRating', back_populates='menu_item')
-    
+    cart_items = db.relationship('CartItem', back_populates='menu_item',  cascade='all, delete-orphan')
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -29,4 +30,17 @@ class MenuItem(db.Model):
             'image_url': self.image_url,
             'quantity': self.quantity,
             'ratings_count': self.ratings_count,
+        }
+
+    def to_dict_review(self):
+        return {
+            'id': self.id,
+        }
+
+    def to_dict_ratings(self):
+        return {
+            'id': self.id,
+            'ratings_count': self.ratings_count,
+            'like_percentage': self.like_percentage,
+            'reviews': [review.to_dict_review() for review in self.reviews]
         }

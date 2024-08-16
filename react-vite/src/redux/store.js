@@ -7,10 +7,20 @@ import {
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import menuItemsReducer from './menuItems';
+import shoppingCartReducer from './shoppingCart';
+import restaurantsReducer from './restaurants';
+import reviewsListReducer from './reviews';
+import locationReducer from './location';
+import menuItemRatingsReducer from './menuItemRating';
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
+	restaurants: restaurantsReducer,
 	menuItems: menuItemsReducer,
+	shoppingCart: shoppingCartReducer,
+	reviewsList: reviewsListReducer,
+	location: locationReducer,
+	menuItemRating: menuItemRatingsReducer
 });
 
 let enhancer;
