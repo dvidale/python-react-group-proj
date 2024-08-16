@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReviews } from '../../redux/reviews';
-// import { thunkLogin } from '../../redux/session';
 import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import DeleteReview from './DeleteReview';
 import CreateReview from './CreateReview';
 import UpdateReview from './UpdateReview';
+import { FaStar } from 'react-icons/fa';
+import { FaRegStar } from 'react-icons/fa';
 
 const ReviewsList = () => {
 	const dispatch = useDispatch();
@@ -17,6 +18,19 @@ const ReviewsList = () => {
 	useEffect(() => {
 		dispatch(fetchReviews(id));
 	}, [dispatch, id]);
+
+	// Function to render stars based on rating
+	const renderStars = (rating) => {
+		const stars = [];
+		for (let i = 1; i <= 5; i++) {
+			if (i <= rating) {
+				stars.push(<FaStar key={i} />);
+			} else {
+				stars.push(<FaRegStar key={i} />);
+			}
+		}
+		return stars;
+	};
 
 	return (
 		<div>
@@ -30,7 +44,7 @@ const ReviewsList = () => {
 								{review.user_first_name} {review.user_last_name}
 							</p>
 							<p>{review.created_at}</p>
-							<p>{review.rating}</p>
+							<div>{renderStars(review.rating)}</div>
 							<p>{review.comments}</p>
 							{sessionUser?.id === review.user_id && (
 								<>
@@ -42,7 +56,7 @@ const ReviewsList = () => {
 									<OpenModalButton
 										id='create-button'
 										buttonText='Create'
-										modalComponent={<CreateReview restaurantId={id} />}
+										modalComponent={<CreateReview id={id} />}
 									/>
 									<OpenModalButton
 										id='update-button'
