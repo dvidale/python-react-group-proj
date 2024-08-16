@@ -1,6 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getRestaurants } from '../../redux/restaurants';
+import  OpenModalButton from '../../components/OpenModalButton'
+import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal.jsx';
+import { Link } from 'react-router-dom';
+
 
 function OwnerRestaurants({ city, state }) {
 	const dispatch = useDispatch();
@@ -12,6 +16,8 @@ function OwnerRestaurants({ city, state }) {
 	useEffect(() => {
 		dispatch(getRestaurants());
 	}, [dispatch]);
+
+	
 
 	// Filter restaurants by owner_id
 	const filteredRestaurants = Object.values(all_restaurants).filter(
@@ -41,6 +47,16 @@ function OwnerRestaurants({ city, state }) {
 								{state || restaurant.state}
 							</div>
 						) : null}
+					</div>
+					<div>  
+					<button id="update-restaurant-button" >
+						<Link to={`/restaurants/current/${restaurant.id}`} >Update</Link> </button>
+						<OpenModalButton id='delete-restaurant-modal-button' 
+						buttonText='Delete'
+						modalComponent={<DeleteRestaurantModal restaurantId={restaurant.id}/>} />
+
+						
+						
 					</div>
 				</div>
 			))}

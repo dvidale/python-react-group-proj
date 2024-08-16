@@ -126,18 +126,25 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 
 // !untested before merge
 export const deleteRestaurant = (id) => async (dispatch) => {
-	const url = `api/restaurants/${id}`;
+	const url = `/api/restaurants/${id}`;
 	const method = 'DELETE';
-
-	const options = { method };
+	const options = { method};
 
 	const response = await fetch(url, options);
 
+	if(response.ok){
+		dispatch(deleteARestaurant(id));
+	}else{
+		const error = {"message" : "Error deleting restaurant" }
+		return error
+	}
+	
+	
 	const data = await response.json();
-
-	dispatch(deleteARestaurant(id));
-
 	return data;
+	
+
+	
 };
 
 //* -------------------------------------REDUCERS

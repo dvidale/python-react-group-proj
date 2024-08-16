@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
-import { redirect, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 function RestaurantForm(){
 
@@ -11,6 +11,7 @@ function RestaurantForm(){
 
     const {id} = useParams()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const restaurant = useSelector(state => state.restaurants.AllRestaurants[id])
 
@@ -114,15 +115,16 @@ const submitHandler = (e) =>{
 
         // redirect to updated restaurant page
 
-        redirect(`/restaurants/${restaurant.id}`)
+        navigate(`/restaurants/${restaurant.id}`)
     }else{
     // create a new restaurant
         dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
 
     // redirect to restaurant management portal
-    // TODO: create restaurant management portal!
-    // redirect('/restaurants/current')
+  
+        navigate('/restaurants/current')
     }
+    
     
 
    
@@ -131,6 +133,7 @@ const submitHandler = (e) =>{
     return(
         <>
         <div id="form-container">
+            <div> <Link to={`/restaurants/current`}> {"<-- "}Go back to Restaurant Management Portal</Link> </div>
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
@@ -222,34 +225,34 @@ const submitHandler = (e) =>{
         
             <div>
             <label htmlFor='open_time'> Tuesday
-            <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Wednesday
-            <input type='time' min='00:00' max='24:00' id='w_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='w_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='w_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Thursday
-            <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Friday
-            <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
@@ -258,20 +261,20 @@ const submitHandler = (e) =>{
             </div>
             <div>
             <label htmlFor='open_time'> Saturday
-            <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
             <div>
             <label htmlFor='open_time'> Sunday
-            <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' value={open_time}></input>
+            <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
             <label htmlFor='close_time'>
-            <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' value={close_time}></input>
+            <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
 

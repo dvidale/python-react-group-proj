@@ -9,6 +9,12 @@ function HomePage() {
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
 
+	const ownerFilter = (toggle) =>{
+        return toggle
+
+    }    
+
+	ownerFilter(false)
 	// Determine the city and state to be used
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
