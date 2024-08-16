@@ -1,5 +1,5 @@
 from .db import add_prefix_for_prod, db, environment, SCHEMA
-from ..models import User
+from ..models import User, Restaurant
 from datetime import datetime
 
 class Review(db.Model):
@@ -21,6 +21,7 @@ class Review(db.Model):
 
     def to_dict(self):
         user = User.query.get(self.user_id)
+
         return {
             'id': self.id,
             'user_id': self.user_id,

@@ -66,10 +66,10 @@ def new_restaurant_form():
             delivery_time=restaurant_form.data["delivery_time"],
             delivery_fee=restaurant_form.data["delivery_fee"],
             banner_img=restaurant_form.data["banner_img"]
-            
+
         )
 
-       
+
         db.session.add(new_restaurant)
         db.session.commit()
 
@@ -88,7 +88,7 @@ def new_restaurant_form():
         query = db.select(Category.id, Category.categ_name).where(Category.categ_name.in_(categories))
 
         category_lst = [dict(category) for category in db.session.execute(query)]
-     
+
         # create a record in RestaurantCategories for every category listed for the new restaurant
 
         for category in category_lst:
@@ -100,8 +100,8 @@ def new_restaurant_form():
             db.session.commit()
 
         # return the newly created restaurant with its categories
-        
-        res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict() 
+
+        res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict()
         return res
 
     print(">>>>form errors", restaurant_form.errors)
@@ -118,7 +118,7 @@ def update_restaurant_form(id):
     restaurant_form = RestaurantForm()
     restaurant_form["csrf_token"].data = request.cookies["csrf_token"]
 
-   
+
     owner_id=restaurant_form.data['owner_id'],
     name=restaurant_form.data["name"],
     address=restaurant_form.data["address"],
@@ -154,7 +154,7 @@ def update_restaurant_form(id):
 
         rc_lst = [rest_category for rest_category in db.session.execute(rc_query)]
 
-     
+
          # *find matching category records for categories from form submission
         categ_query = db.select(Category.id).where(Category.categ_name.in_(categories))
 
@@ -207,14 +207,14 @@ def update_restaurant_form(id):
             )
             db.session.add(new_rc_record)
 
-        db.session.commit()       
-          
-        
+        db.session.commit()
+
+
         # return the newly updated restaurant with its categories
-        res = db.session.query(Restaurant).get(id).to_dict() 
+        res = db.session.query(Restaurant).get(id).to_dict()
         return res
-     
-    
+
+
     print(">>>>form errors", restaurant_form.errors)
     return {"sorry":"something didn't work"}
 
@@ -270,6 +270,28 @@ def add_new_menu_item(id):
     return {"errors": form.errors}, 400
 
 
+# GET REVIEW SUMMARY FOR SPECIFIC RESTAURANT: TOTAL REVIEWS AND AVERAGE RATING
+@restaurant_routes.route("/<int:id>/totalreviews")
+def total_number_of_reviews(id):
+
+    reviews = Review.query.filter_by(restaurant_id=id).all()
+    restaurant = Restaurant.query.get(id)
+
+    if not reviews:
+        return {"Error": "No reviews found for this restaurant"}, 404
+
+
+    # Calculating total # of reviews for specific restaurant
+    total_reviews = len(reviews)
+
+    data = {
+        'total_reviews': total_reviews,
+        'average_rating': restaurant.avg_rating
+    }
+
+    return jsonify(data)
+
+
 # GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 @restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):
@@ -282,7 +304,7 @@ def get_restaurant_reviews(id):
 
         reviews_list = [review.to_dict() for review in reviews]
         return reviews_list
-    
+
 
 # CREATE A REVIEW
 @restaurant_routes.route('/<int:restaurant_id>/reviews', methods=["POST"])
