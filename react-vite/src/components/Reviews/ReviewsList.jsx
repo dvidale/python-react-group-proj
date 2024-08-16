@@ -4,7 +4,6 @@ import { fetchReviews } from '../../redux/reviews';
 import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import DeleteReview from './DeleteReview';
-import CreateReview from './CreateReview';
 import UpdateReview from './UpdateReview';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
@@ -52,11 +51,6 @@ const ReviewsList = () => {
 										id='delete-button'
 										buttonText='Delete'
 										modalComponent={<DeleteReview reviewId={review.id} />}
-									/>
-									<OpenModalButton
-										id='create-button'
-										buttonText='Create'
-										modalComponent={<CreateReview id={id} />}
 									/>
 									<OpenModalButton
 										id='update-button'
