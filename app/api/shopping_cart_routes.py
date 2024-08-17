@@ -28,7 +28,9 @@ def add_cart_item():
     shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
 
     if not shopping_cart:
-        return {"error": "Shopping cart not found"}, 404
+        shopping_cart = ShoppingCart(user_id=user_id)
+        db.session.add(shopping_cart)
+        db.session.commit()
 
     menu_item = MenuItem.query.get(data['menu_item_id'])
     if not menu_item:
