@@ -10,14 +10,17 @@ function RestaurantHeader({ restaurant }) {
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
 
+	const bannerImgStyle = {
+		width:"100%",
+		height:"400px",
+		backgroundImage: `url(${restaurant.banner_img})`
+
+	}
+
 	return (
 		<>
 			<div id='header-container'>
-				<div className='banner-img-container'>
-					<img
-						alt={restaurant.name}
-						src={restaurant.banner_img}
-					/>
+				<div className='banner-img-container' style={bannerImgStyle}>
 				<h1 className='restaurant-title'>{restaurant.name}</h1>
 				
 				</div>
