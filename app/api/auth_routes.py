@@ -46,9 +46,6 @@ def logout():
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
-    """
-    Creates a new user and logs them in
-    """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -67,9 +64,12 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
 
-        shopping_cart = ShoppingCart(user_id=user.id)
-        db.session.add(shopping_cart)
-        db.session.commit()
+        existing_cart = ShoppingCart.query.filter_by(user_id=user.id).first()
+        print(f"Existing cart: {existing_cart}")
+        if not existing_cart:
+            shopping_cart = ShoppingCart(user_id=user.id)
+            db.session.add(shopping_cart)
+            db.session.commit()
 
         login_user(user)
         return user.to_dict()
