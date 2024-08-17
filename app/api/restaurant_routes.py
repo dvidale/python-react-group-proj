@@ -148,6 +148,10 @@ def update_restaurant_form(id):
         restaurant.delivery_fee = delivery_fee[0]
         restaurant.banner_img = banner_img
 
+        db.session.commit()
+
+
+        print(">>> new restaurant banner image:" , restaurant.banner_img)
         #  target the current RestaurantCategories records for this restaurant
 
         rc_query = db.select(RestaurantCategory.category_id).where(RestaurantCategory.restaurant_id == restaurant.id)
@@ -168,7 +172,7 @@ def update_restaurant_form(id):
         cat_set = set(category_lst)
         rc_set = set(rc_lst)
 
-        print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
+        # print(">>>>>> cat_set:", cat_set, "   >>>>rc_set: ", rc_set)
         # OUTPUT: cat_set: {(1,), (5,)}    rc_set:  {(1,), (3,)}
 
 
