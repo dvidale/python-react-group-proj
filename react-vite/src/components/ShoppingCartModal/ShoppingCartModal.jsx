@@ -36,7 +36,7 @@ const ShoppingCartModal = () => {
 		});
 	};
 
-	const handlePurchase = (id) => {
+	const handlePurchase = () => {
 		if (shoppingCart.length === 0) {
 			dispatch(resetCartItems());
 			alert(

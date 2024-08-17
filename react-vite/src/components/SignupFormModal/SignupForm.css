@@ -1,10 +1,9 @@
-/* Centering the form in the modal */
 .signup-form-modal {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 15px;
 	width: 100%;
-	min-width: 900px;
+	min-width: 1000px;
 	margin: auto;
 }
 
@@ -14,6 +13,7 @@
 	color: #333;
 	display: flex;
 	flex-direction: column;
+	margin-left: 2rem;
 }
 
 /* Make labels and inputs span full width */
@@ -27,8 +27,9 @@
 	font-size: 14px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 100%;
+	width: 90%;
 	box-sizing: border-box;
+	margin-left: 1rem;
 }
 
 /* Error message styles */
@@ -36,6 +37,7 @@
 	color: red;
 	font-size: 12px;
 	margin-top: 5px;
+	margin-bottom: 0; /* Add this to reduce space between the error message and the input below */
 }
 
 /* Submit button styles */
