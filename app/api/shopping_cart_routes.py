@@ -28,7 +28,6 @@ def add_cart_item():
 
     # Fetch the user's shopping cart
     shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
-    
     if not shopping_cart:
         return {"error": "Shopping cart not found"}, 404
 
@@ -61,6 +60,7 @@ def add_cart_item():
         return {"error": "Internal server error"}, 500
 
     return new_cart_item.to_dict(), 201
+
     
 @shopping_cart_routes.route('/current/<int:id>/update', methods=['POST'])
 def update_cart_item(id):
