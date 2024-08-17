@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import * as restaurantsActions from '../../redux/restaurants'
 import { useModal } from "../../context/Modal"
 import './delete-restaurant.css'
-
+import { fetchReviews } from "../../redux/reviews"
 
 function DeleteRestaurantModal({restaurantId}){
 
@@ -18,6 +18,7 @@ const dispatch = useDispatch()
         .then((data)=>{ alert(data.message)})
         .then(closeModal)
         .then(()=> dispatch(restaurantsActions.getRestaurants()))
+        .then( (restaurantsArr)=> dispatch(fetchReviews(restaurantsArr[0].id))) // fetches the reviews for whatever restaurant is now the first one to satisfy need for id
         
     }
 
