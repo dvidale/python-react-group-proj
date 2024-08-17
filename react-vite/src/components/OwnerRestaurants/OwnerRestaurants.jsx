@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 import { getRestaurants } from '../../redux/restaurants';
 import  OpenModalButton from '../../components/OpenModalButton'
 import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal.jsx';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import '../Restaurants/all_restaurants.css'
 
 function OwnerRestaurants({ city, state }) {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const owner = useSelector((state) => state.session.user);
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
@@ -31,12 +33,13 @@ function OwnerRestaurants({ city, state }) {
 					key={restaurant.id}
 					className='restaurant-tile'
 				>
+					
 					<img
 						src={restaurant.banner_img}
 						alt={restaurant.name}
 						className='restaurant-image'
 					/>
-					<div className='restaurant-info'>
+					<div className='restaurant-info'onClick={()=> navigate(`/restaurants/${restaurant.id}`)}>
 						<h2>{restaurant.name}</h2>
 						<p>{restaurant.avg_rating}</p>
 						<p>{restaurant.categories.join(' • ')}</p>
@@ -58,6 +61,7 @@ function OwnerRestaurants({ city, state }) {
 						
 						
 					</div>
+					
 				</div>
 			))}
 		</div>
