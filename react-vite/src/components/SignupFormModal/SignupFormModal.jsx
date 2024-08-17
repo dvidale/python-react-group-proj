@@ -18,7 +18,7 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
-	const [submitted, setSubmitted] = useState(false); // Track if form has been submitted
+	const [submitted, setSubmitted] = useState(false);
 	const { closeModal } = useModal();
 
 	useEffect(() => {
