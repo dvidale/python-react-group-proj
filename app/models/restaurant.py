@@ -25,6 +25,8 @@ class Restaurant(db.Model):
     delivery_fee = db.Column(db.Float(), nullable=False)
 
     categories = db.relationship('Category', secondary=add_prefix_for_prod('restaurant_categories'), back_populates='restaurants')
+    reviews = db.relationship('Review', cascade='all, delete-orphan')
+    menu_items = db.relationship('MenuItem', cascade='all, delete-orphan')
 
     def __repr__(self):
         return f'<Restaurant {self.name}>'
