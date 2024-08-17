@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { fetchReviews, postReview } from '../../redux/reviews';
+import { fetchAllDBReviews, postReview } from '../../redux/reviews';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
 
@@ -62,7 +62,7 @@ const CreateReview = ({id}) => {
 
             dispatch(postReview(newReview, restaurantId))
                 .then(closeModal)
-                .then(() => dispatch(fetchReviews(restaurantId)));
+                .then(() => dispatch(fetchAllDBReviews()));
 
             setRating(0);
             setComments("");
