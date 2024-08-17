@@ -18,53 +18,69 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
-	const [hasSubmitted, setHasSubmitted] = useState(false);
+	const [submitted, setSubmitted] = useState(false); // Track if form has been submitted
 	const { closeModal } = useModal();
 
 	useEffect(() => {
-		if (hasSubmitted) {
-			const newErrors = {};
-			if (username.length < 6 || username.length > 20) {
-				newErrors.username = 'Username must be between 6 and 20 characters';
+		if (submitted) {
+			const validationErrors = {};
+
+			if (username && (username.length < 6 || username.length > 20)) {
+				validationErrors.username =
+					'Username must be between 6 and 20 characters';
 			}
-			if (state.length !== 2 || state !== state.toUpperCase()) {
-				newErrors.state = 'State must be 2 uppercase characters';
+
+			if (state && (state.length !== 2 || state !== state.toUpperCase())) {
+				validationErrors.state = 'State must be 2 characters and uppercase';
 			}
-			if (phone_number.length !== 10) {
-				newErrors.phone_number = 'Phone number must be 10 characters long';
+
+			if (zip && !/^\d{5}$/.test(zip)) {
+				validationErrors.zip = 'ZIP must be 5 digits';
 			}
-			setErrors(newErrors);
+
+			if (phone_number && !/^\d{10}$/.test(phone_number)) {
+				validationErrors.phone_number = 'Phone number must be 10 digits';
+			}
+
+			setErrors(validationErrors);
 		}
-	}, [username, state, phone_number, hasSubmitted]);
+	}, [submitted, username, state, zip, phone_number]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setHasSubmitted(true);
+		setSubmitted(true); // Mark form as submitted
 
 		if (password !== confirmPassword) {
-			return setErrors({
+			setErrors((prevErrors) => ({
+				...prevErrors,
 				confirmPassword:
 					'Confirm Password field must be the same as the Password field',
-			});
+			}));
+			return;
 		}
 
 		const formData = {
-			first_name, // matches Flask-WTF form field name
-			last_name, // matches Flask-WTF form field name
-			email, // matches Flask-WTF form field name
-			username, // matches Flask-WTF form field name
-			password, // matches Flask-WTF form field name
-			address, // matches Flask-WTF form field name
-			city, // matches Flask-WTF form field name
-			state, // matches Flask-WTF form field name
-			zip, // matches Flask-WTF form field name
-			phone_number, // matches Flask-WTF form field name
+			first_name,
+			last_name,
+			email,
+			username,
+			password,
+			address,
+			city,
+			state,
+			zip,
+			phone_number,
 		};
+
+		// Clear previous errors on submit
+		setErrors({});
 
 		const serverResponse = await dispatch(thunkSignup(formData));
 
-		if (serverResponse) {
-			setErrors(serverResponse);
+		if (serverResponse.errors) {
+			setErrors(serverResponse.errors);
+		} else if (serverResponse.error) {
+			setErrors({ server: serverResponse.error });
 		} else {
 			closeModal();
 		}
@@ -78,142 +94,116 @@ function SignupFormModal() {
 				onSubmit={handleSubmit}
 				className='signup-form-modal'
 			>
-				<div>
-					<label>
-						First Name
-						<input
-							type='text'
-							value={first_name}
-							onChange={(e) => setFirstName(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.first_name && <p>{errors.first_name}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Last Name
-						<input
-							type='text'
-							value={last_name}
-							onChange={(e) => setLastName(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.last_name && <p>{errors.last_name}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Email
-						<input
-							type='text'
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.email && <p>{errors.email}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Username
-						<input
-							type='text'
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.username && <p>{errors.username}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Password
-						<input
-							type='password'
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.password && <p>{errors.password}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Confirm Password
-						<input
-							type='password'
-							value={confirmPassword}
-							onChange={(e) => setConfirmPassword(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.confirmPassword && (
-							<p>{errors.confirmPassword}</p>
-						)}
-					</label>
-				</div>
-				<div>
-					<label>
-						Address
-						<input
-							type='text'
-							value={address}
-							onChange={(e) => setAddress(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.address && <p>{errors.address}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						City
-						<input
-							type='text'
-							value={city}
-							onChange={(e) => setCity(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.city && <p>{errors.city}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						State
-						<input
-							type='text'
-							value={state}
-							onChange={(e) => setState(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.state && <p>{errors.state}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						ZIP
-						<input
-							type='text'
-							value={zip}
-							onChange={(e) => setZip(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.zip && <p>{errors.zip}</p>}
-					</label>
-				</div>
-				<div>
-					<label>
-						Phone Number
-						<input
-							type='text'
-							value={phone_number}
-							onChange={(e) => setPhoneNumber(e.target.value)}
-							required
-						/>
-						{hasSubmitted && errors.phone_number && (
-							<p>{errors.phone_number}</p>
-						)}
-					</label>
-				</div>
+				<label>
+					First Name
+					<input
+						type='text'
+						value={first_name}
+						onChange={(e) => setFirstName(e.target.value)}
+						required
+					/>
+					{errors.first_name && <p>{errors.first_name}</p>}
+				</label>
+				<label>
+					Last Name
+					<input
+						type='text'
+						value={last_name}
+						onChange={(e) => setLastName(e.target.value)}
+						required
+					/>
+					{errors.last_name && <p>{errors.last_name}</p>}
+				</label>
+				<label>
+					Email
+					<input
+						type='text'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						required
+					/>
+					{errors.email && <p>{errors.email}</p>}
+				</label>
+				<label>
+					Username
+					<input
+						type='text'
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						required
+					/>
+					{errors.username && <p>{errors.username}</p>}
+				</label>
+				<label>
+					Password
+					<input
+						type='password'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
+					/>
+					{errors.password && <p>{errors.password}</p>}
+				</label>
+				<label>
+					Confirm Password
+					<input
+						type='password'
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+						required
+					/>
+					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+				</label>
+				<label>
+					Address
+					<input
+						type='text'
+						value={address}
+						onChange={(e) => setAddress(e.target.value)}
+						required
+					/>
+					{errors.address && <p>{errors.address}</p>}
+				</label>
+				<label>
+					City
+					<input
+						type='text'
+						value={city}
+						onChange={(e) => setCity(e.target.value)}
+						required
+					/>
+					{errors.city && <p>{errors.city}</p>}
+				</label>
+				<label>
+					State
+					<input
+						type='text'
+						value={state}
+						onChange={(e) => setState(e.target.value)}
+						required
+					/>
+					{errors.state && <p>{errors.state}</p>}
+				</label>
+				<label>
+					ZIP
+					<input
+						type='text'
+						value={zip}
+						onChange={(e) => setZip(e.target.value)}
+						required
+					/>
+					{errors.zip && <p>{errors.zip}</p>}
+				</label>
+				<label>
+					Phone Number
+					<input
+						type='text'
+						value={phone_number}
+						onChange={(e) => setPhoneNumber(e.target.value)}
+						required
+					/>
+					{errors.phone_number && <p>{errors.phone_number}</p>}
+				</label>
 				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
