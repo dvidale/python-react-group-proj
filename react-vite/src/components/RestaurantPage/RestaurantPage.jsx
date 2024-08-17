@@ -40,7 +40,7 @@ export const RestaurantPage = () => {
 			<MainReview restaurantId={id}/>
 			<RestaurantInfoBox restaurant={restaurant} city={city} state={state} />
 			<MenuItemsList id={id} />
-			<ReviewsList id={id} />
+			<ReviewsList restaurant={restaurant} id={id} />
 			</>):(<>
 				
 				
