@@ -25,25 +25,40 @@ def get_current_shopping_cart():
 def add_cart_item():
     data = request.get_json()
     user_id = current_user.id
-    shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
 
+    # Fetch the user's shopping cart
+    shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
+    
     if not shopping_cart:
-        shopping_cart = ShoppingCart(user_id=user_id)
-        db.session.add(shopping_cart)
-        db.session.commit()
+        return {"error": "Shopping cart not found"}, 404
 
     menu_item = MenuItem.query.get(data['menu_item_id'])
     if not menu_item:
         return {"error": "Menu item not found"}, 404
 
+    # Check if the item is already in the cart
+    existing_cart_item = CartItem.query.filter_by(
+        shopping_cart_id=shopping_cart.id,
+        menu_item_id=menu_item.id
+    ).first()
+
+    if existing_cart_item:
+        return {"error": "Item already in cart"}, 400
+
+    # Create a new cart item
     new_cart_item = CartItem(
         shopping_cart_id=shopping_cart.id,
         menu_item_id=menu_item.id,
         item_quantity=1  # Default quantity to 1
     )
 
-    db.session.add(new_cart_item)
-    db.session.commit()
+    try:
+        db.session.add(new_cart_item)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()  # Rollback in case of an error
+        print(f"Error adding cart item: {e}")
+        return {"error": "Internal server error"}, 500
 
     return new_cart_item.to_dict(), 201
     
