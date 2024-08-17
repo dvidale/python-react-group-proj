@@ -28,78 +28,52 @@ def add_cart_item():
     shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
 
     if not shopping_cart:
-        shopping_cart = ShoppingCart(user_id=user_id)
-        db.session.add(shopping_cart)
-        db.session.commit()
+        return {"error": "Shopping cart not found"}, 404
 
-    existing_cart_item = CartItem.query.filter_by(
+    menu_item = MenuItem.query.get(data['menu_item_id'])
+    if not menu_item:
+        return {"error": "Menu item not found"}, 404
+
+    new_cart_item = CartItem(
         shopping_cart_id=shopping_cart.id,
-        menu_item_id=data['menu_item_id']
-    ).first()
+        menu_item_id=menu_item.id,
+        item_quantity=1  # Default quantity to 1
+    )
 
-    if existing_cart_item:
-        existing_cart_item.item_quantity += 1
-        db.session.commit()
-        return {
-            "id": existing_cart_item.id,
-            "menu_item_id": existing_cart_item.menu_item.id,
-            "name": existing_cart_item.menu_item.name,
-            "price": f"{existing_cart_item.menu_item.price:.2f}",
-            "image_url": existing_cart_item.menu_item.image_url,
-            "item_quantity": existing_cart_item.item_quantity,
-        }, 200
-    else:
-        # Add a new item to the cart
-        menu_item = MenuItem.query.get(data['menu_item_id'])
-        if not menu_item:
-            return {"error": "Menu item not found"}, 404
-
-        new_cart_item = CartItem(
-            shopping_cart_id=shopping_cart.id,
-            menu_item_id=menu_item.id,
-            item_quantity=1  # Default quantity to 1
-        )
-
-        db.session.add(new_cart_item)
-        db.session.commit()
-
-        return {
-            "id": new_cart_item.id,
-            "menu_item_id": menu_item.id,
-            "name": menu_item.name,
-            "price": f"{menu_item.price:.2f}",
-            "image_url": menu_item.image_url,
-            "item_quantity": new_cart_item.item_quantity,
-        }, 201
-    
-# ? -------------------------UPDATE CART ITEM (Increment Quantity)
-@shopping_cart_routes.route('/current/<int:cart_item_id>/update', methods=['POST'])
-def update_cart_item(cart_item_id):
-    cart_item = CartItem.query.get(cart_item_id)
-    if not cart_item:
-        return {"error": "Cart item not found"}, 404
-    
-    data = request.get_json()
-    if 'decrement' in data and data['decrement']:
-        cart_item.item_quantity -= 1
-    else:
-        cart_item.item_quantity += 1
-
-    if cart_item.item_quantity <= 0:
-        db.session.delete(cart_item)
-    else:
-        db.session.add(cart_item)
-    
+    db.session.add(new_cart_item)
     db.session.commit()
+
+    return new_cart_item.to_dict(), 201
     
-    return {
-        "id": cart_item.id,
-        "menu_item_id": cart_item.menu_item.id,
-        "name": cart_item.menu_item.name,
-        "price": f"{cart_item.menu_item.price:.2f}",
-        "image_url": cart_item.menu_item.image_url,
-        "item_quantity": cart_item.item_quantity,
-    }, 200
+@shopping_cart_routes.route('/current/<int:id>/update', methods=['POST'])
+def update_cart_item(id):
+        # Fetch the cart item using the route parameter 'id'
+        cart_item = CartItem.query.get(id)
+        if not cart_item:
+            return {"error": "Cart item not found"}, 404
+        
+        # Parse the request data
+        data = request.get_json()
+        if data is None:
+            return {"error": "Invalid data"}, 400
+        
+        # Update item quantity
+        if 'decrement' in data and data['decrement']:
+            cart_item.item_quantity -= 1
+        else:
+            cart_item.item_quantity += 1
+
+        # Remove item if quantity is zero or less
+        if cart_item.item_quantity <= 0:
+            db.session.delete(cart_item)
+        else:
+            db.session.add(cart_item)
+        
+        # Commit changes
+        db.session.commit()
+        
+        # Return updated cart item
+        return cart_item.to_dict(), 200
 
 # ? -------------------------DELETE CART ITEM
 @shopping_cart_routes.route('/current/<int:cart_item_id>/remove', methods=['DELETE'])
