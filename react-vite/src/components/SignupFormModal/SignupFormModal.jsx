@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { thunkSignup } from '../../redux/session';
@@ -18,10 +18,28 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
+	const [hasSubmitted, setHasSubmitted] = useState(false);
 	const { closeModal } = useModal();
+
+	useEffect(() => {
+		if (hasSubmitted) {
+			const newErrors = {};
+			if (username.length < 6 || username.length > 20) {
+				newErrors.username = 'Username must be between 6 and 20 characters';
+			}
+			if (state.length !== 2 || state !== state.toUpperCase()) {
+				newErrors.state = 'State must be 2 uppercase characters';
+			}
+			if (phone_number.length !== 10) {
+				newErrors.phone_number = 'Phone number must be 10 characters long';
+			}
+			setErrors(newErrors);
+		}
+	}, [username, state, phone_number, hasSubmitted]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setHasSubmitted(true);
 
 		if (password !== confirmPassword) {
 			return setErrors({
@@ -60,116 +78,142 @@ function SignupFormModal() {
 				onSubmit={handleSubmit}
 				className='signup-form-modal'
 			>
-				<label>
-					First Name
-					<input
-						type='text'
-						value={first_name}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.first_name && <p>{errors.first_name}</p>}
-				<label>
-					Last Name
-					<input
-						type='text'
-						value={last_name}
-						onChange={(e) => setLastName(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.last_name && <p>{errors.last_name}</p>}
-				<label>
-					Email
-					<input
-						type='text'
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.email && <p>{errors.email}</p>}
-				<label>
-					Username
-					<input
-						type='text'
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.username && <p>{errors.username}</p>}
-				<label>
-					Password
-					<input
-						type='new-password'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.password && <p>{errors.password}</p>}
-				<label>
-					Confirm Password
-					<input
-						type='confirm-password'
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-				<label>
-					Address
-					<input
-						type='text'
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.address && <p>{errors.address}</p>}
-				<label>
-					City
-					<input
-						type='text'
-						value={city}
-						onChange={(e) => setCity(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.city && <p>{errors.city}</p>}
-				<label>
-					State
-					<input
-						type='text'
-						value={state}
-						onChange={(e) => setState(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.state && <p>{errors.state}</p>}
-				<label>
-					ZIP
-					<input
-						type='text'
-						value={zip}
-						onChange={(e) => setZip(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.zip && <p>{errors.zip}</p>}
-				<label>
-					Phone Number
-					<input
-						type='text'
-						value={phone_number}
-						onChange={(e) => setPhoneNumber(e.target.value)}
-						required
-					/>
-				</label>
-				{errors.phone_number && <p>{errors.phone_number}</p>}
+				<div>
+					<label>
+						First Name
+						<input
+							type='text'
+							value={first_name}
+							onChange={(e) => setFirstName(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.first_name && <p>{errors.first_name}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Last Name
+						<input
+							type='text'
+							value={last_name}
+							onChange={(e) => setLastName(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.last_name && <p>{errors.last_name}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Email
+						<input
+							type='text'
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.email && <p>{errors.email}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Username
+						<input
+							type='text'
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.username && <p>{errors.username}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Password
+						<input
+							type='password'
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.password && <p>{errors.password}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Confirm Password
+						<input
+							type='password'
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.confirmPassword && (
+							<p>{errors.confirmPassword}</p>
+						)}
+					</label>
+				</div>
+				<div>
+					<label>
+						Address
+						<input
+							type='text'
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.address && <p>{errors.address}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						City
+						<input
+							type='text'
+							value={city}
+							onChange={(e) => setCity(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.city && <p>{errors.city}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						State
+						<input
+							type='text'
+							value={state}
+							onChange={(e) => setState(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.state && <p>{errors.state}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						ZIP
+						<input
+							type='text'
+							value={zip}
+							onChange={(e) => setZip(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.zip && <p>{errors.zip}</p>}
+					</label>
+				</div>
+				<div>
+					<label>
+						Phone Number
+						<input
+							type='text'
+							value={phone_number}
+							onChange={(e) => setPhoneNumber(e.target.value)}
+							required
+						/>
+						{hasSubmitted && errors.phone_number && (
+							<p>{errors.phone_number}</p>
+						)}
+					</label>
+				</div>
 				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
