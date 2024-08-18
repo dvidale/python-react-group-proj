@@ -1,4 +1,5 @@
-import '../RestaurantPage/restaurant_page.css';
+// import '../RestaurantPage/restaurant_page.css';
+import './RestaurantHeader.css';
 import { useSelector } from 'react-redux';
 
 function RestaurantHeader({ restaurant }) {
@@ -11,26 +12,29 @@ function RestaurantHeader({ restaurant }) {
 	const state = sessionUser?.state || savedLocation.state;
 
 	const bannerImgStyle = {
-		width:"100%",
-		height:"400px",
-		backgroundImage: `url(${restaurant.banner_img})`
-
-	}
+		width: '100%',
+		height: '400px',
+		backgroundImage: `url(${restaurant.banner_img})`,
+	};
 
 	return (
 		<>
 			<div id='header-container'>
-				<div className='banner-img-container' style={bannerImgStyle}>
-				<h1 className='restaurant-title'>{restaurant.name}</h1>
-				
+				<div
+					className='banner-img-container'
+					style={bannerImgStyle}
+				>
+					<h1 className='restaurant-title'>{restaurant.name}</h1>
 				</div>
-				<p>
-					{restaurant.avg_rating} •{' '}
-					{restaurant.categories.join(' • ')}<br />
-					{restaurant.address}
-					{city && state ? `${city}, ${state}` : ''}
-				</p>
-				<p>{restaurant.description}</p>
+				<div className='header-text'>
+					<p>
+						{restaurant.avg_rating} • {restaurant.categories.join(' • ')}
+						<br />
+						{restaurant.address}
+						{city && state ? `${city}, ${state}` : ''}
+					</p>
+					<p>{restaurant.description}</p>
+				</div>
 			</div>
 		</>
 	);

@@ -1,0 +1,41 @@
+.banner-img-container {
+	display: flexbox;
+	border: 1px gray solid;
+	background-size: cover;
+}
+
+.header-text {
+	padding: 1rem 2rem;
+	border: solid 2px black;
+	max-width: fit-content;
+}
+
+.restaurant-page-header-review {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: fit-content;
+	border: solid 2px red;
+	padding: 1rem 2rem;
+}
+
+.header-review-structure {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.header-stars {
+	display: flex;
+	align-items: center;
+	width: fit-content;
+	background-color: black;
+	gap: 1rem;
+	padding: 0.4rem 1rem;
+	color: var(--accent-clr);
+	border-radius: 12px;
+}
+
+.header-stars h3 {
+	color: white;
+}

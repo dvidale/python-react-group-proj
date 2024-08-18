@@ -1,0 +1,15 @@
+.restaurant-info {
+	border: solid 2px red;
+}
+
+.delivery-fee {
+	width: fit-content;
+	background-color: black;
+	padding: 0.4rem 2rem;
+	border-radius: 12px;
+}
+
+.delivery-fee p {
+	color: var(--accent-clr);
+	opacity: 1;
+}
