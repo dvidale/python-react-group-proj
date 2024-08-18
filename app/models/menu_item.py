@@ -45,4 +45,3 @@ class MenuItem(db.Model):
             'like_percentage': self.like_percentage,
             'reviews': [review.to_dict_review() for review in self.menu_item_ratings]
         }
-
