@@ -2,7 +2,7 @@
 
 Revision ID: 4953535fc86b
 Revises: 1bb4fe1faf42
-Create Date: 2024-08-12 09:23:53.031601
+Create Date: 2024-08-11 17:01:53.601436
 
 """
 from alembic import op
@@ -12,13 +12,11 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
 revision = '4953535fc86b'
 down_revision = '1bb4fe1faf42'
 branch_labels = None
 depends_on = None
-
 
 
 def upgrade():
