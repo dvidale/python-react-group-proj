@@ -119,7 +119,7 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 
 	const data = await response.json();
 
-	console.log('>>> data from flask POST route:', data);
+	console.log('>>> data from flask UPDATE route:', data);
 	dispatch(add_Or_Update_Restaurant(data));
 	return data;
 };
@@ -185,7 +185,6 @@ const restaurantsReducer = (state = initialState, action) => {
 			return newState;
 		}
 		case DELETE_RESTAURANT: {
-			// !untested before merge
 			const newState = { ...state };
 			const id = action.payload;
 			delete newState.AllRestaurants[id];

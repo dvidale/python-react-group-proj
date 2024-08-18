@@ -9,8 +9,9 @@
 
 .banner-img-container{
     display: flexbox;
-    border:2px gray dotted;
-    height: 300px
+    border:1px gray solid;
+
+    background-size: cover;
 }
 
 .restaurant-title{

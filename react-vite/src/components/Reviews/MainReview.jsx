@@ -66,17 +66,17 @@ const MainReview = ({ restaurantId }) => {
                                 <p>{review.rating}</p>
                                 <p>{review.comments}</p>
                             </div>)} */}
+                            <p>{ratingSummary.total_reviews} Ratings</p>
                         </>
                     ) : (
                         <>
-                            <h3>No reviews yet</h3>
+                            <h3>New</h3>
                             {/* Render 5 empty stars */}
-                            {[...Array(5)].map((_, index) => (
+                            {/* {[...Array(5)].map((_, index) => (
                                 <FaRegStar key={index} />
-                            ))}
+                            ))} */}
                         </>
                     )}
-                    <p>{ratingSummary.total_reviews} Ratings</p>
                 </div>
             </div>
         </>

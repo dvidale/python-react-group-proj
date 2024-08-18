@@ -30,7 +30,7 @@ function RestaurantForm(){
     const [close_time, setCloseTime] = useState("22:00")
     const [delivery_time, setDeliveryTime] = useState("")
     const [delivery_fee, setDeliveryFee] = useState("")
-    const [banner_img, setBannerImg] = useState("http://")
+    const [banner_img, setBannerImg] = useState("https://")
      
 
 

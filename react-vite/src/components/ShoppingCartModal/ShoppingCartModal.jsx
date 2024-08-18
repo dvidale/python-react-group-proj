@@ -45,7 +45,7 @@ const ShoppingCartModal = () => {
 		} else {
 			alert('Purchase feature in development');
 			// Open the review modal
-			setModalContent(<CreateReview id={1} />);
+			setModalContent(<CreateReview id={shoppingCart[0].restaurant_id} />);
 		}
 	};
 

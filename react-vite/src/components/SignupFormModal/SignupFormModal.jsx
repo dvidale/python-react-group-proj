@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { thunkSignup } from '../../redux/session';
@@ -18,35 +18,69 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
+	const [submitted, setSubmitted] = useState(false);
 	const { closeModal } = useModal();
+
+	useEffect(() => {
+		if (submitted) {
+			const validationErrors = {};
+
+			if (username && (username.length < 6 || username.length > 20)) {
+				validationErrors.username =
+					'Username must be between 6 and 20 characters';
+			}
+
+			if (state && (state.length !== 2 || state !== state.toUpperCase())) {
+				validationErrors.state = 'State must be 2 characters and uppercase';
+			}
+
+			if (zip && !/^\d{5}$/.test(zip)) {
+				validationErrors.zip = 'ZIP must be 5 digits';
+			}
+
+			if (phone_number && !/^\d{10}$/.test(phone_number)) {
+				validationErrors.phone_number = 'Phone number must be 10 digits';
+			}
+
+			setErrors(validationErrors);
+		}
+	}, [submitted, username, state, zip, phone_number]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setSubmitted(true); // Mark form as submitted
 
 		if (password !== confirmPassword) {
-			return setErrors({
+			setErrors((prevErrors) => ({
+				...prevErrors,
 				confirmPassword:
 					'Confirm Password field must be the same as the Password field',
-			});
+			}));
+			return;
 		}
 
 		const formData = {
-			first_name, // matches Flask-WTF form field name
-			last_name, // matches Flask-WTF form field name
-			email, // matches Flask-WTF form field name
-			username, // matches Flask-WTF form field name
-			password, // matches Flask-WTF form field name
-			address, // matches Flask-WTF form field name
-			city, // matches Flask-WTF form field name
-			state, // matches Flask-WTF form field name
-			zip, // matches Flask-WTF form field name
-			phone_number, // matches Flask-WTF form field name
+			first_name,
+			last_name,
+			email,
+			username,
+			password,
+			address,
+			city,
+			state,
+			zip,
+			phone_number,
 		};
+
+		// Clear previous errors on submit
+		setErrors({});
 
 		const serverResponse = await dispatch(thunkSignup(formData));
 
-		if (serverResponse) {
-			setErrors(serverResponse);
+		if (serverResponse.errors) {
+			setErrors(serverResponse.errors);
+		} else if (serverResponse.error) {
+			setErrors({ server: serverResponse.error });
 		} else {
 			closeModal();
 		}
@@ -68,8 +102,8 @@ function SignupFormModal() {
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
+					{errors.first_name && <p>{errors.first_name}</p>}
 				</label>
-				{errors.first_name && <p>{errors.first_name}</p>}
 				<label>
 					Last Name
 					<input
@@ -78,8 +112,8 @@ function SignupFormModal() {
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
+					{errors.last_name && <p>{errors.last_name}</p>}
 				</label>
-				{errors.last_name && <p>{errors.last_name}</p>}
 				<label>
 					Email
 					<input
@@ -88,8 +122,8 @@ function SignupFormModal() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
+					{errors.email && <p>{errors.email}</p>}
 				</label>
-				{errors.email && <p>{errors.email}</p>}
 				<label>
 					Username
 					<input
@@ -98,28 +132,28 @@ function SignupFormModal() {
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
+					{errors.username && <p>{errors.username}</p>}
 				</label>
-				{errors.username && <p>{errors.username}</p>}
 				<label>
 					Password
 					<input
-						type='new-password'
+						type='password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
+					{errors.password && <p>{errors.password}</p>}
 				</label>
-				{errors.password && <p>{errors.password}</p>}
 				<label>
 					Confirm Password
 					<input
-						type='confirm-password'
+						type='password'
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
+					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				</label>
-				{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				<label>
 					Address
 					<input
@@ -128,8 +162,8 @@ function SignupFormModal() {
 						onChange={(e) => setAddress(e.target.value)}
 						required
 					/>
+					{errors.address && <p>{errors.address}</p>}
 				</label>
-				{errors.address && <p>{errors.address}</p>}
 				<label>
 					City
 					<input
@@ -138,8 +172,8 @@ function SignupFormModal() {
 						onChange={(e) => setCity(e.target.value)}
 						required
 					/>
+					{errors.city && <p>{errors.city}</p>}
 				</label>
-				{errors.city && <p>{errors.city}</p>}
 				<label>
 					State
 					<input
@@ -148,8 +182,8 @@ function SignupFormModal() {
 						onChange={(e) => setState(e.target.value)}
 						required
 					/>
+					{errors.state && <p>{errors.state}</p>}
 				</label>
-				{errors.state && <p>{errors.state}</p>}
 				<label>
 					ZIP
 					<input
@@ -158,8 +192,8 @@ function SignupFormModal() {
 						onChange={(e) => setZip(e.target.value)}
 						required
 					/>
+					{errors.zip && <p>{errors.zip}</p>}
 				</label>
-				{errors.zip && <p>{errors.zip}</p>}
 				<label>
 					Phone Number
 					<input
@@ -168,8 +202,8 @@ function SignupFormModal() {
 						onChange={(e) => setPhoneNumber(e.target.value)}
 						required
 					/>
+					{errors.phone_number && <p>{errors.phone_number}</p>}
 				</label>
-				{errors.phone_number && <p>{errors.phone_number}</p>}
 				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
