@@ -9,7 +9,7 @@ import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import LocationForm from '../LocationForm/LocationForm';
 
-//  !BUG: This page crashes if it is manually refreshed
+
 
 export const RestaurantPage = () => {
 	const { id } = useParams();

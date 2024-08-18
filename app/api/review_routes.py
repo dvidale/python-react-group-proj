@@ -4,6 +4,14 @@ from ..models import db, Review, User, Restaurant
 
 review_routes = Blueprint('reviews', __name__)
 
+# ? GET ALL REVIEWS
+@review_routes.route('/')
+def get_all_reviews():
+    reviews_query = Review.query.all()
+    reviews_lst = [ review.to_dict() for review in reviews_query]
+
+    return reviews_lst
+
 
 # GET A SPECIFIC REVIEW
 @review_routes.route('/<int:review_id>')
