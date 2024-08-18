@@ -16,7 +16,8 @@ class Review(db.Model):
     comments = db.Column(db.String(1000))
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
 
-    menu_items = db.relationship('MenuItemRating', back_populates='review')
+    # menu_item_rating = db.relationship('MenuItemRating', back_populates='review')
+    menu_item_rating = db.relationship('MenuItemRating', cascade='all, delete-orphan')
 
 
     def to_dict(self):
