@@ -2,18 +2,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
+import LoginFormModal from '../LoginFormModal';
 import './all_restaurants.css';
 
 function AllRestaurants({ city, state }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	// Fetch user session
+	const sessionUser = useSelector((state) => state.session.user);
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
 	);
 	const selectedCategory = useSelector(
 		(state) => state.restaurants.selectedCategory
 	);
+
+	const { setModalContent } = useModal();
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
@@ -28,7 +34,11 @@ function AllRestaurants({ city, state }) {
 	}
 
 	const handleRedirect = (id) => {
-		navigate(`/restaurants/${id}`);
+		if (!sessionUser) {
+			setModalContent(<LoginFormModal />); // Show login modal if user is not signed in
+		} else {
+			navigate(`/restaurants/${id}`);
+		}
 	};
 
 	return (
