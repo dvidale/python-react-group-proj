@@ -5,84 +5,69 @@ def seed_restaurant_categories():
     # Seed RestaurantCategory (join table)
     print(">>>> inside restaurant category seeder")
     restaurant_categories = [
-        # Restaurant 1 (The Gourmet Kitchen) belongs to 'Italian' and 'French'
-        RestaurantCategory(restaurant_id=1, category_id=1),  # Italian
-        RestaurantCategory(restaurant_id=1, category_id=9),  # French
-        
-        # Restaurant 2 (Spice Symphony) belongs to 'Indian' and 'BBQ'
-        RestaurantCategory(restaurant_id=2, category_id=7),  # Indian
-        RestaurantCategory(restaurant_id=2, category_id=6),  # BBQ
-        
-        # Restaurant 3 (Dragon Wok) belongs to 'Chinese' and 'Japanese'
-        RestaurantCategory(restaurant_id=3, category_id=3),  # Chinese
-        RestaurantCategory(restaurant_id=3, category_id=4),  # Japanese
-        
-        # Restaurant 4 (El Sombrero) belongs to 'Mexican' and 'BBQ'
-        RestaurantCategory(restaurant_id=4, category_id=2),  # Mexican
-        RestaurantCategory(restaurant_id=4, category_id=6),  # BBQ
-        
-        # Restaurant 5 (Sushi Yama) belongs to 'Japanese' and 'Thai'
-        RestaurantCategory(restaurant_id=5, category_id=4),  # Japanese
-        RestaurantCategory(restaurant_id=5, category_id=8),  # Thai
-        
-        # Restaurant 6 (Mediterranean Delights) belongs to 'Greek' and 'French'
-        RestaurantCategory(restaurant_id=6, category_id=5),  # Greek
-        RestaurantCategory(restaurant_id=6, category_id=9),  # French
-        
-        # Restaurant 7 (Backyard BBQ) belongs to 'BBQ' and 'American'
-        RestaurantCategory(restaurant_id=7, category_id=6),  # BBQ
-        RestaurantCategory(restaurant_id=7, category_id=10), # American
-        
-        # Restaurant 8 (Le Petit Bistro) belongs to 'French' and 'Italian'
-        RestaurantCategory(restaurant_id=8, category_id=9),  # French
-        RestaurantCategory(restaurant_id=8, category_id=1),  # Italian
-        
-        # Restaurant 9 (Taco Fiesta) belongs to 'Mexican' and 'American'
-        RestaurantCategory(restaurant_id=9, category_id=2),  # Mexican
+        # Restaurant 1 (The Gourmet Kitchen) belongs to 'American' and 'BBQ'
+        RestaurantCategory(restaurant_id=1, category_id=10),  # American
+        RestaurantCategory(restaurant_id=1, category_id=6),  # BBQ
+
+        # Restaurant 2 (Spice Symphony) belongs to 'Mexican'
+        RestaurantCategory(restaurant_id=2, category_id=2),  # Mexican
+
+        # Restaurant 3 (Pasta Paradise) belongs to 'Italian'
+        RestaurantCategory(restaurant_id=3, category_id=1),  # Italian
+
+        # Restaurant 4 (Sushi World) belongs to 'Japanese'
+        RestaurantCategory(restaurant_id=4, category_id=4),  # Japanese
+
+        # Restaurant 5 (Burger Haven) belongs to 'American'
+        RestaurantCategory(restaurant_id=5, category_id=10),  # American
+
+        # Restaurant 6 (Pizza Palace) belongs to 'Italian' and 'American'
+        RestaurantCategory(restaurant_id=6, category_id=1),  # Italian
+        RestaurantCategory(restaurant_id=6, category_id=10),  # American
+
+        # Restaurant 7 (Taco Town) belongs to 'Mexican'
+        RestaurantCategory(restaurant_id=7, category_id=2),  # Mexican
+
+        # Restaurant 8 (BBQ Barn) belongs to 'BBQ' and 'American'
+        RestaurantCategory(restaurant_id=8, category_id=6),  # BBQ
+        RestaurantCategory(restaurant_id=8, category_id=10),  # American
+
+        # Restaurant 9 (Salad Stop) belongs to 'American'
         RestaurantCategory(restaurant_id=9, category_id=10), # American
-        
-        # Restaurant 10 (Bangkok Express) belongs to 'Thai' and 'Chinese'
-        RestaurantCategory(restaurant_id=10, category_id=8), # Thai
-        RestaurantCategory(restaurant_id=10, category_id=3), # Chinese
-        
-        # Restaurant 11 (Moscow Munchies) belongs to 'Russian' and 'Eastern European'
-        RestaurantCategory(restaurant_id=11, category_id=9), # Russian
-        RestaurantCategory(restaurant_id=11, category_id=1), # Eastern European
-        
-        # Restaurant 12 (Bombay Spice) belongs to 'Indian' and 'BBQ'
-        RestaurantCategory(restaurant_id=12, category_id=7), # Indian
-        RestaurantCategory(restaurant_id=12, category_id=6), # BBQ
-        
-        # Restaurant 13 (Saigon Street) belongs to 'Vietnamese' and 'Japanese'
-        RestaurantCategory(restaurant_id=13, category_id=9), # Vietnamese
-        RestaurantCategory(restaurant_id=13, category_id=4), # Japanese
-        
-        # Restaurant 14 (Britain Bites) belongs to 'British' and 'French'
-        RestaurantCategory(restaurant_id=14, category_id=10), # British
-        RestaurantCategory(restaurant_id=14, category_id=9), # French
-        
-        # Restaurant 15 (Southern Comfort) belongs to 'Southern' and 'American'
-        RestaurantCategory(restaurant_id=15, category_id=10), # Southern
-        RestaurantCategory(restaurant_id=15, category_id=6),  # American
-        
-        # Restaurant 16 (Tokyo Table) belongs to 'Japanese' and 'BBQ'
-        RestaurantCategory(restaurant_id=16, category_id=4), # Japanese
-        RestaurantCategory(restaurant_id=16, category_id=6), # BBQ
-        
-        # Restaurant 17 (Mediterranean Magic) belongs to 'Greek' and 'BBQ'
+
+        # Restaurant 10 (Steak House) belongs to 'American'
+        RestaurantCategory(restaurant_id=10, category_id=10), # American
+
+        # Restaurant 11 (Curry Corner) belongs to 'Indian'
+        RestaurantCategory(restaurant_id=11, category_id=7), # Indian
+
+        # Restaurant 12 (Masion de Saveurs) belongs to 'French'
+        RestaurantCategory(restaurant_id=12, category_id=9), # French
+
+        # Restaurant 13 (Olympian Delights) belongs to 'Greek'
+        RestaurantCategory(restaurant_id=13, category_id=5), # Greek
+
+        # Restaurant 14 (Great Wall Gourmet) belongs to 'Chinese'
+        RestaurantCategory(restaurant_id=14, category_id=3), # Chinese
+
+        # Restaurant 15 (Ramen House) belongs to 'Japanese'
+        RestaurantCategory(restaurant_id=15, category_id=4), # Japanese
+
+        # Restaurant 16 (Le Parisian Table) belongs to 'French' and 'American'
+        RestaurantCategory(restaurant_id=16, category_id=9), # French
+        RestaurantCategory(restaurant_id=16, category_id=10), # American
+
+        # Restaurant 17 (Athena's Kitchen) belongs to 'Greek'
         RestaurantCategory(restaurant_id=17, category_id=5), # Greek
-        RestaurantCategory(restaurant_id=17, category_id=6), # BBQ
-        
-        # Restaurant 18 (Smoky Mountain BBQ) belongs to 'BBQ' and 'American'
-        RestaurantCategory(restaurant_id=18, category_id=6), # BBQ
-        RestaurantCategory(restaurant_id=18, category_id=10), # American
-        
-        # Restaurant 19 (Thai House) belongs to 'Thai' and 'Japanese'
-        RestaurantCategory(restaurant_id=19, category_id=8), # Thai
-        RestaurantCategory(restaurant_id=19, category_id=4), # Japanese
-        
-        # Restaurant 20 (Pizza Paradise) belongs to 'Italian' and 'American'
-        RestaurantCategory(restaurant_id=20, category_id=1), # Italian
+
+        # Restaurant 18 (Thai Terrace) belongs to 'Thai'
+        RestaurantCategory(restaurant_id=18, category_id=8), # Thai
+
+        # Restaurant 19 (Panda Palace Grill) belongs to 'Chinese' and 'American'
+        RestaurantCategory(restaurant_id=19, category_id=3), # Chinese
+        RestaurantCategory(restaurant_id=19, category_id=10), # American
+
+        # Restaurant 20 (Fish Fry) belongs to 'American'
         RestaurantCategory(restaurant_id=20, category_id=10), # American
     ]
 

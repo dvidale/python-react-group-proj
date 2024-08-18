@@ -103,7 +103,7 @@ def seed_menu_items1():
             quantity=50,
             ratings_count=90
         ),
-        
+
         # Restaurant 2
         MenuItem(
             restaurant_id=2,
@@ -205,7 +205,7 @@ def seed_menu_items1():
             quantity=130,
             ratings_count=95
         ),
-        
+
         # Restaurant 3
         MenuItem(
             restaurant_id=3,
@@ -307,7 +307,7 @@ def seed_menu_items1():
             quantity=100,
             ratings_count=75
         ),
-        
+
         # Restaurant 4
         MenuItem(
             restaurant_id=4,
@@ -717,103 +717,103 @@ def seed_menu_items1():
         # Restaurant 8
         MenuItem(
             restaurant_id=8,
-            name="Pad Thai",
-            like_percentage=94,
-            description="Stir-fried rice noodles with shrimp, tofu, and peanuts in a tamarind sauce.",
-            price=11.99,
-            image_url="https://example.com/images/pad_thai.jpg",
-            quantity=120,
-            ratings_count=65
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Green Curry",
-            like_percentage=92,
-            description="Spicy green curry with chicken, bamboo shoots, and basil.",
-            price=12.49,
-            image_url="https://example.com/images/green_curry.jpg",
-            quantity=110,
-            ratings_count=75
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Tom Yum Soup",
-            like_percentage=90,
-            description="Hot and sour Thai soup with shrimp, mushrooms, and lemongrass.",
-            price=7.99,
-            image_url="https://example.com/images/tom_yum_soup.jpg",
-            quantity=130,
-            ratings_count=50
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Massaman Curry",
-            like_percentage=89,
-            description="Rich and creamy curry with beef, potatoes, and peanuts.",
-            price=13.49,
-            image_url="https://example.com/images/massaman_curry.jpg",
-            quantity=100,
-            ratings_count=55
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Spring Rolls",
-            like_percentage=93,
-            description="Crispy spring rolls filled with vegetables and served with sweet chili sauce.",
-            price=5.99,
-            image_url="https://example.com/images/spring_rolls.jpg",
-            quantity=90,
-            ratings_count=60
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Sticky Rice with Mango",
-            like_percentage=95,
-            description="Sweet sticky rice served with fresh mango slices.",
-            price=6.99,
-            image_url="https://example.com/images/sticky_rice_mango.jpg",
-            quantity=140,
-            ratings_count=85
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Papaya Salad",
-            like_percentage=91,
-            description="Fresh papaya salad with lime, chili, and peanuts.",
-            price=9.49,
-            image_url="https://example.com/images/papaya_salad.jpg",
-            quantity=150,
-            ratings_count=70
-        ),
-        MenuItem(
-            restaurant_id=8,
-            name="Thai Iced Tea",
+            name="BBQ Ribs",
             like_percentage=96,
-            description="Sweet and creamy Thai iced tea.",
-            price=3.99,
-            image_url="https://example.com/images/thai_iced_tea.jpg",
-            quantity=160,
+            description="Tender pork ribs slow-cooked and glazed with a sweet and tangy BBQ sauce.",
+            price=16.99,
+            image_url="https://example.com/images/bbq_ribs.jpg",
+            quantity=100,
             ratings_count=95
         ),
         MenuItem(
             restaurant_id=8,
-            name="Fried Rice",
-            like_percentage=87,
-            description="Classic Thai fried rice with chicken, eggs, and vegetables.",
-            price=10.49,
-            image_url="https://example.com/images/fried_rice.jpg",
-            quantity=120,
-            ratings_count=45
+            name="Pulled Pork Sandwich",
+            like_percentage=94,
+            description="Slow-cooked pulled pork served on a soft bun with coleslaw.",
+            price=10.99,
+            image_url="https://example.com/images/pulled_pork_sandwich.jpg",
+            quantity=90,
+            ratings_count=85
         ),
         MenuItem(
             restaurant_id=8,
-            name="Coconut Soup",
+            name="Brisket",
             like_percentage=93,
-            description="Creamy coconut soup with chicken and galangal.",
-            price=7.49,
-            image_url="https://example.com/images/coconut_soup.jpg",
-            quantity=100,
+            description="Smoked beef brisket served with BBQ sauce and pickles.",
+            price=17.99,
+            image_url="https://example.com/images/brisket.jpg",
+            quantity=80,
+            ratings_count=90
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="Cornbread",
+            like_percentage=91,
+            description="Sweet and moist cornbread served with butter.",
+            price=3.99,
+            image_url="https://example.com/images/cornbread.jpg",
+            quantity=140,
             ratings_count=75
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="Mac and Cheese",
+            like_percentage=95,
+            description="Creamy macaroni and cheese made with a blend of cheddar and mozzarella.",
+            price=8.49,
+            image_url="https://example.com/images/mac_and_cheese.jpg",
+            quantity=150,
+            ratings_count=100
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="BBQ Chicken",
+            like_percentage=92,
+            description="Grilled chicken basted with BBQ sauce, served with baked beans.",
+            price=12.49,
+            image_url="https://example.com/images/bbq_chicken.jpg",
+            quantity=130,
+            ratings_count=80
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="Coleslaw",
+            like_percentage=90,
+            description="Crisp and tangy coleslaw made with cabbage and carrots.",
+            price=3.49,
+            image_url="https://example.com/images/coleslaw.jpg",
+            quantity=160,
+            ratings_count=60
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="BBQ Sausage",
+            like_percentage=93,
+            description="Smoked sausage links served with mustard and pickles.",
+            price=9.49,
+            image_url="https://example.com/images/bbq_sausage.jpg",
+            quantity=110,
+            ratings_count=85
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="Peach Cobbler",
+            like_percentage=97,
+            description="Warm peach cobbler topped with a scoop of vanilla ice cream.",
+            price=6.99,
+            image_url="https://example.com/images/peach_cobbler.jpg",
+            quantity=120,
+            ratings_count=105
+        ),
+        MenuItem(
+            restaurant_id=8,
+            name="Sweet Tea",
+            like_percentage=90,
+            description="Southern sweet tea served over ice.",
+            price=2.49,
+            image_url="https://example.com/images/sweet_tea_bbq.jpg",
+            quantity=180,
+            ratings_count=95
         ),
 
         # Restaurant 9
@@ -917,107 +917,109 @@ def seed_menu_items1():
             quantity=100,
             ratings_count=75
         ),
-        #Restaurant 10
+
+        # Restaurant 10
         MenuItem(
             restaurant_id=10,
-            name="Spaghetti Bolognese",
-            like_percentage=93,
-            description="Classic spaghetti pasta served with a rich and hearty beef Bolognese sauce.",
-            price=12.99,
-            image_url="https://example.com/images/spaghetti_bolognese.jpg",
-            quantity=120,
-            ratings_count=85
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Margherita Pizza",
-            like_percentage=95,
-            description="Traditional Italian pizza topped with fresh tomatoes, mozzarella, and basil.",
-            price=10.99,
-            image_url="https://example.com/images/margherita_pizza.jpg",
-            quantity=150,
-            ratings_count=90
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Lasagna",
-            like_percentage=92,
-            description="Layers of pasta, ricotta cheese, meat sauce, and mozzarella, baked to perfection.",
-            price=13.99,
-            image_url="https://example.com/images/lasagna.jpg",
-            quantity=100,
-            ratings_count=80
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Fettuccine Alfredo",
-            like_percentage=91,
-            description="Fettuccine pasta tossed in a creamy Alfredo sauce made with Parmesan cheese and butter.",
-            price=11.99,
-            image_url="https://example.com/images/fettuccine_alfredo.jpg",
-            quantity=130,
-            ratings_count=75
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Chicken Parmesan",
-            like_percentage=94,
-            description="Breaded chicken breast topped with marinara sauce and melted mozzarella, served over spaghetti.",
-            price=14.99,
-            image_url="https://example.com/images/chicken_parmesan.jpg",
-            quantity=90,
-            ratings_count=85
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Risotto",
-            like_percentage=90,
-            description="Creamy Arborio rice cooked with white wine, Parmesan, and your choice of mushrooms or seafood.",
-            price=13.49,
-            image_url="https://example.com/images/risotto.jpg",
-            quantity=80,
-            ratings_count=65
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Bruschetta",
-            like_percentage=89,
-            description="Grilled bread topped with a fresh mixture of tomatoes, garlic, and basil, drizzled with olive oil.",
-            price=6.99,
-            image_url="https://example.com/images/bruschetta.jpg",
-            quantity=140,
-            ratings_count=60
-        ),
-        MenuItem(
-            restaurant_id=10,
-            name="Tiramisu",
+            name="Ribeye Steak",
             like_percentage=96,
-            description="Classic Italian dessert made with layers of coffee-soaked ladyfingers and mascarpone cream.",
-            price=7.49,
-            image_url="https://example.com/images/tiramisu.jpg",
-            quantity=110,
+            description="Juicy and tender ribeye steak, grilled to perfection and seasoned with our signature blend of spices.",
+            price=29.99,
+            image_url="https://example.com/images/ribeye_steak.jpg",
+            quantity=80,
+            ratings_count=150
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Filet Mignon",
+            like_percentage=98,
+            description="Premium cut filet mignon, cooked to your preference and served with a side of garlic butter.",
+            price=34.99,
+            image_url="https://example.com/images/filet_mignon.jpg",
+            quantity=70,
+            ratings_count=140
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="New York Strip",
+            like_percentage=94,
+            description="Thick and flavorful New York strip steak, grilled and served with a side of mashed potatoes.",
+            price=27.99,
+            image_url="https://example.com/images/new_york_strip.jpg",
+            quantity=90,
+            ratings_count=130
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="T-Bone Steak",
+            like_percentage=95,
+            description="Classic T-bone steak, offering the best of both worlds with tenderloin and strip steak in one cut.",
+            price=31.99,
+            image_url="https://example.com/images/t_bone_steak.jpg",
+            quantity=60,
+            ratings_count=120
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Grilled Sirloin",
+            like_percentage=92,
+            description="Lean and flavorful sirloin steak, marinated and grilled to perfection, served with steamed vegetables.",
+            price=24.99,
+            image_url="https://example.com/images/grilled_sirloin.jpg",
+            quantity=100,
+            ratings_count=110
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Prime Rib",
+            like_percentage=97,
+            description="Slow-roasted prime rib, served with a side of au jus and creamy horseradish sauce.",
+            price=32.99,
+            image_url="https://example.com/images/prime_rib.jpg",
+            quantity=50,
+            ratings_count=145
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Beef Tenderloin",
+            like_percentage=93,
+            description="Succulent beef tenderloin, grilled and served with a red wine reduction sauce.",
+            price=28.99,
+            image_url="https://example.com/images/beef_tenderloin.jpg",
+            quantity=85,
+            ratings_count=125
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Porterhouse Steak",
+            like_percentage=94,
+            description="Large and flavorful porterhouse steak, ideal for sharing or for the hungriest of steak lovers.",
+            price=35.99,
+            image_url="https://example.com/images/porterhouse_steak.jpg",
+            quantity=40,
+            ratings_count=100
+        ),
+        MenuItem(
+            restaurant_id=10,
+            name="Steak Frites",
+            like_percentage=90,
+            description="Sliced sirloin steak served with crispy French fries and a side of garlic aioli.",
+            price=21.99,
+            image_url="https://example.com/images/steak_frites.jpg",
+            quantity=120,
             ratings_count=95
         ),
         MenuItem(
             restaurant_id=10,
-            name="Penne Arrabbiata",
-            like_percentage=91,
-            description="Penne pasta served in a spicy tomato sauce with garlic, red chili peppers, and parsley.",
-            price=11.49,
-            image_url="https://example.com/images/penne_arrabbiata.jpg",
-            quantity=100,
-            ratings_count=70
+            name="Wagyu Steak",
+            like_percentage=99,
+            description="Exquisite Wagyu beef steak, known for its intense marbling and unmatched tenderness.",
+            price=49.99,
+            image_url="https://example.com/images/wagyu_steak.jpg",
+            quantity=30,
+            ratings_count=160
         ),
-        MenuItem(
-            restaurant_id=10,
-            name="Cannoli",
-            like_percentage=94,
-            description="Crispy pastry tubes filled with sweet ricotta cheese and chocolate chips, dusted with powdered sugar.",
-            price=5.99,
-            image_url="https://example.com/images/cannoli.jpg",
-            quantity=130,
-            ratings_count=85
-        ),
+
     ]
 
     db.session.bulk_save_objects(menu_items)
@@ -1026,5 +1028,3 @@ def seed_menu_items1():
 def undo_menu_items1():
     db.session.execute(f'TRUNCATE table {SCHEMA}.menu_items RESTART IDENTITY CASCADE;')
     db.session.commit()
-
-    
