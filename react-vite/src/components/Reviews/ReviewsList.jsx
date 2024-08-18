@@ -37,9 +37,13 @@ const ReviewsList = ({ restaurant }) => {
 	);
 
 	// Check if current user left a review for this restaurant already
-	const leftAReview = reviewsByRestaurantId.find(
-		(review) => review.user_id === sessionUser.id
-	);
+
+	let leftAReview;
+
+	if (sessionUser)
+		leftAReview = reviewsByRestaurantId.find(
+			(review) => review.user_id === sessionUser.id
+		);
 
 	return (
 		<>
