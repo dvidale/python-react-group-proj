@@ -34,7 +34,7 @@ export const RestaurantPage = () => {
 				<div className='res-page-structure'>
 					<RestaurantHeader restaurant={restaurant} />
 					<div className='res-page-info-structure'>
-						<div>
+						<div className='res-info-holder'>
 							<RestaurantInfoText
 								restaurant={restaurant}
 								city={city}

@@ -1,6 +1,8 @@
 .restaurant-page-header-review {
 	background-color: white;
 	border-radius: 12px;
+	border: solid 2px black;
+	width: 92%;
 }
 
 .res-header-title {

@@ -7,7 +7,8 @@
 .header-text {
 	padding: 1rem 2rem;
 	border: solid 2px black;
-	max-width: fit-content;
+	border-radius: 12px;
+	width: 92%;
 }
 
 .restaurant-page-header-review {
