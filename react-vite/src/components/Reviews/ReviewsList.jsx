@@ -69,7 +69,7 @@ const leftAReview = reviewsByRestaurantId.find((review )=> review.user_id === se
 									<OpenModalButton
 										id='delete-button'
 										buttonText='Delete'
-										modalComponent={<DeleteReview reviewId={review.id} />}
+										modalComponent={<DeleteReview reviewId={review.id} restaurantId={restaurant.id} />}
 									/>
 									<OpenModalButton
 										id='update-button'
