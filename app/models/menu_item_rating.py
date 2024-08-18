@@ -12,7 +12,7 @@ class MenuItemRating(db.Model):
     review_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('reviews.id')), nullable=False)
 
     menu_item = db.relationship('MenuItem', back_populates='reviews')
-    review = db.relationship('Review', back_populates='menu_items')
+    # review = db.relationship('Review', back_populates='menu_items')
 
 
     def to_dict(self):
