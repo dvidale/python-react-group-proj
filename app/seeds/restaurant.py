@@ -45,7 +45,7 @@ def seed_rest():
             phone_number="5553456789",
             email="info@pastaparadise.com",
             description="Authentic Italian pasta dishes made from the finest ingredients.",
-            banner_img="https://example.com/images/pasta_paradise_banner.jpg",
+            banner_img="https://res.cloudinary.com/dw0k7r34f/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1724016428/Italian_CoverPhoto_gkn5bu.jpg",
             avg_rating=4.9,
             day_of_week=3,
             open_time="10:00",
