@@ -11,11 +11,12 @@
 	gap: 0.5rem;
 	padding: 0.5rem;
 	background-color: black;
+	border: solid 2px var(--accent-clr);
 	z-index: 100;
 }
 
 .profile-text {
-	color: var(--accent-clr);
+	color: white;
 }
 
 .profile-text-btn {
