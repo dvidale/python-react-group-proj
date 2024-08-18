@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 
-import { delReview, fetchAllDBReviews } from "../../redux/reviews"
+import { delReview, fetchAllDBReviews, reviewSummary } from "../../redux/reviews"
 import { useModal } from "../../context/Modal";
 
 
-const DeleteReview = ({ reviewId }) => {
+const DeleteReview = ({ reviewId, restaurantId }) => {
   const { closeModal } = useModal();
   
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const DeleteReview = ({ reviewId }) => {
       dispatch(delReview(reviewId))
       .then(closeModal)
       .then(() => dispatch(fetchAllDBReviews()))
+      .then(()=> dispatch(reviewSummary(restaurantId)));
   };
 
   return (
