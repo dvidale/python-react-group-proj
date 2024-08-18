@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchAddMenuItem } from '../../redux/menuItems';
 import { useModal } from '../../context/Modal';
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './AddMenuItem.css'; // Import the CSS file
 
@@ -14,22 +14,43 @@ const AddMenuItemForm = () => {
 	const [description, setDescription] = useState('');
 	const [imageUrl, setImageUrl] = useState('');
 	const [quantity, setQuantity] = useState('');
+	const [errors, setErrors] = useState({});
+
+	const validateForm = () => {
+		const newErrors = {};
+		if (!name) newErrors.name = 'Name is required';
+		if (!price || price <= 0 || !Number.isInteger(Number(price)))
+			newErrors.price = 'Price must be a positive integer';
+		if (!description) newErrors.description = 'Description is required';
+		if (!imageUrl) newErrors.imageUrl = 'Image URL is required';
+		if (!quantity || quantity <= 0 || !Number.isInteger(Number(quantity)))
+			newErrors.quantity = 'Quantity must be a positive integer';
+		return newErrors;
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const menuItemData = {
-			name,
-			like_percentage: 0,
-			price: parseFloat(price),
-			image_url: imageUrl,
-			description,
-			quantity: parseInt(quantity),
-		};
+		// Validate the form and get errors
+		const validationErrors = validateForm();
+		console.log('Validation Errors:', validationErrors); // Debugging
 
-		dispatch(fetchAddMenuItem(id, menuItemData)).then(() => {
-			closeModal();
-		});
+		if (Object.keys(validationErrors).length === 0) {
+			const menuItemData = {
+				name,
+				like_percentage: 0,
+				price: parseFloat(price),
+				image_url: imageUrl,
+				description,
+				quantity: parseInt(quantity),
+			};
+
+			dispatch(fetchAddMenuItem(id, menuItemData)).then(() => {
+				closeModal(); // Only close the modal if there are no errors
+			});
+		} else {
+			setErrors(validationErrors); // Update errors state
+		}
 	};
 
 	return (
@@ -44,9 +65,9 @@ const AddMenuItemForm = () => {
 					type='text'
 					value={name}
 					onChange={(e) => setName(e.target.value)}
-					required
 					placeholder='Double Cheese Burger, Pepperoni pizza...'
 				/>
+				{errors.name && <p className='error'>{errors.name}</p>}
 			</label>
 			<label>
 				Price:
@@ -54,18 +75,18 @@ const AddMenuItemForm = () => {
 					type='number'
 					value={price}
 					onChange={(e) => setPrice(e.target.value)}
-					required
 					placeholder='10'
 				/>
+				{errors.price && <p className='error'>{errors.price}</p>}
 			</label>
 			<label>
 				Description:
 				<textarea
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
-					required
 					placeholder='Describe your dish or item'
 				/>
+				{errors.description && <p className='error'>{errors.description}</p>}
 			</label>
 			<label>
 				Image URL:
@@ -73,9 +94,9 @@ const AddMenuItemForm = () => {
 					type='text'
 					value={imageUrl}
 					onChange={(e) => setImageUrl(e.target.value)}
-					required
 					placeholder='https://exampleurl.com'
 				/>
+				{errors.imageUrl && <p className='error'>{errors.imageUrl}</p>}
 			</label>
 			<label>
 				Quantity:
@@ -83,9 +104,9 @@ const AddMenuItemForm = () => {
 					type='number'
 					value={quantity}
 					onChange={(e) => setQuantity(e.target.value)}
-					required
 					placeholder='10'
 				/>
+				{errors.quantity && <p className='error'>{errors.quantity}</p>}
 			</label>
 			<button type='submit'>Add Menu Item</button>
 		</form>
