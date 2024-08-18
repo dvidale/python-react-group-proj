@@ -8,6 +8,7 @@ import { fetchAddCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
 import { useModal } from '../../context/Modal'; // Import the useModal hook
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'; // Ensure the path is correct
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
@@ -42,6 +43,15 @@ const MenuItemsList = () => {
 		dispatch(fetchDeleteMenuItem(menuItemId));
 	};
 
+	const handleDeleteConfirmation = (menuItemId) => {
+		setModalContent(
+			<DeleteConfirmationModal
+				onConfirm={() => handleDelete(menuItemId)}
+				onCancel={() => console.log('Delete canceled')}
+			/>
+		);
+	};
+
 	return (
 		<div className='menu-holder'>
 			<h2>The Menu</h2>
@@ -55,9 +65,9 @@ const MenuItemsList = () => {
 						{isOwner && (
 							<button
 								className='delete-btn'
-								onClick={() => handleDelete(item.id)}
+								onClick={() => handleDeleteConfirmation(item.id)}
 							>
-								delete
+								Delete
 							</button>
 						)}
 						<div className='menu-item-details'>

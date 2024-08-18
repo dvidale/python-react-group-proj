@@ -16,8 +16,9 @@ class MenuItem(db.Model):
     quantity = db.Column(db.Integer)
     ratings_count = db.Column(db.Integer)
 
-    reviews = db.relationship('MenuItemRating', back_populates='menu_item')
-    cart_items = db.relationship('CartItem', back_populates='menu_item',  cascade='all, delete-orphan')
+    # Updated relationship name
+    menu_item_ratings = db.relationship('MenuItemRating', back_populates='menu_item', cascade='all, delete-orphan')
+    cart_items = db.relationship('CartItem', back_populates='menu_item', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -42,5 +43,6 @@ class MenuItem(db.Model):
             'id': self.id,
             'ratings_count': self.ratings_count,
             'like_percentage': self.like_percentage,
-            'reviews': [review.to_dict_review() for review in self.reviews]
+            'reviews': [review.to_dict_review() for review in self.menu_item_ratings]
         }
+

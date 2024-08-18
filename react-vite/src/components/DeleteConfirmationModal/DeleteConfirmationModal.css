@@ -1,0 +1,82 @@
+/* DeleteConfirmationModal.css */
+
+/* Container for the modal */
+.delete-confirmation-modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+/* Background overlay */
+.delete-confirmation-modal-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: -1;
+}
+
+/* Modal content box */
+.delete-confirmation-modal-content {
+	position: relative;
+	width: 90%;
+	max-width: 500px;
+	background: white;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Header section */
+.delete-confirmation-modal-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.delete-confirmation-modal-header h2 {
+	margin: 0;
+}
+
+.delete-confirmation-modal-header .close-btn {
+	background: none;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/* Body section */
+.delete-confirmation-modal-body {
+	margin-bottom: 20px;
+}
+
+/* Footer section */
+.delete-confirmation-modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+.delete-confirmation-modal-footer button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.delete-confirmation-modal-footer .confirm-btn {
+	background: #d9534f;
+	color: white;
+}
+
+.delete-confirmation-modal-footer .cancel-btn {
+	background: #5bc0de;
+	color: white;
+}
