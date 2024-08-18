@@ -1,10 +1,13 @@
 .res-page-structure {
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
 }
 
 .res-page-info-structure {
 	display: flex;
+	border: solid 2px gray;
+	border-radius: 12px;
 }
 
 .restaurant-title {

@@ -2,7 +2,6 @@
 import './RestaurantHeader.css';
 import { useSelector } from 'react-redux';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
-import MainReview from '../Reviews/MainReview';
 
 function RestaurantHeader({ restaurant }) {
 	// Get the session user and saved location from Redux store
@@ -27,16 +26,6 @@ function RestaurantHeader({ restaurant }) {
 					style={bannerImgStyle}
 				>
 					<h1 className='restaurant-title'>{restaurant.name}</h1>
-				</div>
-				<div className='res-info-box-structure'></div>
-				<div className='header-text'>
-					<p>
-						{restaurant.avg_rating} • {restaurant.categories.join(' • ')}
-						<br />
-						{restaurant.address}
-						{city && state ? `${city}, ${state}` : ''}
-					</p>
-					<p>{restaurant.description}</p>
 				</div>
 			</div>
 		</>
