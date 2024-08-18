@@ -14,9 +14,13 @@
 	cursor: pointer;
 }
 
+.restaurant-tile:hover {
+	box-shadow: 2px 2px 5px gray;
+}
+
 .restaurant-image {
 	display: flex;
-	height: 100%;
+	height: auto;
 	width: 30%;
 	border: solid 2px red;
 	border-radius: 12px;

@@ -1,8 +1,8 @@
 .profile-dropdown {
 	position: absolute;
-	right: 5px;
-	top: 50px;
-	border: solid 3px gray;
+	right: 7px;
+	top: 48px;
+	width: 260px;
 	border-radius: 12px;
 	display: flex;
 	flex-direction: column;
@@ -10,8 +10,28 @@
 	justify-content: center;
 	gap: 0.5rem;
 	padding: 0.5rem;
+	background-color: black;
+	z-index: 100;
+}
+
+.profile-text {
+	color: var(--accent-clr);
+}
+
+.profile-text-btn {
+	padding: 0.3rem 2rem;
+	color: black;
+	font-family: var(--ff-headers);
+	border: solid 2px var(--accent-clr);
+	background-color: black;
+	color: white;
 	cursor: pointer;
-	background-color: gray;
+	transition: all 0.3s ease;
+}
+
+.profile-text-btn:hover {
+	color: black;
+	background-color: var(--accent-clr);
 }
 
 /* Navbar container */
@@ -20,13 +40,13 @@
 	top: 0;
 	left: 0;
 	width: 100%; /* Make the navbar span the full width of the page */
-	background-color: lightgrey; /* Set background color */
+	background-color: black; /* Set background color */
 	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
 	z-index: 1000; /* Ensure the navbar is above other elements */
 	display: flex;
 	justify-content: space-between; /* Adjusted from space-around to space-between */
 	align-items: center;
-	padding: 1rem 2rem; /* Add padding for spacing */
+	padding: 0.7rem 2rem; /* Add padding for spacing */
 	box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
@@ -34,7 +54,7 @@
 .logo {
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #333;
+	color: var(--accent-clr);
 	text-decoration: none;
 }
 
@@ -47,9 +67,11 @@
 
 /* Shopping cart and profile button styling (if any specific) */
 .nav-btn-holder > * {
-	color: #333;
+	padding: 0.2rem 1rem;
+	color: black;
 	text-decoration: none;
 	font-size: 1.2rem;
+	cursor: pointer;
 }
 
 /* Ensure no overlap with content */

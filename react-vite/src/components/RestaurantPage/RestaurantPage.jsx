@@ -13,10 +13,12 @@ export const RestaurantPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	let restaurant = useSelector((state) => state.restaurants.AllRestaurants[id]);
-
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
+
+	const restaurant = useSelector(
+		(state) => state.restaurants.AllRestaurants[id]
+	);
 
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
@@ -31,12 +33,15 @@ export const RestaurantPage = () => {
 		}
 	}, [sessionUser, navigate]);
 
+	if (!sessionUser) {
+		return null; // Prevent rendering if the user is logged out
+	}
+
 	return (
 		<>
 			{restaurant ? (
 				<>
 					<RestaurantHeader restaurant={restaurant} />
-
 					<MainReview restaurantId={id} />
 					<RestaurantInfoBox
 						restaurant={restaurant}
@@ -50,7 +55,7 @@ export const RestaurantPage = () => {
 					/>
 				</>
 			) : (
-				<></>
+				<p>Loading...</p> // Loading state or message while the restaurant data is being fetched
 			)}
 		</>
 	);

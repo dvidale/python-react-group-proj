@@ -9,12 +9,11 @@ function HomePage() {
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
 
-	const ownerFilter = (toggle) =>{
-        return toggle
+	const ownerFilter = (toggle) => {
+		return toggle;
+	};
 
-    }    
-
-	ownerFilter(false)
+	ownerFilter(false);
 	// Determine the city and state to be used
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
@@ -24,12 +23,14 @@ function HomePage() {
 			{city && state ? (
 				<>
 					<HomeDeliveryHeader />
-					<RestaurantCategories />
-					<hr />
-					<AllRestaurants
-						city={city}
-						state={state}
-					/>
+					<div>
+						<RestaurantCategories />
+						<hr />
+						<AllRestaurants
+							city={city}
+							state={state}
+						/>
+					</div>
 				</>
 			) : (
 				<>

@@ -60,10 +60,10 @@ function AllRestaurants({ city, state }) {
 						<p>{restaurant.categories.join(' • ')}</p>
 						<p>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (
-							<div className='restaurant-address'>
+							<p className='restaurant-address'>
 								{restaurant.address}, {city || restaurant.city},{' '}
 								{state || restaurant.state}
-							</div>
+							</p>
 						) : null}
 					</div>
 				</div>

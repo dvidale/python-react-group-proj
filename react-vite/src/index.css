@@ -63,6 +63,7 @@ a {
 li {
 	list-style: none;
 	font-family: var(--ff-primary);
+	color: var(--accent-clr);
 }
 
 button {
