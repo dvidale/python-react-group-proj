@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import MenuItemsList from '../MenuItemsList/MenuItemsList';
 import RestaurantHeader from '../RestaurantHeader';
 import MainReview from '../Reviews/MainReview';
@@ -11,12 +11,13 @@ import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 export const RestaurantPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	let restaurant = useSelector((state) => state.restaurants.AllRestaurants[id]);
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
+
+	const restaurant = useSelector(
+		(state) => state.restaurants.AllRestaurants[id]
+	);
 
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
@@ -25,18 +26,13 @@ export const RestaurantPage = () => {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
-	useEffect(() => {
-		if (!sessionUser) {
-			navigate('/'); // Redirect to the homepage
-		}
-	}, [sessionUser, navigate]);
+
 
 	return (
 		<>
 			{restaurant ? (
 				<>
 					<RestaurantHeader restaurant={restaurant} />
-
 					<MainReview restaurantId={id} />
 					<RestaurantInfoBox
 						restaurant={restaurant}
@@ -46,11 +42,10 @@ export const RestaurantPage = () => {
 					<MenuItemsList id={id} />
 					<ReviewsList
 						restaurant={restaurant}
-						id={id}
 					/>
 				</>
 			) : (
-				<></>
+				<p>Loading...</p> // Loading state or message while the restaurant data is being fetched
 			)}
 		</>
 	);
