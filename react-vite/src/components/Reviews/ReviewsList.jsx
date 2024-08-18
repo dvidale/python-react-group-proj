@@ -32,13 +32,19 @@ const ReviewsList = ({restaurant}) => {
 		return stars;
 	};
 
+	
+
+
 	const reviewsByRestaurantId = reviewList.filter((review)=> review.restaurant_id === restaurant.id )
+
+// Check if current user left a review for this restaurant already
+const leftAReview = reviewsByRestaurantId.find((review )=> review.user_id === sessionUser.id )
 
 	return (
 
 		<>
 			<h2>Rating and Reviews</h2>
-			{sessionUser && sessionUser.id !== restaurant.owner_id &&
+			{sessionUser && sessionUser.id !== restaurant.owner_id && !leftAReview &&
 			<OpenModalButton id='create-review-button' 
 			buttonText='Leave a review'
 			modalComponent={<CreateReview id={restaurant.id}/>} />
