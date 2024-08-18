@@ -107,7 +107,7 @@ export const reviewSummary = (restaurantId) => async (dispatch) => {
         dispatch(setReviewSummary(data))
         return data;
     }
-};  
+};  	
 
 //CREATE REVIEW
 export const postReview = (newReview, restaurantId) => async (dispatch) => {
