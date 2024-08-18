@@ -187,7 +187,7 @@ const reviewsListReducer = (state = initialState, action) => {
 		case DELETE_REVIEW:{
 			const newState = {...state}
 			// target the review to be deleted
-			state.allReviews.forEach
+			delete state.allReviews.find((review )=> review.id === action.payload)
 			return newState;
 		}
 		default:
