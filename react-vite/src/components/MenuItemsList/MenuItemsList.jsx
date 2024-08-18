@@ -31,11 +31,15 @@ const MenuItemsList = () => {
 
 	const handleAddToCart = (menuItemId) => {
 		if (!currentUser) {
-			// Open the login modal if the user is not logged in
 			setModalContent(<LoginFormModal />);
 		} else {
-			// If the user is logged in, proceed with adding the item to the cart
-			dispatch(fetchAddCartItem(menuItemId));
+			dispatch(fetchAddCartItem(menuItemId))
+				.then(() => {
+					console.log('Item added to cart');
+				})
+				.catch((error) => {
+					console.error('Failed to add item to cart:', error);
+				});
 		}
 	};
 
