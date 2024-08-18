@@ -6,7 +6,7 @@ import {
 	addCartItem,
 	clearCartItems,
 } from '../../redux/shoppingCart';
-import CreateReview from '../Reviews/CreateReview';
+import ThankYouModal from '../ThankYouModal/ThankYouModal';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
@@ -28,10 +28,9 @@ const ShoppingCartModal = () => {
 				'Your cart is empty. Please add items to your cart before purchasing.'
 			);
 		} else {
-			alert('Purchase feature in development');
+			// Show the "Thank You" modal after the purchase
+			setModalContent(<ThankYouModal />);
 			dispatch(clearCartItems()); // Clear the cart after purchase
-			// Open the review modal
-			setModalContent(<CreateReview id={shoppingCart[0].restaurant_id} />);
 		}
 	};
 
@@ -64,7 +63,9 @@ const ShoppingCartModal = () => {
 									<p className='quantity'>{item.item_quantity}</p>{' '}
 									<div className='quantity-btns'>
 										<button onClick={() => handleAddToCart(item)}>+</button>
-										<button onClick={() => handleRemoveItem(item.id)}>-</button>
+										<button onClick={() => handleRemoveItem(item.id)}>
+											Delete
+										</button>
 									</div>
 								</div>
 							</div>
