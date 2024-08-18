@@ -96,7 +96,8 @@ export const fetchDeleteMenuItem = (id) => async (dispatch) => {
 		});
 
 		if (response.ok) {
-			dispatch(deleteMenuItem(id)); // Dispatch the id directly
+			console.log('Delete successful:', id);
+			dispatch(deleteMenuItem(id));
 		} else {
 			const errorData = await response.json();
 			console.error('Error deleting menu item:', errorData);
