@@ -1,3 +1,4 @@
+const GET_ALL_DB_REVIEWS = '/reviews/GET_ALL_DB_REVIEWS'
 const GET_ALL_REVIEWS = 'reviewsList/GET_ALL_REVIEWS';
 const GET_REVIEW_SUMMARY = 'reviewsList/GET_REVIEW_SUMMARY'
 const CREATE_REVIEW = 'reviewsList/CREATE_REVIEW';
@@ -6,6 +7,13 @@ const EDIT_REVIEW = 'reviewsList/EDIT_REVIEW';
 const SINGLE_REVIEW = 'reviewsList/SINGLE_REVIEW';
 
 //-------------------- ACTIONS --------------------//
+
+export const getAllDBReviews = (data)=> {
+	return{
+		type: GET_ALL_DB_REVIEWS,
+		payload: data
+	}
+}
 
 export const getAllReviews = (data) => {
 	return {
@@ -50,6 +58,21 @@ export const deleteReview = (reviewId) => {
 };
 
 //-------------------- THUNKS --------------------//
+
+// LOAD ALL DB REVIEWS
+
+export const fetchAllDBReviews = () => async (dispatch) =>
+{
+	const response = await fetch('/api/reviews');
+
+	if(response.ok){
+		const data = await response.json();
+		dispatch(getAllDBReviews(data))
+
+	}
+}
+
+
 
 //GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 export const fetchReviews = (restaurantId) => async (dispatch) => {
@@ -131,6 +154,7 @@ export const delReview = (reviewId) => async (dispatch) => {
 //-------------------- REDUCER --------------------//
 
 const initialState = {
+	allReviews: [],
 	reviewsListArr: [],
 	singleReview: {},
     reviewSummary: {},
@@ -140,6 +164,8 @@ const initialState = {
 
 const reviewsListReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case GET_ALL_DB_REVIEWS:
+			return{...state, allReviews: action.payload}
 		case GET_ALL_REVIEWS:
 			return { ...state, reviewsListArr: action.payload };
 		case SINGLE_REVIEW:
@@ -158,13 +184,12 @@ const reviewsListReducer = (state = initialState, action) => {
 					review.id === action.payload.id ? action.payload : review
 				),
 			};
-		case DELETE_REVIEW:
-			return {
-				...state,
-				reviewsListArr: state.reviewsListArr.filter(
-					(review) => review.id !== action.payload
-				),
-			};
+		case DELETE_REVIEW:{
+			const newState = {...state}
+			// target the review to be deleted
+			state.allReviews.forEach
+			return newState;
+		}
 		default:
 			return state;
 	}

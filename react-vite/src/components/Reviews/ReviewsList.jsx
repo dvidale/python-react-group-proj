@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReviews } from '../../redux/reviews';
-import { useParams } from 'react-router-dom';
+import { fetchAllDBReviews } from '../../redux/reviews';
+// import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
@@ -10,13 +10,13 @@ import { FaRegStar } from 'react-icons/fa';
 
 const ReviewsList = ({restaurant}) => {
 	const dispatch = useDispatch();
-	const { id } = useParams();
-	const reviewList = useSelector((state) => state.reviewsList.reviewsListArr);
+	// const { id } = useParams();
+	const reviewList = useSelector((state) => state.reviewsList.allReviews);
 	const sessionUser = useSelector((state) => state.session.user);
 
 	useEffect(() => {
-		dispatch(fetchReviews(id));
-	}, [dispatch, id]);
+		dispatch(fetchAllDBReviews());
+	}, [dispatch]);
 
 	// Function to render stars based on rating
 	const renderStars = (rating) => {
@@ -31,15 +31,17 @@ const ReviewsList = ({restaurant}) => {
 		return stars;
 	};
 
+	const reviewsByRestaurantId = reviewList.filter((review)=> review.restaurant_id === restaurant.id )
+
 	return (
 
 		<>
 			<h2>Rating and Reviews</h2>
-		{reviewList.length > 0 ? ( <>
+		{reviewsByRestaurantId.length > 0 ? ( <>
 		<div>
 		
 			<div>
-				{reviewList
+				{reviewsByRestaurantId
 					.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
 					.map((review) => (
 						<div key={review.id}>
@@ -73,7 +75,7 @@ const ReviewsList = ({restaurant}) => {
 		<p>No reviews yet!</p>
 		{/* If the user is logged in and not the owner, call to action to place an order to leave a review */}
 		{sessionUser && restaurant.owner_id !== sessionUser.id &&
-		<p> Be the first to place an order and you can leave a review!</p> }
+		<p> Be the first to leave a review!</p> }
 		</>) }
 		</>
 	);
