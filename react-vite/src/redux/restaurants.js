@@ -185,7 +185,6 @@ const restaurantsReducer = (state = initialState, action) => {
 			return newState;
 		}
 		case DELETE_RESTAURANT: {
-			// !untested before merge
 			const newState = { ...state };
 			const id = action.payload;
 			delete newState.AllRestaurants[id];

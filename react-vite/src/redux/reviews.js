@@ -184,13 +184,12 @@ const reviewsListReducer = (state = initialState, action) => {
 					review.id === action.payload.id ? action.payload : review
 				),
 			};
-		case DELETE_REVIEW:
-			return {
-				...state,
-				reviewsListArr: state.reviewsListArr.filter(
-					(review) => review.id !== action.payload
-				),
-			};
+		case DELETE_REVIEW:{
+			const newState = {...state}
+			// target the review to be deleted
+			state.allReviews.forEach
+			return newState;
+		}
 		default:
 			return state;
 	}

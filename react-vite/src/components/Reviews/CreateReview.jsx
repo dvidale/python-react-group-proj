@@ -17,9 +17,9 @@ const CreateReview = ({id}) => {
     useEffect(() => {
         let errors = {};
         if (rating < 1) errors.rating = "Stars can't be empty";
-        if (comments.length < 20) errors.comments = "Review must be at least 20 characters long";
+        // if (comments.length < 20) errors.comments = "Review must be at least 20 characters long";
         setErrors(errors);
-    }, [comments.length, rating]);
+    }, [rating]);
 
     const handleMouseEnter = (stars) => {
         setHoveredStars(stars);
