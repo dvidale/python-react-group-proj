@@ -64,13 +64,6 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
 
-        existing_cart = ShoppingCart.query.filter_by(user_id=user.id).first()
-        print(f"Existing cart: {existing_cart}")
-        if not existing_cart:
-            shopping_cart = ShoppingCart(user_id=user.id)
-            db.session.add(shopping_cart)
-            db.session.commit()
-
         login_user(user)
         return user.to_dict()
     return form.errors, 401
