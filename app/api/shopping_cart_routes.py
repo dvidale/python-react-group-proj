@@ -7,17 +7,25 @@ shopping_cart_routes = Blueprint('shopping_cart', __name__)
 # ? ------------------------- GET ALL CART ITEMS
 @shopping_cart_routes.route('/current', methods=['GET'])
 def get_current_shopping_cart():
-    shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).first()
-    
-    if not shopping_cart:
-        return []  # Return an empty list if no shopping cart exists
+    # Ensure you are using 'current_user' to get the ID
+    user_id = current_user.id
 
+    # Fetch the user's shopping cart
+    shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
+    
+    # If the shopping cart does not exist, create one
+    if not shopping_cart:
+        shopping_cart = ShoppingCart(user_id=user_id)
+        db.session.add(shopping_cart)
+        db.session.commit()
+
+    # Fetch cart items for the existing or newly created shopping cart
     cart_items = CartItem.query.filter_by(shopping_cart_id=shopping_cart.id).all()
     
     # Use the to_dict method for each cart item
     cart_items_data = [item.to_dict() for item in cart_items]
     
-    return cart_items_data
+    return {'cart_items': cart_items_data}, 200
 
 
 # ? -------------------------ADD CART ITEM
