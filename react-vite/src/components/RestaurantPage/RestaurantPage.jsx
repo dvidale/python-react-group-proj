@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import MenuItemsList from '../MenuItemsList/MenuItemsList';
 import RestaurantHeader from '../RestaurantHeader';
 import MainReview from '../Reviews/MainReview';
@@ -11,7 +11,7 @@ import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 export const RestaurantPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -27,15 +27,6 @@ export const RestaurantPage = () => {
 		dispatch(restaurantsActions.getRestaurants());
 	}, [dispatch]);
 
-	useEffect(() => {
-		if (!sessionUser) {
-			navigate('/'); // Redirect to the homepage
-		}
-	}, [sessionUser, navigate]);
-
-	if (!sessionUser) {
-		return null; // Prevent rendering if the user is logged out
-	}
 
 	return (
 		<>
@@ -51,7 +42,7 @@ export const RestaurantPage = () => {
 					<MenuItemsList id={id} />
 					<ReviewsList
 						restaurant={restaurant}
-						id={id}
+					
 					/>
 				</>
 			) : (

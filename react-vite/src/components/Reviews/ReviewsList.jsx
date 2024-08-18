@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDBReviews } from '../../redux/reviews';
-// import { useParams } from 'react-router-dom';
+
 import OpenModalButton from '../OpenModalButton';
 import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
@@ -11,7 +11,7 @@ import CreateReview from './CreateReview';
 
 const ReviewsList = ({restaurant}) => {
 	const dispatch = useDispatch();
-	// const { id } = useParams();
+
 	const reviewList = useSelector((state) => state.reviewsList.allReviews);
 	const sessionUser = useSelector((state) => state.session.user);
 
@@ -38,7 +38,12 @@ const ReviewsList = ({restaurant}) => {
 	const reviewsByRestaurantId = reviewList.filter((review)=> review.restaurant_id === restaurant.id )
 
 // Check if current user left a review for this restaurant already
-const leftAReview = reviewsByRestaurantId.find((review )=> review.user_id === sessionUser.id )
+let leftAReview
+if(sessionUser){
+	leftAReview = reviewsByRestaurantId.find((review )=> review.user_id === sessionUser.id )
+
+}
+
 
 	return (
 
