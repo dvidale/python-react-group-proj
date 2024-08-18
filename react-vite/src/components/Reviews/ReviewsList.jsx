@@ -7,6 +7,7 @@ import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
+import CreateReview from './CreateReview';
 
 const ReviewsList = ({restaurant}) => {
 	const dispatch = useDispatch();
@@ -37,6 +38,12 @@ const ReviewsList = ({restaurant}) => {
 
 		<>
 			<h2>Rating and Reviews</h2>
+			{sessionUser && sessionUser.id !== restaurant.owner_id &&
+			<OpenModalButton id='create-review-button' 
+			buttonText='Leave a review'
+			modalComponent={<CreateReview id={restaurant.id}/>} />
+			}
+			
 		{reviewsByRestaurantId.length > 0 ? ( <>
 		<div>
 		
