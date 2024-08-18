@@ -7,6 +7,7 @@ import ReviewsList from '../Reviews/ReviewsList';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
+import './restaurant_page.css';
 
 export const RestaurantPage = () => {
 	const { id } = useParams();
@@ -40,20 +41,22 @@ export const RestaurantPage = () => {
 	return (
 		<>
 			{restaurant ? (
-				<>
+				<div className='res-page-structure'>
 					<RestaurantHeader restaurant={restaurant} />
-					<MainReview restaurantId={id} />
-					<RestaurantInfoBox
-						restaurant={restaurant}
-						city={city}
-						state={state}
-					/>
+					<div className='res-page-info-structure'>
+						{/* <MainReview restaurantId={id} /> */}
+						{/* <RestaurantInfoBox
+							restaurant={restaurant}
+							city={city}
+							state={state}
+						/> */}
+					</div>
 					<MenuItemsList id={id} />
 					<ReviewsList
 						restaurant={restaurant}
 						id={id}
 					/>
-				</>
+				</div>
 			) : (
 				<p>Loading...</p> // Loading state or message while the restaurant data is being fetched
 			)}

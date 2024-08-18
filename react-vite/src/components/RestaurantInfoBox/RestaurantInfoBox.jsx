@@ -11,16 +11,17 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 					</p>
 				</div>
 				<div className='res-address'>
-					{restaurant.address}
-					<br />
-					{city && state ? `${city}, ${state}` : ''}
+					<p>
+						{restaurant.address} {city && state ? `${city}, ${state}` : ''}
+					</p>
 				</div>
 				<div className='res-schedule'>
-					Sun - Sat
+					<p>Sun - Sat</p>
 					<br />
-					Open: {restaurant.open_time}
+
+					<p>Open: {restaurant.open_time}</p>
 					<br />
-					Close: {restaurant.close_time}
+					<p>Close: {restaurant.close_time}</p>
 				</div>
 			</div>
 		</>

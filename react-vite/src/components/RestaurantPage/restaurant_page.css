@@ -1,3 +1,13 @@
+.res-page-structure {
+	display: flex;
+	flex-direction: column;
+}
+
+.res-page-info-structure {
+	display: flex;
+}
+
 .restaurant-title {
+	padding: 0 0 0 1rem;
 	margin-top: 110px;
 }
