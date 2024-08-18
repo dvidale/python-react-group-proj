@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { FaThumbsUp } from 'react-icons/fa';
 import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
-import { fetchAddCartItem } from '../../redux/shoppingCart';
+import { addCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
 import { useModal } from '../../context/Modal'; // Import the useModal hook
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
@@ -29,13 +29,11 @@ const MenuItemsList = () => {
 
 	const isOwner = currentUser && currentUser.id === restaurant.owner_id;
 
-	const handleAddToCart = (menuItemId) => {
+	const handleAddToCart = (menuItem) => {
 		if (!currentUser) {
-			// Open the login modal if the user is not logged in
 			setModalContent(<LoginFormModal />);
 		} else {
-			// If the user is logged in, proceed with adding the item to the cart
-			dispatch(fetchAddCartItem(menuItemId));
+			dispatch(addCartItem(menuItem));
 		}
 	};
 
@@ -90,7 +88,7 @@ const MenuItemsList = () => {
 							/>
 							<button
 								className='add-to-cart-btn'
-								onClick={() => handleAddToCart(item.id)}
+								onClick={() => handleAddToCart(item)}
 							>
 								+
 							</button>

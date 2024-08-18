@@ -1,20 +1,14 @@
-
-.restaurant-info{
-    border: 2px gray dotted;
+.location-call-out-form {
+	border: 2px greenyellow solid;
 }
 
-.location-call-out-form{
-    border: 2px greenyellow solid;
+.banner-img-container {
+	display: flexbox;
+	border: 1px gray solid;
+
+	background-size: cover;
 }
 
-.banner-img-container{
-    display: flexbox;
-    border:1px gray solid;
-
-    background-size: cover;
-}
-
-.restaurant-title{
-margin-top: 110px;
-
+.restaurant-title {
+	margin-top: 110px;
 }
