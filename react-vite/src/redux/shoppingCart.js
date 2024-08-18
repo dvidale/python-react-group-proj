@@ -125,18 +125,13 @@ export const fetchAddCartItem = (menuItemId) => async (dispatch, getState) => {
 
 // !---------------------------------REDUCER
 const initialState = {
-	cart_user_id: {},
 	items: [],
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_CART_ITEMS:
-			return {
-				...state,
-				items: action.payload,
-				cart_user_id: action.payload.user_id,
-			};
+			return { ...state, items: action.payload.cart_items };
 		case REMOVE_CART_ITEM:
 			return {
 				...state,
