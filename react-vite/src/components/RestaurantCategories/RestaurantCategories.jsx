@@ -25,7 +25,7 @@ function RestaurantCategories() {
 
 	return (
 		<div className='category-section'>
-			<h2>Explore by Category</h2>
+			<h2 className='category-title'>Explore by Category</h2>
 			{categories && categories.length > 0 && (
 				<div className='category-wrapper'>
 					{categories.map((category) => (
@@ -40,7 +40,7 @@ function RestaurantCategories() {
 								alt={category.categ_name}
 								src={category.img_url}
 							/>
-							<p>{category.categ_name}</p>
+							<p className='cat-text'>{category.categ_name}</p>
 						</div>
 					))}
 					<div
@@ -49,7 +49,7 @@ function RestaurantCategories() {
 						}`}
 						onClick={() => dispatch(setSelectedCategory(null))}
 					>
-						<p>All Categories</p>
+						<p className='cat-text'>All Categories</p>
 					</div>
 				</div>
 			)}

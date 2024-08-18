@@ -56,11 +56,18 @@ function ProfileButton() {
 				>
 					{user ? (
 						<>
-							<li>{user.username}</li>
-							<li>{user.email}</li>
-							<li onClick={() => handleRedirect()}>Your Restaurants</li>
+							<li className='profile-text'>{user.username}</li>
+							<li className='profile-text'>{user.email}</li>
+							<li onClick={() => handleRedirect()}>
+								<button className='profile-text-btn'>Your Restaurants</button>
+							</li>
 							<li>
-								<button onClick={logout}>Log Out</button>
+								<button
+									className='profile-text-btn'
+									onClick={logout}
+								>
+									Log Out
+								</button>
 							</li>
 						</>
 					) : (
