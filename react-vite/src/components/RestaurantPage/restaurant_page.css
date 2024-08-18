@@ -1,14 +1,24 @@
-.location-call-out-form {
-	border: 2px greenyellow solid;
+.res-page-structure {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
 }
 
-.banner-img-container {
-	display: flexbox;
-	border: 1px gray solid;
+.res-page-info-structure {
+	display: flex;
+	/* border: solid 2px gray; */
+	border-radius: 12px;
+}
 
-	background-size: cover;
+.res-info-holder {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	height: 100%;
+	width: 100%;
 }
 
 .restaurant-title {
+	padding: 0 0 0 1rem;
 	margin-top: 110px;
 }

@@ -2,12 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import './all_restaurants.css';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 
 function AllRestaurants({ city, state }) {
 	const dispatch = useDispatch();
-const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	// Fetch user session
 
@@ -17,8 +16,6 @@ const navigate = useNavigate()
 	const selectedCategory = useSelector(
 		(state) => state.restaurants.selectedCategory
 	);
-
-
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
@@ -31,8 +28,6 @@ const navigate = useNavigate()
 			restaurant.categories.includes(selectedCategory)
 		);
 	}
-
-
 
 	return (
 		<div className='restaurant-list'>
@@ -47,7 +42,7 @@ const navigate = useNavigate()
 						alt={restaurant.name}
 						className='restaurant-image'
 					/>
-					<div className='restaurant-info'>
+					<div className='restaurant-info-text'>
 						<h2>{restaurant.name}</h2>
 						<p>{restaurant.avg_rating}</p>
 						<p>{restaurant.categories.join(' • ')}</p>
