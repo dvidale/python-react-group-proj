@@ -6,6 +6,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { useNavigate } from 'react-router-dom';
+import { clearCartItems } from '../../redux/shoppingCart';
 
 function ProfileButton() {
 	const navigate = useNavigate();
@@ -37,6 +38,7 @@ function ProfileButton() {
 
 	const logout = (e) => {
 		e.preventDefault();
+		dispatch(clearCartItems());
 		dispatch(thunkLogout());
 		closeMenu();
 	};

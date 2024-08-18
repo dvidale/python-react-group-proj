@@ -1,13 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './ShoppingCartModal.css';
-import { useEffect } from 'react';
 import {
-	fetchCartItems,
-	fetchRemoveCartItem,
-	fetchAddCartItem,
+	removeCartItem,
+	addCartItem,
 	clearCartItems,
-	resetCartItems,
 } from '../../redux/shoppingCart';
 import CreateReview from '../Reviews/CreateReview';
 
@@ -17,33 +14,22 @@ const ShoppingCartModal = () => {
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
 	const sessionUser = useSelector((state) => state.session.user);
 
-	useEffect(() => {
-		if (!sessionUser) {
-			dispatch(clearCartItems());
-		}
-		dispatch(fetchCartItems());
-	}, [dispatch, sessionUser]);
-
 	const handleAddToCart = (menuItemId) => {
-		dispatch(fetchAddCartItem(menuItemId)).then(() => {
-			dispatch(fetchCartItems());
-		});
+		dispatch(addCartItem(menuItemId));
 	};
 
 	const handleRemoveItem = (itemId) => {
-		dispatch(fetchRemoveCartItem(itemId)).then(() => {
-			dispatch(fetchCartItems());
-		});
+		dispatch(removeCartItem(itemId));
 	};
 
 	const handlePurchase = () => {
 		if (shoppingCart.length === 0) {
-			dispatch(resetCartItems());
 			alert(
 				'Your cart is empty. Please add items to your cart before purchasing.'
 			);
 		} else {
 			alert('Purchase feature in development');
+			dispatch(clearCartItems()); // Clear the cart after purchase
 			// Open the review modal
 			setModalContent(<CreateReview id={shoppingCart[0].restaurant_id} />);
 		}
@@ -77,9 +63,7 @@ const ShoppingCartModal = () => {
 								<div className='cart-quantity'>
 									<p className='quantity'>{item.item_quantity}</p>{' '}
 									<div className='quantity-btns'>
-										<button onClick={() => handleAddToCart(item.menu_item_id)}>
-											+
-										</button>
+										<button onClick={() => handleAddToCart(item)}>+</button>
 										<button onClick={() => handleRemoveItem(item.id)}>-</button>
 									</div>
 								</div>
