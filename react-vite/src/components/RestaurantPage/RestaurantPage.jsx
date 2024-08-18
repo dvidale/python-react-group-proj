@@ -32,6 +32,7 @@ export const RestaurantPage = () => {
 		<>
 			{restaurant ? (
 				<>
+					
 					<RestaurantHeader restaurant={restaurant} />
 					<MainReview restaurantId={id} />
 					<RestaurantInfoBox

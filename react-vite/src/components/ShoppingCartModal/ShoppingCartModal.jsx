@@ -15,7 +15,7 @@ const ShoppingCartModal = () => {
 	const sessionUser = useSelector((state) => state.session.user);
 
 	const handleAddToCart = (menuItemId) => {
-		dispatch(addCartItem(menuItemId));
+		dispatch(addCartItem(menuItemId))
 	};
 
 	const handleRemoveItem = (itemId) => {
