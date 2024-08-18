@@ -10,4 +10,4 @@ __pycache__
 .docker
 .devcontainer
 README.CONTAINER.md
-instance/dev.db
+.instance/dev.db
