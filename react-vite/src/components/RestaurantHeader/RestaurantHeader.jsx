@@ -1,7 +1,6 @@
 // import '../RestaurantPage/restaurant_page.css';
 import './RestaurantHeader.css';
 import { useSelector } from 'react-redux';
-import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 
 function RestaurantHeader({ restaurant }) {
 	// Get the session user and saved location from Redux store

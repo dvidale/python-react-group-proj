@@ -26,7 +26,7 @@
 	border-radius: 12px;
 }
 
-.restaurant-info {
+.restaurant-info-text {
 	display: flex;
 	flex-direction: column;
 	width: 70%;
@@ -35,7 +35,7 @@
 	background-color: white;
 }
 
-.restaurant-info h2 {
+.restaurant-info-text h2 {
 	font-size: var(--fs-small);
 }
 

@@ -16,14 +16,12 @@
 	border-radius: 12px;
 }
 
-.delivery-fee p {
+.delivery-fee-text {
 	color: var(--accent-clr);
-	opacity: 1;
 }
 
-.res-address p {
+.delivery-fee-text-p {
 	color: white;
-	opacity: 1;
 }
 
 .res-schedule {
