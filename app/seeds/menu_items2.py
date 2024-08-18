@@ -271,6 +271,26 @@ def seed_menu_items2():
         ),
         MenuItem(
             restaurant_id=13,
+            name="Kleftiko",
+            like_percentage=91,
+            description="Slow-cooked lamb marinated in garlic, lemon, and herbs, wrapped in parchment paper for a tender, flavorful dish.",
+            price=16.99,
+            image_url="https://example.com/images/kleftiko.jpg",
+            quantity=110,
+            ratings_count=88
+        ),
+        MenuItem(
+            restaurant_id=13,
+            name="Pastitsio",
+            like_percentage=93,
+            description="Baked pasta dish with layers of pasta, spiced ground meat, and béchamel sauce, topped with cheese and baked until golden.",
+            price=13.49,
+            image_url="https://example.com/images/pastitsio.jpg",
+            quantity=125,
+            ratings_count=95
+        ),
+        MenuItem(
+            restaurant_id=13,
             name="Retsina",
             like_percentage=92,
             description="Traditional Greek white wine flavored with pine resin, offering a unique and refreshing taste.",
@@ -311,6 +331,16 @@ def seed_menu_items2():
             image_url="https://example.com/images/beef_and_broccoli.jpg",
             quantity=110,
             ratings_count=80
+        ),
+        MenuItem(
+            restaurant_id=14,
+            name="General Tso's Chicken",
+            like_percentage=95,
+            description="Crispy fried chicken pieces coated in a sweet and spicy sauce, garnished with steamed broccoli.",
+            price=13.49,
+            image_url="https://example.com/images/general_tsos_chicken.jpg",
+            quantity=115,
+            ratings_count=90
         ),
         MenuItem(
             restaurant_id=14,
