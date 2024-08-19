@@ -24,7 +24,6 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 1rem;
-	border: solid gray 2px;
 	padding: 0.3rem;
 	border-radius: 12px;
 	gap: 0.5rem;
@@ -95,6 +94,7 @@
 	background-color: black;
 	max-width: fit-content;
 	padding: 1rem;
+	transition: all ease-in-out 0.2s;
 }
 
 .shop-purchase-btn:hover {
@@ -105,7 +105,10 @@
 .close-shop-btn {
 	border-radius: 4px;
 	background-color: #ff4d4d;
+	color: white;
 	height: 20px;
+	border: none;
+	transition: all ease-in-out 0.2s;
 }
 
 .close-shop-btn:hover {

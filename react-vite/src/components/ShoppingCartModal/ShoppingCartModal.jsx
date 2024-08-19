@@ -14,6 +14,11 @@ const ShoppingCartModal = () => {
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
 	const sessionUser = useSelector((state) => state.session.user);
 
+	// Calculate the total price
+	const totalPrice = shoppingCart.reduce((total, item) => {
+		return total + item.price * item.item_quantity;
+	}, 0);
+
 	const handleAddToCart = (menuItemId) => {
 		dispatch(addCartItem(menuItemId));
 	};
@@ -83,12 +88,16 @@ const ShoppingCartModal = () => {
 								</div>
 							</div>
 						))}
+						<hr />
+					</div>
+					<div className='total-price'>
+						<h3>Total: ${totalPrice.toFixed(2)}</h3> {/* Display total price */}
 					</div>
 				</>
 			) : (
 				<p>Your cart is empty.</p>
 			)}
-			{sessionUser && (
+			{sessionUser && shoppingCart.length > 0 && (
 				<button
 					className='shop-purchase-btn'
 					onClick={handlePurchase}
