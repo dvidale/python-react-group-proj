@@ -34,6 +34,7 @@
 .category-structure img {
 	height: 100%;
 	min-width: 50px;
+	object-fit: cover;
 }
 
 .cat-text {
