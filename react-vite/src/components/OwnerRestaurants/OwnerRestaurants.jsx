@@ -49,7 +49,7 @@ function OwnerRestaurants({ city, state }) {
 						onClick={() => navigate(`/restaurants/${restaurant.id}`)}
 					>
 						<h2 className='owner-rest-name'>{restaurant.name}</h2>
-						<p>{restaurant.average_rating.toFixed(1)}</p>
+						<p>{restaurant.average_rating.toFixed(1) > 0.0 ? restaurant.average_rating.toFixed(1) : "New"}</p>
 						<p>{restaurant.categories.join(' • ')}</p>
 						<p>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (

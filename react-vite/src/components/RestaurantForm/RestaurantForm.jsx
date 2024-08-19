@@ -171,13 +171,13 @@ const submitHandler = (e) =>{
             }
             
             <div>
-            <label htmlFor='phone'> 
+            <label htmlFor='phone'> <h3>Phone</h3>
             <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={12} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 123-456-7890
             </label> 
             </div>
 
             <div>
-            <label htmlFor='description'> 
+            <label htmlFor='description'> <h3>Description</h3>
             <textarea id='description'name='description' value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
             </div>
@@ -322,7 +322,7 @@ const submitHandler = (e) =>{
            
            <div className='res-form-submit-btn'>
 
-            <button className='res-page-man-btn' type="submit" disabled={Object.keys(error).length > 0}>Submit Your Restaurant</button>
+            <button className='res-page-man-btn' type="submit" disabled={Object.keys(error).length > 0}>{!restaurant ? `Submit` : `Update`} Your Restaurant</button>
            </div>
             
            

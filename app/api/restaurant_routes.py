@@ -282,7 +282,7 @@ def total_number_of_reviews(id):
 
     reviews = Review.query.filter_by(restaurant_id=id).all()
     restaurant = Restaurant.query.get(id)
-
+    print(">>>>>> restaurant in total-reviews route", restaurant)
     if not reviews:
         return {"Error": "No reviews found for this restaurant"}, 404
 

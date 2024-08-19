@@ -51,7 +51,7 @@ const MainReview = ({ restaurantId }) => {
 						<div className='header-review-structure'>
 							<div className='header-stars'>
 								<h3 className='res-header-title'>
-									{ratingSummary.average_rating.toFixed(1)}
+									{ratingSummary.average_rating.toFixed(1) > 0.0 ? ratingSummary.average_rating.toFixed(1) : "New"}
 								</h3>
 								<div>
 									{/* Render full stars */}
