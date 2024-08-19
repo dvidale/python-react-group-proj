@@ -18,7 +18,7 @@ export const RestaurantPage = () => {
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
-
+	
 	const restaurant = useSelector(
 		(state) => state.restaurants.AllRestaurants[id]
 	);
