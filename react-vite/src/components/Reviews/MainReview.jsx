@@ -4,24 +4,27 @@ import { fetchReviews, reviewSummary } from '../../redux/reviews';
 import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
 import './reviews.css';
 
-const MainReview = ({ restaurantId }) => {
+const MainReview = () => {
 	const dispatch = useDispatch();
 	const ratingSummary = useSelector((state) => state.reviewsList.reviewSummary);
+	const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
+	console.log('this is the ID', id);
 	// const mostRecentReviews = useSelector((state) => state.reviewsList.reviewsListArr)
 
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {
-		dispatch(reviewSummary(restaurantId));
-		dispatch(fetchReviews(restaurantId));
-	}, [dispatch, restaurantId]);
-
+		if (id) {
+			dispatch(reviewSummary(id));
+			dispatch(fetchReviews(id));
+		}
+	}, [dispatch, id, ratingSummary.total_reviews]);
 	// Function to round the rating to the nearest 0.5 for rendering stars
 	const roundToHalf = (rating) => {
 		return Math.round(rating * 2) / 2;
 	};
 
 	// Check if there are reviews
-	const hasReviews = ratingSummary.total_reviews > 0;
+	const hasReviews = ratingSummary && ratingSummary.total_reviews > 0;
 
 	let roundedRating = 0;
 	let fullStars = 0;
@@ -45,13 +48,15 @@ const MainReview = ({ restaurantId }) => {
 	return (
 		<>
 			<div className='restaurant-page-header-review'>
-				<h2 className='res-header-title'>Ratings and Reviews</h2>
+				<h2 className='res-header-title'>Reviews</h2>
 				<div>
 					{hasReviews ? (
 						<div className='header-review-structure'>
 							<div className='header-stars'>
 								<h3 className='res-header-title'>
-									{ratingSummary.average_rating.toFixed(1) > 0.0 ? ratingSummary.average_rating.toFixed(1) : "New"}
+									{ratingSummary.average_rating.toFixed(1) > 0.0
+										? ratingSummary.average_rating.toFixed(1)
+										: 'New'}
 								</h3>
 								<div>
 									{/* Render full stars */}

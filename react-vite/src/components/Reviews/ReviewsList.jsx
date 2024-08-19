@@ -49,67 +49,64 @@ const ReviewsList = ({ restaurant }) => {
 
 	return (
 		<div className='review-list-wrapper'>
-			<h2 className='review-list-header'>Rating and Reviews</h2>
-			{sessionUser &&
-				sessionUser.id !== restaurant.owner_id &&
-				// !leftAReview &&
-				(
-					<button
-						className='create-review-button'
-						onClick={() => setModalContent(<CreateReview id={restaurant.id} />)}
-					>
-						Leave a Review</button>
-					// <OpenModalButton
-					// 	id='create-review-button'
-					// 	buttonText='Leave a review'
-					// 	modalComponent={<CreateReview id={restaurant.id} />}
-					// />
-				)}
+      <h2 className='review-list-header'>Rating and Reviews</h2>
 
-			{reviewsByRestaurantId.length > 0 ? (
-				<div className='review-list-grid'>
-					{reviewsByRestaurantId
-						.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-						.map((review) => (
-							<div
-								key={review.id}
-								className='review-structure'
-							>
-								<h3 className='review-info-text'>
-									{review.user_first_name} {review.user_last_name}
-								</h3>
-								<p className='review-info-text'>{review.created_at}</p>
-								<div className='review-stars'>{renderStars(review.rating)}</div>
-								<p className='review-info-text'>{review.comments}</p>
-								{sessionUser?.id === review.user_id && (
-									<>
-										<button
-											className='delete-button'
-											onClick={() => setModalContent(<DeleteReview reviewId={review.id} restaurantId={restaurant.id}/>)}
-										>
-											Delete
-										</button>
-										<button
-											className='update-button'
-											onClick={() => setModalContent(<UpdateReview reviewId={review.id}/>)}
-										> Edit
-										</button>
-									</>
-								)}
-							</div>
-						))}
-				</div>
-			) : (
-				<>
-					<p>No reviews yet!</p>
-					{/* If the user is logged in and not the owner, call to action to place an order to leave a review */}
-					{sessionUser && restaurant.owner_id !== sessionUser.id && (
-						<p> Be the first to leave a review!</p>
-					)}
-				</>
-			)}
-		</div>
-	);
+      {reviewsByRestaurantId.length === 0 && (
+        <>
+          <p>No reviews yet!</p>
+          {sessionUser && restaurant.owner_id !== sessionUser.id && (
+            <>
+              <p>Be the first to leave a review!</p>
+            </>
+          )}
+        </>
+      )}
+
+      {sessionUser && sessionUser.id !== restaurant.owner_id && (
+        <button
+          className='create-review-button'
+          onClick={() => setModalContent(<CreateReview id={restaurant.id} />)}
+        >
+          Leave a Review
+        </button>
+      )}
+
+      {reviewsByRestaurantId.length > 0 && (
+        <div className='review-list-grid'>
+          {reviewsByRestaurantId
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .map((review) => (
+              <div
+                key={review.id}
+                className='review-structure'
+              >
+                <h3 className='review-info-text'>
+                  {review.user_first_name} {review.user_last_name}
+                </h3>
+                <p className='review-info-text'>{review.created_at}</p>
+                <div className='review-stars'>{renderStars(review.rating)}</div>
+                <p className='review-info-text'>{review.comments}</p>
+                {sessionUser?.id === review.user_id && (
+                  <>
+                    <button
+                      className='delete-button'
+                      onClick={() => setModalContent(<DeleteReview reviewId={review.id} restaurantId={restaurant.id} />)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className='update-button'
+                      onClick={() => setModalContent(<UpdateReview reviewId={review.id} />)}
+                    > Edit
+                    </button>
+                  </>
+                )}
+              </div>
+            ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default ReviewsList;
