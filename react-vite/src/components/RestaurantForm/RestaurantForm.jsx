@@ -3,7 +3,7 @@ import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
 import { useParams, useNavigate } from 'react-router-dom'
-import 
+import '../LoginFormModal/LoginForm.css'
 
 function RestaurantForm(){
 
@@ -81,7 +81,7 @@ const submitHandler = (e) =>{
     // * VALIDATIONS    
     const err = {}
 
-    name.length < 2 ? err[name] = "Name must have at least two characters" : ""
+    if(name.length < 2) err[name] = "Name must have at least two characters"
     if (address.length < 1) err[address] = "Address required"
     if (phone_number.length < 10) err[phone_number]= "Phone number must be 10 characters"
     if (description.length < 20) err[description] = "Description must be at least 20 characters"
@@ -91,7 +91,11 @@ const submitHandler = (e) =>{
 
     setError(err)
 
-  
+
+
+    if(Object.keys(error).length === 0){
+
+   
     const formData = {
         owner_id: user.id,
         name,
@@ -129,7 +133,7 @@ const submitHandler = (e) =>{
     }
     
     
-
+}
    
 }
 // TODO: Refactor these form fields as a form field component, passing in the specifics as props
@@ -143,6 +147,7 @@ const submitHandler = (e) =>{
             <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
+            {error.name && <p className='login-form-modal'>error.name</p>}
             </label>
             
             </div>
