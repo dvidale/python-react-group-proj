@@ -1,5 +1,5 @@
 .footer-component {
-	background-color: lightgray;
+	background-color: black;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -19,19 +19,14 @@
 	align-items: center;
 }
 
-.footer-info-section a {
-	color: black;
-	opacity: 0.6;
+.footer-ul a {
+	color: var(--accent-clr);
+	opacity: 1;
 	font-size: var(--fs-small);
 }
 
-.footer-info-section a:hover {
-	color: black;
-	opacity: 1;
-}
-
-.footer-info-section a:visited {
-	color: black;
+.footer-ul a:visited {
+	color: var(--accent-clr);
 	opacity: 0.6;
 }
 

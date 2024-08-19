@@ -2,19 +2,19 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { FaThumbsUp } from 'react-icons/fa';
-import AddMenuItemButton from '../AddMenuItemForm/AddMenuItemButton';
 import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
 import { addCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
-import { useModal } from '../../context/Modal'; // Import the useModal hook
+import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
-import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal'; // Ensure the path is correct
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm'; // Import the form directly
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
-	const { setModalContent } = useModal(); // Destructure the setModalContent from the context
+	const { setModalContent, closeModal } = useModal();
 
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
 	const currentUser = useSelector((state) => state.session.user);
@@ -39,6 +39,7 @@ const MenuItemsList = () => {
 
 	const handleDelete = (menuItemId) => {
 		dispatch(fetchDeleteMenuItem(menuItemId));
+		closeModal();
 	};
 
 	const handleDeleteConfirmation = (menuItemId) => {
@@ -53,7 +54,14 @@ const MenuItemsList = () => {
 	return (
 		<div className='menu-holder'>
 			<h2>The Menu</h2>
-			{isOwner && <AddMenuItemButton />}
+			{isOwner && (
+				<button
+					className='add-menu-item-btn'
+					onClick={() => setModalContent(<AddMenuItemForm />)} // Set the form as modal content
+				>
+					Add Menu Item
+				</button>
+			)}
 			<div className='menu-items-wrapper'>
 				{menuItems.map((item) => (
 					<div
@@ -62,7 +70,7 @@ const MenuItemsList = () => {
 					>
 						{isOwner && (
 							<button
-								className='delete-btn'
+								className='delete-menu-item-btn'
 								onClick={() => handleDeleteConfirmation(item.id)}
 							>
 								Delete
@@ -75,9 +83,9 @@ const MenuItemsList = () => {
 									<FaThumbsUp /> {item.like_percentage}%
 								</p>
 							</div>
-							<div>
-								<p className='item-details'>{item.description}</p>
-								<p className='item-details'>Price: ${item.price}</p>
+							<div className='bottom-info'>
+								<p className='item-details description'>{item.description}</p>
+								<p className='item-details-price'>Price: ${item.price}</p>
 							</div>
 						</div>
 						<div className='menu-item-img-holder'>

@@ -15,7 +15,7 @@ export const Footer = () => {
 						</li>
 						<li>
 							<a href='https://www.linkedin.com/in/deandrevidale'>
-								DeAndre&apos;s LinkedIn <FaLinkedin />
+								DeAndre&apos;s Github <FaLinkedin />
 							</a>
 						</li>
 					</ul>
