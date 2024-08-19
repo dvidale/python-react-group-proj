@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function RestaurantForm(){
 
@@ -55,17 +55,8 @@ function RestaurantForm(){
     },[restaurant])
     
  
-// * VALIDATIONS    
 
-useEffect(()=>{
 
-    const err = {}
-
-    name.length < 2 ? err[name] = "Name must have at least two characters" : ""
-
-    setError(err)
-
-},[name])
 
 // Fetch current categories for multi-select options
 // Fetch restaurant data
@@ -88,6 +79,17 @@ const user = useSelector(state => state.session.user)
 
 const submitHandler = (e) =>{
     e.preventDefault()
+
+    // * VALIDATIONS    
+    const err = {}
+
+    name.length < 2 ? err[name] = "Name must have at least two characters" : ""
+    if (address.length < 1) err[address] = "Address required"
+    if (phone_number.length < 10) err[phone_number]= "Phone number must be 10 characters"
+    if (description.length < 20) err[description] = "Description must be at least 20 characters"
+
+    setError(err)
+
   
     const formData = {
         owner_id: user.id,
@@ -133,59 +135,59 @@ const submitHandler = (e) =>{
     return(
         <>
         <div id="form-container">
-            <div> <Link to={`/restaurants/current`}> {"<-- "}Go back to Restaurant Management Portal</Link> </div>
+            <div> <button id="back-to-res-portal-btn" className='res-page-man-btn' onClick={()=> navigate(`/restaurants/current`)}> Back to Management Portal </button> </div>
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
-            <label htmlFor='name'> Name
-            <input type='text' id='name' name='name' value={name} onChange={e => setName(e.target.value)}></input>
+            <label htmlFor='name'>
+            <input className='text-field' type='text' id='name' name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
             </div>
        
             <div>
-            <label htmlFor='address'> Address
-            <input type='text' id='address' name='address' value={address} onChange={e => setAddress(e.target.value)}></input>
+            <label htmlFor='address'>
+            <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
 
             {!restaurant && 
             <div>
-            <label htmlFor='city'> City
-            <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)}></input>
+            <label htmlFor='city'> 
+            <input className='half-size-text-field' type='text' id='city' name='city' value={city} placeholder='City' onChange={e => setCity(e.target.value)}></input>
             </label>
-            </div>
-            }
+                           
+            <label htmlFor='state'> 
+            <input className='quarter-size-text-field' type='text' id='state' name='state' value={state.toUpperCase()} placeholder='State' maxLength={2} onChange={e => setState(e.target.value)}></input> {`ex. CA`}
+            </label>
+            </div> }
 
             {!restaurant && 
             <div>
-            <label htmlFor='state'> State
-            <input type='text' id='state' name='state' value={state} onChange={e => setState(e.target.value)}></input>
-            </label>
-            </div>
-            }
-
-            {!restaurant && 
-            <div>
-            <label htmlFor='zip'> Zip
-            <input type='text' id='zip' name='zip' value={zip} onChange={e => setZip(e.target.value)}></input>
+            <label htmlFor='zip'> 
+            <input className='half-size-text-field' type='text' inputMode='numeric' id='zip' name='zip' value={zip} placeholder='Zip' onChange={e => setZip(e.target.value)}></input>
             </label>
             </div>
             }
             
             <div>
-            <label htmlFor='phone'> Phone
-            <input type='text' id='phone_number' name='phone_number' value={phone_number} onChange={e => setPhoneNumber(e.target.value)}></input>
-            </label>
+            <label htmlFor='phone'> 
+            <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={12} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 123-456-7890
+            </label> 
             </div>
 
             <div>
-            <label htmlFor='description'> Description
-            <input type='text' id='description' name='description' value={description} onChange={e => setDescription(e.target.value)}></input>
+            <label htmlFor='description'> 
+            <textarea id='description'name='description' value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
             </div>
             <div>
                 <label htmlFor='categories'>
-            Categories (choose all that apply)    
+                    <div>
+<h2>Categories  </h2> <h3>( ⊞/⌘ + Click  to select multiple) </h3>
+
+                    </div>
+               
+              
             <select name="categories" value={categories} multiple={true}
              onChange={e => {
                 const options = [...e.target.selectedOptions];
@@ -211,9 +213,13 @@ const submitHandler = (e) =>{
                 </label>   
             
             </div>
-            <div>Open and Closing Hours</div>
-            <div>
-            <label htmlFor='open_time'> Monday
+            <div><h2 className='hours-heading'>Open and Closing Hours  </h2></div>
+            <div className='days-hours-container'>
+
+           
+            <h3 className='day-heading'> Monday  </h3> 
+            <div className='time-fields'>
+            <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time} onChange={e => setOpenTime(e.target.value)}></input>
             </label>
             
@@ -223,26 +229,30 @@ const submitHandler = (e) =>{
             </div>
 
         
-            <div>
-            <label htmlFor='open_time'> Tuesday
+            <h3 className='day-heading'>Tuesday </h3> 
+            <div className='time-fields'>
+            <label htmlFor='t_open_time'> 
             <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
-            <label htmlFor='close_time'> 
+            <label htmlFor='t_close_time'> 
+
             <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
-            <div>
-            <label htmlFor='open_time'> Wednesday
-            <input type='time' min='00:00' max='24:00' id='w_open_time' name='open_time' defaultValue={open_time}></input>
+            <h3 className='day-heading'>Wednesday</h3> 
+            <div className='time-fields'>
+            <label htmlFor='w_open_time'> 
+            <input type='time' min='00:00' max='24:00' id='w_open_time' name='w_open_time' defaultValue={open_time}></input>
             </label>
             
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_close_time' name='close_time' defaultValue={close_time}></input>
+            <label htmlFor='w_close_time'> 
+            <input type='time' min='00:00' max='24:00' id='w_close_time' name='w_close_time' defaultValue={close_time}></input>
             </label>
             </div>
-            <div>
-            <label htmlFor='open_time'> Thursday
+            <h3 className='day-heading'>Thursday</h3> 
+            <div className='time-fields'>
+            <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
@@ -250,8 +260,9 @@ const submitHandler = (e) =>{
             <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
-            <div>
-            <label htmlFor='open_time'> Friday
+            <h3 className='day-heading'>Friday</h3> 
+            <div className='time-fields'>
+            <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
@@ -259,8 +270,9 @@ const submitHandler = (e) =>{
             <input type='time' min='00:00' max='24:00' id='f_close_time' name='close_time' value={close_time}></input>
             </label>
             </div>
-            <div>
-            <label htmlFor='open_time'> Saturday
+            <h3 className='day-heading'>Saturday</h3> 
+            <div className='time-fields'>
+            <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
@@ -268,8 +280,9 @@ const submitHandler = (e) =>{
             <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
-            <div>
-            <label htmlFor='open_time'> Sunday
+            <h3 className='day-heading'>Sunday</h3>
+            <div className='time-fields'>
+            <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' defaultValue={open_time}></input>
             </label>
             
@@ -277,14 +290,19 @@ const submitHandler = (e) =>{
             <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' defaultValue={close_time}></input>
             </label>
             </div>
-
-            <div>
-            <label htmlFor='delivery_time'> Delivery Time
-            <input type='text' id='delivery_time' name='delivery_time' placeholder='ex. 35-50' value={delivery_time} onChange={e => setDeliveryTime(e.target.value)}></input> min
-            </label>
             </div>
-            <div>
-            <label htmlFor='delivery_fee'> Delivery Fee $</label>
+
+            <div className='delivery-time'>
+            <label htmlFor='delivery_time'><h3>Delivery Time</h3>  </label>
+            <select name='delivery_fee' id='delivery_fee' value={delivery_time} onChange={e => setDeliveryFee(e.target.value)}>
+                <option value={`10-25`} >10 - 25</option>
+                <option value={`25-45`}>25 - 45</option>
+                <option value={`45-60`}>45 - 60</option>
+            </select><h3>min  </h3>
+
+            </div>
+            <div className='delivery-time'>
+            <label htmlFor='delivery_fee'> <h3>Delivery Fee $  </h3></label>
             <select name='delivery_fee' id='delivery_fee' value={delivery_fee} onChange={e => setDeliveryFee(e.target.value)}>
                 <option value={0.00} >None</option>
                 <option value={0.99}>0.99</option>
@@ -295,13 +313,16 @@ const submitHandler = (e) =>{
             </select>
             
             </div>
-            <div>
-            <label htmlFor='banner_img'> Banner Image URL
+            <div className='banner-img-field'>
+            <label htmlFor='banner_img'> <h3 className='banner-img-heading'> Banner Image URL </h3>
             <input type='url' id='banner_img' name='banner_img' value={banner_img} onChange={e => setBannerImg(e.target.value)}></input>
             </label>
             </div>
            
-            <button type="submit" disabled={Object.keys(error).length > 0}>Submit</button>
+           <div className='res-form-submit-btn'>
+
+            <button className='res-page-man-btn' type="submit" disabled={Object.keys(error).length > 0}>Submit Your Restaurant</button>
+           </div>
             
            
         </form>

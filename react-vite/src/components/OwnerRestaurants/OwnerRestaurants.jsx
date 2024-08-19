@@ -12,6 +12,9 @@ function OwnerRestaurants({ city, state }) {
 	const { setModalContent } = useModal();
 
 	const owner = useSelector((state) => state.session.user);
+	if(!owner) navigate('/')
+
+		
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
 	);
@@ -24,10 +27,6 @@ function OwnerRestaurants({ city, state }) {
 	const filteredRestaurants = Object.values(all_restaurants).filter(
 		(restaurant) => restaurant.owner_id === owner.id
 	);
-
-	const updateRestaurant = (id) => {
-		navigate(`/restaurants/current/${id}`);
-	};
 
 	return (
 		<div className='owned-restaurant-list'>
@@ -62,7 +61,7 @@ function OwnerRestaurants({ city, state }) {
 						<button
 							id='update-restaurant-button'
 							className='create-update-btn'
-							onClick={() => updateRestaurant()}
+							onClick={() => navigate(`/restaurants/current/${restaurant.id}`)}
 						>
 							Update
 						</button>

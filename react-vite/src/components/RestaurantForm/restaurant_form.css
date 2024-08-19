@@ -1,11 +1,105 @@
 #form-container{
 
-    max-width: 500px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     flex-wrap: no-wrap;
     justify-content: center;
     align-items: center;
-    border: 1px greenyellow dotted;
 
+}
+
+
+
+.text-field{
+    height: 30px;
+    width: 100%;
+    margin: 15px 0px;
+    }
+
+    textarea{
+        height: 100px;
+        width: 100%;
+        margin: 15px 0px;
+        font-size: 20px;
+    }
+
+input[type='text']{
+    font-size:20px;
+}
+input[type='number']{
+    font-size:30px;
+}
+
+.half-size-text-field{
+    height: 30px;
+    width: 40%;
+    margin: 15px 20px 15px 0px ;
+    }
+
+.quarter-size-text-field{
+    height: 30px;
+    width: 20%;
+    margin: 15px 20px 15px 0px ;
+
+}
+
+select[multiple]{
+    border:0px;
+    height: 330px;
+    width: 200px;
+    font-size: 25px;
+    margin-bottom: 10px;
+    
+}
+.hours-heading{
+    margin-bottom: 7px;
+}
+
+.days-hours-container{
+    display: grid;
+    grid-template-columns: 25% auto auto;
+    gap:10px;
+    column-gap: 30px;
+}
+.day-heading{
+    grid-column:1;
+}
+
+.time-fields{
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+select{
+    font-size: 23px;;
+}
+
+.delivery-time{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: end;
+    gap: 20px;
+    padding: 9px 0px;
+}
+
+input[type='url']{
+    font-size:20px;
+    width: 100%;
+}
+
+.banner-img-field{
+    padding: 20px 0px;
+  
+}
+
+.banner-img-field h3{
+    padding-bottom: 10px;
+}
+
+.res-form-submit-btn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
 }

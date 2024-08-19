@@ -5,9 +5,10 @@ function RestaurantInfoText({ restaurant, city, state }) {
 			<div>
 				<p>
 					{restaurant.avg_rating} • {restaurant.categories.join(' • ')}
-					<br />
+					<br/>
 					{restaurant.address}
-					{city && state ? `${city}, ${state}` : ''}
+					<br/>
+				{city && state ? `${city}, ${state}` : ''}
 				</p>
 				<p>{restaurant.description}</p>
 			</div>

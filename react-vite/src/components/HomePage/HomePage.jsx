@@ -22,7 +22,8 @@ function HomePage() {
 		<div className='home-page'>
 			{city && state ? (
 				<>
-					<HomeDeliveryHeader />
+					<HomeDeliveryHeader city={city}
+							state={state} />
 					<div>
 						<RestaurantCategories />
 						<hr />
