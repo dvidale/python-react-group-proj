@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import MenuItemsList from '../MenuItemsList/MenuItemsList';
 import RestaurantHeader from '../RestaurantHeader';
 import MainReview from '../Reviews/MainReview';
@@ -8,11 +8,15 @@ import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import RestaurantInfoText from '../RestaurantInfoText/RestaurantInfoText';
+
 import './restaurant_page.css';
 
 export const RestaurantPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -32,6 +36,11 @@ export const RestaurantPage = () => {
 		<>
 			{restaurant ? (
 				<div className='res-page-structure'>
+					{sessionUser && sessionUser.id === restaurant.owner_id &&   
+					<div className="res-management-button-container">		
+					<button id='res-page-delete-button' className='res-page-man-btn' 
+					onClick={()=> navigate(`/restaurants/current`)}>Manage Your Restaurant</button>
+					</div>}
 					<RestaurantHeader restaurant={restaurant} />
 					<div className='res-page-info-structure'>
 						<div className='rest-info-box'>

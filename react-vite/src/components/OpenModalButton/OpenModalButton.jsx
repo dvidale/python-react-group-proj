@@ -1,4 +1,5 @@
 import { useModal } from '../../context/Modal';
+import '../RestaurantPage/restaurant_page.css'
 
 function OpenModalButton({
 	modalComponent,
