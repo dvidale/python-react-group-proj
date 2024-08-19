@@ -46,9 +46,13 @@ function AllRestaurants({ city, state }) {
 					</div>
 					<div className='restaurant-info-text'>
 						<h2>{restaurant.name}</h2>
-						<p>{restaurant.average_rating.toFixed(1) > 0.0 ? restaurant.average_rating.toFixed(1) : "New"}</p>
+						<p>
+							{restaurant.average_rating.toFixed(1) > 0.0
+								? restaurant.average_rating.toFixed(1)
+								: 'New'}
+						</p>
 						<p>{restaurant.categories.join(' • ')}</p>
-						<p>{restaurant.description}</p>
+						<p className='all-rest-page-desc'>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (
 							<p className='restaurant-address'>
 								{restaurant.address}, {city || restaurant.city},{' '}
