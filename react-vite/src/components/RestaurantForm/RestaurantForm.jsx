@@ -103,7 +103,7 @@ const submitHandler =  (e) =>{
 
 
     if (Object.keys(err).length === 0){
-console.log(">>>>> delivery fee", delivery_fee);
+
    
     const formData = {
         owner_id: user.id,
@@ -191,7 +191,7 @@ console.log(">>>>> delivery fee", delivery_fee);
 
             <div>
             <label htmlFor='description'> <h3>Description</h3>
-            <textarea id='description'name='description' value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
+            <textarea id='description'name='description' maxLength={70} value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
             {error.description && <p className='errors'>{error.description}</p>}
             </div>
