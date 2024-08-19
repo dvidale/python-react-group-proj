@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import RestaurantInfoText from '../RestaurantInfoText/RestaurantInfoText';
-
+import { reviewSummary } from '../../redux/reviews';
 import './restaurant_page.css';
 
 export const RestaurantPage = () => {
@@ -28,7 +28,8 @@ export const RestaurantPage = () => {
 
 	useEffect(() => {
 		dispatch(restaurantsActions.getRestaurants());
-	}, [dispatch]);
+		dispatch(reviewSummary(id));
+	}, [dispatch, id]);
 
 	return (
 		<>
@@ -54,7 +55,9 @@ export const RestaurantPage = () => {
 								state={state}
 							/>
 						</div>
-						<div className='rest-review-box'>
+						<div 
+						className='rest-review-box'
+						>
 							<MainReview restaurantId={id} />
 						</div>
 

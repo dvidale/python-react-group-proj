@@ -139,45 +139,45 @@ const submitHandler = (e) =>{
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
-            <label htmlFor='name'>
+            <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
             </div>
        
             <div>
-            <label htmlFor='address'>
+            <label htmlFor='address'> <h3>Address</h3>
             <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
 
             {!restaurant && 
             <div>
-            <label htmlFor='city'> 
+            <label htmlFor='city'> <h3>City</h3>
             <input className='half-size-text-field' type='text' id='city' name='city' value={city} placeholder='City' onChange={e => setCity(e.target.value)}></input>
             </label>
                            
-            <label htmlFor='state'> 
+            <label htmlFor='state'> <h3>State</h3>
             <input className='quarter-size-text-field' type='text' id='state' name='state' value={state.toUpperCase()} placeholder='State' maxLength={2} onChange={e => setState(e.target.value)}></input> {`ex. CA`}
             </label>
             </div> }
 
             {!restaurant && 
             <div>
-            <label htmlFor='zip'> 
+            <label htmlFor='zip'> <h3>Zip</h3>
             <input className='half-size-text-field' type='text' inputMode='numeric' id='zip' name='zip' value={zip} placeholder='Zip' onChange={e => setZip(e.target.value)}></input>
             </label>
             </div>
             }
             
             <div>
-            <label htmlFor='phone'> 
+            <label htmlFor='phone'> <h3>Phone</h3>
             <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={12} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 123-456-7890
             </label> 
             </div>
 
             <div>
-            <label htmlFor='description'> 
+            <label htmlFor='description'> <h3>Description</h3>
             <textarea id='description'name='description' value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
             </div>
@@ -322,7 +322,7 @@ const submitHandler = (e) =>{
            
            <div className='res-form-submit-btn'>
 
-            <button className='res-page-man-btn' type="submit" disabled={Object.keys(error).length > 0}>Submit Your Restaurant</button>
+            <button className='res-page-man-btn' type="submit" disabled={Object.keys(error).length > 0}>{!restaurant ? `Submit` : `Update`} Your Restaurant</button>
            </div>
             
            
