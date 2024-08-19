@@ -27,7 +27,7 @@ function RestaurantForm(){
     const [open_time, setOpenTime] = useState("10:00")
     const [close_time, setCloseTime] = useState("22:00")
     const [delivery_time, setDeliveryTime] = useState('10-25')
-    const [delivery_fee, setDeliveryFee] = useState("None")
+    const [delivery_fee, setDeliveryFee] = useState("0.99")
     const [banner_img, setBannerImg] = useState("https://")
      
     const [error, setError] = useState({})
@@ -103,7 +103,7 @@ const submitHandler =  (e) =>{
 
 
     if (Object.keys(err).length === 0){
-console.log(">>>>> passed res validation");
+console.log(">>>>> delivery fee", delivery_fee);
    
     const formData = {
         owner_id: user.id,
@@ -118,6 +118,7 @@ console.log(">>>>> passed res validation");
         delivery_fee,
         banner_img
     }
+
 
     
     if(restaurant){
@@ -254,7 +255,6 @@ console.log(">>>>> passed res validation");
             <div className='delivery-time'>
             <label htmlFor='delivery_fee'> <h3>Delivery Fee $  </h3></label>
             <select name='delivery_fee' id='delivery_fee' value={delivery_fee} onChange={e => setDeliveryFee(e.target.value)}>
-                <option value={0.00} >None</option>
                 <option value={0.99}>0.99</option>
                 <option value={1.99}>1.99</option>
                 <option value={2.99}>2.99</option>
