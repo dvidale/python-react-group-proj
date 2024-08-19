@@ -44,10 +44,13 @@
 	opacity: 0.6;
 }
 
+.item-details-price {
+	font-weight: var(--fw-heavy);
+}
+
 .bottom-info {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 }
 
 .description {

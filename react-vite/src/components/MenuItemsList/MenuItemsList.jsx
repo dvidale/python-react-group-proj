@@ -85,7 +85,7 @@ const MenuItemsList = () => {
 							</div>
 							<div className='bottom-info'>
 								<p className='item-details description'>{item.description}</p>
-								<p className='item-details'>Price: ${item.price}</p>
+								<p className='item-details-price'>Price: ${item.price}</p>
 							</div>
 						</div>
 						<div className='menu-item-img-holder'>
