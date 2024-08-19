@@ -4,16 +4,18 @@ import { fetchReviews, reviewSummary } from '../../redux/reviews';
 import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
 import './reviews.css';
 
-const MainReview = ({ restaurantId }) => {
+const MainReview = () => {
 	const dispatch = useDispatch();
 	const ratingSummary = useSelector((state) => state.reviewsList.reviewSummary);
+	const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
+	console.log('this is the ID', id);
 	// const mostRecentReviews = useSelector((state) => state.reviewsList.reviewsListArr)
 
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {
-		dispatch(reviewSummary(restaurantId));
-		dispatch(fetchReviews(restaurantId));
-	}, [dispatch, restaurantId]);
+		dispatch(reviewSummary(id));
+		dispatch(fetchReviews(id));
+	}, [dispatch, id]);
 
 	// Function to round the rating to the nearest 0.5 for rendering stars
 	const roundToHalf = (rating) => {
