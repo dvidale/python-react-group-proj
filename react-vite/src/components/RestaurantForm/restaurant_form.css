@@ -9,3 +9,28 @@
     border: 1px greenyellow dotted;
 
 }
+
+
+
+.text-field{
+    height: 30px;
+    width: 100%;
+    margin: 15px 0px;
+    }
+
+input[type='text']{
+    font-size:30px;
+}
+
+.half-size-text-field{
+    height: 30px;
+    width: 40%;
+    margin: 15px 20px 15px 0px ;
+    }
+
+.quarter-size-text-field{
+    height: 30px;
+    width: 20%;
+    margin: 15px 20px 15px 0px ;
+
+}

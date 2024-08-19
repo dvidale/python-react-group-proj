@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function RestaurantForm(){
 
@@ -133,54 +133,49 @@ const submitHandler = (e) =>{
     return(
         <>
         <div id="form-container">
-            <div> <Link to={`/restaurants/current`}> {"<-- "}Go back to Restaurant Management Portal</Link> </div>
+            <div> <button id="back-to-res-portal-btn" className='res-page-man-btn' onClick={()=> navigate(`/restaurants/current`)}> Back to Management Portal </button> </div>
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
-            <label htmlFor='name'> Name
-            <input type='text' id='name' name='name' value={name} onChange={e => setName(e.target.value)}></input>
+            <label htmlFor='name'>
+            <input className='text-field' type='text' id='name' name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
             </div>
        
             <div>
-            <label htmlFor='address'> Address
-            <input type='text' id='address' name='address' value={address} onChange={e => setAddress(e.target.value)}></input>
+            <label htmlFor='address'>
+            <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
 
             {!restaurant && 
             <div>
-            <label htmlFor='city'> City
-            <input type='text' id='city' name='city' value={city} onChange={e => setCity(e.target.value)}></input>
+            <label htmlFor='city'> 
+            <input className='half-size-text-field' type='text' id='city' name='city' value={city} placeholder='City' onChange={e => setCity(e.target.value)}></input>
             </label>
-            </div>
-            }
+                           
+            <label htmlFor='state'> 
+            <input className='quarter-size-text-field' type='text' id='state' name='state' value={state} placeholder='State' onChange={e => setState(e.target.value)}></input>
+            </label>
+            </div> }
 
             {!restaurant && 
             <div>
-            <label htmlFor='state'> State
-            <input type='text' id='state' name='state' value={state} onChange={e => setState(e.target.value)}></input>
-            </label>
-            </div>
-            }
-
-            {!restaurant && 
-            <div>
-            <label htmlFor='zip'> Zip
-            <input type='text' id='zip' name='zip' value={zip} onChange={e => setZip(e.target.value)}></input>
+            <label htmlFor='zip'> 
+            <input className='half-size-text-field' type='text' id='zip' name='zip' value={zip} placeholder='Zip' onChange={e => setZip(e.target.value)}></input>
             </label>
             </div>
             }
             
             <div>
-            <label htmlFor='phone'> Phone
-            <input type='text' id='phone_number' name='phone_number' value={phone_number} onChange={e => setPhoneNumber(e.target.value)}></input>
+            <label htmlFor='phone'> 
+            <input className='half-size-text-field' type='text' id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' onChange={e => setPhoneNumber(e.target.value)}></input>
             </label>
             </div>
 
             <div>
             <label htmlFor='description'> Description
-            <input type='text' id='description' name='description' value={description} onChange={e => setDescription(e.target.value)}></input>
+            <textarea id='description'name='description' value={description} onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
             </div>
             <div>
