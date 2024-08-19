@@ -55,9 +55,7 @@ export const RestaurantPage = () => {
 								state={state}
 							/>
 						</div>
-						<div 
-						className='rest-review-box'
-						>
+						<div className='rest-review-box'>
 							<MainReview restaurantId={id} />
 						</div>
 
@@ -69,7 +67,7 @@ export const RestaurantPage = () => {
 							/>
 						</div>
 					</div>
-					<MenuItemsList id={id} />
+					<MenuItemsList />
 					<ReviewsList restaurant={restaurant} />
 				</div>
 			) : (

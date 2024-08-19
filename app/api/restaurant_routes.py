@@ -284,7 +284,7 @@ def total_number_of_reviews(id):
     restaurant = Restaurant.query.get(id)
     print(">>>>>> restaurant in total-reviews route", restaurant)
     if not reviews:
-        return {"Error": "No reviews found for this restaurant"}, 404
+        return {"total_reviews": 0, 'average_rating': 0}
 
 
     # Calculating total # of reviews for specific restaurant

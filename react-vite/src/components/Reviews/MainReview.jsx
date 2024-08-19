@@ -13,17 +13,18 @@ const MainReview = () => {
 
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {
-		dispatch(reviewSummary(id));
-		dispatch(fetchReviews(id));
-	}, [dispatch, id]);
-
+		if (id) {
+			dispatch(reviewSummary(id));
+			dispatch(fetchReviews(id));
+		}
+	}, [dispatch, id, ratingSummary.total_reviews]);
 	// Function to round the rating to the nearest 0.5 for rendering stars
 	const roundToHalf = (rating) => {
 		return Math.round(rating * 2) / 2;
 	};
 
 	// Check if there are reviews
-	const hasReviews = ratingSummary.total_reviews > 0;
+	const hasReviews = ratingSummary && ratingSummary.total_reviews > 0;
 
 	let roundedRating = 0;
 	let fullStars = 0;
@@ -47,13 +48,15 @@ const MainReview = () => {
 	return (
 		<>
 			<div className='restaurant-page-header-review'>
-				<h2 className='res-header-title'>Ratings and Reviews</h2>
+				<h2 className='res-header-title'>Reviews</h2>
 				<div>
 					{hasReviews ? (
 						<div className='header-review-structure'>
 							<div className='header-stars'>
 								<h3 className='res-header-title'>
-									{ratingSummary.average_rating.toFixed(1) > 0.0 ? ratingSummary.average_rating.toFixed(1) : "New"}
+									{ratingSummary.average_rating.toFixed(1) > 0.0
+										? ratingSummary.average_rating.toFixed(1)
+										: 'New'}
 								</h3>
 								<div>
 									{/* Render full stars */}
