@@ -73,7 +73,7 @@ const MainReview = () => {
 								</div>
 							</div>
 							<p className='res-header-title'>
-								{ratingSummary.total_reviews} Reviews
+								{ratingSummary.total_reviews} {ratingSummary.total_reviews > 1 ? "Reviews" : "Review"} 
 							</p>
 						</div>
 					) : (

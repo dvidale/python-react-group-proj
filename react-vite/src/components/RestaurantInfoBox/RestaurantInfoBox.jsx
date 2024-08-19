@@ -1,6 +1,10 @@
 import './RestaurantInfoBox.css';
 
 function RestaurantInfoBox({ restaurant, city, state }) {
+
+	let convertCloseToNumber = restaurant.close_time.split(":")[0]
+	const normalClock = +(convertCloseToNumber) - 12
+
 	return (
 		<div className='restaurant-info'>
 			<div className='delivery-fee'>
@@ -19,7 +23,7 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 
 				<h3 className='delivery-fee-text-p'>Open: {restaurant.open_time}</h3>
 				<br />
-				<h3 className='delivery-fee-text-p'>Close: {restaurant.close_time}</h3>
+				<h3 className='delivery-fee-text-p'>Close: {normalClock}:00</h3>
 			</div>
 		</div>
 	);

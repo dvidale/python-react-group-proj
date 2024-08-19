@@ -58,3 +58,11 @@
 .owner-rest-name {
 	font-size: var(--fs-medium);
 }
+
+.cancel-delete-btn {
+	background-color: black;
+	color: white;
+	transition: all ease 0.2s;
+	padding: 0.4rem 2rem;
+	margin-left: 20px;
+}
