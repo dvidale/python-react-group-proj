@@ -10,7 +10,7 @@
 	display: flex;
 	border-radius: 12px;
 	transition: box-shadow 0.3s ease;
-	min-height: 165px;
+	height: 165px;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -19,12 +19,16 @@
 	box-shadow: 2px 2px 5px gray;
 }
 
-.restaurant-image {
-	display: flex;
-	height: auto;
-	width: 30%;
-
+.restaurant-image-div {
 	border-radius: 12px;
+	height: 100%;
+	width: 200px;
+}
+
+.restaurant-image {
+	height: 100%;
+	width: auto;
+	object-fit: cover;
 }
 
 .restaurant-info-text {

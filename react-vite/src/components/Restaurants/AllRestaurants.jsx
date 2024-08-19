@@ -37,11 +37,13 @@ function AllRestaurants({ city, state }) {
 					onClick={() => navigate(`/restaurants/${restaurant.id}`)}
 					className='restaurant-tile-shape'
 				>
-					<img
-						src={restaurant.banner_img}
-						alt={restaurant.name}
-						className='restaurant-image'
-					/>
+					<div className='restaurant-image-div'>
+						<img
+							src={restaurant.banner_img}
+							alt={restaurant.name}
+							className='restaurant-image'
+						/>
+					</div>
 					<div className='restaurant-info-text'>
 						<h2>{restaurant.name}</h2>
 						<p>{restaurant.avg_rating}</p>
