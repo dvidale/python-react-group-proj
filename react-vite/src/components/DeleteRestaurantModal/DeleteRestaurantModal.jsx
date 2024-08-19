@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal"
 import './delete-restaurant.css'
 import { fetchReviews } from "../../redux/reviews"
 import { useNavigate } from "react-router-dom"
+
 function DeleteRestaurantModal({restaurantId}){
 
 // TODO : Add dynamic code to populate restaurant name in warning heading.

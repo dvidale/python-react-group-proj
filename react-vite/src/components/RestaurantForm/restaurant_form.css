@@ -101,3 +101,8 @@ input[type='url']{
     justify-content: center;
     margin-bottom: 30px;
 }
+
+.errors{
+    color:red;
+    font-size: 16px;
+}
