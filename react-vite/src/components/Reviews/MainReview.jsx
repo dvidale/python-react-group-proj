@@ -68,7 +68,7 @@ const MainReview = ({ restaurantId }) => {
 								</div>
 							</div>
 							<p className='res-header-title'>
-								{ratingSummary.total_reviews} Ratings
+								{ratingSummary.total_reviews} Reviews
 							</p>
 						</div>
 					) : (
