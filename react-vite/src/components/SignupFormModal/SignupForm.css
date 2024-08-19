@@ -39,9 +39,9 @@
 	font-size: 14px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-	width: 90%;
+	min-height: 40px;
+	width: 100%;
 	box-sizing: border-box;
-	margin-left: 1rem;
 }
 
 /* Error message styles */
