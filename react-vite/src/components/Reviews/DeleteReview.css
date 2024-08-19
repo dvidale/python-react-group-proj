@@ -1,0 +1,39 @@
+
+.delete-review-container {
+    padding: 4rem;
+}
+
+.header-title {
+    padding: 20px;
+}
+
+.header-message {
+    padding: 20px;
+    font-size: 18px;
+
+}
+
+.button-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.button-content {
+    color: white;
+    font-size: var(--fs-small);
+    font-weight: bold;
+}
+
+#delete-review{
+    background-color: #ff4d4d;
+    width: 7rem;
+    height: 3rem;
+}
+
+#keep-review{
+    background-color: darkolivegreen;
+    width: 7rem;
+    height: 3rem;
+}

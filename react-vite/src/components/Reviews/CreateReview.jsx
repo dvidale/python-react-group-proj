@@ -4,6 +4,7 @@ import { useModal } from '../../context/Modal';
 import { fetchAllDBReviews, postReview, reviewSummary } from '../../redux/reviews';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
+import './CreateReview.css'
 
 const CreateReview = ({id}) => {
     const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const CreateReview = ({id}) => {
         <form className="review-form" onSubmit={handleSubmit}>
             <h2 className="review-title">How was your meal?</h2>
             <label className="review-label">
-                Review:
+                {/* Review: */}
                 <textarea
                     placeholder="Leave your review here..."
                     className="review-input long-text"
@@ -84,7 +85,7 @@ const CreateReview = ({id}) => {
                 />
             </label>
             <label className="review-label">
-                Stars:
+                {/* Stars: */}
                 <div className="rating-input">
                     <div className="star-ratings-container">{renderStars()}</div>
                 </div>

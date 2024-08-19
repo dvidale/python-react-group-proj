@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDBReviews } from '../../redux/reviews';
-// import { useParams } from 'react-router-dom';
-import OpenModalButton from '../OpenModalButton';
+// import { useParams } from 'react-router-dom';]
 import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
+import { useModal } from '../../context/Modal';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
 import CreateReview from './CreateReview';
@@ -15,6 +15,7 @@ const ReviewsList = ({ restaurant }) => {
 	// const { id } = useParams();
 	const reviewList = useSelector((state) => state.reviewsList.allReviews);
 	const sessionUser = useSelector((state) => state.session.user);
+	const { setModalContent } = useModal();
 
 	useEffect(() => {
 		dispatch(fetchAllDBReviews());
@@ -39,24 +40,30 @@ const ReviewsList = ({ restaurant }) => {
 
 	// Check if current user left a review for this restaurant already
 
-	let leftAReview;
+	// let leftAReview;
 
-	if (sessionUser)
-		leftAReview = reviewsByRestaurantId.find(
-			(review) => review.user_id === sessionUser.id
-		);
+	// if (sessionUser)
+	// 	leftAReview = reviewsByRestaurantId.find(
+	// 		(review) => review.user_id === sessionUser.id
+	// 	);
 
 	return (
 		<div className='review-list-wrapper'>
 			<h2 className='review-list-header'>Rating and Reviews</h2>
 			{sessionUser &&
 				sessionUser.id !== restaurant.owner_id &&
-				!leftAReview && (
-					<OpenModalButton
-						id='create-review-button'
-						buttonText='Leave a review'
-						modalComponent={<CreateReview id={restaurant.id} />}
-					/>
+				// !leftAReview &&
+				(
+					<button
+						className='create-review-button'
+						onClick={() => setModalContent(<CreateReview id={restaurant.id} />)}
+					>
+						Leave a Review</button>
+					// <OpenModalButton
+					// 	id='create-review-button'
+					// 	buttonText='Leave a review'
+					// 	modalComponent={<CreateReview id={restaurant.id} />}
+					// />
 				)}
 
 			{reviewsByRestaurantId.length > 0 ? (
@@ -76,21 +83,17 @@ const ReviewsList = ({ restaurant }) => {
 								<p className='review-info-text'>{review.comments}</p>
 								{sessionUser?.id === review.user_id && (
 									<>
-										<OpenModalButton
-											id='delete-button'
-											buttonText='Delete'
-											modalComponent={
-												<DeleteReview
-													reviewId={review.id}
-													restaurantId={restaurant.id}
-												/>
-											}
-										/>
-										<OpenModalButton
-											id='update-button'
-											buttonText='Edit'
-											modalComponent={<UpdateReview reviewId={review.id} />}
-										/>
+										<button
+											className='delete-button'
+											onClick={() => setModalContent(<DeleteReview reviewId={review.id} restaurantId={restaurant.id}/>)}
+										>
+											Delete
+										</button>
+										<button
+											className='update-button'
+											onClick={() => setModalContent(<UpdateReview reviewId={review.id}/>)}
+										> Edit
+										</button>
 									</>
 								)}
 							</div>

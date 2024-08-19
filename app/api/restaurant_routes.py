@@ -292,7 +292,7 @@ def total_number_of_reviews(id):
 
     data = {
         'total_reviews': total_reviews,
-        'average_rating': restaurant.avg_rating
+        'average_rating': restaurant.average_rating()
     }
 
     return jsonify(data)
