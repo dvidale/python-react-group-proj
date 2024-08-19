@@ -1,5 +1,5 @@
 from .db import add_prefix_for_prod, db, environment, SCHEMA
-from ..models import User, Restaurant
+from ..models import User
 from datetime import datetime
 
 class Review(db.Model):

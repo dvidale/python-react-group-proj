@@ -4,7 +4,7 @@ function RestaurantInfoText({ restaurant, city, state }) {
 			<h1 className='header-h1-title'>{restaurant.name}</h1>
 			<div>
 				<p>
-					{restaurant.avg_rating} • {restaurant.categories.join(' • ')}
+					{restaurant.average_rating.toFixed(1)} • {restaurant.categories.join(' • ')}
 					<br/>
 					{restaurant.address}
 					<br/>

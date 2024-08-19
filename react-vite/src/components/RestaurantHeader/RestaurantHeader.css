@@ -4,6 +4,7 @@
 	border: 1px gray solid;
 	background-size: cover;
 	height: 320px;
+	border-radius: 12px;
 }
 
 .header-text {

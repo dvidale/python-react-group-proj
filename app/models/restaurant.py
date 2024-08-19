@@ -1,7 +1,7 @@
 from .db import db, add_prefix_for_prod, environment, SCHEMA
 from .category import Category
 from .restaurant_category import RestaurantCategory
-
+from .reviews import Review
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
@@ -31,6 +31,13 @@ class Restaurant(db.Model):
     def __repr__(self):
         return f'<Restaurant {self.name}>'
 
+    def average_rating(self):
+        reviews_query = db.select(Review).where(Review.restaurant_id == self.id)
+        review_lst = [ review[0].rating for review in db.session.execute(reviews_query)]
+        total_sum = sum(review_lst)
+        count = len(review_lst)
+        return total_sum / count
+
 
     def to_dict(self):
         return {
@@ -47,6 +54,7 @@ class Restaurant(db.Model):
             'close_time':self.close_time,
             'delivery_time':self.delivery_time,
             'delivery_fee': self.delivery_fee,
-            'categories': [category.to_dict()['categ_name'] for category in (Category.query.join(RestaurantCategory).filter(RestaurantCategory.restaurant_id== self.id).all())]
+            'categories': [category.to_dict()['categ_name'] for category in (Category.query.join(RestaurantCategory).filter(RestaurantCategory.restaurant_id== self.id).all())],
+            'average_rating': self.average_rating()
         }
 
