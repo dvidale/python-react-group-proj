@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateReview, fetchReviews, getSingleReview } from '../../redux/reviews';
+import { updateReview, fetchAllDBReviews, getSingleReview } from '../../redux/reviews';
 import { useParams } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
+import './UpdateReview.css'
 
 const UpdateReview = ({ reviewId }) => {
     const dispatch = useDispatch();
@@ -37,9 +38,9 @@ const UpdateReview = ({ reviewId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await dispatch(updateReview({ ...reviewDetails, rating }, reviewId));
+            dispatch(updateReview({ ...reviewDetails, rating }, reviewId));
             closeModal();
-            dispatch(fetchReviews(restaurantId)); // Ensure updated review list
+            dispatch(fetchAllDBReviews(restaurantId)); // Ensure updated review list
         } catch (err) {
             console.error('Error updating review:', err);
             setError('Failed to update review.');
@@ -83,7 +84,7 @@ const UpdateReview = ({ reviewId }) => {
                     <h2 className="edit-review-title">How was your meal?</h2>
                     {error && <p className="error-message">{error}</p>}
                     <label className="edit-review-label">
-                        Comments:
+                        {/* Comments: */}
                         <textarea
                             name="comments"
                             placeholder="Enter your comments"
@@ -94,7 +95,7 @@ const UpdateReview = ({ reviewId }) => {
                         />
                     </label>
                     <label className="edit-review-label">
-                        Stars:
+                        {/* Stars: */}
                         <div className="edit-rating-input">
                             <div className="edit-star-ratings-container">{renderStars()}</div>
                         </div>
