@@ -4,7 +4,7 @@ import './RestaurantHeader.css';
 function RestaurantHeader({ restaurant }) {
 	const bannerImgStyle = {
 		width: '100%',
-		height: '400px',
+		height: '340px',
 		backgroundImage: `url(${restaurant.banner_img})`,
 	};
 

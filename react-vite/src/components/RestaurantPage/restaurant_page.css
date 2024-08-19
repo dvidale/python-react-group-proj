@@ -5,17 +5,34 @@
 }
 
 .res-page-info-structure {
-	display: flex;
+	display: grid;
+	height: auto;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 10px 10px;
 	/* border: solid 2px gray; */
 	border-radius: 12px;
 }
 
-.res-info-holder {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	height: 100%;
-	width: 100%;
+.rest-info-box {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.rest-review-box {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.rest-delivery-box {
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 3;
 }
 
 .restaurant-title {

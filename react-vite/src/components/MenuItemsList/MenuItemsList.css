@@ -11,13 +11,13 @@
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 1rem;
-	/* gap: 1rem; */
 }
 
 .menu-item-structure {
 	position: relative;
 	border: solid 1px gray;
 	display: flex;
+	height: 150px;
 	border-radius: 12px;
 	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 	transition: box-shadow 0.3s ease;
@@ -31,6 +31,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 	gap: 1rem;
 	padding: 10px;
 }
@@ -43,6 +44,19 @@
 	opacity: 0.6;
 }
 
+.item-details-price {
+	font-weight: var(--fw-heavy);
+}
+
+.bottom-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.description {
+	font-size: 12px;
+}
+
 .menu-item-img-holder {
 	display: flex;
 	height: 100%;
@@ -50,7 +64,6 @@
 }
 
 .menu-item-img {
-	border: solid red 1px;
 	border-radius: 13px;
 	height: 100%;
 	width: 100%;
@@ -66,4 +79,29 @@
 	background-color: white;
 	font-weight: var(--fw-bold);
 	font-size: var(--fs-small);
+}
+
+.add-menu-item-btn {
+	background-color: black;
+	color: white;
+	padding: 0.5rem 2rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.add-menu-item-btn:hover {
+	background: var(--accent-clr);
+	color: black;
+}
+
+.delete-menu-item-btn {
+	background-color: rgb(184, 53, 38);
+	color: black;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.delete-menu-item-btn:hover {
+	background-color: rgb(255, 25, 0);
+	color: white;
 }
