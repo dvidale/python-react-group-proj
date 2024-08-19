@@ -21,7 +21,6 @@
 .category-structure {
 	display: flex;
 	cursor: pointer;
-	padding: 10px;
 	border-radius: 4px;
 	transition: background-color 0.3s ease;
 	border: solid 2px var(--accent-clr);
@@ -29,11 +28,17 @@
 	align-items: center;
 	justify-content: space-around;
 	background-color: black;
+	height: 50px;
 }
 
-.category-structure img {
+.categ-image-div {
 	height: 100%;
-	min-width: 50px;
+	min-width: 55px;
+}
+
+.categ-image {
+	height: 100%;
+	width: auto;
 	object-fit: cover;
 }
 

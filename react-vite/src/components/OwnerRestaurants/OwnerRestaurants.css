@@ -25,6 +25,13 @@
 	width: 100%;
 }
 
+.owned-restaurant-image-div {
+	border: solid 2px red;
+	border-radius: 12px;
+	height: 100%;
+	min-width: 40%;
+}
+
 .owned-restaurant-image {
 	border-radius: 12px;
 	width: 50%;

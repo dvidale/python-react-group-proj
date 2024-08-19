@@ -37,11 +37,13 @@ function OwnerRestaurants({ city, state }) {
 					key={restaurant.id}
 					className='owned-restaurant-tile-shape'
 				>
-					<img
-						src={restaurant.banner_img}
-						alt={restaurant.name}
-						className='owned-restaurant-image'
-					/>
+					<div className='owned-restaurant-image-div'>
+						<img
+							src={restaurant.banner_img}
+							alt={restaurant.name}
+							className='owned-restaurant-image'
+						/>
+					</div>
 					<div
 						className='owned-restaurant-info'
 						onClick={() => navigate(`/restaurants/${restaurant.id}`)}
