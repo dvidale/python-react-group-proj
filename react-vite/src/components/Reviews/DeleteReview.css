@@ -1,0 +1,24 @@
+
+.delete-review-container {
+    padding: 4rem;
+}
+
+.header-title {
+    padding: 20px;
+}
+
+.header-message {
+    padding: 20px;
+    font-size: 18px;
+
+}
+
+.button-container {
+    padding: 20px;
+    display: flex;
+
+}
+
+.button-content{
+    align-items: center;
+}
