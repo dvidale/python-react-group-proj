@@ -25,6 +25,16 @@ function SignupFormModal() {
 		if (submitted) {
 			const validationErrors = {};
 
+			if (first_name && (first_name.length < 2 || first_name.length > 30)) {
+				validationErrors.first_name =
+					'First name must be between 2 and 30 characters';
+			}
+
+			if (last_name && (last_name.length < 2 || last_name.length > 30)) {
+				validationErrors.last_name =
+					'Last name must be between 2 and 30 characters';
+			}
+
 			if (username && (username.length < 6 || username.length > 20)) {
 				validationErrors.username =
 					'Username must be between 6 and 20 characters';
@@ -42,9 +52,36 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone number must be 10 digits';
 			}
 
+			if (!first_name) validationErrors.first_name = 'First Name is required';
+			if (!last_name) validationErrors.last_name = 'Last Name is required';
+			if (!email) validationErrors.email = 'Email is required';
+			if (!username) validationErrors.username = 'Username is required';
+			if (!password) validationErrors.password = 'Password is required';
+			if (!confirmPassword)
+				validationErrors.confirmPassword = 'Confirm Password is required';
+			if (!address) validationErrors.address = 'Address is required';
+			if (!city) validationErrors.city = 'City is required';
+			if (!state) validationErrors.state = 'State is required';
+			if (!zip) validationErrors.zip = 'ZIP is required';
+			if (!phone_number)
+				validationErrors.phone_number = 'Phone Number is required';
+
 			setErrors(validationErrors);
 		}
-	}, [submitted, username, state, zip, phone_number]);
+	}, [
+		submitted,
+		first_name,
+		last_name,
+		email,
+		username,
+		password,
+		confirmPassword,
+		address,
+		city,
+		state,
+		zip,
+		phone_number,
+	]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -59,6 +96,9 @@ function SignupFormModal() {
 			return;
 		}
 
+		// Clear previous errors on submit
+		setErrors({});
+
 		const formData = {
 			first_name,
 			last_name,
@@ -71,9 +111,6 @@ function SignupFormModal() {
 			zip,
 			phone_number,
 		};
-
-		// Clear previous errors on submit
-		setErrors({});
 
 		const serverResponse = await dispatch(thunkSignup(formData));
 
@@ -149,6 +186,7 @@ function SignupFormModal() {
 					/>
 					{errors.email && <p>{errors.email}</p>}
 				</label>
+
 				<label className='signup-label'>
 					Confirm Password
 					<input
@@ -160,7 +198,6 @@ function SignupFormModal() {
 					/>
 					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				</label>
-
 				<label className='signup-label'>
 					Address
 					<input
@@ -205,7 +242,6 @@ function SignupFormModal() {
 					/>
 					{errors.zip && <p>{errors.zip}</p>}
 				</label>
-
 				<label className='signup-label'>
 					Phone Number
 					<input
@@ -217,7 +253,6 @@ function SignupFormModal() {
 					/>
 					{errors.phone_number && <p>{errors.phone_number}</p>}
 				</label>
-
 				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
