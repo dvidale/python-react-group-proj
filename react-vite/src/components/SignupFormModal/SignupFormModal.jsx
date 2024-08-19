@@ -87,16 +87,17 @@ function SignupFormModal() {
 	};
 
 	return (
-		<div className='signu'>
-			<h1>Sign Up</h1>
+		<div className='signup'>
+			<h1 className='signup-title'>Sign Up</h1>
 			{errors.server && <p>{errors.server}</p>}
 			<form
 				onSubmit={handleSubmit}
 				className='signup-form-modal'
 			>
-				<label>
+				<label className='signup-label'>
 					First Name
 					<input
+						className='signup-input'
 						type='text'
 						value={first_name}
 						onChange={(e) => setFirstName(e.target.value)}
@@ -104,9 +105,10 @@ function SignupFormModal() {
 					/>
 					{errors.first_name && <p>{errors.first_name}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Last Name
 					<input
+						className='signup-input'
 						type='text'
 						value={last_name}
 						onChange={(e) => setLastName(e.target.value)}
@@ -114,9 +116,10 @@ function SignupFormModal() {
 					/>
 					{errors.last_name && <p>{errors.last_name}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Email
 					<input
+						className='signup-input'
 						type='text'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -124,9 +127,10 @@ function SignupFormModal() {
 					/>
 					{errors.email && <p>{errors.email}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Username
 					<input
+						className='signup-input'
 						type='text'
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -134,9 +138,10 @@ function SignupFormModal() {
 					/>
 					{errors.username && <p>{errors.username}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Password
 					<input
+						className='signup-input'
 						type='password'
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -144,9 +149,10 @@ function SignupFormModal() {
 					/>
 					{errors.password && <p>{errors.password}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Confirm Password
 					<input
+						className='signup-input'
 						type='password'
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
@@ -154,9 +160,10 @@ function SignupFormModal() {
 					/>
 					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Address
 					<input
+						className='signup-input'
 						type='text'
 						value={address}
 						onChange={(e) => setAddress(e.target.value)}
@@ -164,9 +171,10 @@ function SignupFormModal() {
 					/>
 					{errors.address && <p>{errors.address}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					City
 					<input
+						className='signup-input'
 						type='text'
 						value={city}
 						onChange={(e) => setCity(e.target.value)}
@@ -174,9 +182,10 @@ function SignupFormModal() {
 					/>
 					{errors.city && <p>{errors.city}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					State
 					<input
+						className='signup-input'
 						type='text'
 						value={state}
 						onChange={(e) => setState(e.target.value)}
@@ -184,9 +193,10 @@ function SignupFormModal() {
 					/>
 					{errors.state && <p>{errors.state}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					ZIP
 					<input
+						className='signup-input'
 						type='text'
 						value={zip}
 						onChange={(e) => setZip(e.target.value)}
@@ -194,9 +204,10 @@ function SignupFormModal() {
 					/>
 					{errors.zip && <p>{errors.zip}</p>}
 				</label>
-				<label>
+				<label className='signup-label'>
 					Phone Number
 					<input
+						className='signup-input'
 						type='text'
 						value={phone_number}
 						onChange={(e) => setPhoneNumber(e.target.value)}
