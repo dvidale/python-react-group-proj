@@ -1,0 +1,35 @@
+.edit-review-container {
+    margin: 3rem;
+}
+
+.edit-review-title {
+    font-size: 50px;
+    padding: 20px;
+}
+
+.review-input {
+    font: var(--ff-primary);
+    font-size: var(--fs-small);
+    height: 7rem;
+    /* width: 100%; */
+    max-width: 581px;
+    min-width: 581px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.edit-star-ratings-container {
+    font-size: 50px;
+    color: var(--accent-clr);
+    padding: 1rem 0;
+}
+
+#update-button {
+    background: black;
+	border-radius: 5px;
+	width: 200px;
+	height: 40px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}

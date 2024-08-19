@@ -38,6 +38,31 @@
 	color: var(--accent-clr);
 }
 
+.create-review-button {
+	background: var(--accent-clr);
+	border-radius: 5px;
+	width: 200px;
+	height: 40px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+
+}
+
+.delete-button {
+	background-color: #ff4d4d;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+}
+
+.update-button {
+	background-color: #1f456e;
+	height: 30px;
+	color: white;
+	font-size: 14px;
+}
+
 .res-header-title {
 	font-size: 20px;
 }
