@@ -124,20 +124,43 @@ export const resetCartItems = () => ({
 // };
 
 // !---------------------------------REDUCER
+
+
+function setCookie(name, value, days = 2){
+	const date = new Date();
+	date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+	const expires = `expires=${date.toUTCString()}`;
+	document.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/`;
+}
+
+function getCookie(name) {
+	const nameEQ = `${name}=`;
+	const ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i].trim();
+		if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+	}
+	return null;
+}
+
 const initialState = {
-	items: [],
+	items: JSON.parse(getCookie('DashDineCart') || '[]'),
 };
 
 const shoppingCartReducer = (state = initialState, action) => {
+	let newState;
+
 	switch (action.type) {
 		case GET_CART_ITEMS:
-			return { ...state, items: action.payload };
+			newState = { ...state, items: action.payload };
+			break;
 
 		case REMOVE_CART_ITEM:
-			return {
+			newState = {
 				...state,
 				items: state.items.filter((item) => item.id !== action.payload),
 			};
+			break;
 
 		case ADD_CART_ITEM: {
 			console.log('Payload received in reducer:', action.payload); // For debugging
@@ -152,7 +175,7 @@ const shoppingCartReducer = (state = initialState, action) => {
 			);
 
 			if (existingItem) {
-				return {
+				newState = {
 					...state,
 					items: state.items.map((item) =>
 						item.menu_item_id === action.payload.id // Use `id` here
@@ -161,7 +184,7 @@ const shoppingCartReducer = (state = initialState, action) => {
 					),
 				};
 			} else {
-				return {
+				newState = {
 					...state,
 					items: [
 						...state.items,
@@ -174,16 +197,23 @@ const shoppingCartReducer = (state = initialState, action) => {
 				};
 			}
 		}
+		break;
 
 		case CLEAR_CART_ITEMS:
-			return { ...state, items: [] };
+			newState = { ...state, items: [] };
+			break;
 
 		case RESET_CART:
-			return { ...state, items: [] };
+			newState = { ...state, items: [] };
+			break;
 
 		default:
 			return state;
 	}
+
+	setCookie('DashDineCart',JSON.stringify(newState.items));
+
+	return newState
 };
 
 export default shoppingCartReducer;
