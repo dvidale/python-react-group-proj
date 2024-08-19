@@ -20,9 +20,6 @@ function RestaurantForm(){
 
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [zip, setZip] = useState("")
     const [phone_number, setPhoneNumber] = useState("")
     const [description, setDescription] = useState("")
     const [categories, setCategories] = useState([])
@@ -151,24 +148,7 @@ const submitHandler = (e) =>{
             </label>
             </div>
 
-            {!restaurant && 
-            <div>
-            <label htmlFor='city'> <h3>City</h3>
-            <input className='half-size-text-field' type='text' id='city' name='city' value={city} placeholder='City' onChange={e => setCity(e.target.value)}></input>
-            </label>
-                           
-            <label htmlFor='state'> <h3>State</h3>
-            <input className='quarter-size-text-field' type='text' id='state' name='state' value={state.toUpperCase()} placeholder='State' maxLength={2} onChange={e => setState(e.target.value)}></input> {`ex. CA`}
-            </label>
-            </div> }
-
-            {!restaurant && 
-            <div>
-            <label htmlFor='zip'> <h3>Zip</h3>
-            <input className='half-size-text-field' type='text' inputMode='numeric' id='zip' name='zip' value={zip} placeholder='Zip' onChange={e => setZip(e.target.value)}></input>
-            </label>
-            </div>
-            }
+           
             
             <div>
             <label htmlFor='phone'> <h3>Phone</h3>

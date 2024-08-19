@@ -282,10 +282,8 @@ def total_number_of_reviews(id):
 
     reviews = Review.query.filter_by(restaurant_id=id).all()
     restaurant = Restaurant.query.get(id)
-    print(">>>>>> restaurant in total-reviews route", restaurant)
     if not reviews:
-        return {"total_reviews": 0, 'average_rating': 0}
-
+        return {"average_rating":0, "total_reviews": 0}
 
     # Calculating total # of reviews for specific restaurant
     total_reviews = len(reviews)
