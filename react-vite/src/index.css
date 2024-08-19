@@ -71,5 +71,5 @@ button {
 }
 
 img {
-	object-fit: cover;
+	object-fit: inherit;
 }
