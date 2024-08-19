@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllDBReviews } from '../../redux/reviews';
 // import { useParams } from 'react-router-dom';]
-import OpenModalButton from '../OpenModalButton';
 import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
 import { useModal } from '../../context/Modal';
@@ -41,19 +40,20 @@ const ReviewsList = ({ restaurant }) => {
 
 	// Check if current user left a review for this restaurant already
 
-	let leftAReview;
+	// let leftAReview;
 
-	if (sessionUser)
-		leftAReview = reviewsByRestaurantId.find(
-			(review) => review.user_id === sessionUser.id
-		);
+	// if (sessionUser)
+	// 	leftAReview = reviewsByRestaurantId.find(
+	// 		(review) => review.user_id === sessionUser.id
+	// 	);
 
 	return (
 		<div className='review-list-wrapper'>
 			<h2 className='review-list-header'>Rating and Reviews</h2>
 			{sessionUser &&
 				sessionUser.id !== restaurant.owner_id &&
-				!leftAReview && (
+				// !leftAReview &&
+				(
 					<button
 						className='create-review-button'
 						onClick={() => setModalContent(<CreateReview id={restaurant.id} />)}

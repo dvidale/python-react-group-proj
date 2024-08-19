@@ -1,8 +1,8 @@
-.review-form {
+.edit-review-container {
     margin: 3rem;
 }
 
-.review-title {
+.edit-review-title {
     font-size: 50px;
     padding: 20px;
 }
@@ -18,13 +18,13 @@
     padding: 10px;
 }
 
-.star-ratings-container {
+.edit-star-ratings-container {
     font-size: 50px;
     color: var(--accent-clr);
     padding: 1rem 0;
 }
 
-#submit-button {
+#update-button {
     background: black;
 	border-radius: 5px;
 	width: 200px;
