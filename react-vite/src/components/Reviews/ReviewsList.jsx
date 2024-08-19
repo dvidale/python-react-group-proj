@@ -9,7 +9,7 @@ import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
 import CreateReview from './CreateReview';
 
-const ReviewsList = ({restaurant}) => {
+const ReviewsList = ({ restaurant }) => {
 	const dispatch = useDispatch();
 	// const { id } = useParams();
 	const reviewList = useSelector((state) => state.reviewsList.allReviews);
@@ -32,67 +32,79 @@ const ReviewsList = ({restaurant}) => {
 		return stars;
 	};
 
-	
+	const reviewsByRestaurantId = reviewList.filter(
+		(review) => review.restaurant_id === restaurant.id
+	);
 
+	// Check if current user left a review for this restaurant already
 
-	const reviewsByRestaurantId = reviewList.filter((review)=> review.restaurant_id === restaurant.id )
+	let leftAReview;
 
-// Check if current user left a review for this restaurant already
-
-let leftAReview;
-
-if(sessionUser) leftAReview = reviewsByRestaurantId.find((review )=> review.user_id === sessionUser.id )
+	if (sessionUser)
+		leftAReview = reviewsByRestaurantId.find(
+			(review) => review.user_id === sessionUser.id
+		);
 
 	return (
-
 		<>
 			<h2>Rating and Reviews</h2>
-			{sessionUser && sessionUser.id !== restaurant.owner_id && !leftAReview &&
-			<OpenModalButton id='create-review-button' 
-			buttonText='Leave a review'
-			modalComponent={<CreateReview id={restaurant.id}/>} />
-			}
-			
-		{reviewsByRestaurantId.length > 0 ? ( <>
-		<div>
-		
-			<div>
-				{reviewsByRestaurantId
-					.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-					.map((review) => (
-						<div key={review.id}>
-							<p>
-								{review.user_first_name} {review.user_last_name}
-							</p>
-							<p>{review.created_at}</p>
-							<div>{renderStars(review.rating)}</div>
-							<p>{review.comments}</p>
-							{sessionUser?.id === review.user_id && (
-								<>
-									<OpenModalButton
-										id='delete-button'
-										buttonText='Delete'
-										modalComponent={<DeleteReview reviewId={review.id} restaurantId={restaurant.id} />}
-									/>
-									<OpenModalButton
-										id='update-button'
-										buttonText='Edit'
-										modalComponent={<UpdateReview reviewId={review.id} />}
-									/>
-								</>
-							)}
+			{sessionUser &&
+				sessionUser.id !== restaurant.owner_id &&
+				!leftAReview && (
+					<OpenModalButton
+						id='create-review-button'
+						buttonText='Leave a review'
+						modalComponent={<CreateReview id={restaurant.id} />}
+					/>
+				)}
+
+			{reviewsByRestaurantId.length > 0 ? (
+				<>
+					<div>
+						<div>
+							{reviewsByRestaurantId
+								.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+								.map((review) => (
+									<div key={review.id}>
+										<p>
+											{review.user_first_name} {review.user_last_name}
+										</p>
+										<p>{review.created_at}</p>
+										<div>{renderStars(review.rating)}</div>
+										<p>{review.comments}</p>
+										{sessionUser?.id === review.user_id && (
+											<>
+												<OpenModalButton
+													id='delete-button'
+													buttonText='Delete'
+													modalComponent={
+														<DeleteReview
+															reviewId={review.id}
+															restaurantId={restaurant.id}
+														/>
+													}
+												/>
+												<OpenModalButton
+													id='update-button'
+													buttonText='Edit'
+													modalComponent={<UpdateReview reviewId={review.id} />}
+												/>
+											</>
+										)}
+									</div>
+								))}
 						</div>
-					))}
-			</div>
-		</div>
-		
-		
-		</>) :(<>
-		<p>No reviews yet!</p>
-		{/* If the user is logged in and not the owner, call to action to place an order to leave a review */}
-		{sessionUser && restaurant.owner_id !== sessionUser.id &&
-		<p> Be the first to leave a review!</p> }
-		</>) }
+					</div>
+				</>
+			) : (
+				<>
+					<p>No reviews yet!</p>
+					{/* If the user is logged in and not the owner, call to action to place an order to leave a review */}
+					{sessionUser && restaurant.owner_id !== sessionUser.id && (
+						<p> Be the first to leave a review!</p>
+					)}
+				</>
+			)}
 		</>
 	);
 };

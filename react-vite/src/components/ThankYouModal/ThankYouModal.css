@@ -1,0 +1,34 @@
+/* ThankYouModal.css */
+.thank-you-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 8px;
+	text-align: center;
+}
+
+.thank-you-modal h2 {
+	margin-bottom: 10px;
+	color: #333;
+}
+
+.thank-you-modal p {
+	margin-bottom: 20px;
+	color: #666;
+}
+
+.thank-you-modal button {
+	padding: 10px 20px;
+	background-color: var(--accent-clr);
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.thank-you-modal button:hover {
+	background-color: #218838;
+}
