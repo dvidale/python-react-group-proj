@@ -58,3 +58,8 @@
 .owner-rest-name {
 	font-size: var(--fs-medium);
 }
+
+.owned-rest-desc {
+	word-wrap: break-word;
+	max-width: 200px;
+}

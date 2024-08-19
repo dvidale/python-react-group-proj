@@ -52,3 +52,7 @@
 	opacity: 0.6;
 	font-style: var(--ff-primary);
 }
+
+.rest-page-desc {
+	word-wrap: break-word;
+}

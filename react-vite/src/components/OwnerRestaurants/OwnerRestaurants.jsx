@@ -59,7 +59,7 @@ function OwnerRestaurants({ city, state }) {
 								: 'New'}
 						</p>
 						<p>{restaurant.categories.join(' • ')}</p>
-						<p>{restaurant.description}</p>
+						<p className='owned-rest-desc'>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (
 							<div className='restaurant-address'>
 								{restaurant.address}, {city || restaurant.city},{' '}
