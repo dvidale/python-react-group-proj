@@ -8,7 +8,7 @@
 	display: grid;
 	height: auto;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
 	gap: 10px 10px;
 	/* border: solid 2px gray; */
 	border-radius: 12px;
@@ -40,23 +40,23 @@
 	margin-top: 110px;
 }
 
-.res-management-button-container{
+.res-management-button-container {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 	align-items: center;
-background-color: black;
-color: white;
-padding: 10px ;
+	background-color: black;
+	color: white;
+	padding: 10px;
 }
-.res-page-man-heading{
+.res-page-man-heading {
 	font-size: 20px;
 }
 
-.res-page-man-btn{
-background-color: #04bd64;
-padding: 7px 20px;
-margin: 0px 10px;
-color: white;
-font-weight: bolder;
+.res-page-man-btn {
+	background-color: #04bd64;
+	padding: 7px 20px;
+	margin: 0px 10px;
+	color: white;
+	font-weight: bolder;
 }

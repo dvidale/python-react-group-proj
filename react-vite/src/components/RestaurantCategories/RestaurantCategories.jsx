@@ -36,10 +36,13 @@ function RestaurantCategories() {
 							}`}
 							onClick={() => handleCategoryClick(category)}
 						>
-							<img
-								alt={category.categ_name}
-								src={category.img_url}
-							/>
+							<div className='categ-image-div'>
+								<img
+									className='categ-image'
+									alt={category.categ_name}
+									src={category.img_url}
+								/>
+							</div>
 							<p className='cat-text'>{category.categ_name}</p>
 						</div>
 					))}
