@@ -47,31 +47,34 @@ def logout():
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     form = SignUpForm()
+
+    # Set CSRF token from the request cookie
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
+        # Create a new user instance with validated data from the form
         user = User(
-            first_name=form.data['first_name'],
-            last_name=form.data['last_name'],
-            username=form.data['username'],
-            email=form.data['email'],
-            password=form.data['password'],
-            address=form.data['address'],
-            city=form.data['city'],
-            state=form.data['state'],
-            zip=form.data['zip'],
-            phone_number=form.data['phone_number']
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            username=form.username.data,
+            email=form.email.data,
+            password=form.password.data,  # Assuming you have a setter that hashes the password
+            address=form.address.data,
+            city=form.city.data,
+            state=form.state.data,
+            zip=form.zip.data,
+            phone_number=form.phone_number.data
         )
+
+        # Add and commit the new user to the database
         db.session.add(user)
         db.session.commit()
 
+        # Log the user in
         login_user(user)
+
+        # Return the user's data as a dictionary
         return user.to_dict()
-    return form.errors, 401
 
-
-@auth_routes.route('/unauthorized')
-def unauthorized():
-    """
-    Returns unauthorized JSON when flask-login authentication fails
-    """
-    return {'errors': {'message': 'Unauthorized'}}, 401
+    # If validation fails, return the errors with a 401 status code
+    return {'errors': form.errors}, 401
