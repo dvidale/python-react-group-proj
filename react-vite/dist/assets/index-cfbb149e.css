@@ -1007,9 +1007,6 @@ footer {
 	opacity: 0.6;
 	font-style: var(--ff-primary);
 }
-.rest-page-desc {
-	word-wrap: break-word;
-}
 .header-box {
 	display: flex;
 	flex-direction: column;
@@ -1077,17 +1074,13 @@ select[multiple] {
 	margin-bottom: 7px;
 }
 .days-hours-container {
-	display: grid;
-	grid-template-columns: 25% auto auto;
-	gap: 10px;
-	column-gap: 30px;
-}
-.day-heading {
-	grid-column: 1;
+	display: flex;
+	justify-content: space-evenly;
 }
 .time-fields {
-	grid-column-start: 2;
-	grid-column-end: 4;
+	display: flex;
+	justify-content: start;
+	gap: 10px;
 }
 select {
 	font-size: 23px;
@@ -1099,6 +1092,7 @@ select {
 	align-items: end;
 	gap: 20px;
 	padding: 9px 0;
+	margin-top: 8px;
 }
 input[type='url'] {
 	font-size: 20px;
@@ -1115,8 +1109,18 @@ input[type='url'] {
 	justify-content: center;
 	margin-bottom: 30px;
 }
+.errors {
+	color: red;
+	font-size: 16px;
+}
 .delete-restaurant-modal {
-	margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	padding: 30px;
+	border: 3px red solid;
+	text-align: center;
 }
 .owned-restaurant-list {
 	display: grid;
@@ -1171,9 +1175,12 @@ input[type='url'] {
 .owner-rest-name {
 	font-size: var(--fs-medium);
 }
-.owned-rest-desc {
-	word-wrap: break-word;
-	max-width: 200px;
+.cancel-delete-btn {
+	background-color: #000;
+	color: #fff;
+	transition: all ease 0.2s;
+	padding: 0.4rem 2rem;
+	margin-left: 20px;
 }
 .rest-management-holder {
 	display: flex;
