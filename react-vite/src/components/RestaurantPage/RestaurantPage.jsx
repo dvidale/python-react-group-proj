@@ -8,8 +8,7 @@ import { useEffect } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import RestaurantInfoText from '../RestaurantInfoText/RestaurantInfoText';
-import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal';
-import { useModal } from '../../context/Modal';
+
 import './restaurant_page.css';
 
 export const RestaurantPage = () => {
@@ -17,7 +16,7 @@ export const RestaurantPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const { setModalContent, setOnModalClose } = useModal();
+
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -37,17 +36,11 @@ export const RestaurantPage = () => {
 		<>
 			{restaurant ? (
 				<div className='res-page-structure'>
-					<div className="res-management-button-container">
-						{/* <p className='res-page-man-heading'>Restaurant Management</p>
-						<div>
-					<button id="res-page-update-button" className='res-page-man-btn'onClick={()=> navigate(`/restaurants/current/${restaurant.id}`)} >Update</button> 
-						<button id='res-page-delete-button' className='res-page-man-btn' onClick={()=> navigate(`/restaurants/current`).then(setModalContent(<DeleteRestaurantModal restaurantId={restaurant.id}/>))}
-						>
-						Delete
-						</button>
-						</div> */}
-					<button id='res-page-delete-button' className='res-page-man-btn'onClick={()=> navigate(`/restaurants/current`)}>Manage Your Restaurant</button>
-					</div>
+					{sessionUser && sessionUser.id === restaurant.owner_id &&   
+					<div className="res-management-button-container">		
+					<button id='res-page-delete-button' className='res-page-man-btn' 
+					onClick={()=> navigate(`/restaurants/current`)}>Manage Your Restaurant</button>
+					</div>}
 					<RestaurantHeader restaurant={restaurant} />
 					<div className='res-page-info-structure'>
 						<div className='rest-info-box'>
