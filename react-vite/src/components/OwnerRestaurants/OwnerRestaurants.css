@@ -59,18 +59,12 @@
 	font-size: var(--fs-medium);
 }
 
-<<<<<<< HEAD .owned-rest-desc {
+.owned-rest-desc {
 	word-wrap: break-word;
 	max-width: 200px;
 }
-======= .cancel-delete-btn {
-	background-color: black;
-	color: white;
-	transition: all ease 0.2s;
-	padding: 0.4rem 2rem;
-	margin-left: 20px;
-}
->>>>>>>21c18f518acde48f132fce69fa1ec25f8f148ba4 .cancel-delete-btn {
+
+.cancel-delete-btn {
 	background-color: black;
 	color: white;
 	transition: all ease 0.2s;
