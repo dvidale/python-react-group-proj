@@ -42,7 +42,7 @@
 	flex-direction: column;
 	width: 100%;
 	padding: 1rem 0.5rem;
-	gap: 0.4rem;
+	gap: 0.1rem;
 	background-color: white;
 	overflow: hidden; /* Contain overflowing text */
 	text-overflow: ellipsis; /* Show ellipsis if text overflows */
