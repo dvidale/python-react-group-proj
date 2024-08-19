@@ -34,9 +34,11 @@ class Restaurant(db.Model):
     def average_rating(self):
         reviews_query = db.select(Review).where(Review.restaurant_id == self.id)
         review_lst = [ review[0].rating for review in db.session.execute(reviews_query)]
-        total_sum = sum(review_lst)
-        count = len(review_lst)
-        return total_sum / count
+        if(len(review_lst) > 0):
+            total_sum = sum(review_lst)
+            count = len(review_lst)
+            return total_sum / count
+        return 0
 
 
     def to_dict(self):
