@@ -54,9 +54,9 @@ const MainReview = () => {
 						<div className='header-review-structure'>
 							<div className='header-stars'>
 								<h3 className='res-header-title'>
-									{ratingSummary.average_rating.toFixed(1) > 0.0
+									{/* {ratingSummary.average_rating.toFixed(1) > 0.0
 										? ratingSummary.average_rating.toFixed(1)
-										: 'New'}
+										: 'New'} */}
 								</h3>
 								<div>
 									{/* Render full stars */}
@@ -73,7 +73,8 @@ const MainReview = () => {
 								</div>
 							</div>
 							<p className='res-header-title'>
-								{ratingSummary.total_reviews} {ratingSummary.total_reviews > 1 ? "Reviews" : "Review"} 
+								{ratingSummary.total_reviews}{' '}
+								{ratingSummary.total_reviews > 1 ? 'Reviews' : 'Review'}
 							</p>
 						</div>
 					) : (
