@@ -93,13 +93,15 @@ const MenuItemsList = () => {
 								src={item.image_url}
 								alt='food-item'
 								className='menu-item-img'
-							/>
+							/> {!isOwner &&
 							<button
 								className='add-to-cart-btn'
 								onClick={() => handleAddToCart(item)}
 							>
 								+
-							</button>
+							</button>							
+							}
+							
 						</div>
 					</div>
 				))}
