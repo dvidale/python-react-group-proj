@@ -54,7 +54,9 @@ export const RestaurantPage = () => {
 								state={state}
 							/>
 						</div>
-						<div className='rest-review-box'>
+						<div 
+						className='rest-review-box'
+						>
 							<MainReview restaurantId={id} />
 						</div>
 

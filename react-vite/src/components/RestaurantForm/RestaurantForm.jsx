@@ -139,32 +139,32 @@ const submitHandler = (e) =>{
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
         <form onSubmit={submitHandler} method={method} >
             <div>
-            <label htmlFor='name'>
+            <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
             </div>
        
             <div>
-            <label htmlFor='address'>
+            <label htmlFor='address'> <h3>Address</h3>
             <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
 
             {!restaurant && 
             <div>
-            <label htmlFor='city'> 
+            <label htmlFor='city'> <h3>City</h3>
             <input className='half-size-text-field' type='text' id='city' name='city' value={city} placeholder='City' onChange={e => setCity(e.target.value)}></input>
             </label>
                            
-            <label htmlFor='state'> 
+            <label htmlFor='state'> <h3>State</h3>
             <input className='quarter-size-text-field' type='text' id='state' name='state' value={state.toUpperCase()} placeholder='State' maxLength={2} onChange={e => setState(e.target.value)}></input> {`ex. CA`}
             </label>
             </div> }
 
             {!restaurant && 
             <div>
-            <label htmlFor='zip'> 
+            <label htmlFor='zip'> <h3>Zip</h3>
             <input className='half-size-text-field' type='text' inputMode='numeric' id='zip' name='zip' value={zip} placeholder='Zip' onChange={e => setZip(e.target.value)}></input>
             </label>
             </div>
