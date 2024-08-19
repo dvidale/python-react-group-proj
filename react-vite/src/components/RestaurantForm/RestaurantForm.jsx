@@ -140,7 +140,8 @@ const submitHandler = (e) =>{
         <form onSubmit={submitHandler} method={method} >
             <div>
             <label htmlFor='name'>
-            <input className='text-field' type='text' id='name' name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
+            <input className='text-field' type='text' id='name' 
+            name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
             </div>
        
