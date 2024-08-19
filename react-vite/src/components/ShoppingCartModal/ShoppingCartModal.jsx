@@ -14,8 +14,13 @@ const ShoppingCartModal = () => {
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
 	const sessionUser = useSelector((state) => state.session.user);
 
+	// Calculate the total price
+	const totalPrice = shoppingCart.reduce((total, item) => {
+		return total + item.price * item.item_quantity;
+	}, 0);
+
 	const handleAddToCart = (menuItemId) => {
-		dispatch(addCartItem(menuItemId))
+		dispatch(addCartItem(menuItemId));
 	};
 
 	const handleRemoveItem = (itemId) => {
@@ -36,9 +41,14 @@ const ShoppingCartModal = () => {
 
 	return (
 		<div className='shopping-cart-modal'>
-			<div>
+			<div className='shop-header'>
 				<h2>Your Shopping Cart</h2>
-				<button onClick={closeModal}>Close</button>
+				<button
+					className='close-shop-btn'
+					onClick={closeModal}
+				>
+					x
+				</button>
 			</div>
 			{shoppingCart.length > 0 ? (
 				<>
@@ -55,27 +65,46 @@ const ShoppingCartModal = () => {
 									/>
 									<div>
 										<h3>{item.name}</h3>
-										<p>{item.description}</p>
-										<p>Price: ${item.price}</p>
+										<p className='shop-desc'>{item.description}</p>
+										<p className='shop-price'>Price: ${item.price}</p>
 									</div>
 								</div>
 								<div className='cart-quantity'>
-									<p className='quantity'>{item.item_quantity}</p>{' '}
+									<p className='quantity'>Qty: {item.item_quantity}</p>{' '}
 									<div className='quantity-btns'>
-										<button onClick={() => handleAddToCart(item)}>+</button>
-										<button onClick={() => handleRemoveItem(item.id)}>
+										<button
+											className='shop-add-btn'
+											onClick={() => handleAddToCart(item)}
+										>
+											+
+										</button>
+										<button
+											className='shop-delete-btn'
+											onClick={() => handleRemoveItem(item.id)}
+										>
 											Delete
 										</button>
 									</div>
 								</div>
 							</div>
 						))}
+						<hr />
+					</div>
+					<div className='total-price'>
+						<h3>Total: ${totalPrice.toFixed(2)}</h3> {/* Display total price */}
 					</div>
 				</>
 			) : (
 				<p>Your cart is empty.</p>
 			)}
-			{sessionUser && <button onClick={handlePurchase}>Purchase</button>}
+			{sessionUser && shoppingCart.length > 0 && (
+				<button
+					className='shop-purchase-btn'
+					onClick={handlePurchase}
+				>
+					Purchase
+				</button>
+			)}
 		</div>
 	);
 };
