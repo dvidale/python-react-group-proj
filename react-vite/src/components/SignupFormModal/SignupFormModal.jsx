@@ -106,6 +106,17 @@ function SignupFormModal() {
 					{errors.first_name && <p>{errors.first_name}</p>}
 				</label>
 				<label className='signup-label'>
+					Username
+					<input
+						className='signup-input'
+						type='text'
+						value={username}
+						onChange={(e) => setUsername(e.target.value)}
+						required
+					/>
+					{errors.username && <p>{errors.username}</p>}
+				</label>
+				<label className='signup-label'>
 					Last Name
 					<input
 						className='signup-input'
@@ -115,6 +126,17 @@ function SignupFormModal() {
 						required
 					/>
 					{errors.last_name && <p>{errors.last_name}</p>}
+				</label>
+				<label className='signup-label'>
+					Password
+					<input
+						className='signup-input'
+						type='password'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						required
+					/>
+					{errors.password && <p>{errors.password}</p>}
 				</label>
 				<label className='signup-label'>
 					Email
@@ -128,16 +150,17 @@ function SignupFormModal() {
 					{errors.email && <p>{errors.email}</p>}
 				</label>
 				<label className='signup-label'>
-					Username
+					Confirm Password
 					<input
 						className='signup-input'
-						type='text'
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
+						type='password'
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
-					{errors.username && <p>{errors.username}</p>}
+					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
 				</label>
+
 				<label className='signup-label'>
 					Address
 					<input
@@ -182,17 +205,7 @@ function SignupFormModal() {
 					/>
 					{errors.zip && <p>{errors.zip}</p>}
 				</label>
-				<label className='signup-label'>
-					Password
-					<input
-						className='signup-input'
-						type='password'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-					{errors.password && <p>{errors.password}</p>}
-				</label>
+
 				<label className='signup-label'>
 					Phone Number
 					<input
@@ -205,17 +218,6 @@ function SignupFormModal() {
 					{errors.phone_number && <p>{errors.phone_number}</p>}
 				</label>
 
-				<label className='signup-label'>
-					Confirm Password
-					<input
-						className='signup-input'
-						type='password'
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-				</label>
 				<button type='submit'>Sign Up</button>
 			</form>
 		</div>
