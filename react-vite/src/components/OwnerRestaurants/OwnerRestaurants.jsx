@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getRestaurants, updateRestaurant } from '../../redux/restaurants';
-import OpenModalButton from '../../components/OpenModalButton';
+import { getRestaurants } from '../../redux/restaurants';
 import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal.jsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './OwnerRestaurants.css';
 import { useModal } from '../../context/Modal.jsx';
 
@@ -26,8 +25,8 @@ function OwnerRestaurants({ city, state }) {
 		(restaurant) => restaurant.owner_id === owner.id
 	);
 
-	const updateRestaurant = () => {
-		navigate(`/restaurants/current/${restaurant.id}`);
+	const updateRestaurant = (id) => {
+		navigate(`/restaurants/current/${id}`);
 	};
 
 	return (
