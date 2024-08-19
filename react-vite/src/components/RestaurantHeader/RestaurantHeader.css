@@ -1,8 +1,9 @@
 .banner-img-container {
-	display: flexbox;
+	position: relative;
+	display: flex;
 	border: 1px gray solid;
 	background-size: cover;
-	height: 200px;
+	height: 320px;
 }
 
 .header-text {
@@ -10,9 +11,14 @@
 	flex-direction: column;
 	justify-content: center;
 	padding: 1rem 2rem;
+	gap: 1rem;
 	border: solid 2px black;
 	border-radius: 12px;
-	height: 95px;
+	height: auto;
+}
+
+.header-h1-title {
+	font-size: 50px;
 }
 
 .restaurant-page-header-review {
@@ -43,4 +49,14 @@
 
 .header-stars h3 {
 	color: white;
+}
+
+.restaurant-title {
+	position: absolute;
+	color: white;
+	z-index: 2; /* Ensure the title is above the overlay */
+	font-size: 58px;
+	text-align: center;
+	left: 0;
+	bottom: 5px;
 }

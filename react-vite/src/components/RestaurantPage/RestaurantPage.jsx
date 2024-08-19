@@ -16,8 +16,6 @@ export const RestaurantPage = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-
-
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
 
@@ -36,11 +34,17 @@ export const RestaurantPage = () => {
 		<>
 			{restaurant ? (
 				<div className='res-page-structure'>
-					{sessionUser && sessionUser.id === restaurant.owner_id &&   
-					<div className="res-management-button-container">		
-					<button id='res-page-delete-button' className='res-page-man-btn' 
-					onClick={()=> navigate(`/restaurants/current`)}>Manage Your Restaurant</button>
-					</div>}
+					{sessionUser && sessionUser.id === restaurant.owner_id && (
+						<div className='res-management-button-container'>
+							<button
+								id='res-page-delete-button'
+								className='res-page-man-btn'
+								onClick={() => navigate(`/restaurants/current`)}
+							>
+								Manage Your Restaurant
+							</button>
+						</div>
+					)}
 					<RestaurantHeader restaurant={restaurant} />
 					<div className='res-page-info-structure'>
 						<div className='rest-info-box'>

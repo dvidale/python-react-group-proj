@@ -10,7 +10,7 @@
 	display: flex;
 	border-radius: 12px;
 	transition: box-shadow 0.3s ease;
-	min-height: 165px;
+	height: 165px;
 	cursor: pointer;
 	overflow: hidden;
 }
@@ -20,11 +20,9 @@
 }
 
 .restaurant-image-div {
-	border: solid 2px red;
 	border-radius: 12px;
 	height: 100%;
-	min-width: 40%;
-	max-width: 30%;
+	width: 200px;
 }
 
 .restaurant-image {
