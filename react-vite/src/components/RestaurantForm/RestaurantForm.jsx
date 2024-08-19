@@ -3,6 +3,7 @@ import './restaurant_form.css'
 import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
 import { useParams, useNavigate } from 'react-router-dom'
+import 
 
 function RestaurantForm(){
 
@@ -84,6 +85,9 @@ const submitHandler = (e) =>{
     if (address.length < 1) err[address] = "Address required"
     if (phone_number.length < 10) err[phone_number]= "Phone number must be 10 characters"
     if (description.length < 20) err[description] = "Description must be at least 20 characters"
+    if(banner_img.length > 0 && !(banner_img.endsWith("jpeg") || banner_img.endsWith("jpg") || banner_img.endsWith("png"))){
+        err.banner_img = "Image URL must end in .png, .jpg, or .jpeg";
+      }
 
     setError(err)
 
@@ -140,10 +144,11 @@ const submitHandler = (e) =>{
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
             </label>
+            
             </div>
        
             <div>
-            <label htmlFor='address'> <h3>Address</h3>
+            <label htmlFor='address'> <h3>Street Address</h3>
             <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
             </label>
             </div>
@@ -194,11 +199,12 @@ const submitHandler = (e) =>{
                 </label>   
             
             </div>
-            <div><h2 className='hours-heading'>Open and Closing Hours  </h2></div>
-            <div className='days-hours-container'>
+            <div><h2 className='hours-heading'>Hours  </h2></div>
+            <h3 > Sunday - Saturday  </h3> 
+       
 
            
-            <h3 className='day-heading'> Monday  </h3> 
+            
             <div className='time-fields'>
             <label htmlFor='open_time'> 
             <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time} onChange={e => setOpenTime(e.target.value)}></input>
@@ -209,73 +215,10 @@ const submitHandler = (e) =>{
             </label>
             </div>
 
-        
-            <h3 className='day-heading'>Tuesday </h3> 
-            <div className='time-fields'>
-            <label htmlFor='t_open_time'> 
-            <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='t_close_time'> 
-
-            <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Wednesday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='w_open_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_open_time' name='w_open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='w_close_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_close_time' name='w_close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Thursday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Friday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='f_close_time' name='close_time' value={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Saturday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Sunday</h3>
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'>
-            <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            </div>
 
             <div className='delivery-time'>
             <label htmlFor='delivery_time'><h3>Delivery Time</h3>  </label>
-            <select name='delivery_fee' id='delivery_fee' value={delivery_time} onChange={e => setDeliveryFee(e.target.value)}>
+            <select name='delivery_fee' id='delivery_fee' value={delivery_time} onChange={e => setDeliveryTime(e.target.value)}>
                 <option value={`10-25`} >10 - 25</option>
                 <option value={`25-45`}>25 - 45</option>
                 <option value={`45-60`}>45 - 60</option>

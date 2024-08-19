@@ -57,18 +57,15 @@ select[multiple]{
 }
 
 .days-hours-container{
-    display: grid;
-    grid-template-columns: 25% auto auto;
-    gap:10px;
-    column-gap: 30px;
-}
-.day-heading{
-    grid-column:1;
+    display: flex;
+    justify-content: space-evenly;
 }
 
+
 .time-fields{
-    grid-column-start: 2;
-    grid-column-end: 4;
+    display: flex;
+    justify-content: start;
+    gap: 10px;
 }
 
 select{
@@ -82,6 +79,7 @@ select{
     align-items: end;
     gap: 20px;
     padding: 9px 0px;
+    margin-top: 8px;
 }
 
 input[type='url']{
