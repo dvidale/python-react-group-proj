@@ -19,6 +19,7 @@
 
 .header-h1-title {
 	font-size: 50px;
+	text-decoration: underline var(--accent-clr);
 }
 
 .restaurant-page-header-review {
