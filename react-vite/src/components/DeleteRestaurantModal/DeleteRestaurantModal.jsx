@@ -11,20 +11,19 @@ function DeleteRestaurantModal({restaurantId}){
 // TODO : Add dynamic code to populate restaurant name in warning heading.
 const {closeModal} = useModal();
 
-const dispatch = useDispatch()
-const navigate = useNavigate()
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-    const deleteHandler = () =>{
-
-        dispatch(restaurantsActions.deleteRestaurant(restaurantId)).then((data)=>{ alert(data.message)})
-        .then(closeModal).then(()=> navigate(`/restaurants/current`))
-        .then(()=> dispatch(restaurantsActions.getRestaurants()))
-        .then( (restaurantsArr)=> dispatch(fetchReviews(restaurantsArr[0].id))) // fetches the reviews for whatever restaurant is now the first one to satisfy need for id
-        
-    }
-
-
-
+	const deleteHandler = () => {
+		dispatch(restaurantsActions.deleteRestaurant(restaurantId))
+			.then((data) => {
+				alert(data.message);
+			})
+			.then(closeModal)
+			.then(() => navigate(`/restaurants/current`))
+			.then(() => dispatch(restaurantsActions.getRestaurants()))
+			.then((restaurantsArr) => dispatch(fetchReviews(restaurantsArr[0].id))); // fetches the reviews for whatever restaurant is now the first one to satisfy need for id
+	};
 
     return (
 
@@ -43,5 +42,4 @@ const navigate = useNavigate()
     )
 }
 
-
-export default DeleteRestaurantModal
+export default DeleteRestaurantModal;

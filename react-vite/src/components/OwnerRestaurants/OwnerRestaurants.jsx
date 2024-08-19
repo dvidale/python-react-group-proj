@@ -12,9 +12,8 @@ function OwnerRestaurants({ city, state }) {
 	const { setModalContent } = useModal();
 
 	const owner = useSelector((state) => state.session.user);
-	if(!owner) navigate('/')
+	if (!owner) navigate('/');
 
-		
 	const all_restaurants = useSelector(
 		(state) => state.restaurants.AllRestaurants
 	);
@@ -28,6 +27,10 @@ function OwnerRestaurants({ city, state }) {
 		(restaurant) => restaurant.owner_id === owner.id
 	);
 
+	const handleDelete = (restaurantId) => {
+		setModalContent(<DeleteRestaurantModal restaurantId={restaurantId} />);
+	};
+
 	return (
 		<div className='owned-restaurant-list'>
 			{filteredRestaurants.map((restaurant) => (
@@ -35,9 +38,10 @@ function OwnerRestaurants({ city, state }) {
 					key={restaurant.id}
 					className='owned-restaurant-tile-shape'
 				>
-					<div className='owned-restaurant-image-div'
-					onClick={() => navigate(`/restaurants/${restaurant.id}`)}>
-						
+					<div
+						className='owned-restaurant-image-div'
+						onClick={() => navigate(`/restaurants/${restaurant.id}`)}
+					>
 						<img
 							src={restaurant.banner_img}
 							alt={restaurant.name}
@@ -49,7 +53,11 @@ function OwnerRestaurants({ city, state }) {
 						onClick={() => navigate(`/restaurants/${restaurant.id}`)}
 					>
 						<h2 className='owner-rest-name'>{restaurant.name}</h2>
-						<p>{restaurant.average_rating.toFixed(1) > 0.0 ? restaurant.average_rating.toFixed(1) : "New"}</p>
+						<p>
+							{restaurant.average_rating.toFixed(1) > 0.0
+								? restaurant.average_rating.toFixed(1)
+								: 'New'}
+						</p>
 						<p>{restaurant.categories.join(' • ')}</p>
 						<p>{restaurant.description}</p>
 						{(city && state) || (restaurant.city && restaurant.state) ? (
@@ -69,7 +77,7 @@ function OwnerRestaurants({ city, state }) {
 						</button>
 						<button
 							className='owner-delete-btn'
-							onClick={() => setModalContent(<DeleteRestaurantModal />)}
+							onClick={() => handleDelete(restaurant.id)}
 						>
 							Delete
 						</button>
