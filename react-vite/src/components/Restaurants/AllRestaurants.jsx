@@ -35,7 +35,7 @@ function AllRestaurants({ city, state }) {
 				<div
 					key={restaurant.id}
 					onClick={() => navigate(`/restaurants/${restaurant.id}`)}
-					className='restaurant-tile'
+					className='restaurant-tile-shape'
 				>
 					<img
 						src={restaurant.banner_img}

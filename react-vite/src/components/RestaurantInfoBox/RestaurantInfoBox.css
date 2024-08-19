@@ -11,7 +11,9 @@
 }
 
 .delivery-fee {
-	height: 95px;
+	display: flex;
+	align-items: center;
+	height: 75px;
 	width: auto;
 	background-color: black;
 	padding: 0.4rem 2rem;

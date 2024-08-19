@@ -4,17 +4,18 @@
 	gap: 1rem;
 }
 
-.restaurant-tile {
+.restaurant-tile-shape {
 	position: relative;
-	border: solid 1px gray;
+	border: solid 2px gray;
 	display: flex;
 	border-radius: 12px;
 	transition: box-shadow 0.3s ease;
 	min-height: 165px;
 	cursor: pointer;
+	overflow: hidden;
 }
 
-.restaurant-tile:hover {
+.restaurant-tile-shape:hover {
 	box-shadow: 2px 2px 5px gray;
 }
 
@@ -22,7 +23,7 @@
 	display: flex;
 	height: auto;
 	width: 30%;
-	border: solid 2px red;
+
 	border-radius: 12px;
 }
 

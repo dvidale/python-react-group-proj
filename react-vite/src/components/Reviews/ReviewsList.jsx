@@ -8,6 +8,7 @@ import UpdateReview from './UpdateReview';
 import { FaStar } from 'react-icons/fa';
 import { FaRegStar } from 'react-icons/fa';
 import CreateReview from './CreateReview';
+import './ReviewList.css';
 
 const ReviewsList = ({ restaurant }) => {
 	const dispatch = useDispatch();
@@ -46,8 +47,8 @@ const ReviewsList = ({ restaurant }) => {
 		);
 
 	return (
-		<>
-			<h2>Rating and Reviews</h2>
+		<div className='review-list-wrapper'>
+			<h2 className='review-list-header'>Rating and Reviews</h2>
 			{sessionUser &&
 				sessionUser.id !== restaurant.owner_id &&
 				!leftAReview && (
@@ -59,43 +60,42 @@ const ReviewsList = ({ restaurant }) => {
 				)}
 
 			{reviewsByRestaurantId.length > 0 ? (
-				<>
-					<div>
-						<div>
-							{reviewsByRestaurantId
-								.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-								.map((review) => (
-									<div key={review.id}>
-										<p>
-											{review.user_first_name} {review.user_last_name}
-										</p>
-										<p>{review.created_at}</p>
-										<div>{renderStars(review.rating)}</div>
-										<p>{review.comments}</p>
-										{sessionUser?.id === review.user_id && (
-											<>
-												<OpenModalButton
-													id='delete-button'
-													buttonText='Delete'
-													modalComponent={
-														<DeleteReview
-															reviewId={review.id}
-															restaurantId={restaurant.id}
-														/>
-													}
+				<div className='review-list-grid'>
+					{reviewsByRestaurantId
+						.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+						.map((review) => (
+							<div
+								key={review.id}
+								className='review-structure'
+							>
+								<h3 className='review-info-text'>
+									{review.user_first_name} {review.user_last_name}
+								</h3>
+								<p className='review-info-text'>{review.created_at}</p>
+								<div className='review-stars'>{renderStars(review.rating)}</div>
+								<p className='review-info-text'>{review.comments}</p>
+								{sessionUser?.id === review.user_id && (
+									<>
+										<OpenModalButton
+											id='delete-button'
+											buttonText='Delete'
+											modalComponent={
+												<DeleteReview
+													reviewId={review.id}
+													restaurantId={restaurant.id}
 												/>
-												<OpenModalButton
-													id='update-button'
-													buttonText='Edit'
-													modalComponent={<UpdateReview reviewId={review.id} />}
-												/>
-											</>
-										)}
-									</div>
-								))}
-						</div>
-					</div>
-				</>
+											}
+										/>
+										<OpenModalButton
+											id='update-button'
+											buttonText='Edit'
+											modalComponent={<UpdateReview reviewId={review.id} />}
+										/>
+									</>
+								)}
+							</div>
+						))}
+				</div>
 			) : (
 				<>
 					<p>No reviews yet!</p>
@@ -105,7 +105,7 @@ const ReviewsList = ({ restaurant }) => {
 					)}
 				</>
 			)}
-		</>
+		</div>
 	);
 };
 
