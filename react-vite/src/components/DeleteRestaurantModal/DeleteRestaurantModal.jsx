@@ -1,13 +1,14 @@
-import { useDispatch } from 'react-redux';
-import * as restaurantsActions from '../../redux/restaurants';
-import { useModal } from '../../context/Modal';
-import './delete-restaurant.css';
-import { fetchReviews } from '../../redux/reviews';
-import { useNavigate } from 'react-router-dom';
-function DeleteRestaurantModal({ restaurantId }) {
-	console.log('IS THIS DELTE ID?', restaurantId);
-	// TODO : Add dynamic code to populate restaurant name in warning heading.
-	const { closeModal } = useModal();
+import { useDispatch } from "react-redux"
+import * as restaurantsActions from '../../redux/restaurants'
+import { useModal } from "../../context/Modal"
+import './delete-restaurant.css'
+import { fetchReviews } from "../../redux/reviews"
+import { useNavigate } from "react-router-dom"
+
+function DeleteRestaurantModal({restaurantId}){
+
+// TODO : Add dynamic code to populate restaurant name in warning heading.
+const {closeModal} = useModal();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as restaurantsActions from '../../redux/restaurants'
 import { useParams, useNavigate } from 'react-router-dom'
 
+
 function RestaurantForm(){
 
     //if an id is not provided, present this form blank for creating a new restaurant
@@ -25,12 +26,10 @@ function RestaurantForm(){
     const [categories, setCategories] = useState([])
     const [open_time, setOpenTime] = useState("10:00")
     const [close_time, setCloseTime] = useState("22:00")
-    const [delivery_time, setDeliveryTime] = useState("")
-    const [delivery_fee, setDeliveryFee] = useState("")
+    const [delivery_time, setDeliveryTime] = useState('10-25')
+    const [delivery_fee, setDeliveryFee] = useState("0.99")
     const [banner_img, setBannerImg] = useState("https://")
      
-
-
     const [error, setError] = useState({})
 
     //load restaurant data in the form for updates
@@ -52,6 +51,18 @@ function RestaurantForm(){
     },[restaurant])
     
  
+useEffect(()=>{
+
+setError({})
+
+},[name, 
+    address,
+     phone_number,
+     description,
+     categories,
+    banner_img])
+
+   
 
 
 
@@ -72,22 +83,28 @@ const user = useSelector(state => state.session.user)
 
 
 
-
-
-const submitHandler = (e) =>{
+const submitHandler =  (e) =>{
     e.preventDefault()
 
-    // * VALIDATIONS    
-    const err = {}
+ // * VALIDATIONS    
+ const err = {}
 
-    name.length < 2 ? err[name] = "Name must have at least two characters" : ""
-    if (address.length < 1) err[address] = "Address required"
-    if (phone_number.length < 10) err[phone_number]= "Phone number must be 10 characters"
-    if (description.length < 20) err[description] = "Description must be at least 20 characters"
+ if(name.length < 2) err.name = "Name must have at least two characters"
+ if (address.length < 4) err.address = "Street address must be at least 4 characters"
 
-    setError(err)
+ if(!/^\d{10}$/.test(phone_number)) err.phone_number ="Phone number must be 10 digits"
+ if (description.length < 20) err.description = "Description must be at least 20 characters"
+ if(categories.length === 0) err.categories = "At least 1 category is required"
+ if(banner_img.length > 0 && !(banner_img.endsWith("jpeg") || banner_img.endsWith("jpg") || banner_img.endsWith("png"))){
+     err.banner_img = "Image URL must end in .png, .jpg, or .jpeg";
+   }
 
-  
+ setError(err)
+
+
+    if (Object.keys(err).length === 0){
+console.log(">>>>> delivery fee", delivery_fee);
+   
     const formData = {
         owner_id: user.id,
         name,
@@ -101,6 +118,7 @@ const submitHandler = (e) =>{
         delivery_fee,
         banner_img
     }
+
 
     
     if(restaurant){
@@ -126,6 +144,14 @@ const submitHandler = (e) =>{
     
     
 
+
+
+
+    }
+
+
+
+
    
 }
 // TODO: Refactor these form fields as a form field component, passing in the specifics as props
@@ -134,17 +160,23 @@ const submitHandler = (e) =>{
         <div id="form-container">
             <div> <button id="back-to-res-portal-btn" className='res-page-man-btn' onClick={()=> navigate(`/restaurants/current`)}> Back to Management Portal </button> </div>
             <h1>{restaurant ? "Update a Restaurant" : "Submit a New Restaurant"}</h1>
-        <form onSubmit={submitHandler} method={method} >
+        <form 
+        onSubmit={submitHandler} 
+        >
             <div>
+
             <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
+            {error.name && <p className='errors'>{error.name}</p>}
             </label>
+            
             </div>
        
             <div>
-            <label htmlFor='address'> <h3>Address</h3>
+            <label htmlFor='address'> <h3>Street Address</h3>
             <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
+            {error.address && <p className='errors'>{error.address}</p>}
             </label>
             </div>
 
@@ -152,19 +184,22 @@ const submitHandler = (e) =>{
             
             <div>
             <label htmlFor='phone'> <h3>Phone</h3>
-            <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={12} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 123-456-7890
+            <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={10} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 1234567890
             </label> 
+            {error.phone_number && <p className='errors'>{error.phone_number}</p>}
             </div>
 
             <div>
             <label htmlFor='description'> <h3>Description</h3>
             <textarea id='description'name='description' value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
+            {error.description && <p className='errors'>{error.description}</p>}
             </div>
             <div>
                 <label htmlFor='categories'>
                     <div>
-<h2>Categories  </h2> <h3>( ⊞/⌘ + Click  to select multiple) </h3>
+<h2>Categories  </h2> {error.categories && <p className='errors'>{error.categories}</p>}
+<h3>( ⊞/⌘ + Click  to select multiple) </h3>
 
                     </div>
                
@@ -194,88 +229,23 @@ const submitHandler = (e) =>{
                 </label>   
             
             </div>
-            <div><h2 className='hours-heading'>Open and Closing Hours  </h2></div>
-            <div className='days-hours-container'>
-
-           
-            <h3 className='day-heading'> Monday  </h3> 
+            <div><h2 className='hours-heading'>Hours  </h2></div>
+            <h3 > Sunday - Saturday  </h3> 
+                   
             <div className='time-fields'>
             <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='open_time' name='open_time' value={open_time} onChange={e => setOpenTime(e.target.value)}></input>
+            <input type='time' min='00:00' max='12:00' id='open_time' name='open_time' value={open_time} onChange={e => setOpenTime(e.target.value)}></input>
             </label>
             
             <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='close_time' name='close_time' value={close_time} onChange={e => setCloseTime(e.target.value)}></input>
+            <input type='time' min='12:00' max='24:00' id='close_time' name='close_time' value={close_time} onChange={e => setCloseTime(e.target.value)}></input>
             </label>
             </div>
 
-        
-            <h3 className='day-heading'>Tuesday </h3> 
-            <div className='time-fields'>
-            <label htmlFor='t_open_time'> 
-            <input type='time' min='00:00' max='24:00' id='t_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='t_close_time'> 
-
-            <input type='time' min='00:00' max='24:00' id='t_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Wednesday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='w_open_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_open_time' name='w_open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='w_close_time'> 
-            <input type='time' min='00:00' max='24:00' id='w_close_time' name='w_close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Thursday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='th_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='th_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Friday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='f_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='f_close_time' name='close_time' value={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Saturday</h3> 
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='s_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'> 
-            <input type='time' min='00:00' max='24:00' id='s_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            <h3 className='day-heading'>Sunday</h3>
-            <div className='time-fields'>
-            <label htmlFor='open_time'> 
-            <input type='time' min='00:00' max='24:00' id='su_open_time' name='open_time' defaultValue={open_time}></input>
-            </label>
-            
-            <label htmlFor='close_time'>
-            <input type='time' min='00:00' max='24:00' id='su_close_time' name='close_time' defaultValue={close_time}></input>
-            </label>
-            </div>
-            </div>
 
             <div className='delivery-time'>
             <label htmlFor='delivery_time'><h3>Delivery Time</h3>  </label>
-            <select name='delivery_fee' id='delivery_fee' value={delivery_time} onChange={e => setDeliveryFee(e.target.value)}>
+            <select name='delivery_fee' id='delivery_fee' value={delivery_time} onChange={e => setDeliveryTime(e.target.value)}>
                 <option value={`10-25`} >10 - 25</option>
                 <option value={`25-45`}>25 - 45</option>
                 <option value={`45-60`}>45 - 60</option>
@@ -285,7 +255,6 @@ const submitHandler = (e) =>{
             <div className='delivery-time'>
             <label htmlFor='delivery_fee'> <h3>Delivery Fee $  </h3></label>
             <select name='delivery_fee' id='delivery_fee' value={delivery_fee} onChange={e => setDeliveryFee(e.target.value)}>
-                <option value={0.00} >None</option>
                 <option value={0.99}>0.99</option>
                 <option value={1.99}>1.99</option>
                 <option value={2.99}>2.99</option>
@@ -298,6 +267,7 @@ const submitHandler = (e) =>{
             <label htmlFor='banner_img'> <h3 className='banner-img-heading'> Banner Image URL </h3>
             <input type='url' id='banner_img' name='banner_img' value={banner_img} onChange={e => setBannerImg(e.target.value)}></input>
             </label>
+            {error.banner_img && <p className='errors'>{error.banner_img}</p>}
             </div>
            
            <div className='res-form-submit-btn'>

@@ -53,6 +53,10 @@ def new_restaurant_form():
     restaurant_form = RestaurantForm()
     restaurant_form["csrf_token"].data = request.cookies["csrf_token"]
 
+    float_delivery_fee = restaurant_form.data["delivery_fee"]
+
+    print(">>>>> float_delivery_fee", [ ele for ele in float_delivery_fee])
+
     if restaurant_form.validate_on_submit():
 
         new_restaurant = Restaurant(
@@ -64,7 +68,7 @@ def new_restaurant_form():
             open_time=restaurant_form.data["open_time"],
             close_time=restaurant_form.data["close_time"],
             delivery_time=restaurant_form.data["delivery_time"],
-            delivery_fee=restaurant_form.data["delivery_fee"],
+            delivery_fee= float_delivery_fee,
             banner_img=restaurant_form.data["banner_img"]
 
         )
@@ -105,7 +109,7 @@ def new_restaurant_form():
         return res
 
     print(">>>>form errors", restaurant_form.errors)
-    return {"no dice": "sorry"}
+    return {"message": "there was a server error submitting the restaurant"}
 
 
 # ?  UPDATE A RESTAURANT

@@ -12,7 +12,7 @@ class RestaurantForm(FlaskForm):
     open_time = StringField('open_time', validators=[length(min=5, max=5)])
     close_time = StringField('close_time', validators=[length(min=5, max=5)])
     delivery_time = StringField('delivery_time')
-    delivery_fee = FloatField('delivery_fee')
+    delivery_fee = StringField('delivery_fee')
     banner_img = URLField('banner_img') 
     categories = SelectMultipleField('categories', choices=['Italian', 'Mexican', 'BBQ', 'Japanese','Thai', 'Greek', 'Indian', 'French','American','Chinese'])
 
