@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { getRestaurants } from '../../redux/restaurants';
 import  OpenModalButton from '../../components/OpenModalButton'
 import DeleteRestaurantModal from '../DeleteRestaurantModal/DeleteRestaurantModal.jsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../Restaurants/all_restaurants.css'
 
 function OwnerRestaurants({ city, state }) {
@@ -52,8 +52,8 @@ function OwnerRestaurants({ city, state }) {
 						) : null}
 					</div>
 					<div>  
-					<button id="update-restaurant-button" >
-						<Link to={`/restaurants/current/${restaurant.id}`} >Update</Link> </button>
+					<button id="update-restaurant-button" onClick={()=> navigate(`/restaurants/current/${restaurant.id}`)} >
+						Update </button>
 						<OpenModalButton id='delete-restaurant-modal-button' 
 						buttonText='Delete'
 						modalComponent={<DeleteRestaurantModal restaurantId={restaurant.id}/>} />

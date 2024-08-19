@@ -22,3 +22,24 @@
 	padding: 0 0 0 1rem;
 	margin-top: 110px;
 }
+
+.res-management-button-container{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+background-color: black;
+color: white;
+padding: 10px ;
+}
+.res-page-man-heading{
+	font-size: 20px;
+}
+
+.res-page-man-btn{
+background-color: #04bd64;
+padding: 7px 20px;
+margin: 0px 10px;
+color: white;
+font-weight: bolder;
+}
