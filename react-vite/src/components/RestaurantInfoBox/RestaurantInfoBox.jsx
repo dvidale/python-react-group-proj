@@ -5,23 +5,25 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 		<>
 			<div className='restaurant-info'>
 				<div className='delivery-fee'>
-					<p className='delivery-fee-text'>
+					<h3 className='delivery-fee-text'>
 						${restaurant.delivery_fee} delivery fee {restaurant.delivery_time}{' '}
 						min
-					</p>
+					</h3>
 				</div>
 				<div className='res-address'>
-					<p className='delivery-fee-text-p'>
+					<h3 className='delivery-fee-text-p'>
 						{restaurant.address} {city && state ? `${city}, ${state}` : ''}
-					</p>
+					</h3>
 				</div>
 				<div className='res-schedule'>
-					<p className='delivery-fee-text-p'>Sun - Sat</p>
+					<h3 className='delivery-fee-text-p'>Sun - Sat</h3>
 					<br />
 
-					<p className='delivery-fee-text-p'>Open: {restaurant.open_time}</p>
+					<h3 className='delivery-fee-text-p'>Open: {restaurant.open_time}</h3>
 					<br />
-					<p className='delivery-fee-text-p'>Close: {restaurant.close_time}</p>
+					<h3 className='delivery-fee-text-p'>
+						Close: {restaurant.close_time}
+					</h3>
 				</div>
 			</div>
 		</>

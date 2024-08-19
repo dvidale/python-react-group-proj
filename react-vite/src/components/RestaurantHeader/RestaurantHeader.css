@@ -2,13 +2,17 @@
 	display: flexbox;
 	border: 1px gray solid;
 	background-size: cover;
+	height: 200px;
 }
 
 .header-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	padding: 1rem 2rem;
 	border: solid 2px black;
 	border-radius: 12px;
-	width: 92%;
+	height: 95px;
 }
 
 .restaurant-page-header-review {

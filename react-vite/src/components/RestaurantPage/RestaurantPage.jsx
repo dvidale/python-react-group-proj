@@ -34,20 +34,24 @@ export const RestaurantPage = () => {
 				<div className='res-page-structure'>
 					<RestaurantHeader restaurant={restaurant} />
 					<div className='res-page-info-structure'>
-						<div className='res-info-holder'>
+						<div className='rest-info-box'>
 							<RestaurantInfoText
 								restaurant={restaurant}
 								city={city}
 								state={state}
 							/>
-
+						</div>
+						<div className='rest-review-box'>
 							<MainReview restaurantId={id} />
 						</div>
-						<RestaurantInfoBox
-							restaurant={restaurant}
-							city={city}
-							state={state}
-						/>
+
+						<div className='rest-delivery-box'>
+							<RestaurantInfoBox
+								restaurant={restaurant}
+								city={city}
+								state={state}
+							/>
+						</div>
 					</div>
 					<MenuItemsList id={id} />
 					<ReviewsList restaurant={restaurant} />

@@ -69,3 +69,7 @@ li {
 button {
 	border-radius: 12px;
 }
+
+img {
+	object-fit: inherit;
+}
