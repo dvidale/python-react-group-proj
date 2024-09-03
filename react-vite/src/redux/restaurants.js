@@ -119,7 +119,7 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 
 	const data = await response.json();
 
-	console.log('>>> data from flask UPDATE route:', data);
+	// console.log('>>> data from flask UPDATE route:', data);
 	dispatch(add_Or_Update_Restaurant(data));
 	return data;
 };
