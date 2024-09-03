@@ -1,131 +1,120 @@
-# Flask React Project
+# E-Commerce Website 🙌
 
-This is the starter for the Flask React project.
+The E-commerce website is a full-stack application built using React with Vite as the bundler. It incorporates Tailwind CSS for styling and Material UI for components, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, wishlist and cart pages for managing items, search functionality to easily find products, and a profile section for personalization. Furthermore, it includes checkout processes with support for coupons and purchasing, ensuring a seamless shopping experience for customers.
 
-## Getting started
 
-1. Clone this repository (only this branch).
+  <img  src="public/assets/Screenshots/0.png" alt="Home">
 
-2. Install dependencies.
+## [🌟Live Website🌟](https://e-commerce-mansy.vercel.app)
+
+## [🌟Design on Figma 🌟](https://www.figma.com/file/yn2DFQJla0UiSMvomFsqwT/E-Commerce-Website-%D9%90Almdrasa?type=design&mode=design&t=fqPRRAQH5lDJGmoY-0)
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Set Up ](#set-up)
+- [Screenshots](#screenshots)
+- [Contact](#contact)
+
+
+
+## Featured Skills
+
+1. **React**: Utilized for building the frontend interface, providing dynamic and interactive components.
+2. **Vite**: Employed as the build tool to optimize and bundle the project for production.
+3. **Tailwind CSS**: Integrated for responsive and customizable styling, enhancing the visual aesthetics of the website.
+4. **Material UI**: Leveraged for pre-designed components and UI elements, facilitating rapid development and maintaining consistency in design.
+5. **Full-stack Development**: Implemented both frontend and backend functionalities, ensuring end-to-end functionality and user experience.
+6. **User Authentication**: Implemented signup and login features to authenticate users and secure their accounts.
+7. **Wishlist and Cart Management**: Developed functionalities to add, remove, and update items in the wishlist and cart, enhancing user engagement and convenience.
+8. **Search Functionality**: Implemented a search feature to enable users to find products efficiently based on their preferences.
+9. **Checkout Process**: Designed a seamless checkout process with support for applying coupons and completing purchases, streamlining the buying journey for users.
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **Vite**: Fast, modern build tooling for frontend development.
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
+- **Material-UI**: React components for faster and easier web development.
+- **Custom Hooks**: Utilized custom React hooks for managing state and logic efficiently.
+- **Git** (for version control)
+- **Responsive For Mobile**
+
+## Set Up
+
+To set up and run the project locally, follow these steps:
+
+1. Clone the repository to your local machine:
 
    ```bash
-   pipenv install -r requirements.txt
+   git clone https://github.com/MMansy19/E-Commerce-Website.git
    ```
 
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
-
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
-
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
+2. Navigate to the project directory:
 
    ```bash
-   pipenv shell
+   cd E-Commerce-Website
    ```
+
+3. Install the project dependencies:
 
    ```bash
-   flask db upgrade
+   npm install
    ```
+
+4. Install `i18next` for internationalization:
 
    ```bash
-   flask seed all
+   npm install i18next
    ```
+
+5. Install `react-i18next` for React integration with i18next:
 
    ```bash
-   flask run
+   npm install react-i18next
    ```
 
-7. The React frontend has no styling applied. Copy the __.css__ files from your
-   Authenticate Me project into the corresponding locations in the
-   __react-vite__ folder to give your project a unique look.
+6. Install `flowbite-react` for UI components:
 
-8. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
+   ```bash
+   npm install flowbite-react
+   ```
 
-## Deployment through Render.com
+7. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-First, recall that Vite is a development dependency, so it will not be used in
-production. This means that you must already have the __dist__ folder located in
-the root of your __react-vite__ folder when you push to GitHub. This __dist__
-folder contains your React code and all necessary dependencies minified and
-bundled into a smaller footprint, ready to be served from your Python API.
 
-Begin deployment by running `npm run build` in your __react-vite__ folder and
-pushing any changes to GitHub.
+## Screenshots
+1. E-Commerce HomePage
+  <img  src="public/assets/Screenshots/E-Commerce HomePage.jpg" alt="E-Commerce HomePage">
+2. Sign Up
+  <img  src="public/assets/Screenshots/Sign Up.jpg" alt="Sign Up">
+3. Log In
+  <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
+4. Product Details page
+  <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
+5. Wishlist
+  <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
+6. About
+  <img  src="public/assets/Screenshots/About.jpg" alt="About">
+7. Cart
+  <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
+8. CheckOut
+  <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
+9. Contact
+  <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
+10. Account
+  <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
 
-Refer to your Render.com deployment articles for more detailed instructions
-about getting started with [Render.com], creating a production database, and
-deployment debugging tips.
 
-From the Render [Dashboard], click on the "New +" button in the navigation bar,
-and click on "Web Service" to create the application that will be deployed.
 
-Select that you want to "Build and deploy from a Git repository" and click
-"Next". On the next page, find the name of the application repo you want to
-deploy and click the "Connect" button to the right of the name.
 
-Now you need to fill out the form to configure your app. Most of the setup will
-be handled by the __Dockerfile__, but you do need to fill in a few fields.
+## Contact
 
-Start by giving your application a name.
-
-Make sure the Region is set to the location closest to you, the Branch is set to
-"main", and Runtime is set to "Docker". You can leave the Root Directory field
-blank. (By default, Render will run commands from the root directory.)
-
-Select "Free" as your Instance Type.
-
-### Add environment variables
-
-In the development environment, you have been securing your environment
-variables in a __.env__ file, which has been removed from source control (i.e.,
-the file is gitignored). In this step, you will need to input the keys and
-values for the environment variables you need for production into the Render
-GUI.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from the **External Database URL** field)
-
-**Note:** Add any other keys and values that may be present in your local
-__.env__ file. As you work to further develop your project, you may need to add
-more environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment.
-
-### Deploy
-
-Now you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your Dockerfile
-commands being executed and any errors that occur.
-
-When deployment is complete, open your deployed site and check to see that you
-have successfully deployed your Flask application to Render! You can find the
-URL for your site just below the name of the Web Service at the top of the page.
-
-**Note:** By default, Render will set Auto-Deploy for your project to true. This
-setting will cause Render to re-deploy your application every time you push to
-main, always keeping it up to date.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+- [Author](https://github.com/MMansy19)
+- [Website](https://mahmoud-mansy-portfolio.netlify.app/)
+- [Email](mailto:mahmoud2abdalfattah@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/mahmoud-mansy-a189a5232)
