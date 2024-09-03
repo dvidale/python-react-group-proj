@@ -29,11 +29,11 @@ def get_all_categories():
 # ?  GET ALL RESTAURANTS
 @restaurant_routes.route("/")
 def get_all_restaurants():
-    print(">>>>>>> inside get restaurants route")
+    # print(">>>>>>> inside get restaurants route")
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
-    print(">>>>>restaurants from get all route:", restaurants_list)
+    # print(">>>>>restaurants from get all route:", restaurants_list)
 
     return restaurants_list
 
