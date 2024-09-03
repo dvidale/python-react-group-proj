@@ -28,7 +28,7 @@ function RestaurantForm(){
     const [close_time, setCloseTime] = useState("22:00")
     const [delivery_time, setDeliveryTime] = useState('10-25')
     const [delivery_fee, setDeliveryFee] = useState("0.99")
-    const [banner_img, setBannerImg] = useState("https://")
+    const [banner_img, setBannerImg] = useState("")
      
     const [error, setError] = useState({})
 
@@ -168,7 +168,7 @@ const submitHandler =  (e) =>{
             <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
             name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
-            {error.name && <p className='errors'>{error.name}</p>}
+          <p className='errors'>{error.name}</p>
             </label>
             
             </div>
@@ -176,7 +176,7 @@ const submitHandler =  (e) =>{
             <div>
             <label htmlFor='address'> <h3>Street Address</h3>
             <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
-            {error.address && <p className='errors'>{error.address}</p>}
+        <p className='errors'>{error.address}</p>
             </label>
             </div>
 
@@ -186,19 +186,19 @@ const submitHandler =  (e) =>{
             <label htmlFor='phone'> <h3>Phone</h3>
             <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={10} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 1234567890
             </label> 
-            {error.phone_number && <p className='errors'>{error.phone_number}</p>}
+            <p className='errors'>{error.phone_number}</p>
             </div>
 
             <div>
             <label htmlFor='description'> <h3>Description</h3>
             <textarea id='description'name='description' maxLength={70} value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
-            {error.description && <p className='errors'>{error.description}</p>}
+         <p className='errors'>{error.description}</p>
             </div>
             <div>
                 <label htmlFor='categories'>
                     <div>
-<h2>Categories  </h2> {error.categories && <p className='errors'>{error.categories}</p>}
+<h2>Categories  </h2><p className='errors'>{error.categories}</p>
 <h3>( ⊞/⌘ + Click  to select multiple) </h3>
 
                     </div>
@@ -267,7 +267,7 @@ const submitHandler =  (e) =>{
             <label htmlFor='banner_img'> <h3 className='banner-img-heading'> Banner Image URL </h3>
             <input type='url' id='banner_img' name='banner_img' value={banner_img} onChange={e => setBannerImg(e.target.value)}></input>
             </label>
-            {error.banner_img && <p className='errors'>{error.banner_img}</p>}
+            <p className='errors'>{error.banner_img}</p>
             </div>
            
            <div className='res-form-submit-btn'>
