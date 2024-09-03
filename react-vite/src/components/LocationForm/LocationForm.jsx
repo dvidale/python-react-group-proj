@@ -32,7 +32,6 @@ function LocationForm() {
 			return;
 		}
 
-		// If no errors, dispatch the action
 		dispatch(saveLocation({ city, state }));
 	};
 
