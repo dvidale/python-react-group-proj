@@ -29,11 +29,11 @@ def get_all_categories():
 # ?  GET ALL RESTAURANTS
 @restaurant_routes.route("/")
 def get_all_restaurants():
-    # print(">>>>>>> inside get restaurants route")
+    
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
-    # print(">>>>>restaurants from get all route:", restaurants_list)
+
 
     return restaurants_list
 
@@ -108,8 +108,12 @@ def new_restaurant_form():
         res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict()
         return res
 
-    print(">>>>form errors", restaurant_form.errors)
-    return {"message": "there was a server error submitting the restaurant"}
+ 
+    '''
+    restaurant_form.errors object:  
+    {'name': ['A name is required.'], 'address': ['This field is required.'], 'phone_number': ['This field is required.']}
+    '''
+    return restaurant_form.errors, 400
 
 
 # ?  UPDATE A RESTAURANT

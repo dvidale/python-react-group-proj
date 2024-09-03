@@ -102,11 +102,16 @@ export const newRestaurant = (method, formData) => async (dispatch) => {
 
 	const response = await fetch(url, options);
 
-	const data = await response.json();
+	if(response.ok){
 
-	dispatch(add_Or_Update_Restaurant(data));
+		const data = await response.json();
+		dispatch(add_Or_Update_Restaurant(data));
 
-	return data;
+	}
+
+	const serverError = await response.json();
+
+	return serverError;
 };
 
 export const updateRestaurant = (id, method, formData) => async (dispatch) => {

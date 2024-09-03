@@ -5,9 +5,9 @@ from ..models import Category
 
 class RestaurantForm(FlaskForm):
     owner_id= IntegerField('owner_id')
-    name = StringField('name', validators=[])
-    address = StringField('address')
-    phone_number = StringField('phone_number')
+    name = StringField('name', validators=[DataRequired(message='Name is required'), length(min=2, max=50, message='This field permits 2 - 50 characters')])
+    address = StringField('address', validators=[DataRequired(message='Address is required'), length(min=2, max=50, message='This field permits 2 - 50 characters')])
+    phone_number = StringField('phone_number',validators=[DataRequired(message='Phone number is required'), length(min=10, max=10)])
     description = StringField('description')
     open_time = StringField('open_time', validators=[length(min=5, max=5)])
     close_time = StringField('close_time', validators=[length(min=5, max=5)])

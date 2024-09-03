@@ -99,10 +99,10 @@ const submitHandler =  (e) =>{
      err.banner_img = "Image URL must end in .png, .jpg, or .jpeg";
    }
 
- setError(err)
+//  setError(err)
 
 
-    if (Object.keys(err).length === 0){
+    // if (Object.keys(err).length === 0){
 
    
     const formData = {
@@ -135,11 +135,16 @@ const submitHandler =  (e) =>{
         navigate(`/restaurants/${restaurant.id}`)
     }else{
     // create a new restaurant
-        dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
+        dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData))).then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+                // redirect to restaurant management portal
+                navigate('/restaurants/current')
+            }
+        })
 
-    // redirect to restaurant management portal
   
-        navigate('/restaurants/current')
     }
     
     
@@ -147,7 +152,7 @@ const submitHandler =  (e) =>{
 
 
 
-    }
+    // }
 
 
 
