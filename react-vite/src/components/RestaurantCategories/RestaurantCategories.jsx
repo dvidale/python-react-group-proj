@@ -28,6 +28,14 @@ function RestaurantCategories() {
 			<h2 className='category-title'>Explore by Category</h2>
 			{categories && categories.length > 0 && (
 				<div className='category-wrapper'>
+					<div
+						className={`category-structure ${
+							!selectedCategory ? 'selected' : ''
+						}`}
+						onClick={() => dispatch(setSelectedCategory(null))}
+					>
+						<p className='cat-text'>All Categories</p>
+					</div>
 					{categories.map((category) => (
 						<div
 							key={category.id}
@@ -46,14 +54,6 @@ function RestaurantCategories() {
 							<p className='cat-text'>{category.categ_name}</p>
 						</div>
 					))}
-					<div
-						className={`category-structure ${
-							!selectedCategory ? 'selected' : ''
-						}`}
-						onClick={() => dispatch(setSelectedCategory(null))}
-					>
-						<p className='cat-text'>All Categories</p>
-					</div>
 				</div>
 			)}
 		</div>

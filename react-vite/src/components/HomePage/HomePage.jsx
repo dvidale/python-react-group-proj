@@ -14,7 +14,6 @@ function HomePage() {
 	};
 
 	ownerFilter(false);
-	// Determine the city and state to be used
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
 
@@ -22,8 +21,10 @@ function HomePage() {
 		<div className='home-page'>
 			{city && state ? (
 				<>
-					<HomeDeliveryHeader city={city}
-							state={state} />
+					<HomeDeliveryHeader
+						city={city}
+						state={state}
+					/>
 					<div>
 						<RestaurantCategories />
 						<hr />
