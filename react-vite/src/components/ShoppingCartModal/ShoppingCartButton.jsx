@@ -2,7 +2,7 @@ import { useModal } from '../../context/Modal';
 import ShoppingCartModal from './ShoppingCartModal';
 import { FaShoppingCart } from 'react-icons/fa';
 
-const ShoppingCartButton = () => {
+const ShoppingCartButton = ({ cartItemCount }) => {
 	const { setModalContent, setOnModalClose } = useModal();
 
 	const openShoppingCartModal = () => {
@@ -13,6 +13,7 @@ const ShoppingCartButton = () => {
 	return (
 		<button onClick={openShoppingCartModal}>
 			<FaShoppingCart />
+			{cartItemCount > 0 && <span className='cart-count'>{cartItemCount}</span>}
 		</button>
 	);
 };

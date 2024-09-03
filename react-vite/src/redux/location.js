@@ -1,9 +1,16 @@
 const SAVE_LOCATION = 'location/SAVE_LOCATION';
+const CLEAR_LOCATION = 'location/CLEAR_LOCATION';
 
 export const saveLocation = (location) => {
-	console.log('INSIDE ACTION CREATOR');
 	return {
 		type: SAVE_LOCATION,
+		location: location,
+	};
+};
+
+export const clearLocation = (location) => {
+	return {
+		type: CLEAR_LOCATION,
 		location: location,
 	};
 };
@@ -22,6 +29,9 @@ const locationReducer = (state = initialState, action) => {
 				state: action.location.state,
 				city: action.location.city,
 			};
+		case CLEAR_LOCATION: {
+			return { ...state, state: '', city: '' };
+		}
 		default:
 			return state;
 	}

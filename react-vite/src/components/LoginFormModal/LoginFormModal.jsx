@@ -3,6 +3,7 @@ import { thunkLogin } from '../../redux/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import './LoginForm.css';
+import { clearLocation } from '../../redux/location';
 
 function LoginFormModal() {
 	const dispatch = useDispatch();
@@ -13,7 +14,7 @@ function LoginFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		dispatch(clearLocation());
 		const serverResponse = await dispatch(
 			thunkLogin({
 				email,
@@ -30,6 +31,7 @@ function LoginFormModal() {
 
 	const handleDemoLogin = async (e) => {
 		e.preventDefault();
+		dispatch(clearLocation());
 		const serverResponse = await dispatch(
 			thunkLogin({
 				email: 'demo@aa.io',
