@@ -17,3 +17,8 @@
 	display: flex;
 	gap: 1rem;
 }
+
+.error-text {
+	max-height: 15px;
+	color: red;
+}

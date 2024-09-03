@@ -14305,12 +14305,12 @@ function $w(e, t) {
 }
 function Aw(e, t) {
 	if (e == null) return {};
-	var n = {};
-	for (var r in e)
-		if (Object.prototype.hasOwnProperty.call(e, r)) {
-			if (t.indexOf(r) >= 0) continue;
-			n[r] = e[r];
-		}
+	var n = {},
+		r = Object.keys(e),
+		l,
+		i;
+	for (i = 0; i < r.length; i++)
+		(l = r[i]), !(t.indexOf(l) >= 0) && (n[l] = e[l]);
 	return n;
 }
 function Gi() {
@@ -14371,10 +14371,10 @@ function Uw(e, t, n) {
 }
 function bw(e) {
 	var t = Bw(e, 'string');
-	return typeof t == 'symbol' ? t : t + '';
+	return typeof t == 'symbol' ? t : String(t);
 }
 function Bw(e, t) {
-	if (typeof e != 'object' || !e) return e;
+	if (typeof e != 'object' || e === null) return e;
 	var n = e[Symbol.toPrimitive];
 	if (n !== void 0) {
 		var r = n.call(e, t || 'default');
@@ -15504,7 +15504,13 @@ const ox = () => {
 									s.jsxs('div', {
 										className: 'header-stars',
 										children: [
-											s.jsx('h3', { className: 'res-header-title' }),
+											s.jsx('h3', {
+												className: 'res-header-title',
+												children:
+													t.average_rating.toFixed(1) > 0
+														? t.average_rating.toFixed(1)
+														: 'New',
+											}),
 											s.jsxs('div', {
 												children: [
 													[...Array(o)].map((c, f) => s.jsx(Bo, {}, f)),
@@ -15905,7 +15911,6 @@ function dx({ restaurant: e, city: t, state: n }) {
 				children: [
 					s.jsxs('p', {
 						children: [
-							'•',
 							e.categories.join(' • '),
 							s.jsx('br', {}),
 							e.address,
