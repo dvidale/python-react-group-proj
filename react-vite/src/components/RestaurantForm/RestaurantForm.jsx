@@ -129,17 +129,29 @@ const submitHandler =  (e) =>{
         const id = restaurant.id
 
         dispatch(restaurantsActions.updateRestaurant(id, method, JSON.stringify(formData)))
+        .then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+            // redirect to updated restaurant page
+            navigate(`/restaurants/${restaurant.id}`)
+            }
+        })
 
-        // redirect to updated restaurant page
-
-        navigate(`/restaurants/${restaurant.id}`)
+       
     }else{
     // create a new restaurant
         dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
+        .then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+                // redirect to restaurant management portal
+                navigate('/restaurants/current')
+            }
+        })
 
-    // redirect to restaurant management portal
   
-        navigate('/restaurants/current')
     }
     
     
@@ -154,7 +166,7 @@ const submitHandler =  (e) =>{
 
    
 }
-// TODO: Refactor these form fields as a form field component, passing in the specifics as props
+
     return(
         <>
         <div id="form-container">
@@ -167,7 +179,7 @@ const submitHandler =  (e) =>{
 
             <label htmlFor='name'> <h3>Name</h3>
             <input className='text-field' type='text' id='name' 
-            name='name' placeholder='Name' value={name} onChange={e => setName(e.target.value)}></input>
+            name='name' placeholder='Name'minLength={2} maxLength={50} value={name} onChange={e => setName(e.target.value)}></input>
           <p className='errors'>{error.name}</p>
             </label>
             
@@ -175,7 +187,7 @@ const submitHandler =  (e) =>{
        
             <div>
             <label htmlFor='address'> <h3>Street Address</h3>
-            <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} onChange={e => setAddress(e.target.value)}></input>
+            <input className='text-field' type='text' id='address' name='address' placeholder='Address' value={address} minLength={2} maxLength={50} onChange={e => setAddress(e.target.value)}></input>
         <p className='errors'>{error.address}</p>
             </label>
             </div>
@@ -184,14 +196,14 @@ const submitHandler =  (e) =>{
             
             <div>
             <label htmlFor='phone'> <h3>Phone</h3>
-            <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' maxLength={10} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 1234567890
+            <input className='half-size-text-field' type='text'  inputMode="numeric" id='phone_number' name='phone_number' value={phone_number} placeholder='Phone' minLength={10} maxLength={10} onChange={e => setPhoneNumber(e.target.value)}></input>Ex. 1234567890
             </label> 
             <p className='errors'>{error.phone_number}</p>
             </div>
 
             <div>
             <label htmlFor='description'> <h3>Description</h3>
-            <textarea id='description'name='description' maxLength={70} value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
+            <textarea id='description'name='description' minLength={20} maxLength={70} value={description} placeholder='Description' onChange={e => setDescription(e.target.value)} ></textarea>
             </label>
          <p className='errors'>{error.description}</p>
             </div>

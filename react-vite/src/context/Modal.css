@@ -24,4 +24,5 @@
 	position: absolute;
 	z-index: 1001;
 	background-color: white;
+	border-radius: 10px;
 }
