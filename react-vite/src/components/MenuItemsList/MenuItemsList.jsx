@@ -11,6 +11,7 @@ import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
 import EditMenuItemForm from '../EditMenuItem/EditMenuItemForm';
+import SuccessModal from '../SuccessDeleteMenuItemModal/SuccessModal';
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
@@ -45,8 +46,10 @@ const MenuItemsList = () => {
 	};
 
 	const handleDelete = (menuItemId) => {
-		dispatch(fetchDeleteMenuItem(menuItemId));
-		closeModal();
+		dispatch(fetchDeleteMenuItem(menuItemId)).then(() => {
+			closeModal();
+			setModalContent(<SuccessModal message='Item successfully deleted!' />);
+		});
 	};
 
 	const handleDeleteConfirmation = (menuItemId) => {
