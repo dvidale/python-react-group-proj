@@ -52,6 +52,18 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone number must be 10 digits';
 			}
 
+			// if (!city.match(/^[a-z]+$/)){
+			// 	validationErrors.city = 'City must be letters only'
+			// }
+
+			const regex = /^[A-Za-z]+(?:[' ][A-Za-z]+)*$/
+
+			if(!(regex.test(city))){
+				validationErrors.city = 'City cannot contain numbers'
+			}
+		
+
+
 			if (!first_name) validationErrors.first_name = 'First Name is required';
 			if (!last_name) validationErrors.last_name = 'Last Name is required';
 			if (!email) validationErrors.email = 'Email is required';
@@ -137,10 +149,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={first_name}
+						minLength={2}
+						maxLength={30}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
-					{errors.first_name && <p>{errors.first_name}</p>}
+					<p>{errors.first_name}</p>
 				</label>
 				<label className='signup-label'>
 					Username
@@ -148,10 +162,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={username}
+						minLength={6}
+						maxLength={20}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
-					{errors.username && <p>{errors.username}</p>}
+					<p>{errors.username}</p>
 				</label>
 				<label className='signup-label'>
 					Last Name
@@ -159,10 +175,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={last_name}
+						minLength={2}
+						maxLength={30}
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
-					{errors.last_name && <p>{errors.last_name}</p>}
+					<p>{errors.last_name}</p>
 				</label>
 				<label className='signup-label'>
 					Password
@@ -170,10 +188,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='password'
 						value={password}
+						minLength={6}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
-					{errors.password && <p>{errors.password}</p>}
+					<p>{errors.password}</p>
 				</label>
 				<label className='signup-label'>
 					Email
@@ -184,7 +203,7 @@ function SignupFormModal() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
-					{errors.email && <p>{errors.email}</p>}
+					<p>{errors.email}</p>
 				</label>
 
 				<label className='signup-label'>
@@ -196,7 +215,7 @@ function SignupFormModal() {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
-					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+					<p>{errors.confirmPassword}</p>
 				</label>
 				<label className='signup-label'>
 					Address
@@ -204,10 +223,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={address}
+						maxLength={30}
 						onChange={(e) => setAddress(e.target.value)}
 						required
 					/>
-					{errors.address && <p>{errors.address}</p>}
+					<p>{errors.address}</p>
 				</label>
 				<label className='signup-label'>
 					City
@@ -215,10 +235,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={city}
+						maxLength={30}
 						onChange={(e) => setCity(e.target.value)}
 						required
 					/>
-					{errors.city && <p>{errors.city}</p>}
+					<p>{errors.city}</p>
 				</label>
 				<label className='signup-label'>
 					State
@@ -226,10 +247,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={state}
+						minLength={2}
+						maxLength={2}
 						onChange={(e) => setState(e.target.value)}
 						required
 					/>
-					{errors.state && <p>{errors.state}</p>}
+					<p>{errors.state}</p>
 				</label>
 				<label className='signup-label'>
 					ZIP
@@ -237,10 +260,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={zip}
+						maxLength={5}
 						onChange={(e) => setZip(e.target.value)}
 						required
 					/>
-					{errors.zip && <p>{errors.zip}</p>}
+					<p>{errors.zip}</p>
 				</label>
 				<label className='signup-label'>
 					Phone Number
@@ -248,10 +272,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={phone_number}
+						maxLength={10}
 						onChange={(e) => setPhoneNumber(e.target.value)}
 						required
 					/>
-					{errors.phone_number && <p>{errors.phone_number}</p>}
+					<p>{errors.phone_number}</p>
 				</label>
 				<button type='submit'>Sign Up</button>
 			</form>
