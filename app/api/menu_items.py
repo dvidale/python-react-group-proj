@@ -42,16 +42,12 @@ def get_menu_item_ratings(menuitem_id):
 #? UPDATE MENU ITEM
 @menuitem_routes.route('/<int:id>', methods=["PUT", "PATCH"])
 def update_menu_item(id):
-    # Fetch the menu item by its ID
     menu_item = MenuItem.query.get(id)
 
     if not menu_item:
-        return {"message": "Menu item not found"}, 404  # Return 404 if not found
-    
-    # Get the data from the request body (JSON)
+        return {"message": "Menu item not found"}, 404 
     data = request.get_json()
 
-    # Update the relevant fields, ensuring they're included in the data
     if 'name' in data:
         menu_item.name = data['name']
     if 'description' in data:
@@ -61,10 +57,8 @@ def update_menu_item(id):
     if 'image_url' in data:
         menu_item.image_url = data['image_url']
     
-    # Commit the changes to the database
     db.session.commit()
 
-    # Return the updated menu item as a response
     return menu_item.to_dict(), 200
 
 # CREATE MENU ITEM RATING

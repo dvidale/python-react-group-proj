@@ -129,4 +129,5 @@ const MenuItemsList = () => {
 	);
 };
 
+
 export default MenuItemsList;
