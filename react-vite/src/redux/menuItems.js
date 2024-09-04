@@ -4,6 +4,7 @@ const GET_MENU_ITEMS = 'menuItems/GET_MENU_ITEMS';
 const ADD_MENU_ITEM = 'menuItems/ADD_MENU_ITEMS';
 const DELETE_MENU_ITEM = 'menuItems/DELETE_MENU_ITEM';
 const GET_EVERY_ITEM = 'menuItems/GET_EVERY_ITEM';
+const UPDATE_MENU_ITEM = 'menuItems/UPDATE_MENU_ITEM';
 
 //*-----------------------------------ACTION CREATORS
 
@@ -24,6 +25,13 @@ export const getMenuItems = (menuItems) => {
 export const addMenuItem = (menuItem) => {
 	return {
 		type: ADD_MENU_ITEM,
+		payload: menuItem,
+	};
+};
+
+export const updateMenuItem = (menuItem) => {
+	return {
+		type: UPDATE_MENU_ITEM,
 		payload: menuItem,
 	};
 };
@@ -88,6 +96,30 @@ export const fetchAddMenuItem =
 		}
 	};
 
+//?-----------------------------UPDATE MENU ITEM
+export const fetchUpdateMenuItem =
+	(menuItemId, updatedData) => async (dispatch) => {
+		try {
+			const response = await fetch(`/api/menu-items/${menuItemId}`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(updatedData),
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				dispatch(updateMenuItem(data));
+			} else {
+				const errorData = await response.json();
+				console.error('Error updating menu item:', errorData);
+			}
+		} catch (error) {
+			console.error('Failed to update menu item:', error);
+		}
+	};
+
 // ?-----------------------------DELETE MENU ITEM
 export const fetchDeleteMenuItem = (id) => async (dispatch) => {
 	try {
@@ -126,6 +158,13 @@ const menuItemsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				itemArr: state.itemArr.filter((item) => item.id !== action.payload),
+			};
+		case UPDATE_MENU_ITEM:
+			return {
+				...state,
+				itemArr: state.itemArr.map((item) =>
+					item.id === action.payload.id ? action.payload : item
+				),
 			};
 		default:
 			return state;
