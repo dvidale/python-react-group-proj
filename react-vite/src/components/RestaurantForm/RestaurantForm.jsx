@@ -129,17 +129,29 @@ const submitHandler =  (e) =>{
         const id = restaurant.id
 
         dispatch(restaurantsActions.updateRestaurant(id, method, JSON.stringify(formData)))
+        .then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+            // redirect to updated restaurant page
+            navigate(`/restaurants/${restaurant.id}`)
+            }
+        })
 
-        // redirect to updated restaurant page
-
-        navigate(`/restaurants/${restaurant.id}`)
+       
     }else{
     // create a new restaurant
         dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
+        .then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+                // redirect to restaurant management portal
+                navigate('/restaurants/current')
+            }
+        })
 
-    // redirect to restaurant management portal
   
-        navigate('/restaurants/current')
     }
     
     
@@ -154,7 +166,7 @@ const submitHandler =  (e) =>{
 
    
 }
-// TODO: Refactor these form fields as a form field component, passing in the specifics as props
+
     return(
         <>
         <div id="form-container">
