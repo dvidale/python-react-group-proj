@@ -2,8 +2,16 @@ import './RestaurantInfoBox.css';
 
 function RestaurantInfoBox({ restaurant, city, state }) {
 
-	let convertCloseToNumber = restaurant.close_time.split(":")[0]
-	const normalClock = +(convertCloseToNumber) - 12
+	let openHours = restaurant.open_time.split(":")[0]
+	const normalClockOpen = openHours < 10 ? +(openHours)[1] : +(openHours)  
+
+	let openMinutes = restaurant.open_time.split(":")[1]
+
+	let closeHours = restaurant.close_time.split(":")[0]
+	const normalClockClose = +(closeHours) - 12
+
+	let closeMinutes = restaurant.close_time.split(":")[1]
+
 
 	return (
 		<div className='restaurant-info'>
@@ -21,9 +29,9 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 				<h3 className='delivery-fee-text-p'>Sun - Sat</h3>
 				<br />
 
-				<h3 className='delivery-fee-text-p'>Open: {restaurant.open_time}AM</h3>
+				<h3 className='delivery-fee-text-p'>Open: {normalClockOpen}:{openMinutes}AM</h3>
 				<br />
-				<h3 className='delivery-fee-text-p'>Close: {normalClock}:00PM</h3>
+				<h3 className='delivery-fee-text-p'>Close: {normalClockClose}:{closeMinutes}PM</h3>
 			</div>
 		</div>
 	);
