@@ -48,6 +48,12 @@
 	text-overflow: ellipsis;
 }
 
+.rest-info-top {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
 .restaurant-info-text h2 {
 	font-size: var(--fs-medium);
 }
@@ -66,6 +72,7 @@
 
 .all-rest-page-desc {
 	word-wrap: break-word;
+	max-width: 370px;
 	height: auto;
 	overflow: hidden;
 	text-overflow: ellipsis;

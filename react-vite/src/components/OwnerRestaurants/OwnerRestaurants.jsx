@@ -18,7 +18,6 @@ function OwnerRestaurants({ city, state }) {
 		(state) => state.restaurants.AllRestaurants
 	);
 
-
 	useEffect(() => {
 		dispatch(getRestaurants());
 	}, [dispatch]);
@@ -53,35 +52,42 @@ function OwnerRestaurants({ city, state }) {
 						className='owned-restaurant-info'
 						onClick={() => navigate(`/restaurants/${restaurant.id}`)}
 					>
-						<h2 className='owner-rest-name'>{restaurant.name}</h2>
-						<p>
-							{restaurant.average_rating.toFixed(1) > 0.0
-								? restaurant.average_rating.toFixed(1)
-								: 'New'}
-						</p>
-						<p>{restaurant.categories.join(' • ')}</p>
-						<p className='owned-rest-desc'>{restaurant.description}</p>
-						{(city && state) || (restaurant.city && restaurant.state) ? (
-							<div className='restaurant-address'>
-								{restaurant.address}, {city || restaurant.city},{' '}
-								{state || restaurant.state}
-							</div>
-						) : null}
-					</div>
-					<div className='up-del-btn-holder'>
-						<button
-							id='update-restaurant-button'
-							className='create-update-btn'
-							onClick={() => navigate(`/restaurants/current/${restaurant.id}`)}
-						>
-							Update
-						</button>
-						<button
-							className='owner-delete-btn'
-							onClick={() => handleDelete(restaurant.id)}
-						>
-							Delete
-						</button>
+						<div>
+							<h2 className='owner-rest-name'>{restaurant.name}</h2>
+							<p>
+								{restaurant.average_rating.toFixed(1) > 0.0
+									? restaurant.average_rating.toFixed(1)
+									: 'New'}
+							</p>
+							<p className='rest-category'>
+								{restaurant.categories.join(' • ')}
+							</p>
+
+							{(city && state) || (restaurant.city && restaurant.state) ? (
+								<div className='restaurant-address'>
+									{restaurant.address}, {city || restaurant.city},{' '}
+									{state || restaurant.state}
+								</div>
+							) : null}
+						</div>
+						<div className='up-del-btn-holder'>
+							<button
+								id='update-restaurant-button'
+								className='create-update-btn'
+								onClick={(e) => {
+									e.stopPropagation();
+									navigate(`/restaurants/current/${restaurant.id}`);
+								}}
+							>
+								Update
+							</button>
+							<button
+								className='owner-delete-btn'
+								onClick={() => handleDelete(restaurant.id)}
+							>
+								Delete
+							</button>
+						</div>
 					</div>
 				</div>
 			))}

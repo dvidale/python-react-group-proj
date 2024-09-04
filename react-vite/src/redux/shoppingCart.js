@@ -35,100 +35,6 @@ export const resetCartItems = () => ({
 	type: RESET_CART,
 });
 
-// // *THUNKS
-// // ?-------------------------GET ALL CART ITEMS
-// export const fetchCartItems = () => async (dispatch, getState) => {
-// 	const state = getState();
-// 	const sessionUser = state.session.user;
-
-// 	if (sessionUser) {
-// 		const response = await fetch('/api/shopping-cart/current');
-// 		if (response.ok) {
-// 			const data = await response.json();
-// 			dispatch(getCartItems(data));
-// 		}
-// 	} else {
-// 		dispatch(clearCartItems());
-// 	}
-// };
-
-// // ?-------------------------REMOVE A CART ITEM
-// export const fetchRemoveCartItem =
-// 	(cartItemId) => async (dispatch, getState) => {
-// 		const state = getState();
-// 		const existingItem = state.shoppingCart.items.find(
-// 			(item) => item.id === cartItemId
-// 		);
-
-// 		if (existingItem && existingItem.item_quantity > 1) {
-// 			const response = await fetch(
-// 				`/api/shopping-cart/current/${cartItemId}/update`,
-// 				{
-// 					method: 'POST',
-// 					headers: {
-// 						'Content-Type': 'application/json',
-// 					},
-// 					body: JSON.stringify({ decrement: true }),
-// 				}
-// 			);
-// 			if (response.ok) {
-// 				const updatedItem = await response.json();
-// 				dispatch(addCartItem(updatedItem));
-// 			}
-// 		} else {
-// 			// If the item quantity is 1 or less, remove it from the cart
-// 			const response = await fetch(
-// 				`/api/shopping-cart/current/${cartItemId}/remove`,
-// 				{
-// 					method: 'DELETE',
-// 				}
-// 			);
-// 			if (response.ok) {
-// 				dispatch(removeCartItem(cartItemId));
-// 			}
-// 		}
-// 	};
-
-// // ?--------------------------ADD A CART ITEM
-// export const fetchAddCartItem = (menuItemId) => async (dispatch, getState) => {
-// 	const state = getState();
-// 	const existingItem = state.shoppingCart.items.find(
-// 		(item) => item.menu_item_id === menuItemId
-// 	);
-
-// 	if (existingItem) {
-// 		const response = await fetch(
-// 			`/api/shopping-cart/current/${existingItem.id}/update`,
-// 			{
-// 				method: 'POST',
-// 				headers: {
-// 					'Content-Type': 'application/json',
-// 				},
-// 				body: JSON.stringify({ decrement: false }),
-// 			}
-// 		);
-// 		console.log('THIS IS THE RESPONSE FOR UPDATE ITEM!', response);
-// 		if (response.ok) {
-// 			const updatedItem = await response.json();
-// 			dispatch(addCartItem(updatedItem));
-// 		}
-// 	} else {
-// 		// Add a new item to the cart
-// 		const response = await fetch(`/api/shopping-cart/current/new`, {
-// 			method: 'POST',
-// 			headers: {
-// 				'Content-Type': 'application/json',
-// 			},
-// 			body: JSON.stringify({ menu_item_id: menuItemId }),
-// 		});
-// 		console.log('THIS IS THE RESPONSE FOR NEW ITEM!', response);
-// 		if (response.ok) {
-// 			const newItem = await response.json();
-// 			dispatch(addCartItem(newItem));
-// 		}
-// 	}
-// };
-
 // !---------------------------------REDUCER
 
 function setCookie(name, value, days = 2) {
@@ -170,22 +76,19 @@ const shoppingCartReducer = (state = initialState, action) => {
 
 		case ADD_CART_ITEM:
 			{
-				console.log('Payload received in reducer:', action.payload); // For debugging
-
 				if (!action.payload || !action.payload.id) {
-					console.error('Invalid payload:', action.payload);
-					return state; // Handle the case where payload is invalid
+					return state;
 				}
 
 				const existingItem = state.items.find(
-					(item) => item.menu_item_id === action.payload.id // Use `id` here
+					(item) => item.menu_item_id === action.payload.id
 				);
 
 				if (existingItem) {
 					newState = {
 						...state,
 						items: state.items.map((item) =>
-							item.menu_item_id === action.payload.id // Use `id` here
+							item.menu_item_id === action.payload.id
 								? { ...item, item_quantity: item.item_quantity + 1 }
 								: item
 						),

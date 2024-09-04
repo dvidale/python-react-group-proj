@@ -45,7 +45,7 @@ function AllRestaurants({ city, state }) {
 						/>
 					</div>
 					<div className='restaurant-info-text'>
-						<div>
+						<div className='rest-info-top'>
 							<h2>{restaurant.name}</h2>
 							<p>
 								{restaurant.average_rating.toFixed(1) > 0.0
