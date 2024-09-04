@@ -66,7 +66,7 @@ const ShoppingCartModal = () => {
 									<div>
 										<h3>{item.name}</h3>
 										<p className='shop-desc'>{item.description}</p>
-										<p className='shop-price'>Price: ${item.price}</p>
+										<p className='shop-price'>${item.price}</p>
 									</div>
 								</div>
 								<div className='cart-quantity'>
