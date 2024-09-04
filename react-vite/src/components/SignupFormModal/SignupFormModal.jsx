@@ -57,11 +57,9 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone number must be 10 digits';
 			}
 
-			// if (!city.match(/^[a-z]+$/)){
-			// 	validationErrors.city = 'City must be letters only'
-			// }
 
 			const regex = /^[A-Za-z]+(?:[' ][A-Za-z]+)*$/
+			// allow letters, single quote marks and single spaces
 
 			if(!(regex.test(city))){
 				validationErrors.city = 'City cannot contain numbers'
@@ -108,19 +106,7 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setSubmitted(true); // Mark form as submitted
-
-		// if (password !== confirmPassword) {
-		// 	setErrors((prevErrors) => ({
-		// 		...prevErrors,
-		// 		confirmPassword:
-		// 			'Confirm Password field must be the same as the Password field',
-		// 	}));
-		// 	return;
-		// }
-
-		// Clear previous errors on submit
-		// setErrors({});
+		setSubmitted(true); 
 
 		if(validInputs){
 
