@@ -58,11 +58,12 @@ function SignupFormModal() {
 			}
 
 
-			const regex = /^[A-Za-z]+(?:[' ][A-Za-z]+)*$/
+			const regex = /^[A-Za-z]+(?: [A-Za-z]+)*$/
+			
 			// allow letters, single quote marks and single spaces
 
 			if(!(regex.test(city))){
-				validationErrors.city = 'City cannot contain numbers'
+				validationErrors.city = 'City can only contain letters and single spaces'
 			}
 		
 
