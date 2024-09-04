@@ -39,9 +39,36 @@ def get_menu_item_ratings(menuitem_id):
 
     return jsonify(data)
 
+#? UPDATE MENU ITEM
+@menuitem_routes.route('/<int:id>', methods=["PUT", "PATCH"])
+def update_menu_item(id):
+    # Fetch the menu item by its ID
+    menu_item = MenuItem.query.get(id)
+
+    if not menu_item:
+        return {"message": "Menu item not found"}, 404  # Return 404 if not found
+    
+    # Get the data from the request body (JSON)
+    data = request.get_json()
+
+    # Update the relevant fields, ensuring they're included in the data
+    if 'name' in data:
+        menu_item.name = data['name']
+    if 'description' in data:
+        menu_item.description = data['description']
+    if 'price' in data:
+        menu_item.price = data['price']
+    if 'image_url' in data:
+        menu_item.image_url = data['image_url']
+    
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Return the updated menu item as a response
+    return menu_item.to_dict(), 200
+
 # CREATE MENU ITEM RATING
 @menuitem_routes.route('/<int:menuitem_id>/ratings', methods=["POST"])
-# @login_required
 def create_menu_item_ratings(menuitem_id):
      menu_item = MenuItem.query.get(menuitem_id)
 
@@ -60,6 +87,8 @@ def create_menu_item_ratings(menuitem_id):
         db.session.commit()
 
         return new_menu_item_rating.to_dict(), 200
+     
+
 
 
 #? DELETE MENU_ITEM
