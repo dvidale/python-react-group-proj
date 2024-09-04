@@ -5,22 +5,21 @@ import './delete-restaurant.css'
 import '../OwnerRestaurants/OwnerRestaurants.css'
 import { fetchReviews } from "../../redux/reviews"
 import { useNavigate } from "react-router-dom"
+import ConfirmDeleteModal from "../ConfirmDeleteModal/ConfirmDeleteModal"
 
 function DeleteRestaurantModal({restaurantId}){
 
-// TODO : Add dynamic code to populate restaurant name in warning heading.
-const {closeModal} = useModal();
+
+const {setModalContent, closeModal} = useModal();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const deleteHandler = () => {
 		dispatch(restaurantsActions.deleteRestaurant(restaurantId))
-			.then((data) => {
-				alert(data.message);
-			})
 			.then(closeModal)
 			.then(() => navigate(`/restaurants/current`))
+            .then(()=> setModalContent( <ConfirmDeleteModal/>))
 			.then(() => dispatch(restaurantsActions.getRestaurants()))
 			.then((restaurantsArr) => dispatch(fetchReviews(restaurantsArr[0].id))); // fetches the reviews for whatever restaurant is now the first one to satisfy need for id
 	};
