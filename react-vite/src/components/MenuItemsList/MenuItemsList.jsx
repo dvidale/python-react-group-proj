@@ -9,7 +9,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
-import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm'; // Import the form directly
+import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
@@ -60,7 +60,7 @@ const MenuItemsList = () => {
 			{isOwner && (
 				<button
 					className='add-menu-item-btn'
-					onClick={() => setModalContent(<AddMenuItemForm />)} // Set the form as modal content
+					onClick={() => setModalContent(<AddMenuItemForm />)}
 				>
 					Add Menu Item
 				</button>
@@ -101,7 +101,7 @@ const MenuItemsList = () => {
 								<button
 									className='add-to-cart-btn'
 									onClick={() => handleAddToCart(item)}
-									disabled={isInCart(item.id)} // Disable the button if the item is in the cart
+									disabled={isInCart(item.id)}
 								>
 									{isInCart(item.id) ? <FaCheck /> : '+'}
 								</button>

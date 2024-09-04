@@ -5,8 +5,10 @@ import {
 	removeCartItem,
 	addCartItem,
 	clearCartItems,
+	subtractCartItem,
 } from '../../redux/shoppingCart';
 import ThankYouModal from '../ThankYouModal/ThankYouModal';
+import QuantityLimitModal from '../QuantityLimitModal/QuantityLimitModal';
 
 const ShoppingCartModal = () => {
 	const dispatch = useDispatch();
@@ -19,8 +21,16 @@ const ShoppingCartModal = () => {
 		return total + item.price * item.item_quantity;
 	}, 0);
 
-	const handleAddToCart = (menuItemId) => {
-		dispatch(addCartItem(menuItemId));
+	const handleAddToCart = (menuItem) => {
+		if (menuItem.item_quantity >= 5) {
+			setModalContent(<QuantityLimitModal />);
+		} else {
+			dispatch(addCartItem(menuItem));
+		}
+	};
+
+	const handleSubtractFromCart = (menuItem) => {
+		dispatch(subtractCartItem(menuItem.menu_item_id));
 	};
 
 	const handleRemoveItem = (itemId) => {
@@ -28,15 +38,8 @@ const ShoppingCartModal = () => {
 	};
 
 	const handlePurchase = () => {
-		if (shoppingCart.length === 0) {
-			alert(
-				'Your cart is empty. Please add items to your cart before purchasing.'
-			);
-		} else {
-			// Show the "Thank You" modal after the purchase
-			setModalContent(<ThankYouModal />);
-			dispatch(clearCartItems()); // Clear the cart after purchase
-		}
+		setModalContent(<ThankYouModal />);
+		dispatch(clearCartItems());
 	};
 
 	return (
@@ -79,6 +82,12 @@ const ShoppingCartModal = () => {
 											+
 										</button>
 										<button
+											className='shop-minus-btn'
+											onClick={() => handleSubtractFromCart(item)}
+										>
+											-
+										</button>
+										<button
 											className='shop-delete-btn'
 											onClick={() => handleRemoveItem(item.id)}
 										>
@@ -91,7 +100,7 @@ const ShoppingCartModal = () => {
 						<hr />
 					</div>
 					<div className='total-price'>
-						<h3>Total: ${totalPrice.toFixed(2)}</h3> {/* Display total price */}
+						<h3>Total: ${totalPrice.toFixed(2)}</h3>
 					</div>
 				</>
 			) : (
