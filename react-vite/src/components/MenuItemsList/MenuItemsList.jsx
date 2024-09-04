@@ -89,7 +89,6 @@ const MenuItemsList = () => {
 							<div className='bottom-info'>
 								<p className='item-details description'>{item.description}</p>
 								<p className='item-details-price'>${item.price}</p>
-								<p className='item-details-price'>${item.price}</p>
 							</div>
 						</div>
 						<div className='menu-item-img-holder'>
@@ -97,15 +96,6 @@ const MenuItemsList = () => {
 								src={item.image_url}
 								alt='food-item'
 								className='menu-item-img'
-							/> {!isOwner &&
-							<button
-								className='add-to-cart-btn'
-								onClick={() => handleAddToCart(item)}
-							>
-								+
-							</button>
-							}
-
 							/>{' '}
 							{!isOwner && (
 								<button
@@ -123,5 +113,6 @@ const MenuItemsList = () => {
 		</div>
 	);
 };
+
 
 export default MenuItemsList;

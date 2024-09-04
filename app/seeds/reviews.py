@@ -5,10 +5,9 @@ from datetime import datetime, timedelta
 import random
 
 def random_date(start, end):
-    date = start + timedelta(days=random.randint(0, (end - start).days),
+    return start + timedelta(days=random.randint(0, (end - start).days),
                              hours=random.randint(0, 23),
                              minutes=random.randint(0, 59))
-    return date.strftime("%I:%M%p")  # Format the time as 12:00PM, 1:23PM, etc.
 
 start_date = datetime(2018, 1, 1)
 end_date = datetime(2024, 9, 3)

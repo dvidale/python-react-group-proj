@@ -31,5 +31,5 @@ class Review(db.Model):
             'restaurant_id': self.restaurant_id,
             'rating': self.rating,
             'comments': self.comments,
-            'created_at': self.created_at,
+            'created_at': self.created_at.strftime("%a, %b %d, %Y at %I:%M %p") ,
         }
