@@ -1,0 +1,20 @@
+.success-modal {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.ok-conf-btn {
+	width: fit-content;
+	background-color: white;
+	padding: 0.5rem 1rem;
+	transition: 0.2s all ease-in-out;
+}
+
+.ok-conf-btn:hover {
+	background-color: var(--accent-clr);
+	color: white;
+}

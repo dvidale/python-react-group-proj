@@ -48,6 +48,8 @@
 .signup-form-modal p {
 	color: red;
 	font-size: 12px;
+	max-height: 12px;
+	min-height: 12px;
 	margin-top: 5px;
 	margin-bottom: 0; /* Add this to reduce space between the error message and the input below */
 }
