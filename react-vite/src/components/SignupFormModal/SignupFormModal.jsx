@@ -18,12 +18,17 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
+	const [validInputs, setValidInputs ] = useState(false)
 	const [submitted, setSubmitted] = useState(false);
 	const { closeModal } = useModal();
 
+	
+
 	useEffect(() => {
 		if (submitted) {
-			const validationErrors = {};
+			
+			const validationErrors = {}
+			setValidInputs(true)
 
 			if (first_name && (first_name.length < 2 || first_name.length > 30)) {
 				validationErrors.first_name =
@@ -52,6 +57,16 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone number must be 10 digits';
 			}
 
+
+			const regex = /^[A-Za-z]+(?:[' ][A-Za-z]+)*$/
+			// allow letters, single quote marks and single spaces
+
+			if(!(regex.test(city))){
+				validationErrors.city = 'City cannot contain numbers'
+			}
+		
+
+
 			if (!first_name) validationErrors.first_name = 'First Name is required';
 			if (!last_name) validationErrors.last_name = 'Last Name is required';
 			if (!email) validationErrors.email = 'Email is required';
@@ -59,6 +74,7 @@ function SignupFormModal() {
 			if (!password) validationErrors.password = 'Password is required';
 			if (!confirmPassword)
 				validationErrors.confirmPassword = 'Confirm Password is required';
+			if (password !== confirmPassword) validationErrors.password = 'Password and Confirm Password do not match'
 			if (!address) validationErrors.address = 'Address is required';
 			if (!city) validationErrors.city = 'City is required';
 			if (!state) validationErrors.state = 'State is required';
@@ -67,6 +83,11 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone Number is required';
 
 			setErrors(validationErrors);
+			if(Object.keys(validationErrors).length === 0){
+				setValidInputs(true)
+			}else{
+				setValidInputs(false)
+			}
 		}
 	}, [
 		submitted,
@@ -85,48 +106,44 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setSubmitted(true); // Mark form as submitted
+		setSubmitted(true); 
 
-		if (password !== confirmPassword) {
-			setErrors((prevErrors) => ({
-				...prevErrors,
-				confirmPassword:
-					'Confirm Password field must be the same as the Password field',
-			}));
-			return;
+		if(validInputs){
+
+			const formData = {
+				first_name,
+				last_name,
+				email,
+				username,
+				password,
+				address,
+				city,
+				state,
+				zip,
+				phone_number,
+			};
+			
+			const serverResponse = await dispatch(thunkSignup(formData));
+			
+			if (serverResponse.errors) {
+				setErrors(serverResponse.errors);
+			} else if (serverResponse.error) {
+				setErrors({ server: serverResponse.error });
+			} else {
+				closeModal();
+			}
+		
 		}
 
-		// Clear previous errors on submit
-		setErrors({});
+		
 
-		const formData = {
-			first_name,
-			last_name,
-			email,
-			username,
-			password,
-			address,
-			city,
-			state,
-			zip,
-			phone_number,
-		};
-
-		const serverResponse = await dispatch(thunkSignup(formData));
-
-		if (serverResponse.errors) {
-			setErrors(serverResponse.errors);
-		} else if (serverResponse.error) {
-			setErrors({ server: serverResponse.error });
-		} else {
-			closeModal();
-		}
+		
 	};
 
 	return (
 		<div className='signup'>
 			<h1 className='signup-title'>Sign Up</h1>
-			{errors.server && <p>{errors.server}</p>}
+		<p>{errors.server}</p>
 			<form
 				onSubmit={handleSubmit}
 				className='signup-form-modal'
@@ -137,10 +154,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={first_name}
+						minLength={2}
+						maxLength={30}
 						onChange={(e) => setFirstName(e.target.value)}
 						required
 					/>
-					{errors.first_name && <p>{errors.first_name}</p>}
+					<p>{errors.first_name}</p>
 				</label>
 				<label className='signup-label'>
 					Username
@@ -148,10 +167,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={username}
+						minLength={6}
+						maxLength={20}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
-					{errors.username && <p>{errors.username}</p>}
+					<p>{errors.username}</p>
 				</label>
 				<label className='signup-label'>
 					Last Name
@@ -159,10 +180,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={last_name}
+						minLength={2}
+						maxLength={30}
 						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
-					{errors.last_name && <p>{errors.last_name}</p>}
+					<p>{errors.last_name}</p>
 				</label>
 				<label className='signup-label'>
 					Password
@@ -170,10 +193,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='password'
 						value={password}
+						minLength={6}
 						onChange={(e) => setPassword(e.target.value)}
 						required
 					/>
-					{errors.password && <p>{errors.password}</p>}
+					<p>{errors.password}</p>
 				</label>
 				<label className='signup-label'>
 					Email
@@ -184,7 +208,7 @@ function SignupFormModal() {
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
-					{errors.email && <p>{errors.email}</p>}
+					<p>{errors.email}</p>
 				</label>
 
 				<label className='signup-label'>
@@ -196,7 +220,7 @@ function SignupFormModal() {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
-					{errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+					<p>{errors.confirmPassword}</p>
 				</label>
 				<label className='signup-label'>
 					Address
@@ -204,10 +228,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={address}
+						maxLength={30}
 						onChange={(e) => setAddress(e.target.value)}
 						required
 					/>
-					{errors.address && <p>{errors.address}</p>}
+					<p>{errors.address}</p>
 				</label>
 				<label className='signup-label'>
 					City
@@ -215,10 +240,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={city}
+						maxLength={30}
 						onChange={(e) => setCity(e.target.value)}
 						required
 					/>
-					{errors.city && <p>{errors.city}</p>}
+					<p>{errors.city}</p>
 				</label>
 				<label className='signup-label'>
 					State
@@ -226,10 +252,12 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={state}
+						minLength={2}
+						maxLength={2}
 						onChange={(e) => setState(e.target.value)}
 						required
 					/>
-					{errors.state && <p>{errors.state}</p>}
+					<p>{errors.state}</p>
 				</label>
 				<label className='signup-label'>
 					ZIP
@@ -237,10 +265,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={zip}
+						maxLength={5}
 						onChange={(e) => setZip(e.target.value)}
 						required
 					/>
-					{errors.zip && <p>{errors.zip}</p>}
+					<p>{errors.zip}</p>
 				</label>
 				<label className='signup-label'>
 					Phone Number
@@ -248,10 +277,11 @@ function SignupFormModal() {
 						className='signup-input'
 						type='text'
 						value={phone_number}
+						maxLength={10}
 						onChange={(e) => setPhoneNumber(e.target.value)}
 						required
 					/>
-					{errors.phone_number && <p>{errors.phone_number}</p>}
+					<p>{errors.phone_number}</p>
 				</label>
 				<button type='submit'>Sign Up</button>
 			</form>
