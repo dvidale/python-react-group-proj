@@ -10,7 +10,7 @@ def random_date(start, end):
                              minutes=random.randint(0, 59))
 
 start_date = datetime(2018, 1, 1)
-end_date = datetime(2024, 8, 10)
+end_date = datetime(2024, 9, 3)
 
 def seed_reviews():
     print(">>>> inside reviews seeder")
