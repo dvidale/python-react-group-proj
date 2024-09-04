@@ -62,10 +62,6 @@ const MenuItemsList = () => {
 		);
 	};
 
-	// const isInCart = (menuItemId) => {
-	// 	return cartItems?.some((cartItem) => cartItem.menu_item_id === menuItemId);
-	// };
-
 	const getCartItemQuantity = (menuItemId) => {
 		const cartItem = cartItems?.find(
 			(cartItem) => cartItem.menu_item_id === menuItemId
@@ -113,8 +109,8 @@ const MenuItemsList = () => {
 									<FaThumbsUp /> {item.like_percentage}%
 								</p>
 							</div>
+							<p className='item-details description'>{item.description}</p>
 							<div className='bottom-info'>
-								<p className='item-details description'>{item.description}</p>
 								<p className='item-details-price'>${item.price}</p>
 							</div>
 						</div>
