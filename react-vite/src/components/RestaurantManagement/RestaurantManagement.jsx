@@ -3,6 +3,8 @@ import OwnerRestaurants from '../OwnerRestaurants/OwnerRestaurants';
 import { useNavigate } from 'react-router-dom';
 import './RestaurantManagement.css';
 
+
+
 function RestaurantManagement() {
 	const navigate = useNavigate();
 	const sessionUser = useSelector((state) => state.session.user);
@@ -10,12 +12,14 @@ function RestaurantManagement() {
 	const city = sessionUser?.city || savedLocation.city;
 	const state = sessionUser?.state || savedLocation.state;
 
+	
 	const createRestaurant = () => {
 		navigate(`/restaurants/new`);
 	};
 
 	return (
 		<div className='rest-management-holder'>
+			
 			<h1 className='manage-title'>Restaurant Management</h1>
 			<button
 				id='create-restaurant-button'

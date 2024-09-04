@@ -18,6 +18,7 @@ function OwnerRestaurants({ city, state }) {
 		(state) => state.restaurants.AllRestaurants
 	);
 
+
 	useEffect(() => {
 		dispatch(getRestaurants());
 	}, [dispatch]);
