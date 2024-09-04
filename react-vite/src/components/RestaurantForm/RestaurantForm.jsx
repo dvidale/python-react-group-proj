@@ -99,10 +99,10 @@ const submitHandler =  (e) =>{
      err.banner_img = "Image URL must end in .png, .jpg, or .jpeg";
    }
 
-//  setError(err)
+ setError(err)
 
 
-    // if (Object.keys(err).length === 0){
+    if (Object.keys(err).length === 0){
 
    
     const formData = {
@@ -129,13 +129,20 @@ const submitHandler =  (e) =>{
         const id = restaurant.id
 
         dispatch(restaurantsActions.updateRestaurant(id, method, JSON.stringify(formData)))
+        .then((serverError)=>{
+            if(serverError){
+                setError(serverError)
+            }else{
+            // redirect to updated restaurant page
+            navigate(`/restaurants/${restaurant.id}`)
+            }
+        })
 
-        // redirect to updated restaurant page
-
-        navigate(`/restaurants/${restaurant.id}`)
+       
     }else{
     // create a new restaurant
-        dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData))).then((serverError)=>{
+        dispatch(restaurantsActions.newRestaurant(method, JSON.stringify( formData)))
+        .then((serverError)=>{
             if(serverError){
                 setError(serverError)
             }else{
@@ -152,14 +159,14 @@ const submitHandler =  (e) =>{
 
 
 
-    // }
+    }
 
 
 
 
    
 }
-// TODO: Refactor these form fields as a form field component, passing in the specifics as props
+
     return(
         <>
         <div id="form-container">

@@ -107,11 +107,14 @@ export const newRestaurant = (method, formData) => async (dispatch) => {
 		const data = await response.json();
 		dispatch(add_Or_Update_Restaurant(data));
 
-	}
-
+	}else{
 	const serverError = await response.json();
 
 	return serverError;
+
+	}
+
+	
 };
 
 export const updateRestaurant = (id, method, formData) => async (dispatch) => {
@@ -122,11 +125,18 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 
 	const response = await fetch(url, options);
 
-	const data = await response.json();
+	if(response.ok){
+		const data = await response.json();
+		dispatch(add_Or_Update_Restaurant(data));
 
-	// console.log('>>> data from flask UPDATE route:', data);
-	dispatch(add_Or_Update_Restaurant(data));
-	return data;
+	}else{
+
+	const serverError = await response.json();
+	return serverError;
+
+	}
+
+		
 };
 
 export const deleteRestaurant = (id) => async (dispatch) => {
