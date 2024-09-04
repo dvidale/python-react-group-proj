@@ -18,12 +18,17 @@ function SignupFormModal() {
 	const [zip, setZip] = useState('');
 	const [phone_number, setPhoneNumber] = useState('');
 	const [errors, setErrors] = useState({});
+	const [validInputs, setValidInputs ] = useState(false)
 	const [submitted, setSubmitted] = useState(false);
 	const { closeModal } = useModal();
 
+	
+
 	useEffect(() => {
 		if (submitted) {
-			const validationErrors = {};
+			
+			const validationErrors = {}
+			setValidInputs(true)
 
 			if (first_name && (first_name.length < 2 || first_name.length > 30)) {
 				validationErrors.first_name =
@@ -80,6 +85,11 @@ function SignupFormModal() {
 				validationErrors.phone_number = 'Phone Number is required';
 
 			setErrors(validationErrors);
+			if(Object.keys(validationErrors).length === 0){
+				setValidInputs(true)
+			}else{
+				setValidInputs(false)
+			}
 		}
 	}, [
 		submitted,
@@ -112,7 +122,8 @@ function SignupFormModal() {
 		// Clear previous errors on submit
 		// setErrors({});
 
-		if(Object.keys(errors).length === 0){
+		if(validInputs){
+
 			const formData = {
 				first_name,
 				last_name,
@@ -125,9 +136,9 @@ function SignupFormModal() {
 				zip,
 				phone_number,
 			};
-	
+			
 			const serverResponse = await dispatch(thunkSignup(formData));
-	
+			
 			if (serverResponse.errors) {
 				setErrors(serverResponse.errors);
 			} else if (serverResponse.error) {
@@ -135,8 +146,10 @@ function SignupFormModal() {
 			} else {
 				closeModal();
 			}
-
+		
 		}
+
+		
 
 		
 	};
