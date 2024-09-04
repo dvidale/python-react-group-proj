@@ -5,10 +5,11 @@ import { FaThumbsUp } from 'react-icons/fa';
 import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
 import { addCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
+import { FaCheck } from 'react-icons/fa';
 import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
-import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm'; // Import the form directly
+import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
@@ -21,6 +22,7 @@ const MenuItemsList = () => {
 	const restaurant = useSelector(
 		(state) => state.restaurants.selectedRestaurant
 	);
+	const cartItems = useSelector((state) => state.shoppingCart.items);
 
 	useEffect(() => {
 		dispatch(fetchARestaurant(id));
@@ -44,11 +46,12 @@ const MenuItemsList = () => {
 
 	const handleDeleteConfirmation = (menuItemId) => {
 		setModalContent(
-			<DeleteConfirmationModal
-				onConfirm={() => handleDelete(menuItemId)}
-				onCancel={() => console.log('Delete canceled')}
-			/>
+			<DeleteConfirmationModal onConfirm={() => handleDelete(menuItemId)} />
 		);
+	};
+
+	const isInCart = (menuItemId) => {
+		return cartItems?.some((cartItem) => cartItem.menu_item_id === menuItemId);
 	};
 
 	return (
@@ -57,7 +60,7 @@ const MenuItemsList = () => {
 			{isOwner && (
 				<button
 					className='add-menu-item-btn'
-					onClick={() => setModalContent(<AddMenuItemForm />)} // Set the form as modal content
+					onClick={() => setModalContent(<AddMenuItemForm />)}
 				>
 					Add Menu Item
 				</button>
@@ -85,7 +88,7 @@ const MenuItemsList = () => {
 							</div>
 							<div className='bottom-info'>
 								<p className='item-details description'>{item.description}</p>
-								<p className='item-details-price'>Price: ${item.price}</p>
+								<p className='item-details-price'>${item.price}</p>
 							</div>
 						</div>
 						<div className='menu-item-img-holder'>
@@ -93,15 +96,16 @@ const MenuItemsList = () => {
 								src={item.image_url}
 								alt='food-item'
 								className='menu-item-img'
-							/> {!isOwner &&
-							<button
-								className='add-to-cart-btn'
-								onClick={() => handleAddToCart(item)}
-							>
-								+
-							</button>							
-							}
-							
+							/>{' '}
+							{!isOwner && (
+								<button
+									className='add-to-cart-btn'
+									onClick={() => handleAddToCart(item)}
+									disabled={isInCart(item.id)}
+								>
+									{isInCart(item.id) ? <FaCheck /> : '+'}
+								</button>
+							)}
 						</div>
 					</div>
 				))}

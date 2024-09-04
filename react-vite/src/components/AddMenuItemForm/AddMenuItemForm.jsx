@@ -33,7 +33,6 @@ const AddMenuItemForm = () => {
 
 		// Validate the form and get errors
 		const validationErrors = validateForm();
-		console.log('Validation Errors:', validationErrors); // Debugging
 
 		if (Object.keys(validationErrors).length === 0) {
 			const menuItemData = {
@@ -46,10 +45,10 @@ const AddMenuItemForm = () => {
 			};
 
 			dispatch(fetchAddMenuItem(id, menuItemData)).then(() => {
-				closeModal(); // Only close the modal if there are no errors
+				closeModal();
 			});
 		} else {
-			setErrors(validationErrors); // Update errors state
+			setErrors(validationErrors);
 		}
 	};
 
@@ -89,6 +88,7 @@ const AddMenuItemForm = () => {
 				{errors.description && <p className='error'>{errors.description}</p>}
 			</label>
 			<label>
+				<p>Images are best at 150px by 150px.</p>
 				Image URL:
 				<input
 					type='text'
