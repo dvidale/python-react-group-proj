@@ -5,10 +5,10 @@ import { FaThumbsUp } from 'react-icons/fa';
 import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
 import { addCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
-import { FaCheck } from 'react-icons/fa';
 import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
+import QuantityLimitModal from '../QuantityLimitModal/QuantityLimitModal';
 import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
 import EditMenuItemForm from '../EditMenuItem/EditMenuItemForm';
 import SuccessModal from '../SuccessDeleteMenuItemModal/SuccessModal';
@@ -36,6 +36,10 @@ const MenuItemsList = () => {
 	const handleAddToCart = (menuItem) => {
 		if (!currentUser) {
 			setModalContent(<LoginFormModal />);
+		}
+		const itemQuantity = getCartItemQuantity(menuItem.id, cartItems);
+		if (itemQuantity >= 5) {
+			setModalContent(<QuantityLimitModal />);
 		} else {
 			dispatch(addCartItem(menuItem));
 		}
@@ -58,8 +62,15 @@ const MenuItemsList = () => {
 		);
 	};
 
-	const isInCart = (menuItemId) => {
-		return cartItems?.some((cartItem) => cartItem.menu_item_id === menuItemId);
+	// const isInCart = (menuItemId) => {
+	// 	return cartItems?.some((cartItem) => cartItem.menu_item_id === menuItemId);
+	// };
+
+	const getCartItemQuantity = (menuItemId) => {
+		const cartItem = cartItems?.find(
+			(cartItem) => cartItem.menu_item_id === menuItemId
+		);
+		return cartItem ? cartItem.item_quantity : 0;
 	};
 
 	return (
@@ -118,7 +129,9 @@ const MenuItemsList = () => {
 									className='add-to-cart-btn'
 									onClick={() => handleAddToCart(item)}
 								>
-									{isInCart(item.id) ? <FaCheck /> : '+'}
+									{getCartItemQuantity(item.id) > 0
+										? `${getCartItemQuantity(item.id)}`
+										: '+'}
 								</button>
 							)}
 						</div>
@@ -128,6 +141,5 @@ const MenuItemsList = () => {
 		</div>
 	);
 };
-
 
 export default MenuItemsList;

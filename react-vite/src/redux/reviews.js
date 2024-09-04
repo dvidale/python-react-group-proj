@@ -1,6 +1,6 @@
-const GET_ALL_DB_REVIEWS = '/reviews/GET_ALL_DB_REVIEWS'
+const GET_ALL_DB_REVIEWS = '/reviews/GET_ALL_DB_REVIEWS';
 const GET_ALL_REVIEWS = 'reviewsList/GET_ALL_REVIEWS';
-const GET_REVIEW_SUMMARY = 'reviewsList/GET_REVIEW_SUMMARY'
+const GET_REVIEW_SUMMARY = 'reviewsList/GET_REVIEW_SUMMARY';
 const CREATE_REVIEW = 'reviewsList/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviewsList/DELETE_REVIEW';
 const EDIT_REVIEW = 'reviewsList/EDIT_REVIEW';
@@ -8,12 +8,12 @@ const SINGLE_REVIEW = 'reviewsList/SINGLE_REVIEW';
 
 //-------------------- ACTIONS --------------------//
 
-export const getAllDBReviews = (data)=> {
-	return{
+export const getAllDBReviews = (data) => {
+	return {
 		type: GET_ALL_DB_REVIEWS,
-		payload: data
-	}
-}
+		payload: data,
+	};
+};
 
 export const getAllReviews = (data) => {
 	return {
@@ -30,11 +30,11 @@ export const singleReview = (data) => {
 };
 
 export const setReviewSummary = (data) => {
-    return {
-        type: GET_REVIEW_SUMMARY,
-        payload: data
-    }
-}
+	return {
+		type: GET_REVIEW_SUMMARY,
+		payload: data,
+	};
+};
 
 export const createReview = (data) => {
 	return {
@@ -61,18 +61,14 @@ export const deleteReview = (reviewId) => {
 
 // LOAD ALL DB REVIEWS
 
-export const fetchAllDBReviews = () => async (dispatch) =>
-{
+export const fetchAllDBReviews = () => async (dispatch) => {
 	const response = await fetch('/api/reviews');
 
-	if(response.ok){
+	if (response.ok) {
 		const data = await response.json();
-		dispatch(getAllDBReviews(data))
-
+		dispatch(getAllDBReviews(data));
 	}
-}
-
-
+};
 
 //GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 export const fetchReviews = (restaurantId) => async (dispatch) => {
@@ -100,14 +96,14 @@ export const getSingleReview = (review_id) => async (dispatch) => {
 
 // GET REVIEW SUMMARY: TOTAL REVIEWS AND AVERAGE RATING
 export const reviewSummary = (restaurantId) => async (dispatch) => {
-    const response = await fetch(`/api/restaurants/${restaurantId}/totalreviews`)
+	const response = await fetch(`/api/restaurants/${restaurantId}/totalreviews`);
 
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(setReviewSummary(data))
-        return data;
-    }
-};  	
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setReviewSummary(data));
+		return data;
+	}
+};
 
 //CREATE REVIEW
 export const postReview = (newReview, restaurantId) => async (dispatch) => {
@@ -120,7 +116,6 @@ export const postReview = (newReview, restaurantId) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(createReview(data));
-		console.log('>>>>>>>>>>>>>>>>>>>>>> data from FLASK route', data);
 		return data;
 	}
 };
@@ -147,7 +142,7 @@ export const delReview = (reviewId) => async (dispatch) => {
 	});
 
 	if (response.ok) {
-		dispatch(deleteReview(reviewId)); // dispatch the reviewId directly
+		dispatch(deleteReview(reviewId));
 	}
 };
 
@@ -157,7 +152,7 @@ const initialState = {
 	allReviews: [],
 	reviewsListArr: [],
 	singleReview: {},
-    reviewSummary: {},
+	reviewSummary: {},
 	createReview: {},
 	editReview: {},
 };
@@ -165,13 +160,13 @@ const initialState = {
 const reviewsListReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case GET_ALL_DB_REVIEWS:
-			return{...state, allReviews: action.payload}
+			return { ...state, allReviews: action.payload };
 		case GET_ALL_REVIEWS:
 			return { ...state, reviewsListArr: action.payload };
 		case SINGLE_REVIEW:
 			return { ...state, singleReview: action.payload };
-        case GET_REVIEW_SUMMARY:
-            return {...state, reviewSummary: action.payload };
+		case GET_REVIEW_SUMMARY:
+			return { ...state, reviewSummary: action.payload };
 		case CREATE_REVIEW:
 			return {
 				...state,
@@ -184,10 +179,10 @@ const reviewsListReducer = (state = initialState, action) => {
 					review.id === action.payload.id ? action.payload : review
 				),
 			};
-		case DELETE_REVIEW:{
-			const newState = {...state}
+		case DELETE_REVIEW: {
+			const newState = { ...state };
 			// target the review to be deleted
-			delete state.allReviews.find((review )=> review.id === action.payload)
+			delete state.allReviews.find((review) => review.id === action.payload);
 			return newState;
 		}
 		default:

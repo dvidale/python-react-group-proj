@@ -46,17 +46,10 @@ export const deleteMenuItem = (id) => {
 //* -------------------------------------THUNKS
 // ? --------------------------------GET ALL EXISTING MENU ITEMS
 export const fetchAllMenuItems = () => async (dispatch) => {
-	try {
-		const response = await fetch(`/api/menu-items/all`);
-		if (response.ok) {
-			const data = await response.json();
-			console.log('Data fetched:', data); // Debug log
-			dispatch(getEveryMenuItem(data));
-		} else {
-			console.error('Failed to fetch all menu items');
-		}
-	} catch (error) {
-		console.error('Error fetching all menu items:', error);
+	const response = await fetch(`/api/menu-items/all`);
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getEveryMenuItem(data));
 	}
 };
 
@@ -128,7 +121,6 @@ export const fetchDeleteMenuItem = (id) => async (dispatch) => {
 		});
 
 		if (response.ok) {
-			console.log('Delete successful:', id);
 			dispatch(deleteMenuItem(id));
 		} else {
 			const errorData = await response.json();

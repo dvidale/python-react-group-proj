@@ -23,6 +23,9 @@ const AddMenuItemForm = () => {
 			newErrors.price = 'Price must be a positive number';
 		}
 		if (!description) newErrors.description = 'Description is required';
+		if (description >= 100 || description <= 9) {
+			newErrors.description = 'Description must be between 9 to 100 characters';
+		}
 		if (!imageUrl) newErrors.imageUrl = 'Image URL is required';
 		if (!quantity || quantity <= 0 || !Number.isInteger(Number(quantity)))
 			newErrors.quantity = 'Quantity must be a positive integer';
@@ -32,7 +35,6 @@ const AddMenuItemForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// Validate the form and get errors
 		const validationErrors = validateForm();
 
 		if (Object.keys(validationErrors).length === 0) {

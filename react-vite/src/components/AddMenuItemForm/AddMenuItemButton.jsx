@@ -6,7 +6,7 @@ const AddMenuItemButton = ({ restaurantId }) => {
 
 	const openAddMenuItemModal = () => {
 		setModalContent(<AddMenuItemForm restaurantId={restaurantId} />);
-		setOnModalClose(() => () => console.log('Add Menu Item Modal Closed'));
+		setOnModalClose();
 	};
 
 	return <button onClick={openAddMenuItemModal}>Add Menu Item</button>;
