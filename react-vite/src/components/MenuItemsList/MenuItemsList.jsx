@@ -10,6 +10,7 @@ import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
+import EditMenuItemForm from '../EditMenuItem/EditMenuItemForm';
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
@@ -37,6 +38,10 @@ const MenuItemsList = () => {
 		} else {
 			dispatch(addCartItem(menuItem));
 		}
+	};
+
+	const handleEditConfirmation = (menuItem) => {
+		setModalContent(<EditMenuItemForm menuItem={menuItem} />);
 	};
 
 	const handleDelete = (menuItemId) => {
@@ -72,12 +77,20 @@ const MenuItemsList = () => {
 						className='menu-item-structure'
 					>
 						{isOwner && (
-							<button
-								className='delete-menu-item-btn'
-								onClick={() => handleDeleteConfirmation(item.id)}
-							>
-								Delete
-							</button>
+							<div className='owner-edit-btns'>
+								<button
+									className='edit-menu item-btn'
+									onClick={() => handleEditConfirmation(item)}
+								>
+									Edit
+								</button>
+								<button
+									className='delete-menu item-btn'
+									onClick={() => handleDeleteConfirmation(item.id)}
+								>
+									Delete
+								</button>
+							</div>
 						)}
 						<div className='menu-item-details'>
 							<div>
@@ -101,7 +114,6 @@ const MenuItemsList = () => {
 								<button
 									className='add-to-cart-btn'
 									onClick={() => handleAddToCart(item)}
-									disabled={isInCart(item.id)}
 								>
 									{isInCart(item.id) ? <FaCheck /> : '+'}
 								</button>

@@ -19,8 +19,9 @@ const AddMenuItemForm = () => {
 	const validateForm = () => {
 		const newErrors = {};
 		if (!name) newErrors.name = 'Name is required';
-		if (!price || price <= 0 || !Number.isInteger(Number(price)))
-			newErrors.price = 'Price must be a positive integer';
+		if (!price || price <= 0 || isNaN(Number(price))) {
+			newErrors.price = 'Price must be a positive number';
+		}
 		if (!description) newErrors.description = 'Description is required';
 		if (!imageUrl) newErrors.imageUrl = 'Image URL is required';
 		if (!quantity || quantity <= 0 || !Number.isInteger(Number(quantity)))
