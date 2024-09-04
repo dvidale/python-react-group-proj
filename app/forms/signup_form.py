@@ -21,13 +21,13 @@ def username_exists(form, field):
 
 
 class SignUpForm(FlaskForm):
-    first_name = StringField('First Name', validators=[DataRequired()])
-    last_name = StringField('Last Name', validators=[DataRequired()])
-    username = StringField('Username', validators=[DataRequired(), username_exists])
+    first_name = StringField('First Name', validators=[DataRequired(), Length(min=2, max=30)])
+    last_name = StringField('Last Name', validators=[DataRequired(), Length(min=2, max=30)])
+    username = StringField('Username', validators=[DataRequired(), username_exists, Length(min=2, max=30)])
     email = StringField('Email', validators=[DataRequired(), Email(), user_exists])
-    address = StringField('Address', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
+    address = StringField('Address', validators=[DataRequired(), Length(max=30)])
+    city = StringField('City', validators=[DataRequired(), Length(max=30)])
     state = StringField('State', validators=[DataRequired(), Length(min=2, max=2)])
     zip = StringField('ZIP', validators=[DataRequired()])
-    phone_number = StringField('Phone Number', validators=[DataRequired()])
+    phone_number = StringField('Phone Number', validators=[DataRequired(), Length(max=10)])
     password = StringField('Password', validators=[DataRequired(), Length(min=6)])
