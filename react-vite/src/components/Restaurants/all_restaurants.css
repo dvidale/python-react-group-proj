@@ -8,7 +8,7 @@
 	position: relative;
 	border: solid 2px gray;
 	display: flex;
-	flex-direction: row; /* Ensure the image and text are side by side */
+	flex-direction: row;
 	border-radius: 12px;
 	transition: box-shadow 0.3s ease;
 	height: auto;
@@ -23,9 +23,9 @@
 }
 
 .restaurant-image-div {
-	flex: 0 0 200px; /* Flex-shrink, flex-grow, and base size */
+	flex: 0 0 200px;
 	height: 200px;
-	overflow: hidden; /* Ensure the image stays within the div */
+	overflow: hidden;
 	border-top-left-radius: 12px;
 	border-bottom-left-radius: 12px;
 }
@@ -34,18 +34,24 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center; /* Center the image within the div */
+	object-position: center;
 }
 
 .restaurant-info-text {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	width: 100%;
-	padding: 1rem 0.5rem;
+	padding: 0.7rem;
 	gap: 0.1rem;
 	background-color: white;
-	overflow: hidden; /* Contain overflowing text */
-	text-overflow: ellipsis; /* Show ellipsis if text overflows */
+	text-overflow: ellipsis;
+}
+
+.rest-info-top {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
 }
 
 .restaurant-info-text h2 {
@@ -55,14 +61,19 @@
 .restaurant-info p,
 .restaurant-address {
 	opacity: 0.6;
-	white-space: nowrap; /* Prevent text from wrapping */
+	white-space: nowrap;
 	overflow: hidden;
-	text-overflow: ellipsis; /* Add ellipsis if text overflows */
+	text-overflow: ellipsis;
+}
+
+.rest-category {
+	font-style: italic;
 }
 
 .all-rest-page-desc {
 	word-wrap: break-word;
-	height: 100px;
-	overflow: hidden; /* Contain text overflow */
-	text-overflow: ellipsis; /* Add ellipsis if text overflows */
+	max-width: 370px;
+	height: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

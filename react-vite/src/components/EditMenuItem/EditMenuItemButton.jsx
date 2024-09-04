@@ -5,8 +5,8 @@ const EditMenuItemButton = ({ menuItem }) => {
 	const { setModalContent, setOnModalClose } = useModal();
 
 	const openEditMenuItemModal = () => {
-		setModalContent(<EditMenuItemForm menuItem={menuItem} />); // Pass menuItem data
-		setOnModalClose(() => () => console.log('Edit Menu Item Modal Closed'));
+		setModalContent(<EditMenuItemForm menuItem={menuItem} />);
+		setOnModalClose();
 	};
 
 	return <button onClick={openEditMenuItemModal}>Edit</button>;

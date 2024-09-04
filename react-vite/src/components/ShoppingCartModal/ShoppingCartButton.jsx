@@ -7,7 +7,7 @@ const ShoppingCartButton = ({ cartItemCount }) => {
 
 	const openShoppingCartModal = () => {
 		setModalContent(<ShoppingCartModal />);
-		setOnModalClose(() => () => console.log('Shopping Cart Modal Closed'));
+		setOnModalClose();
 	};
 
 	return (

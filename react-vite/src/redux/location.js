@@ -23,7 +23,6 @@ const initialState = {
 const locationReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SAVE_LOCATION:
-			console.log('Reducer: Saving location', action.location);
 			return {
 				...state,
 				state: action.location.state,
