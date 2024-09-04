@@ -82,6 +82,18 @@ const category_list = useSelector(state => state.restaurants.allCategories)
 const user = useSelector(state => state.session.user)
 
 
+const checkboxHandler = (e) =>{
+
+    const { value, checked } = e.target;
+
+    if(checked){
+        setCategories([...categories, value])
+    }else {
+        setCategories( categories.length && categories.filter( e => e !== value))
+    }
+
+}
+if(categories.length) console.log("chosen categories", categories);
 
 const submitHandler =  (e) =>{
     e.preventDefault()
@@ -210,35 +222,32 @@ const submitHandler =  (e) =>{
             <div>
                 <label htmlFor='categories'>
                     <div>
-<h2>Categories  </h2><p className='errors'>{error.categories}</p>
-<h3>( ⊞/⌘ + Click  to select multiple) </h3>
+<h2>Categories  </h2>
+<h3 className='checkbox-caption'>Select all that apply. </h3>
 
-                    </div>
-               
-              
-            <select name="categories" value={categories} multiple={true}
-             onChange={e => {
-                const options = [...e.target.selectedOptions];
-                const values = options.map(option => option.value);
-                setCategories(values)}}
-            >
-            {category_list.map( category =>
-                (
-                    <>
-                    <option key={category.id} 
-                    id={category.categ_name} 
-                    name={category.categ_name} 
-                    value={category.categ_name}
-                    > 
-                    {category.categ_name}
-                    </option>
-                    </>
-                )
-            )
+{category_list.map( category => 
+    (
+        <>
+        <label htmlFor={category.categ_name} className='category-labels' key={category.id}>
+    
+    <input type='checkbox'
+    id={category.categ_name} 
+    className='category-boxes'
+    name='categories'
+    defaultChecked={categories.includes(category.categ_name)}
+    value={category.categ_name}
+    onChange={checkboxHandler}/>
+{category.categ_name}
 
-}            
-                </select>   
-                </label>   
+</label>
+        </>
+    )
+)
+
+}
+<p className='errors'>{error.categories}</p>
+     </div>
+   </label>    
             
             </div>
             <div><h2 className='hours-heading'>Hours  </h2></div>
