@@ -13,7 +13,7 @@ start_date = datetime(2018, 1, 1)
 end_date = datetime(2024, 9, 3)
 
 def seed_reviews():
-    print(">>>> inside reviews seeder")
+
     reviews = [
 
         Review(user_id=7, restaurant_id=1, rating=4, comments="The Gourmet Kitchen offers a delightful dining experience. The modern twist on traditional dishes is impressive. I particularly enjoyed the ambience, which made the meal even more enjoyable. The service was attentive and friendly, adding to the overall positive experience.", created_at=random_date(start_date, end_date)),

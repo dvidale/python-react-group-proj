@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_categories():
     # Seed Categories
-    print(">>>> inside categories seeder")
+  
     categories = [
         Category(categ_name='Italian', img_url='https://res.cloudinary.com/dw0k7r34f/image/upload/v1724015966/Italian_gw34ku.jpg'),
         Category(categ_name='Mexican', img_url='https://res.cloudinary.com/dw0k7r34f/image/upload/v1724015959/Mexican_oxh6zq.jpg'),

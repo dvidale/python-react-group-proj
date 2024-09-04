@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 from ..models import ShoppingCart
 
 def seed_shopping_carts():
-    print(">>>> inside shopping cart seeder")
+ 
     shopping_carts = [
         
         ShoppingCart(id=1, user_id=1),

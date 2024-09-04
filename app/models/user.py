@@ -43,7 +43,4 @@ class User(db.Model, UserMixin):
             'state': self.state
         }
     
-    def print_run():
-        print(">>>> inside user model")
-
-    # print_run()
+    
