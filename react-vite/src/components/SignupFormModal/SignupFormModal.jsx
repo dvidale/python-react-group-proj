@@ -71,6 +71,7 @@ function SignupFormModal() {
 			if (!password) validationErrors.password = 'Password is required';
 			if (!confirmPassword)
 				validationErrors.confirmPassword = 'Confirm Password is required';
+			if (password !== confirmPassword) validationErrors.password = 'Password and Confirm Password do not match'
 			if (!address) validationErrors.address = 'Address is required';
 			if (!city) validationErrors.city = 'City is required';
 			if (!state) validationErrors.state = 'State is required';
@@ -99,46 +100,51 @@ function SignupFormModal() {
 		e.preventDefault();
 		setSubmitted(true); // Mark form as submitted
 
-		if (password !== confirmPassword) {
-			setErrors((prevErrors) => ({
-				...prevErrors,
-				confirmPassword:
-					'Confirm Password field must be the same as the Password field',
-			}));
-			return;
-		}
+		// if (password !== confirmPassword) {
+		// 	setErrors((prevErrors) => ({
+		// 		...prevErrors,
+		// 		confirmPassword:
+		// 			'Confirm Password field must be the same as the Password field',
+		// 	}));
+		// 	return;
+		// }
 
 		// Clear previous errors on submit
-		setErrors({});
+		// setErrors({});
 
-		const formData = {
-			first_name,
-			last_name,
-			email,
-			username,
-			password,
-			address,
-			city,
-			state,
-			zip,
-			phone_number,
-		};
+		if(Object.keys(errors).length === 0){
+			const formData = {
+				first_name,
+				last_name,
+				email,
+				username,
+				password,
+				address,
+				city,
+				state,
+				zip,
+				phone_number,
+			};
+	
+			const serverResponse = await dispatch(thunkSignup(formData));
+	
+			if (serverResponse.errors) {
+				setErrors(serverResponse.errors);
+			} else if (serverResponse.error) {
+				setErrors({ server: serverResponse.error });
+			} else {
+				closeModal();
+			}
 
-		const serverResponse = await dispatch(thunkSignup(formData));
-
-		if (serverResponse.errors) {
-			setErrors(serverResponse.errors);
-		} else if (serverResponse.error) {
-			setErrors({ server: serverResponse.error });
-		} else {
-			closeModal();
 		}
+
+		
 	};
 
 	return (
 		<div className='signup'>
 			<h1 className='signup-title'>Sign Up</h1>
-			{errors.server && <p>{errors.server}</p>}
+		<p>{errors.server}</p>
 			<form
 				onSubmit={handleSubmit}
 				className='signup-form-modal'
