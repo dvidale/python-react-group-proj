@@ -49,7 +49,7 @@
 }
 
 .restaurant-info-text h2 {
-	font-size: var(--fs-small);
+	font-size: var(--fs-medium);
 }
 
 .restaurant-info p,
