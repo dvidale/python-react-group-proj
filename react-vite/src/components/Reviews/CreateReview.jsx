@@ -2,25 +2,28 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { fetchAllDBReviews, postReview, reviewSummary } from '../../redux/reviews';
-import { FaStar } from 'react-icons/fa';
-import { FaRegStar } from 'react-icons/fa';
-import './CreateReview.css'
+import { FaStar, FaRegStar } from 'react-icons/fa';
+import './CreateReview.css';
 
-const CreateReview = ({id}) => {
+const CreateReview = ({ id }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
     const [rating, setRating] = useState(0);
     const [hoveredStars, setHoveredStars] = useState(0);
     const [comments, setComments] = useState("");
-    const [errors, setErrors] = useState({});
+    const [validations, setValidations] = useState({});
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
-        let errors = {};
-        if (rating < 1) errors.rating = "Stars can't be empty";
-        // if (comments.length < 20) errors.comments = "Review must be at least 20 characters long";
-        setErrors(errors);
-    }, [rating]);
+        let validationsObj = {};
+
+        if (comments.length > 1000) validationsObj.comments = "Comments should not exceed 1,000 characters.";
+        if (rating.length < 1) validationsObj.rating = "Rating must be at least 1 star.";
+
+        setValidations(validationsObj);
+    }, [rating, comments]);
+
 
     const handleMouseEnter = (stars) => {
         setHoveredStars(stars);
@@ -51,24 +54,26 @@ const CreateReview = ({id}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormSubmitted(true);
 
-        if (Object.values(errors).length > 0) {
-            alert("Please fix the errors you have");
-        } else {
-            let restaurantId = parseInt(id);
-            let newReview = {
-                rating,
-                comments,
-            };
+        if (Object.keys(validations).length === 0) {
+            const restaurantId = parseInt(id);
+            const newReview = { rating, comments };
 
-            dispatch(postReview(newReview, restaurantId))
-                .then(closeModal)
+            try {
+                dispatch(postReview(newReview, restaurantId))
+                .then(() => closeModal())
                 .then(() => dispatch(fetchAllDBReviews()))
-                .then(()=> dispatch(reviewSummary(restaurantId)));
-
-            setRating(0);
-            setComments("");
-            setErrors({});
+                .then(() => dispatch(reviewSummary(restaurantId)));
+                setRating(0);
+                setComments("");
+                setValidations({});
+            } catch (err) {
+                console.error('Error submitting review:', err);
+                // Optionally handle errors here
+            } finally {
+                setFormSubmitted(false);
+            }
         }
     };
 
@@ -84,13 +89,14 @@ const CreateReview = ({id}) => {
                     onChange={(e) => setComments(e.target.value)}
                 />
             </label>
+            {formSubmitted && validations.comments && <p className="error-message">{validations.comments}</p>}
             <label className="review-label">
                 {/* Stars: */}
                 <div className="rating-input">
                     <div className="star-ratings-container">{renderStars()}</div>
                 </div>
             </label>
-            <button id='submit-button' disabled={Object.values(errors).length > 0} type="submit">
+            <button id='submit-button' type="submit">
                 Submit Your Review
             </button>
         </form>

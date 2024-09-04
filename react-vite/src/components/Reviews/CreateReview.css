@@ -24,6 +24,11 @@
     padding: 1rem 0;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+}
+
 #submit-button {
     background: black;
 	border-radius: 5px;
