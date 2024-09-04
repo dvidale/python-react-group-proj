@@ -5,6 +5,7 @@ import { FaThumbsUp } from 'react-icons/fa';
 import { fetchMenuItems, fetchDeleteMenuItem } from '../../redux/menuItems';
 import { addCartItem } from '../../redux/shoppingCart';
 import { fetchARestaurant } from '../../redux/restaurants';
+import { FaCheck } from 'react-icons/fa';
 import { useModal } from '../../context/Modal';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
@@ -21,6 +22,7 @@ const MenuItemsList = () => {
 	const restaurant = useSelector(
 		(state) => state.restaurants.selectedRestaurant
 	);
+	const cartItems = useSelector((state) => state.shoppingCart.items);
 
 	useEffect(() => {
 		dispatch(fetchARestaurant(id));
@@ -44,11 +46,12 @@ const MenuItemsList = () => {
 
 	const handleDeleteConfirmation = (menuItemId) => {
 		setModalContent(
-			<DeleteConfirmationModal
-				onConfirm={() => handleDelete(menuItemId)}
-				onCancel={() => console.log('Delete canceled')}
-			/>
+			<DeleteConfirmationModal onConfirm={() => handleDelete(menuItemId)} />
 		);
+	};
+
+	const isInCart = (menuItemId) => {
+		return cartItems?.some((cartItem) => cartItem.menu_item_id === menuItemId);
 	};
 
 	return (
@@ -93,15 +96,16 @@ const MenuItemsList = () => {
 								src={item.image_url}
 								alt='food-item'
 								className='menu-item-img'
-							/> {!isOwner &&
-							<button
-								className='add-to-cart-btn'
-								onClick={() => handleAddToCart(item)}
-							>
-								+
-							</button>							
-							}
-							
+							/>{' '}
+							{!isOwner && (
+								<button
+									className='add-to-cart-btn'
+									onClick={() => handleAddToCart(item)}
+									disabled={isInCart(item.id)} // Disable the button if the item is in the cart
+								>
+									{isInCart(item.id) ? <FaCheck /> : '+'}
+								</button>
+							)}
 						</div>
 					</div>
 				))}
