@@ -16,7 +16,6 @@ const ShoppingCartModal = () => {
 	const shoppingCart = useSelector((state) => state.shoppingCart.items);
 	const sessionUser = useSelector((state) => state.session.user);
 
-	// Calculate the total price
 	const totalPrice = shoppingCart.reduce((total, item) => {
 		return total + item.price * item.item_quantity;
 	}, 0);
@@ -69,7 +68,7 @@ const ShoppingCartModal = () => {
 									<div>
 										<h3>{item.name}</h3>
 										<p className='shop-desc'>{item.description}</p>
-										<p className='shop-price'>Price: ${item.price}</p>
+										<p className='shop-price'>${item.price}</p>
 									</div>
 								</div>
 								<div className='cart-quantity'>
@@ -101,18 +100,18 @@ const ShoppingCartModal = () => {
 					</div>
 					<div className='total-price'>
 						<h3>Total: ${totalPrice.toFixed(2)}</h3>
+						{sessionUser && shoppingCart.length > 0 && (
+							<button
+								className='shop-purchase-btn'
+								onClick={handlePurchase}
+							>
+								Purchase
+							</button>
+						)}
 					</div>
 				</>
 			) : (
 				<p>Your cart is empty.</p>
-			)}
-			{sessionUser && shoppingCart.length > 0 && (
-				<button
-					className='shop-purchase-btn'
-					onClick={handlePurchase}
-				>
-					Purchase
-				</button>
 			)}
 		</div>
 	);
