@@ -35,6 +35,11 @@ Without logging in, users can view all restaurants available for delivery via Da
 - Users can remove menu items from their shopping cart.
 - Users can perform a "transaction" to complete their purchase.
 
+* Users can view all menu items added to their cart.
+* Users can add menu items to their shopping cart.
+* Users can remove menu items from their shopping cart.
+* Users can perform a "transaction" to complete their purchase.
+
 ## **4. Menu Items**
 
 - Users can view all menu items for a restaurant.
@@ -42,15 +47,28 @@ Without logging in, users can view all restaurants available for delivery via Da
 - Users can update menu items on their restaurants.
 - Users can delete menu items from their restaurants.
 
-## **5. Future Feature: Search**
+## Future Features
 
-- Users should be able to search for restaurants. \* Optional Feature
-- Users should be able to view the results of their search. \* Optional Feature
+## **1. Future Feature: Search**
 
-## **6. Future Feature: Past Order/Reorder**
+- Users should be able to search for restaurants.
+- Users should be able to view the results of their search.
 
-- Users should be able to view their past orders. \* Optional Feature
-- Users should be able to reorder any of their past orders. \* Optional Feature
+## **2. Future Feature: Past Order/Reorder**
+
+- Users should be able to view their past orders.
+- Users should be able to reorder any of their past orders.
+
+## **3. Future Feature: Add Menu Item Ratings to Menu Item Components**
+
+- Users should be able to submit reviews for specific menu items they have ordered.
+- Restaurant menu items will display accurate ratings based on user reviews.
+
+## **4. Future Feature: Amazon Web Services (AWS) Integration**
+
+- Users should be able to upload a photo of their restaurant photo.
+- Users should be able to upload a photo of their restaurant cover photo.
+- Users should be able to upload a photo of their menu items.
 
 ## Technologies Used
 

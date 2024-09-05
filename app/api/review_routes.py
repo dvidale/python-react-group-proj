@@ -48,6 +48,7 @@ def update_review(review_id):
 def delete_review(review_id):
 
     review = Review.query.get(review_id)
+    
     db.session.delete(review)
     db.session.commit()
 

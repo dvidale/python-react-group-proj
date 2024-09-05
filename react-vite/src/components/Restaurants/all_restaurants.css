@@ -54,6 +54,15 @@
 	gap: 0.2rem;
 }
 
+.star-rating-container {
+	display: flex;
+	gap: 8px;
+}
+
+.star-rating {
+	color: var(--accent-clr);
+}
+
 .restaurant-info-text h2 {
 	font-size: var(--fs-medium);
 }
