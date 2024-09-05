@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { FaThumbsUp } from 'react-icons/fa';
@@ -12,12 +12,14 @@ import QuantityLimitModal from '../QuantityLimitModal/QuantityLimitModal';
 import AddMenuItemForm from '../AddMenuItemForm/AddMenuItemForm';
 import EditMenuItemForm from '../EditMenuItem/EditMenuItemForm';
 import SuccessModal from '../SuccessDeleteMenuItemModal/SuccessModal';
+import OwnerCannotPurchaseModal from '../OwnerCannotPurchase/OwnerCannotPurchaseModal';
 import './MenuItemsList.css';
 
 const MenuItemsList = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const { setModalContent, closeModal } = useModal();
+	const [pendingCartItem, setPendingCartItem] = useState(null);
 
 	const menuItems = useSelector((state) => state.menuItems.itemArr);
 	const currentUser = useSelector((state) => state.session.user);
@@ -35,8 +37,27 @@ const MenuItemsList = () => {
 
 	const handleAddToCart = (menuItem) => {
 		if (!currentUser) {
-			setModalContent(<LoginFormModal />);
+			setPendingCartItem(menuItem); // Store the item for after login
+			setModalContent(<LoginFormModal onLoginSuccess={handleLoginSuccess} />);
+		} else if (isOwner) {
+			setModalContent(<OwnerCannotPurchaseModal />);
+		} else {
+			addItemToCart(menuItem);
 		}
+	};
+
+	const handleLoginSuccess = () => {
+		if (pendingCartItem) {
+			if (currentUser && currentUser.id === restaurant.owner_id) {
+				setModalContent(<OwnerCannotPurchaseModal />);
+			} else {
+				addItemToCart(pendingCartItem);
+			}
+			setPendingCartItem(null); // Reset after adding
+		}
+	};
+
+	const addItemToCart = (menuItem) => {
 		const itemQuantity = getCartItemQuantity(menuItem.id, cartItems);
 		if (itemQuantity >= 5) {
 			setModalContent(<QuantityLimitModal />);

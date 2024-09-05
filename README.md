@@ -126,66 +126,6 @@ To set up and run the project locally, follow these steps:
    npm run dev
    ```
 
-## Redux Store Tree
-
-| **Slice**        | **Sub-Slice** / **State** Structure                                                                                                                                                            | **Description**                                                   |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `location`       | { city: STRING, state: STRING }                                                                                                                                                                | Stores the user's selected city and state for filtering listings. |
-| `menuItemRating` | { createMenuItemRating: { id: INT, vote: BOOLEAN }, getMenuItemRating: { menu_item_id: INT, percentage: FLOAT } }                                                                              | Manages the creation and retrieval of ratings for menu items.     |
-| `menuItems`      | { allArr: [ { id: INT, name: STRING, price: DECIMAL } ], itemArr: [ { id: INT, name: STRING, price: DECIMAL } ] }                                                                              | Contains menu items available in the system and related details.  |
-| `restaurants`    | { AllRestaurants: [ { id: INT, name: STRING, city: STRING, state: STRING, avg_rating: FLOAT } ], allCategories: [ { id: INT, name: STRING } ], selectedRestaurant: { id: INT, name: STRING } } | Stores information about restaurants, categories, and selections. |
-| `reviewsList`    | { allReviews: [ { id: INT, content: STRING, rating: INT } ], createReview: { content: STRING, rating: INT }, reviewSummary: { id: INT, rating: FLOAT } }                                       | Manages review data including creation and summaries.             |
-| `session`        | { user: { id: INT, email: STRING, first_name: STRING, last_name: STRING, username: STRING, city: STRING, state: STRING } }                                                                     | Stores the logged-in user's information.                          |
-| `shoppingCart`   | { items: [ { id: INT, name: STRING, price: DECIMAL, quantity: INT } ] }                                                                                                                        | Manages items added to the shopping cart along with quantities.   |
-
-```javascript
-  state: {
-    location: {
-      city: ""
-     state: ""
-    }
-    menuItemRating: {
-      createMenuItemRating: {}
-      getMenuItemRating: {}
-    }
-    menuItems: {
-      allArr: []
-      itemArr: []
-    }
-    restaurants: {
-      AllRestaurants: { ... }
-      allCategories: [ ... ]
-      selectedCategory: "Default is null, selected is categ_name string"
-      selectedRestaurant: {}
-    }
-    reviewsList: {
-      allReviews: []
-      createReview: {}
-      editReview: {}
-      recentReviews: []
-      reviewSummary: {}
-      reviewListArr: []
-      singleReview: {}
-      specificReviews: []
-    }
-    session: {
-      user: {
-        city: ""
-        email: ""
-        first_name: ""
-        id: 1
-        last_name: ""
-        state: ""
-        username: ""
-      }
-    }
-    shoppingCart: {
-      items: [ ... ]
-    }
-  }
-
-```
-
 ## Screenshots
 
 1. E-Commerce HomePage
