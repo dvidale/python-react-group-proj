@@ -10,14 +10,9 @@ DashDine is a website for users to order delivery and rate restaurants and servi
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Database Schema] (#db-schema)
-- [React Components] (#react-components)
-- [Frontend Routes] (#frontend-routes)
-- [Redux store tree document] (#redux-store)
-- [API Routes] (#api-routes)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
-- [Technical Implementations] (#tech-details)
+- [Wiki Documentation] (#wiki)
 - [Contact](#contact)
 
 
@@ -133,6 +128,15 @@ To set up and run the project locally, follow these steps:
 10. Account
   <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
 
+## Wiki Documentation
+### Find the following additional documentation in our Wiki
+
+- [Database Schema] (#db-schema)
+- [React Components] (#react-components)
+- [Frontend Routes] (#frontend-routes)
+- [Redux store tree document] (#redux-store)
+- [API Routes] (#api-routes)
+- [Technical Implementations] (#tech-details)
 
 
 
