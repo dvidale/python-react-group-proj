@@ -114,7 +114,7 @@ export const newRestaurant = (method, formData) => async (dispatch) => {
 
 	}
 
-	
+
 };
 
 export const updateRestaurant = (id, method, formData) => async (dispatch) => {
@@ -124,7 +124,6 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 	const options = { method, headers, body };
 
 	const response = await fetch(url, options);
-	console.log("update form response:", response);
 
 	if(response.ok){
 		const data = await response.json();
@@ -137,7 +136,7 @@ export const updateRestaurant = (id, method, formData) => async (dispatch) => {
 
 	}
 
-		
+
 };
 
 export const deleteRestaurant = (id) => async (dispatch) => {
