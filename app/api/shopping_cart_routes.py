@@ -56,15 +56,14 @@ def add_cart_item():
     new_cart_item = CartItem(
         shopping_cart_id=shopping_cart.id,
         menu_item_id=menu_item.id,
-        item_quantity=1  # Default quantity to 1
+        item_quantity=1  
     )
 
     try:
         db.session.add(new_cart_item)
         db.session.commit()
     except Exception as e:
-        db.session.rollback()  # Rollback in case of an error
-        print(f"Error adding cart item: {e}")
+        db.session.rollback()
         return {"error": "Internal server error"}, 500
 
     return new_cart_item.to_dict(), 201
