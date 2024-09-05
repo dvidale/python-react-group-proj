@@ -9,8 +9,24 @@
 
 }
 
+/* .category-boxes{
+    background-color: yellowgreen;
+} */
 
+input[type='checkbox']{
+    font-size:20px;
+}
 
+.checkbox-caption{
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+.category-labels{
+    display: flex;
+    gap: 10px;
+    font-size: 20px;
+}
 .text-field{
     height: 30px;
     width: 100%;
@@ -53,6 +69,7 @@ select[multiple]{
     
 }
 .hours-heading{
+    margin-top: 10px;
     margin-bottom: 7px;
 }
 

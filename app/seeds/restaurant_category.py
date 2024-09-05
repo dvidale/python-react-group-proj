@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_restaurant_categories():
     # Seed RestaurantCategory (join table)
-    print(">>>> inside restaurant category seeder")
+   
     restaurant_categories = [
         # Restaurant 1 (The Gourmet Kitchen) belongs to 'American' and 'BBQ'
         RestaurantCategory(restaurant_id=1, category_id=10),  # American
