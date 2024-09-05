@@ -286,10 +286,14 @@ def add_new_menu_item(id):
 def total_number_of_reviews(id):
 
     reviews = Review.query.filter_by(restaurant_id=id).all()
-    restaurant = Restaurant.query.get(id)
-    if not reviews:
-        return {"average_rating":0, "total_reviews": 0}
 
+    if not reviews:
+        return {"average_rating":0, "total_reviews": 0}, 404
+
+    restaurant = Restaurant.query.get(id)
+
+    if not restaurant:
+        return {'Error': 'Restaurant could not be found'}, 404
     # Calculating total # of reviews for specific restaurant
     total_reviews = len(reviews)
 
@@ -298,7 +302,7 @@ def total_number_of_reviews(id):
         'average_rating': restaurant.average_rating()
     }
 
-    return jsonify(data)
+    return jsonify(data), 200
 
 
 # GET ALL REVIEWS FOR SPECIFIC RESTAURANT
@@ -311,7 +315,7 @@ def get_restaurant_reviews(id):
         return {"Error": "No reviews found for this restaurant"}, 404
 
     reviews_list = [review.to_dict() for review in reviews]
-    return reviews_list
+    return reviews_list, 200
 
 
 # CREATE A REVIEW
@@ -338,6 +342,8 @@ def create_review(restaurant_id):
 
         return new_review.to_dict(), 200
 
+    return {'Error': 'There was an error processing your review'}, 404
+
 
 # GET MOST RECENT REVIEWS (FOR MAIN REVIEWS HEADER)
 @restaurant_routes.route('/<int:restaurant_id>/recent')
@@ -345,7 +351,10 @@ def get_two_most_recent_reviews(restaurant_id):
     # Query the Review model to get the most recent reviews for the restaurant
     recent_reviews = Review.query.filter_by(restaurant_id=restaurant_id).order_by(desc(Review.created_at)).limit(1).all() #adjust limit number to fetch number of reviews
 
+    if not recent_reviews:
+        return {'Error': 'There are no reviews for this restaurant.'}, 404
+
     # Convert the reviews to a dictionary format
     reviews_lst = [review.to_dict() for review in recent_reviews]
 
-    return reviews_lst
+    return reviews_lst, 200
