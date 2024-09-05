@@ -97,7 +97,7 @@ const checkboxHandler = (e) =>{
     }
 
 }
-if(categories.length) console.log("chosen categories", categories);
+
 
 const submitHandler =  (e) =>{
     e.preventDefault()
