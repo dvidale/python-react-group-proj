@@ -86,7 +86,7 @@
 
 ### CREATE A NEW RESTAURANT
 
-* Purpose : This fetch populates the home page with all the restaurants currently offering delivery.
+* Purpose : TBD
 * Method: `POST`
 * URL: `/restaurants/new`
 
