@@ -7,7 +7,7 @@
 * URL: `/restaurants/categories`
 
 * Successful Response: HTTP Status 200
-    ```json
+    ```python
     {
         'id': INT,
         'categ_name':STRING,
@@ -16,9 +16,9 @@
     ```
 
 * Error Response: HTTP Status 404
-    ```json
+    ```python
         {
-            'error': No restaurant categories found. 
+            'error': 'No restaurant categories found'. 
         }
     ```
 

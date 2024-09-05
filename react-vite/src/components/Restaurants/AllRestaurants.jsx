@@ -4,11 +4,16 @@ import * as restaurantsActions from '../../redux/restaurants';
 import { fetchAllDBReviews } from '../../redux/reviews';
 import { useNavigate } from 'react-router-dom';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { useModal } from '../../context/Modal'
+
 import './all_restaurants.css';
+import ServerMessageModal from '../ServerErrorModal/ServerMessageModal';
 
 function AllRestaurants({ city, state }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	const { setModalContent } = useModal();
 
 	// Fetch user session
 	const all_restaurants = useSelector(
@@ -19,9 +24,13 @@ function AllRestaurants({ city, state }) {
 	);
 
 	useEffect(() => {
-		dispatch(restaurantsActions.getRestaurants())
+		dispatch(restaurantsActions.getRestaurants()).then((serverError)=>{
+			if(serverError){
+				setModalContent(< ServerMessageModal message={serverError.error} /> )
+			}
+		})
 			.then(() => dispatch(fetchAllDBReviews()));
-	}, [dispatch]);
+	}, [dispatch, setModalContent]);
 
 	let filteredRestaurants = Object.values(all_restaurants);
 

@@ -61,9 +61,10 @@ export const getCategories = () => async (dispatch) => {
 		const data = await response.json();
 		dispatch(getAllCategories(data));
 
-		return data;
 	} else {
-		return 'Error';
+		const serverError = await response.json();
+
+		return serverError;
 	}
 };
 
@@ -74,9 +75,9 @@ export const getRestaurants = () => async (dispatch) => {
 		const data = await response.json();
 		dispatch(getAllRestaurants(data));
 
-		return data;
 	} else {
-		return 'Error: No Restaurants';
+		const serverError = await response.json()
+		return serverError;
 	}
 };
 
