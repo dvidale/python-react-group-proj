@@ -1,8 +1,5 @@
 .restaurant-page-header-review {
-	background-color: white;
-	border-radius: 12px;
-	border: solid 2px black;
-	width: auto;
+	border: none;
 }
 
 .header-review-review-info-container {
@@ -40,4 +37,24 @@
 .recent-review-stars {
 	width: fit-content;
 	color: var(--accent-clr);
+}
+
+.rest-review-box {
+	background-color: white;
+	border-radius: 12px;
+	border: solid 2px black;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.scroll-button {
+	background: var(--accent-clr);
+	border-radius: 5px;
+	width: 200px;
+	height: 40px;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	justify-content: flex-end;
 }

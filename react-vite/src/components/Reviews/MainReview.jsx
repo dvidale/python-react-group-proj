@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReviews, reviewSummary, fetchRecentReviews } from '../../redux/reviews';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
@@ -8,9 +8,8 @@ import './reviews.css';
 const MainReview = ({ id }) => {
 	const dispatch = useDispatch();
 	const ratingSummary = useSelector((state) => state.reviewsList.reviewSummary);
-	// const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
 
-	// const topTwoRecords = mostRecentReviews.slice(0,2)
+
 	useEffect(() => {
 		if (id) {
 			dispatch(reviewSummary(id))
@@ -22,6 +21,7 @@ const MainReview = ({ id }) => {
 	const roundToHalf = (rating) => {
 		return Math.round(rating * 2) / 2;
 	};
+
 
 	// Check if there are reviews
 	const hasReviews = ratingSummary && ratingSummary.total_reviews > 0;
@@ -92,10 +92,10 @@ const MainReview = ({ id }) => {
                             ))} */}
 						</>
 					)}
+					</div>
 				</div>
-			</div>
-		</>
-	);
-};
+			</>
+		);
+	};
 
 export default MainReview;

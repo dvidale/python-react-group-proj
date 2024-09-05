@@ -30,9 +30,9 @@ Without logging in, users can view all restaurants available for delivery via Da
 * Users can delete their reviews from a restaurant.
 
 ## **3. Shopping Cart**
-* Users can view all menu items added to their cart. 
+* Users can view all menu items added to their cart.
 * Users can add menu items to their shopping cart.
-* Users can remove menu items from their shopping cart. 
+* Users can remove menu items from their shopping cart.
 * Users can perform a "transaction" to complete their purchase.
 
 ## **4. Menu Items**
@@ -41,13 +41,26 @@ Without logging in, users can view all restaurants available for delivery via Da
 * Users can update menu items on their restaurants.
 * Users can delete menu items from their restaurants.
 
-## **5. Future Feature: Search**
-* Users should be able to search for restaurants. * Optional Feature
-* Users should be able to view the results of their search. * Optional Feature
 
-## **6. Future Feature: Past Order/Reorder**
-* Users should be able to view their past orders. * Optional Feature
-* Users should be able to reorder any of their past orders. * Optional Feature
+## Future Features
+
+## **1. Future Feature: Search**
+* Users should be able to search for restaurants.
+* Users should be able to view the results of their search.
+
+## **2. Future Feature: Past Order/Reorder**
+* Users should be able to view their past orders.
+* Users should be able to reorder any of their past orders.
+
+## **3. Future Feature: Add Menu Item Ratings to Menu Item Components**
+* Users should be able to submit reviews for specific menu items they have ordered.
+* Restaurant menu items will display accurate ratings based on user reviews.
+
+## **4. Future Feature: Amazon Web Services (AWS) Integration**
+* Users should be able to upload a photo of their restaurant photo.
+* Users should be able to upload a photo of their restaurant cover photo.
+* Users should be able to upload a photo of their menu items.
+
 
 ## Technologies Used
 
@@ -56,7 +69,7 @@ Without logging in, users can view all restaurants available for delivery via Da
 - **Flask**: Python server framework for reliable and versatile API structure
 - **WTForms**: Python library for user data backend validations
 - **SQLAlchemy**: Python library for SQL Database Management through Object Relational Mapping and translation of Python syntax into raw SQL commands
-- **Bcrypt**: Hashing algorithm for creating strong password encryption 
+- **Bcrypt**: Hashing algorithm for creating strong password encryption
 - **Git**: For version control and managing distributed developer contributons
 <!-- - **Responsive For Mobile** -->
 

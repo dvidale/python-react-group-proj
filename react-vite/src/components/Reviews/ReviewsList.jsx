@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, forwardRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReviews } from '../../redux/reviews';
 // import { useParams } from 'react-router-dom';]
@@ -10,7 +10,7 @@ import { FaRegStar } from 'react-icons/fa';
 import CreateReview from './CreateReview';
 import './ReviewList.css';
 
-const ReviewsList = ({ restaurant }) => {
+const ReviewsList = forwardRef(({ restaurant }, ref) => {
 	const dispatch = useDispatch();
 	// const { id } = useParams();
 	const reviewList = useSelector((state) => state.reviewsList.specificReviews);
@@ -34,17 +34,8 @@ const ReviewsList = ({ restaurant }) => {
 		return stars;
 	};
 
-	// Check if current user left a review for this restaurant already
-
-	// let leftAReview;
-
-	// if (sessionUser)
-	// 	leftAReview = reviewsByRestaurantId.find(
-	// 		(review) => review.user_id === sessionUser.id
-	// 	);
-
 	return (
-		<div className='review-list-wrapper'>
+		<div ref={ref} className='review-list-wrapper'>
       <h2 className='review-list-header'>Rating and Reviews</h2>
 
       {reviewList.length === 0 && (
@@ -102,6 +93,6 @@ const ReviewsList = ({ restaurant }) => {
       )}
     </div>
   );
-};
+});
 
 export default ReviewsList;
