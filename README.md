@@ -15,52 +15,60 @@ DashDine is a website for users to order delivery and rate restaurants and servi
 - [Wiki Documentation] (#wiki)
 - [Contact](#contact)
 
-
-
 ## Features
 
 ## **1. Restaurants CRUD**
+
 Without logging in, users can view all restaurants available for delivery via DashDine. A logged in user can also submit a new restaurant to be listed, add and update that restaurant's menu items, and delete any restaurants they have created.
 
-
 ## **2. Reviews**
-* Users can view all reviews on a restaurant.
-* Users can create a review for a restaurant.
-* Users can update their reviews for a restaurant.
-* Users can delete their reviews from a restaurant.
+
+- Users can view all reviews on a restaurant.
+- Users can create a review for a restaurant.
+- Users can update their reviews for a restaurant.
+- Users can delete their reviews from a restaurant.
 
 ## **3. Shopping Cart**
+
+- Users can view all menu items added to their cart.
+- Users can add menu items to their shopping cart.
+- Users can remove menu items from their shopping cart.
+- Users can perform a "transaction" to complete their purchase.
+
 * Users can view all menu items added to their cart.
 * Users can add menu items to their shopping cart.
 * Users can remove menu items from their shopping cart.
 * Users can perform a "transaction" to complete their purchase.
 
 ## **4. Menu Items**
-* Users can view all menu items for a restaurant.
-* Users can add menu items to their restaurants.
-* Users can update menu items on their restaurants.
-* Users can delete menu items from their restaurants.
 
+- Users can view all menu items for a restaurant.
+- Users can add menu items to their restaurants.
+- Users can update menu items on their restaurants.
+- Users can delete menu items from their restaurants.
 
 ## Future Features
 
 ## **1. Future Feature: Search**
-* Users should be able to search for restaurants.
-* Users should be able to view the results of their search.
+
+- Users should be able to search for restaurants.
+- Users should be able to view the results of their search.
 
 ## **2. Future Feature: Past Order/Reorder**
-* Users should be able to view their past orders.
-* Users should be able to reorder any of their past orders.
+
+- Users should be able to view their past orders.
+- Users should be able to reorder any of their past orders.
 
 ## **3. Future Feature: Add Menu Item Ratings to Menu Item Components**
-* Users should be able to submit reviews for specific menu items they have ordered.
-* Restaurant menu items will display accurate ratings based on user reviews.
+
+- Users should be able to submit reviews for specific menu items they have ordered.
+- Restaurant menu items will display accurate ratings based on user reviews.
 
 ## **4. Future Feature: Amazon Web Services (AWS) Integration**
-* Users should be able to upload a photo of their restaurant photo.
-* Users should be able to upload a photo of their restaurant cover photo.
-* Users should be able to upload a photo of their menu items.
 
+- Users should be able to upload a photo of their restaurant photo.
+- Users should be able to upload a photo of their restaurant cover photo.
+- Users should be able to upload a photo of their menu items.
 
 ## Technologies Used
 
@@ -118,30 +126,31 @@ To set up and run the project locally, follow these steps:
    npm run dev
    ```
 
-
 ## Screenshots
+
 1. E-Commerce HomePage
-  <img  src="public/assets/Screenshots/E-Commerce HomePage.jpg" alt="E-Commerce HomePage">
+   <img  src="public/assets/Screenshots/E-Commerce HomePage.jpg" alt="E-Commerce HomePage">
 2. Sign Up
-  <img  src="public/assets/Screenshots/Sign Up.jpg" alt="Sign Up">
+   <img  src="public/assets/Screenshots/Sign Up.jpg" alt="Sign Up">
 3. Log In
-  <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
+   <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
 4. Product Details page
-  <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
+   <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
 5. Wishlist
-  <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
+   <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
 6. About
-  <img  src="public/assets/Screenshots/About.jpg" alt="About">
+   <img  src="public/assets/Screenshots/About.jpg" alt="About">
 7. Cart
-  <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
+   <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
 8. CheckOut
-  <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
+   <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
 9. Contact
-  <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
+   <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
 10. Account
-  <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
+    <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
 
 ## Wiki Documentation
+
 ### Find the following additional documentation in our Wiki
 
 - [Database Schema] (#db-schema)
@@ -150,8 +159,6 @@ To set up and run the project locally, follow these steps:
 - [Redux store tree document] (#redux-store)
 - [API Routes] (#api-routes)
 - [Technical Implementations] (#tech-details)
-
-
 
 ## Contact
 
