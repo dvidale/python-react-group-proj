@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReviews, reviewSummary } from '../../redux/reviews';
-import { FaStar, FaStarHalf, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import RecentReview from './RecentReview';
 import './reviews.css';
 
-const MainReview = () => {
+const MainReview = ({ id }) => {
 	const dispatch = useDispatch();
 	const ratingSummary = useSelector((state) => state.reviewsList.reviewSummary);
-	const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
+	// const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
 
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {
@@ -46,10 +47,11 @@ const MainReview = () => {
 	return (
 		<>
 			<div className='restaurant-page-header-review'>
-				<h2 className='res-header-title'>Reviews</h2>
-				<div>
+				<div className='main-review-structure'>
 					{hasReviews ? (
 						<div className='header-review-structure'>
+							<div className='header-review-review-info-container'>
+								<h2 className='res-header-title'>Reviews</h2>
 							<div className='header-stars'>
 								<h3 className='res-header-title'>
 									{ratingSummary.average_rating.toFixed(1) > 0.0
@@ -62,7 +64,7 @@ const MainReview = () => {
 										<FaStar key={index} />
 									))}
 									{/* Render a half star if needed */}
-									{halfStar && <FaStarHalf />}
+									{halfStar && <FaStarHalfAlt />}
 
 									{/* Render empty stars */}
 									{[...Array(emptyStars)].map((_, index) => (
@@ -70,11 +72,16 @@ const MainReview = () => {
 									))}
 								</div>
 							</div>
-							<p className='res-header-title'>
+							<p className='res-header-count'>
 								{ratingSummary.total_reviews}{' '}
 								{ratingSummary.total_reviews > 1 ? 'Reviews' : 'Review'}
 							</p>
+							</div>
+							<div className='recent-reviews-container'>
+								<RecentReview id={id} />
+							</div>
 						</div>
+
 					) : (
 						<>
 							<h3>New</h3>
