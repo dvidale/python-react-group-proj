@@ -105,8 +105,8 @@ def new_restaurant_form():
 
         # return the newly created restaurant with its categories
 
-        res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict()
-        return res
+        restaurant = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict()
+        return restaurant
 
 
     '''
