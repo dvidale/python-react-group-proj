@@ -233,7 +233,7 @@ def delete_restaurant(id):
     db.session.delete(query)
     db.session.commit()
 
-    return {"message" : "Delete Successful"}
+    return {"message" : "Delete Successful"}, 200
 
 
 # ? GET ALL MENU ITEMS
