@@ -3,17 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as restaurantsActions from '../../redux/restaurants';
 import { setSelectedCategory } from '../../redux/restaurants';
 import './RestaurantCategory.css';
+import { useModal } from '../../context/Modal';
+import ServerMessageModal from '../ServerErrorModal/ServerMessageModal';
 
 function RestaurantCategories() {
 	const dispatch = useDispatch();
+
+	const { setModalContent} = useModal();
+
 	const categories = useSelector((state) => state.restaurants.allCategories);
 	const selectedCategory = useSelector(
 		(state) => state.restaurants.selectedCategory
 	);
 
 	useEffect(() => {
-		dispatch(restaurantsActions.getCategories());
-	}, [dispatch]);
+		dispatch(restaurantsActions.getCategories())
+		.then((serverError)=> {if(serverError){
+			setModalContent(<ServerMessageModal message={serverError.error}  />)
+		}} );
+	}, [dispatch, setModalContent]);
 
 	const handleCategoryClick = (category) => {
 		if (selectedCategory === category.categ_name) {

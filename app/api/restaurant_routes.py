@@ -24,7 +24,10 @@ def get_all_categories():
     categories = Category.query.all()
     categories_list = [category.to_dict() for category in categories]
 
-    return categories_list
+    if(len(categories_list)== 0 ):
+        return {'error': 'No restaurant categories found.' }, 404
+
+    return categories_list, 200
 
 
 # ?  GET ALL RESTAURANTS
@@ -34,6 +37,8 @@ def get_all_restaurants():
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
+    if(len(restaurants_list) == 0):
+        return {'error': 'No restaurants found.'}, 404
 
 
     return restaurants_list
@@ -233,7 +238,7 @@ def delete_restaurant(id):
     db.session.delete(query)
     db.session.commit()
 
-    return {"message" : "Delete Successful"}
+    return {"message" : "Delete Successful"}, 200
 
 
 # ? GET ALL MENU ITEMS
