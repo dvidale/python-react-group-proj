@@ -4,7 +4,7 @@ import RestaurantHeader from '../RestaurantHeader';
 import MainReview from '../Reviews/MainReview';
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewsList from '../Reviews/ReviewsList';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import RestaurantInfoText from '../RestaurantInfoText/RestaurantInfoText';
@@ -15,6 +15,7 @@ export const RestaurantPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const reviewsSectionRef = useRef(null);
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -30,6 +31,13 @@ export const RestaurantPage = () => {
 		dispatch(restaurantsActions.getRestaurants());
 		dispatch(reviewSummary(id));
 	}, [dispatch, id]);
+
+	// Function to scroll to the reviews section
+	const scrollToReviews = () => {
+		if (reviewsSectionRef.current) {
+			reviewsSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		}
+	};
 
 	return (
 		<>
@@ -56,7 +64,14 @@ export const RestaurantPage = () => {
 							/>
 						</div>
 						<div className='rest-review-box'>
-							<MainReview id={id} />
+							<div>
+								<MainReview id={id} />
+							</div>
+							<div className='button-container'>
+								<button onClick={scrollToReviews} className='scroll-button'>
+									More Reviews
+								</button>
+							</div>
 						</div>
 
 						<div className='rest-delivery-box'>
@@ -68,7 +83,7 @@ export const RestaurantPage = () => {
 						</div>
 					</div>
 					<MenuItemsList />
-					<ReviewsList restaurant={restaurant} />
+					<ReviewsList restaurant={restaurant} ref={reviewsSectionRef}/>
 				</div>
 			) : (
 				<p>Loading...</p> // Loading state or message while the restaurant data is being fetched

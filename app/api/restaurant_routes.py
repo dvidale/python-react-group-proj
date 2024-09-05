@@ -334,11 +334,11 @@ def create_review(restaurant_id):
         return new_review.to_dict(), 200
 
 
-# GET TWO MOST RECENT REVIEWS (FOR MAIN REVIEWS HEADER)
+# GET MOST RECENT REVIEWS (FOR MAIN REVIEWS HEADER)
 @restaurant_routes.route('/<int:restaurant_id>/recent')
 def get_two_most_recent_reviews(restaurant_id):
-    # Query the Review model to get the two most recent reviews for the restaurant
-    recent_reviews = Review.query.filter_by(restaurant_id=restaurant_id).order_by(desc(Review.created_at)).limit(2).all()
+    # Query the Review model to get the most recent reviews for the restaurant
+    recent_reviews = Review.query.filter_by(restaurant_id=restaurant_id).order_by(desc(Review.created_at)).limit(1).all() #adjust limit number to fetch number of reviews
 
     # Convert the reviews to a dictionary format
     reviews_lst = [review.to_dict() for review in recent_reviews]

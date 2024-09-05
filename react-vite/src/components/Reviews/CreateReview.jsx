@@ -18,6 +18,7 @@ const CreateReview = ({ id }) => {
     useEffect(() => {
         let validationsObj = {};
 
+        if (comments.length < 20) validationsObj.comments = "Comments should be at least 20 characters."
         if (comments.length > 1000) validationsObj.comments = "Comments should not exceed 1,000 characters.";
         if (rating.length < 1) validationsObj.rating = "Rating must be at least 1 star.";
 
