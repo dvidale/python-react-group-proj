@@ -12,7 +12,7 @@ def get_current_shopping_cart():
 
     # Fetch the user's shopping cart
     shopping_cart = ShoppingCart.query.filter_by(user_id=user_id).first()
-    
+
     # If the shopping cart does not exist, create one
     if not shopping_cart:
         shopping_cart = ShoppingCart(user_id=user_id)
@@ -21,10 +21,10 @@ def get_current_shopping_cart():
 
     # Fetch cart items for the existing or newly created shopping cart
     cart_items = CartItem.query.filter_by(shopping_cart_id=shopping_cart.id).all()
-    
+
     # Use the to_dict method for each cart item
     cart_items_data = [item.to_dict() for item in cart_items]
-    
+
     return {'cart_items': cart_items_data}, 200
 
 
@@ -64,24 +64,23 @@ def add_cart_item():
         db.session.commit()
     except Exception as e:
         db.session.rollback()  # Rollback in case of an error
-        print(f"Error adding cart item: {e}")
         return {"error": "Internal server error"}, 500
 
     return new_cart_item.to_dict(), 201
 
-    
+
 @shopping_cart_routes.route('/current/<int:id>/update', methods=['POST'])
 def update_cart_item(id):
         # Fetch the cart item using the route parameter 'id'
         cart_item = CartItem.query.get(id)
         if not cart_item:
             return {"error": "Cart item not found"}, 404
-        
+
         # Parse the request data
         data = request.get_json()
         if data is None:
             return {"error": "Invalid data"}, 400
-        
+
         # Update item quantity
         if 'decrement' in data and data['decrement']:
             cart_item.item_quantity -= 1
@@ -93,10 +92,10 @@ def update_cart_item(id):
             db.session.delete(cart_item)
         else:
             db.session.add(cart_item)
-        
+
         # Commit changes
         db.session.commit()
-        
+
         # Return updated cart item
         return cart_item.to_dict(), 200
 
@@ -106,8 +105,8 @@ def remove_cart_item(cart_item_id):
     cart_item = CartItem.query.get(cart_item_id)
     if not cart_item:
         return {"error": "Cart item not found"}, 404
-    
+
     db.session.delete(cart_item)
     db.session.commit()
-    
+
     return {"message": "Cart item removed successfully"}, 200
