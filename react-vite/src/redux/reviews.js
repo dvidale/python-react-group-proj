@@ -1,5 +1,7 @@
 const GET_ALL_DB_REVIEWS = '/reviews/GET_ALL_DB_REVIEWS'
 const GET_ALL_REVIEWS = 'reviewsList/GET_ALL_REVIEWS';
+const GET_SPECIFIC_REVIEWS = 'reviewsList/GET_SPECIFIC_REVIEWS'
+const GET_RECENT_REVIEWS = 'reviewsList/GET_RECENT_REVIEWS'
 const GET_REVIEW_SUMMARY = 'reviewsList/GET_REVIEW_SUMMARY'
 const CREATE_REVIEW = 'reviewsList/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviewsList/DELETE_REVIEW';
@@ -22,12 +24,26 @@ export const getAllReviews = (data) => {
 	};
 };
 
+export const getSpecificReviews = (data) => {
+	return {
+		type: GET_SPECIFIC_REVIEWS,
+		payload: data
+	}
+}
+
 export const singleReview = (data) => {
 	return {
 		type: SINGLE_REVIEW,
 		payload: data,
 	};
 };
+
+export const getTwoRecentReviews = (data) => {
+	return {
+		type: GET_RECENT_REVIEWS,
+		payload: data
+	}
+}
 
 export const setReviewSummary = (data) => {
     return {
@@ -72,15 +88,13 @@ export const fetchAllDBReviews = () => async (dispatch) =>
 	}
 }
 
-
-
 //GET ALL REVIEWS FOR SPECIFIC RESTAURANT
 export const fetchReviews = (restaurantId) => async (dispatch) => {
 	const response = await fetch(`/api/restaurants/${restaurantId}/reviews`);
 
 	if (response.ok) {
 		const data = await response.json();
-		dispatch(getAllReviews(data));
+		dispatch(getSpecificReviews(data));
 	}
 };
 
@@ -98,6 +112,18 @@ export const getSingleReview = (review_id) => async (dispatch) => {
 	}
 };
 
+//GET RECENT REVIEWS (2 MOST RECENT):
+export const fetchRecentReviews = (review_id) => async (dispatch) => {
+	const response = await fetch(`/api/restaurants/${review_id}/recent`);
+
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(getTwoRecentReviews(data));
+		return data;
+	}
+
+}
+
 // GET REVIEW SUMMARY: TOTAL REVIEWS AND AVERAGE RATING
 export const reviewSummary = (restaurantId) => async (dispatch) => {
     const response = await fetch(`/api/restaurants/${restaurantId}/totalreviews`)
@@ -107,7 +133,7 @@ export const reviewSummary = (restaurantId) => async (dispatch) => {
         dispatch(setReviewSummary(data))
         return data;
     }
-};  	
+};
 
 //CREATE REVIEW
 export const postReview = (newReview, restaurantId) => async (dispatch) => {
@@ -156,6 +182,8 @@ export const delReview = (reviewId) => async (dispatch) => {
 const initialState = {
 	allReviews: [],
 	reviewsListArr: [],
+	recentReviews: [],
+	specificReviews: [],
 	singleReview: {},
     reviewSummary: {},
 	createReview: {},
@@ -168,8 +196,12 @@ const reviewsListReducer = (state = initialState, action) => {
 			return{...state, allReviews: action.payload}
 		case GET_ALL_REVIEWS:
 			return { ...state, reviewsListArr: action.payload };
+		case GET_SPECIFIC_REVIEWS:
+			return { ...state, specificReviews: action.payload};
 		case SINGLE_REVIEW:
 			return { ...state, singleReview: action.payload };
+		case GET_RECENT_REVIEWS:
+			return {... state, recentReviews: action.payload }
         case GET_REVIEW_SUMMARY:
             return {...state, reviewSummary: action.payload };
 		case CREATE_REVIEW:

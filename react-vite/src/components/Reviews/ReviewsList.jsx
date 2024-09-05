@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllDBReviews } from '../../redux/reviews';
+import { fetchReviews } from '../../redux/reviews';
 // import { useParams } from 'react-router-dom';]
 import DeleteReview from './DeleteReview';
 import UpdateReview from './UpdateReview';
@@ -13,13 +13,13 @@ import './ReviewList.css';
 const ReviewsList = ({ restaurant }) => {
 	const dispatch = useDispatch();
 	// const { id } = useParams();
-	const reviewList = useSelector((state) => state.reviewsList.allReviews);
+	const reviewList = useSelector((state) => state.reviewsList.specificReviews);
 	const sessionUser = useSelector((state) => state.session.user);
 	const { setModalContent } = useModal();
 
 	useEffect(() => {
-		dispatch(fetchAllDBReviews());
-	}, [dispatch]);
+		dispatch(fetchReviews(restaurant));
+	}, [dispatch, restaurant]);
 
 	// Function to render stars based on rating
 	const renderStars = (rating) => {
@@ -34,10 +34,6 @@ const ReviewsList = ({ restaurant }) => {
 		return stars;
 	};
 
-	const reviewsByRestaurantId = reviewList.filter(
-		(review) => review.restaurant_id === restaurant.id
-	);
-
 	// Check if current user left a review for this restaurant already
 
 	// let leftAReview;
@@ -51,7 +47,7 @@ const ReviewsList = ({ restaurant }) => {
 		<div className='review-list-wrapper'>
       <h2 className='review-list-header'>Rating and Reviews</h2>
 
-      {reviewsByRestaurantId.length === 0 && (
+      {reviewList.length === 0 && (
         <>
           <p>No reviews yet!</p>
           {sessionUser && restaurant.owner_id !== sessionUser.id && (
@@ -71,10 +67,9 @@ const ReviewsList = ({ restaurant }) => {
         </button>
       )}
 
-      {reviewsByRestaurantId.length > 0 && (
+      {reviewList.length > 0 && (
         <div className='review-list-grid'>
-          {reviewsByRestaurantId
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          {reviewList
             .map((review) => (
               <div
                 key={review.id}

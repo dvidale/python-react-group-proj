@@ -5,6 +5,39 @@
 	width: auto;
 }
 
-.res-header-title {
-	color: black;
+.header-review-review-info-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.header-review-review-info-container > h2 {
+	font-size: 32px;
+}
+
+.header-review-structure {
+	gap: 3rem;
+}
+
+.res-header-count {
+	font-size: 20px;
+}
+
+.recent-reviews-container {
+    max-width: 470px;
+    word-wrap: break-word;
+}
+
+.recent-review-grid {
+	gap: 2rem;
+}
+
+.recent-review-structure {
+	padding: 1rem;
+}
+
+.recent-review-stars {
+	width: fit-content;
+	color: var(--accent-clr);
 }

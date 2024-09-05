@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, render_template, request
+from sqlalchemy import desc
 from flask_login import login_required, current_user
 from app.models import (
     db,
@@ -29,7 +30,7 @@ def get_all_categories():
 # ?  GET ALL RESTAURANTS
 @restaurant_routes.route("/")
 def get_all_restaurants():
-    
+
     restaurants = Restaurant.query.all()
     restaurants_list = [restaurant.to_dict() for restaurant in restaurants]
 
@@ -107,9 +108,9 @@ def new_restaurant_form():
         res = db.session.query(Restaurant).get(restaurant_lst[0]['id']).to_dict()
         return res
 
- 
+
     '''
-    restaurant_form.errors object:  
+    restaurant_form.errors object:
     {'name': ['A name is required.'], 'address': ['This field is required.'], 'phone_number': ['This field is required.']}
     '''
     return restaurant_form.errors, 400
@@ -299,14 +300,13 @@ def total_number_of_reviews(id):
 @restaurant_routes.route('/<int:id>/reviews')
 def get_restaurant_reviews(id):
 
-    if request.method == "GET":
-        reviews = Review.query.filter_by(restaurant_id=id).all()
+    reviews = Review.query.filter_by(restaurant_id=id).order_by(desc(Review.created_at)).all()
 
-        if not reviews:
-            return {"Error": "No reviews found for this restaurant"}, 404
+    if not reviews:
+        return {"Error": "No reviews found for this restaurant"}, 404
 
-        reviews_list = [review.to_dict() for review in reviews]
-        return reviews_list
+    reviews_list = [review.to_dict() for review in reviews]
+    return reviews_list
 
 
 # CREATE A REVIEW
@@ -332,3 +332,15 @@ def create_review(restaurant_id):
         db.session.commit()
 
         return new_review.to_dict(), 200
+
+
+# GET TWO MOST RECENT REVIEWS (FOR MAIN REVIEWS HEADER)
+@restaurant_routes.route('/<int:restaurant_id>/recent')
+def get_two_most_recent_reviews(restaurant_id):
+    # Query the Review model to get the two most recent reviews for the restaurant
+    recent_reviews = Review.query.filter_by(restaurant_id=restaurant_id).order_by(desc(Review.created_at)).limit(2).all()
+
+    # Convert the reviews to a dictionary format
+    reviews_lst = [review.to_dict() for review in recent_reviews]
+
+    return reviews_lst

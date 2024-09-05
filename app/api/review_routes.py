@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
+from sqlalchemy import desc
 from ..models import db, Review, User, Restaurant
 
 review_routes = Blueprint('reviews', __name__)
@@ -19,6 +20,8 @@ def get_one_review(review_id):
 
     review = Review.query.get(review_id)
     return review.to_dict()
+
+
 
 # EDIT A REVIEW
 @review_routes.route('/<int:review_id>', methods=["PUT"])
