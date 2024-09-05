@@ -29,6 +29,7 @@ function RestaurantForm(){
     const [delivery_time, setDeliveryTime] = useState('10-25')
     const [delivery_fee, setDeliveryFee] = useState("0.99")
     const [banner_img, setBannerImg] = useState("")
+    
      
     const [error, setError] = useState({})
 
@@ -48,7 +49,19 @@ function RestaurantForm(){
             setBannerImg(restaurant.banner_img)
         }
 
+
+
+
     },[restaurant])
+
+    const defaultHandler = (categoryName) =>{
+
+        if(restaurant){
+            return categories.includes(categoryName)
+        }
+
+    }
+
     
  
 useEffect(()=>{
@@ -234,7 +247,7 @@ const submitHandler =  (e) =>{
     id={category.categ_name} 
     className='category-boxes'
     name='categories'
-    defaultChecked={categories.includes(category.categ_name)}
+    defaultChecked={defaultHandler(category.categ_name)}
     value={category.categ_name}
     onChange={checkboxHandler}/>
 {category.categ_name}
