@@ -53,15 +53,6 @@ function RestaurantForm(){
 
 
     },[restaurant])
-
-    const defaultHandler = (categoryName) =>{
-
-        if(restaurant){
-            return categories.includes(categoryName)
-        }
-
-    }
-
     
  
 useEffect(()=>{
@@ -247,7 +238,7 @@ const submitHandler =  (e) =>{
     id={category.categ_name} 
     className='category-boxes'
     name='categories'
-    defaultChecked={defaultHandler(category.categ_name)}
+    checked={categories.includes(category.categ_name)}
     value={category.categ_name}
     onChange={checkboxHandler}/>
 {category.categ_name}
