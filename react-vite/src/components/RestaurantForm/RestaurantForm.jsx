@@ -171,16 +171,8 @@ const submitHandler =  (e) =>{
     }
     
     
-
-
-
-
     }
 
-
-
-
-   
 }
 
     return(
@@ -207,8 +199,6 @@ const submitHandler =  (e) =>{
         <p className='errors'>{error.address}</p>
             </label>
             </div>
-
-           
             
             <div>
             <label htmlFor='phone'> <h3>Phone</h3>
