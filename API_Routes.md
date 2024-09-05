@@ -29,7 +29,7 @@
 * URL: `/restaurants`
 
 * Successful Response: HTTP Status 200
-    ```json
+    ```python
     {
             'id':INT,
             'owner_id':INT,
@@ -49,7 +49,7 @@
 
     ```
 * Error Response: HTTP Status 404
-    ```json
+    ```python
         {
             'error': No restaurant categories found. 
         }
@@ -63,7 +63,7 @@
 * URL: `/restaurants/:id`
 
 * Successful Response: HTTP Status 200
-    ```json
+    ```python
     {
             'id':INT,
             'owner_id':INT,
@@ -87,7 +87,26 @@
 ### CREATE A NEW RESTAURANT
 
 * Purpose : This fetch populates the home page with all the restaurants currently offering delivery.
-* Method: `GET`
-* URL: `/restaurants/:id`
+* Method: `POST`
+* URL: `/restaurants/new`
 
-* Successful Response: HTTP Status 200
+* Successful Response: HTTP Status 201
+ ```python
+    {
+            'id':INT,
+            'owner_id':INT,
+            'name':STRING,
+            'address':STRING,
+            'phone_number':STRING,
+            'description':STRING,
+            'banner_img':STRING,
+            'day_of_week':STRING,
+            'open_time':STRING,
+            'close_time':STRING,
+            'delivery_time':STRING,
+            'delivery_fee': FLOAT,
+            'categories': [...],
+            'average_rating': FLOAT
+        }
+
+    ```
