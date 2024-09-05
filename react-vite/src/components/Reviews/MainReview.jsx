@@ -8,8 +8,7 @@ import './reviews.css';
 const MainReview = ({ id }) => {
 	const dispatch = useDispatch();
 	const ratingSummary = useSelector((state) => state.reviewsList.reviewSummary);
-	console.log('this is the ID', id);
-	// const mostRecentReviews = useSelector((state) => state.reviewsList.reviewsListArr)
+	// const id = useSelector((state) => state.restaurants.selectedRestaurant.id);
 
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {

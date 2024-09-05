@@ -15,10 +15,22 @@
 
 .location-form-inputs {
 	display: flex;
+	align-items: baseline;
 	gap: 1rem;
+}
+
+.short-input{
+	width: 30px;
+}
+
+.location-form-btn{
+	/* padding: 10px; */
+	margin:0px;
+	min-height: 32px;
 }
 
 .error-text {
 	max-height: 15px;
 	color: red;
+	min-width: 400px;
 }

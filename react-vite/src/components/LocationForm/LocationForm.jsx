@@ -3,11 +3,16 @@ import { useDispatch } from 'react-redux';
 import { saveLocation } from '../../redux/location';
 import './LocationForm.css';
 
+
+
+
 function LocationForm() {
 	const dispatch = useDispatch();
 	const [city, setCity] = useState('');
 	const [state, setState] = useState('');
 	const [errors, setErrors] = useState({});
+
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -15,23 +20,21 @@ function LocationForm() {
 		const cityRegex = /^[a-zA-Z\s]{4,30}$/;
 		const stateRegex = /^[a-zA-Z]{2}$/;
 
+		
+
 		if (!cityRegex.test(city)) {
 			newErrors.city = 'City must be between 4 to 30 alphabetic characters.';
 		}
 
 		if (!stateRegex.test(state)) {
-			newErrors.state = 'State must be exactly 2 alphabetic characters.';
-		}
-
-		if (state != state.toUpperCase()) {
-			newErrors.state = 'State must be capitalized.';
+			newErrors.state = 'State must be exactly 2 letters.';
 		}
 
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors);
 			return;
 		}
-
+		
 		dispatch(saveLocation({ city, state }));
 	};
 
@@ -49,11 +52,10 @@ function LocationForm() {
 							type='text'
 							value={city}
 							onChange={(e) => setCity(e.target.value)}
-							placeholder='Enter your city'
+							// placeholder='Enter your city'
 							required
 						/>
 					</label>
-					<p className='error-text'>{errors.city}</p>
 				</div>
 				<div className='location-label-holder'>
 					<label className='location-text'>
@@ -61,19 +63,25 @@ function LocationForm() {
 						<input
 							type='text'
 							value={state}
-							onChange={(e) => setState(e.target.value)}
-							placeholder='Enter your state'
+							onChange={(e) => setState(e.target.value.toUpperCase())}
+							// placeholder='Enter your state'
 							required
+							maxLength={2}
+							className='short-input'
 						/>
 					</label>
-					<p className='error-text'>{errors.state}</p>
 				</div>
+			
 				<button
 					className='location-form-btn'
 					type='submit'
-				>
+					>
 					Submit
 				</button>
+					<p className='error-text'>{errors.city}{` `}{errors.state}</p>
+				
+
+
 			</div>
 		</form>
 	);
