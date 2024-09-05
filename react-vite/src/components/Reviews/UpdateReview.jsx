@@ -38,6 +38,7 @@ const UpdateReview = ({ reviewId }) => {
     useEffect(() => {
         let validationsObj = {}
 
+        if (reviewDetails.comments.length < 20) validationsObj.comments = "Comments should be at least 20 characters."
         if (reviewDetails.comments.length > 1000) validationsObj.comments = "Comments should not exceed 1,000 characters."
 
         setValidations(validationsObj)

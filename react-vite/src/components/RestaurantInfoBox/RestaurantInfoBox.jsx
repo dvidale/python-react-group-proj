@@ -29,7 +29,7 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 				<h3 className='delivery-fee-text-p'>Sun - Sat</h3>
 				<br />
 
-				<h3 className='delivery-fee-text-p'>Open: {normalClockOpen}:{openMinutes}AM</h3>
+				<h3 className='delivery-fee-text-p'>Open: {normalClockOpen}:{openMinutes}{normalClockOpen < 12 ? `AM` : `PM`}</h3>
 				<br />
 				<h3 className='delivery-fee-text-p'>Close: {normalClockClose}:{closeMinutes}PM</h3>
 			</div>

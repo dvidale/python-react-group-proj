@@ -1,13 +1,10 @@
-# E-Commerce Website 🙌
+# ==DashDine
 
-The E-commerce website is a full-stack application built using React with Vite as the bundler. It incorporates Tailwind CSS for styling and Material UI for components, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, wishlist and cart pages for managing items, search functionality to easily find products, and a profile section for personalization. Furthermore, it includes checkout processes with support for coupons and purchasing, ensuring a seamless shopping experience for customers.
+DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Python in the backend and React in the frontend. It incorporates boostrap CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and managing restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
+<img src="react-vite/public/assets/Screenshots/001_dashdine.png" alt="Home">
 
-  <img  src="public/assets/Screenshots/0.png" alt="Home">
-
-## [🌟Live Website🌟](https://e-commerce-mansy.vercel.app)
-
-## [🌟Design on Figma 🌟](https://www.figma.com/file/yn2DFQJla0UiSMvomFsqwT/E-Commerce-Website-%D9%90Almdrasa?type=design&mode=design&t=fqPRRAQH5lDJGmoY-0)
+## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
 
 ## Table of Contents
 
@@ -15,31 +12,66 @@ The E-commerce website is a full-stack application built using React with Vite a
 - [Technologies Used](#technologies-used)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
+- [Wiki Documentation] (#wiki)
 - [Contact](#contact)
 
 
 
-## Featured Skills
+## Features
 
-1. **React**: Utilized for building the frontend interface, providing dynamic and interactive components.
-2. **Vite**: Employed as the build tool to optimize and bundle the project for production.
-3. **Tailwind CSS**: Integrated for responsive and customizable styling, enhancing the visual aesthetics of the website.
-4. **Material UI**: Leveraged for pre-designed components and UI elements, facilitating rapid development and maintaining consistency in design.
-5. **Full-stack Development**: Implemented both frontend and backend functionalities, ensuring end-to-end functionality and user experience.
-6. **User Authentication**: Implemented signup and login features to authenticate users and secure their accounts.
-7. **Wishlist and Cart Management**: Developed functionalities to add, remove, and update items in the wishlist and cart, enhancing user engagement and convenience.
-8. **Search Functionality**: Implemented a search feature to enable users to find products efficiently based on their preferences.
-9. **Checkout Process**: Designed a seamless checkout process with support for applying coupons and completing purchases, streamlining the buying journey for users.
+## **1. Restaurants CRUD**
+Without logging in, users can view all restaurants available for delivery via DashDine. A logged in user can also submit a new restaurant to be listed, add and update that restaurant's menu items, and delete any restaurants they have created.
+
+
+## **2. Reviews**
+* Users can view all reviews on a restaurant.
+* Users can create a review for a restaurant.
+* Users can update their reviews for a restaurant.
+* Users can delete their reviews from a restaurant.
+
+## **3. Shopping Cart**
+* Users can view all menu items added to their cart.
+* Users can add menu items to their shopping cart.
+* Users can remove menu items from their shopping cart.
+* Users can perform a "transaction" to complete their purchase.
+
+## **4. Menu Items**
+* Users can view all menu items for a restaurant.
+* Users can add menu items to their restaurants.
+* Users can update menu items on their restaurants.
+* Users can delete menu items from their restaurants.
+
+
+## Future Features
+
+## **1. Future Feature: Search**
+* Users should be able to search for restaurants.
+* Users should be able to view the results of their search.
+
+## **2. Future Feature: Past Order/Reorder**
+* Users should be able to view their past orders.
+* Users should be able to reorder any of their past orders.
+
+## **3. Future Feature: Add Menu Item Ratings to Menu Item Components**
+* Users should be able to submit reviews for specific menu items they have ordered.
+* Restaurant menu items will display accurate ratings based on user reviews.
+
+## **4. Future Feature: Amazon Web Services (AWS) Integration**
+* Users should be able to upload a photo of their restaurant photo.
+* Users should be able to upload a photo of their restaurant cover photo.
+* Users should be able to upload a photo of their menu items.
+
 
 ## Technologies Used
 
 - **React**: JavaScript library for building user interfaces.
 - **Vite**: Fast, modern build tooling for frontend development.
-- **Tailwind CSS**: Utility-first CSS framework for rapid UI development.
-- **Material-UI**: React components for faster and easier web development.
-- **Custom Hooks**: Utilized custom React hooks for managing state and logic efficiently.
-- **Git** (for version control)
-- **Responsive For Mobile**
+- **Flask**: Python server framework for reliable and versatile API structure
+- **WTForms**: Python library for user data backend validations
+- **SQLAlchemy**: Python library for SQL Database Management through Object Relational Mapping and translation of Python syntax into raw SQL commands
+- **Bcrypt**: Hashing algorithm for creating strong password encryption
+- **Git**: For version control and managing distributed developer contributons
+<!-- - **Responsive For Mobile** -->
 
 ## Set Up
 
@@ -109,6 +141,15 @@ To set up and run the project locally, follow these steps:
 10. Account
   <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
 
+## Wiki Documentation
+### Find the following additional documentation in our Wiki
+
+- [Database Schema] (#db-schema)
+- [React Components] (#react-components)
+- [Frontend Routes] (#frontend-routes)
+- [Redux store tree document] (#redux-store)
+- [API Routes] (#api-routes)
+- [Technical Implementations] (#tech-details)
 
 
 
