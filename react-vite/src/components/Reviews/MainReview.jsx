@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReviews, reviewSummary } from '../../redux/reviews';
+import { fetchReviews, reviewSummary, fetchRecentReviews } from '../../redux/reviews';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import RecentReview from './RecentReview';
 import './reviews.css';
@@ -13,8 +13,9 @@ const MainReview = ({ id }) => {
 	// const topTwoRecords = mostRecentReviews.slice(0,2)
 	useEffect(() => {
 		if (id) {
-			dispatch(reviewSummary(id));
-			dispatch(fetchReviews(id));
+			dispatch(reviewSummary(id))
+			.then(() => dispatch(fetchReviews(id)))
+			.then(() => dispatch(fetchRecentReviews(id)))
 		}
 	}, [dispatch, id, ratingSummary.total_reviews]);
 	// Function to round the rating to the nearest 0.5 for rendering stars
