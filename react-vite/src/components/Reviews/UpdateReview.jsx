@@ -16,6 +16,8 @@ const UpdateReview = ({ reviewId }) => {
     const [hoveredStars, setHoveredStars] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [validations, setValidations] = useState({});
+    const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -32,19 +34,38 @@ const UpdateReview = ({ reviewId }) => {
         })();
     }, [dispatch, reviewId]);
 
+
+    useEffect(() => {
+        let validationsObj = {}
+
+        if (reviewDetails.comments.length > 1000) validationsObj.comments = "Comments should not exceed 1,000 characters."
+
+        setValidations(validationsObj)
+    }, [reviewDetails])
+
+
     const handleInputChange = ({ target: { name, value } }) =>
         setReviewDetails(prev => ({ ...prev, [name]: value }));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            dispatch(updateReview({ ...reviewDetails, rating }, reviewId));
-            closeModal();
-            dispatch(fetchAllDBReviews(restaurantId)); // Ensure updated review list
-        } catch (err) {
-            console.error('Error updating review:', err);
-            setError('Failed to update review.');
+        setFormSubmitted(true)
+
+        if (Object.values(validations).length === 0) {
+
+            try {
+                dispatch(updateReview({ ...reviewDetails, rating }, reviewId));
+                closeModal();
+                dispatch(fetchAllDBReviews(restaurantId)); // Ensure updated review list
+            } catch (err) {
+                console.error('Error updating review:', err);
+                setError('Failed to update review.');
+            } finally {
+                setFormSubmitted(false);
+            }
+
         }
+
     };
 
     const handleMouseEnter = (stars) => {
@@ -94,6 +115,7 @@ const UpdateReview = ({ reviewId }) => {
                             onChange={handleInputChange}
                         />
                     </label>
+                    {formSubmitted && validations.comments && <p className="error-message">{validations.comments}</p>}
                     <label className="edit-review-label">
                         {/* Stars: */}
                         <div className="edit-rating-input">
@@ -103,7 +125,6 @@ const UpdateReview = ({ reviewId }) => {
                     <button
                         id='update-button'
                         type="submit"
-                        disabled={!reviewDetails.comments || reviewDetails.rating < 1 || isLoading}
                     >
                         Update Your Review
                     </button>
