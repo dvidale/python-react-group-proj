@@ -58,9 +58,9 @@ export const RestaurantPage = () => {
 							<button
 								id='res-page-delete-button'
 								className='res-page-man-btn'
-								onClick={() => navigate(`/restaurants/current`)}
+								onClick={() => navigate(`/restaurants/current/${id}`)}
 							>
-								Manage Your Restaurant
+								Update Restaurant Details
 							</button>
 						</div>
 					)}

@@ -1,5 +1,119 @@
 # DashDine API Routes
 
+## Auth Routes
+
+### Current User
+* Purpose: This fetch ensures the current user is authorized to access the data from the current area of the application.
+* Method: `GET`
+* URL: `/auth`
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': {'message': 'Unauthorized'}
+    }
+```
+
+### Login
+* Purpose: This request attempts to login a user with the provided credentials
+* Method: `POST`
+* URL: `/login`
+
+* Request Body:
+```python
+{
+    'email': STRING,
+    'password':STRING
+}
+```
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': [ARRAY OF STRINGS]
+    }
+```
+
+### Logout
+* Purpose: This fetch replaces the current user session information with null, terminating their access to the application.
+* Method: `GET`
+* URL: `/logout`
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'message': 'User logged out'
+    }
+```
+
+### Sign Up
+* Purpose: This request attempts to create a new user with the provided user input
+* Method: `POST`
+* URL: `/signup`
+
+* Request Body:
+```python
+{
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'password': STRING,
+        'address': STRING,
+        'city': STRING,
+        'state': STRING,
+        'zip': INT,
+        'phone_number':INT
+}
+```
+
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': [ARRAY OF STRINGS]
+    }
+```
+
+
+
+## RESTAURANTS
 
 ### GET ALL CATEGORIES
 * Purpose : This fetch populates the front page categories currently represented by the listed restaurants.
@@ -116,32 +230,37 @@
 
 
 * Successful Response: HTTP Status 201
-    ```python
+```python
     {
-            'id':INT,
-            'owner_id':INT,
-            'name':STRING,
-            'address':STRING,
-            'phone_number':STRING,
-            'description':STRING,
-            'banner_img':STRING,
-            'day_of_week':STRING,
-            'open_time':STRING,
-            'close_time':STRING,
-            'delivery_time':STRING,
-            'delivery_fee': FLOAT,
-            'categories': [...],
-            'average_rating': FLOAT
-        }
- ```
+        'id':INT,
+        'owner_id':INT,
+        'name':STRING,
+        'address':STRING,
+        'phone_number':STRING,
+        'description':STRING,
+        'banner_img':STRING,
+        'day_of_week':STRING,
+        'open_time':STRING,
+        'close_time':STRING,
+        'delivery_time':STRING,
+        'delivery_fee': FLOAT,
+        'categories': [...],
+        'average_rating': FLOAT
+    }
+```
 
 * Error Response: HTTP Status 400
+
 ``` python
     {
-        'name': ['Name is required.', 'This field requires 2 - 50 characters'],
-        'address': ['Address is required.', 'This field requires 2 - 50 characters'],
-        'phone_number': ['Phone number is required.', 'This field requires 10 characters'],
-        'description': ['Description is required.', 'This field requires 20 - 70 characters'],
+        'name': ['Name is required.', 
+                'This field requires 2 - 50 characters'],
+        'address': ['Address is required.', 
+                'This field requires 2 - 50 characters'],
+        'phone_number': ['Phone number is required.', 
+                'This field requires 10 characters'],
+        'description': ['Description is required.', 
+                'This field requires 20 - 70 characters'],
         'open_time': ['This field requires 5 characters'],
         'close_time': ['This field requires 5 characters'],
         'delivery_time': ['Delivery time is required.'],
@@ -197,10 +316,14 @@ Purpose : This request updates an existing restaurant listing owned by the curre
 * Error Response: HTTP Status 400
 ``` python
     {
-        'name': ['Name is required.', 'This field requires 2 - 50 characters'],
-        'address': ['Address is required.', 'This field requires 2 - 50 characters'],
-        'phone_number': ['Phone number is required.', 'This field requires 10 characters'],
-        'description': ['Description is required.', 'This field requires 20 - 70 characters'],
+        'name': ['Name is required.', 
+                'This field requires 2 - 50 characters'],
+        'address': ['Address is required.', 
+                'This field requires 2 - 50 characters'],
+        'phone_number': ['Phone number is required.', 
+                'This field requires 10 characters'],
+        'description': ['Description is required.', 
+                'This field requires 20 - 70 characters'],
         'open_time': ['This field requires 5 characters'],
         'close_time': ['This field requires 5 characters'],
         'delivery_time': ['Delivery time is required.'],
@@ -230,6 +353,7 @@ Purpose : This request updates an existing restaurant listing owned by the curre
         'error': 'Error deleting restaurant'
     }
 ```
+
 # REVIEWS
 
 
