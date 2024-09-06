@@ -1,32 +1,29 @@
 # Technical Implementations
 
-# * EXAMPLE *:
+# _ EXAMPLE _:
 
 ### Technical Details
+
 Scheme users can prioritize tasks by dragging and dropping them into the desired order.
 
 Task order is maintained in a linked-list data structure. Each task knows the IDs of its `next` and `previous` tasks, and every project knows its `last_task_id`. To assemble the tasks in the correct order and avoid n+1 queries, Scheme retrieves an unordered group of tasks within a project, hashes them by ID, and then references the `next_task_id`s to create an array of tasks in the user’s designated order.
 
 ```javascript
 var sortTasks = function (tasksObj, lastTaskId) {
-  // start by inserting last task into ordered array
-  var taskArr = [tasksObj[lastTaskId]];
-  // then insert the previous task, until !previous_task_id
-  while (taskArr[0].previous_task_id) {
-    taskArr.unshift(tasksObj[taskArr[0].previous_task_id]);
-  }
+	// start by inserting last task into ordered array
+	var taskArr = [tasksObj[lastTaskId]];
+	// then insert the previous task, until !previous_task_id
+	while (taskArr[0].previous_task_id) {
+		taskArr.unshift(tasksObj[taskArr[0].previous_task_id]);
+	}
 
-  return taskArr;
+	return taskArr;
 };
 ```
 
 Thanks to the linked-list structure, re-ordering tasks within a project is an O(1) time operation, and requires updating only 3-5 task records, no matter how many tasks a project includes.
 
-
-
-## * END EXAMPLE *
-
-
+## _ END EXAMPLE _
 
 ## Restaurant Creation / Update Form UI
 
@@ -36,11 +33,28 @@ The restaurant creation / update form UI leverages React's dynamic data handling
 
 The form is structured in a React component that is rendered at both the frontend routes for creating and updating a restaurant.
 
-
 <img src="react-vite/public/assets/Screenshots/tech-imp-restaurant-form-useEffect.png" alt="restaurant-form-useEffect"/>
 
 When a `useParams` hook detects an id is provided, a `useSelector` hook loads the target restaurant from the Redux state with that id. The restaurant data is then detected by a `useEffect` hook that populates the form's controlled inputs with the restaurant's data, now ready for updating. When no id is provided by the route, the form's controlled inputs resort to their default state. The form heading and submit button functionality are also dynamically configured.
 
-
-
 Thanks to React's dynamic data handling, the development workload for this UI is cut in half for component creation and CSS styling.
+
+## Shopping Cart UI
+
+<img src="react-vite/public/assets/Screenshots/cartbefore.png">
+
+The shopping cart in **DashDine** leverages React's dynamic data handling to provide a persistent and interactive shopping experience for users. It allows for both cart creation and modification in a unified interface, seamlessly handling user inputs and cart actions.
+
+The shopping cart is structured as a React component, and it interacts with both the Redux state and cookies to manage cart data across different sessions and page loads.
+
+<img src="react-vite/public/assets/Screenshots/cartafter.png"/>
+
+When the component is mounted, a `useSelector` hook retrieves the current cart data from the Redux state. This data is stored in cookies for persistence. A `useEffect` hook monitors changes to the cart state, ensuring the data is consistently updated in both Redux and cookies. The `useEffect` hook also restores the cart from the cookies if no state exists in Redux, allowing users to resume their shopping session even after refreshing the page or returning later.
+
+<img src="react-vite/public/assets/Screenshots/cartstatechange.png">
+
+The shopping cart dynamically updates based on user actions, such as adding items, modifying quantities, or removing items. These actions dispatch Redux actions to update the cart's state, which triggers a re-render of the UI, providing real-time feedback to the user. The cart’s total price is also recalculated whenever items are added or removed.
+
+The checkout process leverages the stored cart data, where an API call sends the relevant cart details to the backend for secure processing.
+
+By utilizing React's data management capabilities, the shopping cart UI reduces development complexity while ensuring a consistent and reliable shopping experience for users.

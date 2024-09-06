@@ -115,12 +115,12 @@ To set up and run the project locally, follow these steps:
    <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
 4. Restaurant Details page
    <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
-5. Wishlist
-   <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
+5. Add Menu Item
+   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif)
 6. About
    <img  src="public/assets/Screenshots/About.jpg" alt="About">
 7. Cart
-   <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
+   ![Shopping cart functionality](react-vite/public/assets/Screenshots/shoppingcart.gif)
 8. CheckOut
    <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
 9. Contact
