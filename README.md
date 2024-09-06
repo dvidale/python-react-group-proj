@@ -20,7 +20,7 @@ DashDine is a website for users to order delivery and rate restaurants and servi
 ## Features
 
 ## **1. Restaurants CRUD**
-Without logging in, users can view all restaurants available for delivery via DashDine. A logged in user can also submit a new restaurant to be listed, add and update that restaurant's menu items, and delete any restaurants they have created.
+Without logging in, users  can view all restaurants available for delivery via DashDine. A logged in user can also submit a new restaurant to be listed, add and update that restaurant's menu items, and delete any restaurants they have created.
 
 
 ## **2. Reviews**
