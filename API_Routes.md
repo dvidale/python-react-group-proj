@@ -1,5 +1,119 @@
 # DashDine API Routes
 
+## Auth Routes
+
+### Current User
+* Purpose: This fetch ensures the current user is authorized to access the data from the current area of the application.
+* Method: `GET`
+* URL: `/auth`
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': {'message': 'Unauthorized'}
+    }
+```
+
+### Login
+* Purpose: This request attempts to login a user with the provided credentials
+* Method: `POST`
+* URL: `/login`
+
+* Request Body:
+```python
+{
+    'email': STRING,
+    'password':STRING
+}
+```
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': [ARRAY OF STRINGS]
+    }
+```
+
+### Logout
+* Purpose: This fetch replaces the current user session information with null, terminating their access to the application.
+* Method: `GET`
+* URL: `/logout`
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'message': 'User logged out'
+    }
+```
+
+### Sign Up
+* Purpose: This request attempts to create a new user with the provided user input
+* Method: `POST`
+* URL: `/signup`
+
+* Request Body:
+```python
+{
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'password': STRING,
+        'address': STRING,
+        'city': STRING,
+        'state': STRING,
+        'zip': INT,
+        'phone_number':INT
+}
+```
+
+
+* Successful Response: HTTP Status 200
+```python
+    {
+        'id': INT,
+        'first_name': STRING,
+        'last_name': STRING,
+        'username': STRING,
+        'email': STRING,
+        'city': STRING,
+        'state': STRING
+    }
+```
+* Error Response: HTTP Status 401
+```python
+    {
+        'errors': [ARRAY OF STRINGS]
+    }
+```
+
+
+
+## RESTAURANTS
 
 ### GET ALL CATEGORIES
 * Purpose : This fetch populates the front page categories currently represented by the listed restaurants.
@@ -18,7 +132,7 @@
 * Error Response: HTTP Status 404
     ```python
         {
-            'error': 'No restaurant categories found'. 
+            'error': 'No restaurant categories found'.
         }
     ```
 
@@ -54,8 +168,8 @@
             'error': 'No restaurants found.'
         }
     ```
-    
-    
+
+
 ### GET RESTAURANT DETAILS
 
 * Purpose : This fetch gathers detailed information for a specific restaurant.
@@ -116,32 +230,37 @@
 
 
 * Successful Response: HTTP Status 201
- ```python
+```python
     {
-            'id':INT,
-            'owner_id':INT,
-            'name':STRING,
-            'address':STRING,
-            'phone_number':STRING,
-            'description':STRING,
-            'banner_img':STRING,
-            'day_of_week':STRING,
-            'open_time':STRING,
-            'close_time':STRING,
-            'delivery_time':STRING,
-            'delivery_fee': FLOAT,
-            'categories': [...],
-            'average_rating': FLOAT
-        }
- ```
+        'id':INT,
+        'owner_id':INT,
+        'name':STRING,
+        'address':STRING,
+        'phone_number':STRING,
+        'description':STRING,
+        'banner_img':STRING,
+        'day_of_week':STRING,
+        'open_time':STRING,
+        'close_time':STRING,
+        'delivery_time':STRING,
+        'delivery_fee': FLOAT,
+        'categories': [...],
+        'average_rating': FLOAT
+    }
+```
 
 * Error Response: HTTP Status 400
+
 ``` python
     {
-        'name': ['Name is required.', 'This field requires 2 - 50 characters'],
-        'address': ['Address is required.', 'This field requires 2 - 50 characters'],
-        'phone_number': ['Phone number is required.', 'This field requires 10 characters'],
-        'description': ['Description is required.', 'This field requires 20 - 70 characters'],
+        'name': ['Name is required.', 
+                'This field requires 2 - 50 characters'],
+        'address': ['Address is required.', 
+                'This field requires 2 - 50 characters'],
+        'phone_number': ['Phone number is required.', 
+                'This field requires 10 characters'],
+        'description': ['Description is required.', 
+                'This field requires 20 - 70 characters'],
         'open_time': ['This field requires 5 characters'],
         'close_time': ['This field requires 5 characters'],
         'delivery_time': ['Delivery time is required.'],
@@ -197,10 +316,14 @@ Purpose : This request updates an existing restaurant listing owned by the curre
 * Error Response: HTTP Status 400
 ``` python
     {
-        'name': ['Name is required.', 'This field requires 2 - 50 characters'],
-        'address': ['Address is required.', 'This field requires 2 - 50 characters'],
-        'phone_number': ['Phone number is required.', 'This field requires 10 characters'],
-        'description': ['Description is required.', 'This field requires 20 - 70 characters'],
+        'name': ['Name is required.', 
+                'This field requires 2 - 50 characters'],
+        'address': ['Address is required.', 
+                'This field requires 2 - 50 characters'],
+        'phone_number': ['Phone number is required.', 
+                'This field requires 10 characters'],
+        'description': ['Description is required.', 
+                'This field requires 20 - 70 characters'],
         'open_time': ['This field requires 5 characters'],
         'close_time': ['This field requires 5 characters'],
         'delivery_time': ['Delivery time is required.'],
@@ -230,3 +353,189 @@ Purpose : This request updates an existing restaurant listing owned by the curre
         'error': 'Error deleting restaurant'
     }
 ```
+
+# REVIEWS
+
+
+### GET ALL REVIEWS
+
+* Purpose: This fetch request populates all reviews across all restaurants.
+* Method: `GET`
+* URL: `/reviews`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'id':INT,
+            'user_id':INT,
+            'user_first_name':STRING,
+            'user_last_name':STRING,
+            'restaurant_id':INT,
+            'rating':FLOAT,
+            'comments': STRING,
+            'created_at': DATETIME
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'There are no reviews.'
+        }
+    ```
+
+### GET A SPECIFIC REVIEW
+
+* Purpose: This fetch request populates one specific review.
+* Method: `GET`
+* URL: `/reviews/:id`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'id':INT,
+            'user_id':INT,
+            'user_first_name':STRING,
+            'user_last_name':STRING,
+            'restaurant_id':INT,
+            'rating':FLOAT,
+            'comments': STRING,
+            'created_at': DATETIME
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'This review does not exist.'
+        }
+    ```
+
+### GET MOST RECENT REVIEW
+
+* Purpose: This fetch request populates the most recent review made on a particular restaurant.
+* Method: `GET`
+* URL: `/restaurants/:id/recent`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'id':INT,
+            'user_id':INT,
+            'user_first_name':STRING,
+            'user_last_name':STRING,
+            'restaurant_id':INT,
+            'rating':FLOAT,
+            'comments': STRING,
+            'created_at': DATETIME
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'There are no reviews for this restaurant.'
+        }
+    ```
+
+### GET REVIEW SUMMARY: TOTAL REVIEWS AND AVERAGE RATING
+
+* Purpose: This fetch request populates the total reviews and average rating for a particular restaurant.
+* Method: `GET`
+* URL: `/restaurants/:id/totalreviews`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'total_reviews':INT,
+            'average_rating':FLOAT
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'Restaurant could not be found.'
+        }
+    ```
+
+### CREATE A REVIEW
+
+* Purpose: This fetch request allows a user to create a review.
+* Method: `POST`
+* URL: `/restaurants/:id/reviews`
+
+* Successful Response: HTTP Status 201
+    ```python
+        {
+            'id':INT,
+            'user_id':INT,
+            'user_first_name':STRING,
+            'user_last_name':STRING,
+            'restaurant_id':INT,
+            'rating':FLOAT,
+            'comments': STRING,
+            'created_at': DATETIME
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'There was an error processing your review.'
+        }
+    ```
+
+### EDIT A REVIEW
+
+* Purpose: This fetch request allows a user to edit a previously created review.
+* Method: `PUT`
+* URL: `/reviews/:id/`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'id':INT,
+            'user_id':INT,
+            'user_first_name':STRING,
+            'user_last_name':STRING,
+            'restaurant_id':INT,
+            'rating':FLOAT,
+            'comments': STRING,
+            'created_at': DATETIME
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'Review could not be found.'
+        }
+    ```
+
+### DELETE A REVIEW
+
+* Purpose: This fetch request allows a user to delete a previously created review.
+* Method: `DELETE`
+* URL: `/reviews/:id/`
+
+* Successful Response: HTTP Status 200
+    ```python
+        {
+            'message': 'Review was successfully deleted.'
+        }
+
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'Error': 'Review could not be found.'
+        }
+    ```
