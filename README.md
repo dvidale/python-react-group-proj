@@ -107,9 +107,9 @@ To set up and run the project locally, follow these steps:
 ## Screenshots
 
 1. DineDash HomePage
-   <img  src="public/assets/Screenshots/E-Commerce HomePage.jpg" alt="E-Commerce HomePage">
-2. Sign Up
-   <img  src="public/assets/Screenshots/Sign Up.jpg" alt="Sign Up">
+   <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine HomePage">
+2. Restaurant Details
+   <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Details">
 3. Log In
    <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
 4. Restaurant Details page
@@ -118,14 +118,9 @@ To set up and run the project locally, follow these steps:
    <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
 6. About
    <img  src="public/assets/Screenshots/About.jpg" alt="About">
-7. Cart
-   <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
-8. CheckOut
-   <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
-9. Contact
-   <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
-10. Account
-    <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
+7. Location Based Site Rendering
+   <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
+
 
 ## Wiki Documentation
 
