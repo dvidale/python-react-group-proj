@@ -5,8 +5,8 @@ DashDine is a website for users to order delivery and rate restaurants and servi
 <img src="react-vite/public/assets/Screenshots/001_dashdine.png" alt="Home">
 
 ## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
-https://dashdine-0s4v.onrender.com
 
+https://dashdine-0s4v.onrender.com
 
 ## Table of Contents
 
@@ -24,7 +24,6 @@ https://dashdine-0s4v.onrender.com
 2. Menu Items
 3. Reviews
 4. Shopping Cart
-
 
 ## Future Features
 
@@ -79,6 +78,7 @@ To set up and run the project locally, follow these steps:
 3. Install the project dependencies:
 
    In the frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm install
    ```
@@ -91,15 +91,16 @@ To set up and run the project locally, follow these steps:
 
 4. Create a .env file from the included example file.
 
-
 5. Start the development servers:
 
    Backend directory: `python-react-group-proj/`
+
    ```bash
    pipenv run flask run
    ```
 
    Frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm run dev
    ```
@@ -136,22 +137,24 @@ To set up and run the project locally, follow these steps:
 - [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-User-Stories)
 - [Redux Store Tree](#redux-store)
 
-
 ## Contact Developers
 
 DeAndré Vidale
+
 - [Github](https://github.com/dvidale)
 - [Website](https://deandrevidale.com)
 - [Email](mailto:deandre.vidale@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/deandrevidale/)
 
 Hayden Galyean
-- [Github]()
-- [Website]()
-- [Email]()
-- [LinkedIn]()
+
+- [Github](https://github.com/Haydengalyeanbiz)
+- [Website](https://haydengalyeanportfolio.onrender.com/)
+- [Email](mailto:haydengalyeanbiz@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/hayden-galyean-42a518189/)
 
 Neil Kang
+
 - [Github]()
 - [Website]()
 - [Email]()
