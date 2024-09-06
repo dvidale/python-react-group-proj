@@ -1,22 +1,44 @@
-# ==DashDine
+# DashDine
 
-DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Python in the backend and React in the frontend. It incorporates boostrap CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and managing restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
-
-<img src="react-vite/public/assets/Screenshots/001_dashdine.png" alt="Home">
+DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Flask in the backend and React in the frontend. It incorporates CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and manage listings for restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
 ## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
-https://dashdine-0s4v.onrender.com
 
+https://dashdine-0s4v.onrender.com
 
 ## Table of Contents
 
-- [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Features](#features)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
-- [Technical Implementations](#tech-details)
-- [Wiki Documentation] (#wiki)
-- [Contact](#contact)
+- [Wiki Documentation](#wiki-documentation)
+- [Contact](#Contact)
+
+## Technologies Used
+
+### Frameworks and Libraries
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Flask.svg">
+   <img src="https://img.shields.io/badge/SQLALCHEMY-darkblue?style=for-the-badge&logo=sqlalchemy&logoColor=white
+   ">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Python.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/JavaScript.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/React.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Redux.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/HTML.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/CSS.svg">
+   <img src="https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white">
+
+
+
+
+
+### Database
+   <img src="react-vite/public/assets/Screenshots/technologies_used/PostgreSQL.svg">
+
+### Hosting
+   <img src="react-vite/public/assets/Screenshots/technologies_used/GitHub.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Render.svg">
 
 ## Features
 
@@ -24,7 +46,6 @@ https://dashdine-0s4v.onrender.com
 2. Menu Items
 3. Reviews
 4. Shopping Cart
-
 
 ## Future Features
 
@@ -45,20 +66,9 @@ https://dashdine-0s4v.onrender.com
 
 ### **4. Amazon Web Services (AWS) Integration**
 
-- Users should be able to upload a photo of their restaurant photo.
-- Users should be able to upload a photo of their restaurant cover photo.
-- Users should be able to upload a photo of their menu items.
+- Users should be able to upload their restaurant cover photo.
+- Users should be able to upload menu item photos.
 
-## Technologies Used
-
-- **React**: JavaScript library for building user interfaces.
-- **Vite**: Fast, modern build tooling for frontend development.
-- **Flask**: Python server framework for reliable and versatile API structure
-- **WTForms**: Python library for user data backend validations
-- **SQLAlchemy**: Python library for SQL Database Management through Object Relational Mapping and translation of Python syntax into raw SQL commands
-- **Bcrypt**: Hashing algorithm for creating strong password encryption
-- **Git**: For version control and managing distributed developer contributons
-<!-- - **Responsive For Mobile** -->
 
 ## Set Up
 
@@ -79,6 +89,7 @@ To set up and run the project locally, follow these steps:
 3. Install the project dependencies:
 
    In the frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm install
    ```
@@ -91,68 +102,75 @@ To set up and run the project locally, follow these steps:
 
 4. Create a .env file from the included example file.
 
-
 5. Start the development servers:
 
    Backend directory: `python-react-group-proj/`
+
    ```bash
    pipenv run flask run
    ```
 
    Frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm run dev
    ```
 
 ## Screenshots
 
-1. DineDash HomePage
-   <img  src="public/assets/Screenshots/E-Commerce HomePage.jpg" alt="E-Commerce HomePage">
-2. Sign Up
-   <img  src="public/assets/Screenshots/Sign Up.jpg" alt="Sign Up">
-3. Log In
-   <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
-4. Restaurant Details page
-   <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
-5. Wishlist
-   <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
-6. About
-   <img  src="public/assets/Screenshots/About.jpg" alt="About">
-7. Cart
-   <img  src="public/assets/Screenshots/Cart.jpg" alt="Cart">
-8. CheckOut
-   <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
-9. Contact
-   <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
-10. Account
-    <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
+### DineDash Landing Page
+   <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine Landing Page">
+
+### Restaurant Page
+   <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Page">
+
+### Restaurant Update Page
+   <img  src="react-vite/public/assets/Screenshots/006_dashdine_restaurant_update.gif" alt="Restaurant Updates Page">
+
+### Add Menu Item
+   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif) -->
+
+
+### Create A Review
+   <img src="react-vite/public/assets/Screenshots/007_dashdine_restaurant_reviews.gif" atl="Create a Review">
+
+
+### Cart
+   ![Shopping cart functionality](react-vite/public/assets/Screenshots/shoppingcart.gif)
+
+
+### Location Based Site Rendering
+   <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
 
 ## Wiki Documentation
 
 ### Find the following additional documentation in our Wiki
 
-- [Database Schema](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-DB-Schema)
-- [Features List](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-Features-List)
-- [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-User-Stories)
-- [Redux Store Tree](#redux-store)
+- [Database Schema](https://github.com/dvidale/python-react-group-proj/wiki/DB-Schema)
+- [Features List](https://github.com/dvidale/python-react-group-proj/wiki/Features-List)
+- [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/User-Stories)
+- [API Endpoints](https://github.com/dvidale/python-react-group-proj/wiki/API-Endpoints)
+- [Redux Store Tree](https://github.com/dvidale/python-react-group-proj/wiki/Redux-Store-Tree)
 
-
-## Contact Developers
+## Contact
 
 DeAndré Vidale
+
 - [Github](https://github.com/dvidale)
 - [Website](https://deandrevidale.com)
 - [Email](mailto:deandre.vidale@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/deandrevidale/)
 
 Hayden Galyean
-- [Github]()
-- [Website]()
-- [Email]()
-- [LinkedIn]()
+
+- [Github](https://github.com/Haydengalyeanbiz)
+- [Website](https://haydengalyeanportfolio.onrender.com/)
+- [Email](mailto:haydengalyeanbiz@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/hayden-galyean-42a518189/)
 
 Neil Kang
-- [Github]()
+
+- [Github](https://github.com/fullstackneil)
 - [Website]()
-- [Email]()
-- [LinkedIn]()
+- [Email](mailto:neil.kang@utexas.edu)
+- [LinkedIn](https://www.linkedin.com/in/neil-kang/)

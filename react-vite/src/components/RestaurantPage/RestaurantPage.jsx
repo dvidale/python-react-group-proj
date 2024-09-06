@@ -39,7 +39,7 @@ export const RestaurantPage = () => {
 		})
 		.then(dispatch(restaurantsActions.getRestaurants()))
 		.then(dispatch(reviewSummary(id)))
-			
+
 	}, [dispatch, id, setModalContent, navigate]);
 
 	// Function to scroll to the reviews section
