@@ -2,8 +2,6 @@
 
 DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Python in the backend and React in the frontend. It incorporates boostrap CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and managing restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
-<img src="react-vite/public/assets/Screenshots/001_dashdine.png" alt="Home">
-
 ## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
 https://dashdine-0s4v.onrender.com
 
@@ -106,10 +104,10 @@ To set up and run the project locally, follow these steps:
 
 ## Screenshots
 
-1. DineDash HomePage
-   <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine HomePage">
-2. Restaurant Details
-   <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Details">
+1. DineDash Landing Page
+   <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine Landing Page">
+2. Restaurant Page
+   <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Page">
 3. Log In
    <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
 4. Restaurant Details page
