@@ -30,7 +30,6 @@ function RestaurantForm(){
     const [delivery_fee, setDeliveryFee] = useState("0.99")
     const [banner_img, setBannerImg] = useState("")
     
-     
     const [error, setError] = useState({})
 
     //load restaurant data in the form for updates
@@ -48,9 +47,6 @@ function RestaurantForm(){
             setDeliveryFee(restaurant.delivery_fee)
             setBannerImg(restaurant.banner_img)
         }
-
-
-
 
     },[restaurant])
     

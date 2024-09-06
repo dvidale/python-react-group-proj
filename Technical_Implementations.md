@@ -30,6 +30,17 @@ Thanks to the linked-list structure, re-ordering tasks within a project is an O(
 
 ## Restaurant Creation / Update Form UI
 
-The data submitted for creating or updating a restaurant are identical, so the DashDine UI uses the same form for user input.
+<img src="react-vite/public/assets/Screenshots/tech-imp-create-update-form.jpg" alt="create-update-form">
 
-The form inputs are structure in a React component 
+The restaurant creation / update form UI leverages React's dynamic data handling to employ one form to handle both user input needs.
+
+The form is structured in a React component that is rendered at both the frontend routes for creating and updating a restaurant.
+
+
+<img src="react-vite/public/assets/Screenshots/tech-imp-restaurant-form-useEffect.png" alt="restaurant-form-useEffect"/>
+
+When a `useParams` hook detects an id is provided, a `useSelector` hook loads the target restaurant from the Redux state with that id. The restaurant data is then detected by a `useEffect` hook that populates the form's controlled inputs with the restaurant's data, now ready for updating. When no id is provided by the route, the form's controlled inputs resort to their default state. The form heading and submit button functionality are also dynamically configured.
+
+
+
+Thanks to React's dynamic data handling, the development workload for this UI is cut in half for component creation and CSS styling.
