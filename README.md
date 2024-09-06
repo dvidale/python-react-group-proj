@@ -1,6 +1,6 @@
 # ==DashDine
 
-DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Python in the backend and React in the frontend. It incorporates boostrap CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and managing restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
+DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Flask in the backend and React in the frontend. It incorporates CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and manage listings for restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
 ## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
 
