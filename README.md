@@ -107,55 +107,26 @@ To set up and run the project locally, follow these steps:
 ### DineDash Landing Page
    <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine Landing Page">
 
-
 ### Restaurant Page
    <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Page">
 
-
-### Log In
-   <img  src="react-vite/public/assets/Screenshots/Log In.jpg" alt="Log In">
-
-
-### Restaurant Details Page
-   <img  src="react-vite/public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
-
-
-### 5. Add Menu Item
-   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif) -->
-
-
 ### Restaurant Update Page
    <img  src="react-vite/public/assets/Screenshots/006_dashdine_restaurant_update.gif" alt="Restaurant Updates Page">
+
+### Add Menu Item
+   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif) -->
 
 
 ### Create A Review
    <img src="react-vite/public/assets/Screenshots/007_dashdine_restaurant_reviews.gif" atl="Create a Review">
 
 
-### About
-   <img  src="react-vite/public/assets/Screenshots/About.jpg" alt="About">
-
-
-### Location Based Site Rendering
-   <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
-
-
 ### Cart
    ![Shopping cart functionality](react-vite/public/assets/Screenshots/shoppingcart.gif)
 
 
-### CheckOut
-   <img  src="react-vite/public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
-
-
-### Contact
-    <img  src="react-vite/public/assets/Screenshots/Contact.jpg" alt="Contact">
-
-
-### Account
-    <img  src="react-vite/public/assets/Screenshots/Account.jpg" alt="Account">
-
-
+### Location Based Site Rendering
+   <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
 
 ## Wiki Documentation
 
@@ -184,7 +155,7 @@ Hayden Galyean
 
 Neil Kang
 
-- [Github]()
+- [Github](https://github.com/fullstackneil)
 - [Website]()
-- [Email]()
-- [LinkedIn]()
+- [Email](mailto: neil.kang@utexas.edu)
+- [LinkedIn](https://www.linkedin.com/in/neil-kang/)
