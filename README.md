@@ -12,7 +12,6 @@ https://dashdine-0s4v.onrender.com
 - [Technologies Used](#technologies-used)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
-- [Technical Implementations](#technical-implementations)
 - [Wiki Documentation](#wiki-documentation)
 - [Contact](#Contact)
 
@@ -138,7 +137,7 @@ To set up and run the project locally, follow these steps:
 - [API Endpoints](https://github.com/dvidale/python-react-group-proj/wiki/API-Endpoints)
 - [Redux Store Tree](https://github.com/dvidale/python-react-group-proj/wiki/Redux-Store-Tree)
 
-## Contact Developers
+## Contact
 
 DeAndré Vidale
 
