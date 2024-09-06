@@ -42,9 +42,8 @@ https://dashdine-0s4v.onrender.com
 
 ### **4. Amazon Web Services (AWS) Integration**
 
-- Users should be able to upload a photo of their restaurant photo.
-- Users should be able to upload a photo of their restaurant cover photo.
-- Users should be able to upload a photo of their menu items.
+- Users should be able to upload their restaurant cover photo.
+- Users should be able to upload menu item photos.
 
 ## Technologies Used
 
