@@ -58,3 +58,38 @@ The shopping cart dynamically updates based on user actions, such as adding item
 The checkout process leverages the stored cart data, where an API call sends the relevant cart details to the backend for secure processing.
 
 By utilizing React's data management capabilities, the shopping cart UI reduces development complexity while ensuring a consistent and reliable shopping experience for users.
+
+
+## More Reviews Button
+
+the useRef hook is used to create a reference (reviewsSectionRef) that can be attached to the ReviewsList component.
+
+```javascript
+const reviewsSectionRef = useRef(null);
+```
+
+The primary purpose of useRef here is to allow the component to access and interact with the DOM element that is tied to the ReviewsList component, even though that element is rendered later in the JSX.
+
+
+The ref={reviewsSectionRef} line attaches the reviewsSectionRef to the ReviewsList component. This means that reviewsSectionRef.current will hold a reference to the DOM element corresponding to ReviewsList once it is rendered.
+
+```javascript
+<ReviewsList restaurant={restaurant} ref={reviewsSectionRef}/>
+```
+
+forwardRef is being used to allow the parent component to pass a ref to the child component (ReviewsList). This is important because by default, function components cannot receive ref props directly. forwardRef enables this capability.
+
+```javascript
+const ReviewsList = forwardRef(({ restaurant }, ref) => { ... });
+```
+
+The ref argument passed into ReviewsList represents a reference to a DOM element. In this case, it will be attached to the div with the class review-list-wrapper.
+The reference could be used by the parent component to interact with the ReviewsList component's DOM node directly. For instance, the parent could scroll to, focus, or manipulate the ReviewsList’s wrapper div without needing to re-render the component.
+
+```javascript
+return (
+  <div ref={ref} className='review-list-wrapper'> ... </div>
+);
+```
+
+In summary, forwardRef is used to allow the ReviewsList component to accept a ref from its parent, enabling the parent to directly interact with the ReviewsList's DOM element. Normally, function components cannot receive ref props, but forwardRef enables this capability. The ref is passed to a div inside ReviewsList, allowing the parent to manipulate that DOM node (e.g., scroll, focus) without re-rendering the component. This pattern is useful for programmatically controlling or interacting with the component's DOM from the parent.

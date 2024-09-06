@@ -104,29 +104,58 @@ To set up and run the project locally, follow these steps:
 
 ## Screenshots
 
-1. DineDash Landing Page
+### DineDash Landing Page
    <img  src="react-vite/public/assets/Screenshots/001_dashdine_home.gif" alt="DashDine Landing Page">
-2. Restaurant Page
+
+
+### Restaurant Page
    <img  src="react-vite/public/assets/Screenshots/002_dashdine_restaurant_details.gif" alt="Restaurant Page">
-3. Log In
-   <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
-4. Restaurant Details page
-   <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
-5. Add Menu Item
-   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif)
-6. About
-   <img  src="public/assets/Screenshots/About.jpg" alt="About">
-7. Location Based Site Rendering
+
+
+### Log In
+   <img  src="react-vite/public/assets/Screenshots/Log In.jpg" alt="Log In">
+
+
+### Restaurant Details Page
+   <img  src="react-vite/public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
+
+
+### 5. Add Menu Item
+   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif) -->
+
+
+### Restaurant Update Page
+   <img  src="react-vite/public/assets/Screenshots/006_dashdine_restaurant_update.gif" alt="Restaurant Updates Page">
+
+
+### Create A Review
+   <img src="react-vite/public/assets/Screenshots/007_dashdine_restaurant_reviews.gif" atl="Create a Review">
+
+
+### About
+   <img  src="react-vite/public/assets/Screenshots/About.jpg" alt="About">
+
+
+### Location Based Site Rendering
    <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
 
-8. Cart
+
+### Cart
    ![Shopping cart functionality](react-vite/public/assets/Screenshots/shoppingcart.gif)
-9. CheckOut
-   <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
-10. Contact
-    <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
-11. Account
-    <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
+
+
+### CheckOut
+   <img  src="react-vite/public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
+
+
+### Contact
+    <img  src="react-vite/public/assets/Screenshots/Contact.jpg" alt="Contact">
+
+
+### Account
+    <img  src="react-vite/public/assets/Screenshots/Account.jpg" alt="Account">
+
+
 
 ## Wiki Documentation
 
