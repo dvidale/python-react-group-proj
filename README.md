@@ -3,8 +3,8 @@
 DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Python in the backend and React in the frontend. It incorporates boostrap CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and managing restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
 ## [🌟Live Website🌟](https://dashdine-0s4v.onrender.com)
-https://dashdine-0s4v.onrender.com
 
+https://dashdine-0s4v.onrender.com
 
 ## Table of Contents
 
@@ -22,7 +22,6 @@ https://dashdine-0s4v.onrender.com
 2. Menu Items
 3. Reviews
 4. Shopping Cart
-
 
 ## Future Features
 
@@ -77,6 +76,7 @@ To set up and run the project locally, follow these steps:
 3. Install the project dependencies:
 
    In the frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm install
    ```
@@ -89,15 +89,16 @@ To set up and run the project locally, follow these steps:
 
 4. Create a .env file from the included example file.
 
-
 5. Start the development servers:
 
    Backend directory: `python-react-group-proj/`
+
    ```bash
    pipenv run flask run
    ```
 
    Frontend directory: `python-react-group-proj/react-vite/`
+
    ```bash
    npm run dev
    ```
@@ -112,13 +113,21 @@ To set up and run the project locally, follow these steps:
    <img  src="public/assets/Screenshots/Log In.jpg" alt="Log In">
 4. Restaurant Details page
    <img  src="public/assets/Screenshots/Product Details page.jpg" alt="Product Details page">
-5. Wishlist
-   <img  src="public/assets/Screenshots/Wishlist.jpg" alt="Wishlist">
+5. Add Menu Item
+   ![Adding a Menu Item](react-vite/public/assets/Screenshots/addmenuitem.gif)
 6. About
    <img  src="public/assets/Screenshots/About.jpg" alt="About">
 7. Location Based Site Rendering
    <img  src="react-vite/public/assets/Screenshots/007_dashdine_location.gif" alt="Location Based Site Rendering">
 
+8. Cart
+   ![Shopping cart functionality](react-vite/public/assets/Screenshots/shoppingcart.gif)
+9. CheckOut
+   <img  src="public/assets/Screenshots/CheckOut.jpg" alt="CheckOut">
+10. Contact
+    <img  src="public/assets/Screenshots/Contact.jpg" alt="Contact">
+11. Account
+    <img  src="public/assets/Screenshots/Account.jpg" alt="Account">
 
 ## Wiki Documentation
 
@@ -129,22 +138,24 @@ To set up and run the project locally, follow these steps:
 - [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-User-Stories)
 - [Redux Store Tree](#redux-store)
 
-
 ## Contact Developers
 
 DeAndré Vidale
+
 - [Github](https://github.com/dvidale)
 - [Website](https://deandrevidale.com)
 - [Email](mailto:deandre.vidale@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/deandrevidale/)
 
 Hayden Galyean
-- [Github]()
-- [Website]()
-- [Email]()
-- [LinkedIn]()
+
+- [Github](https://github.com/Haydengalyeanbiz)
+- [Website](https://haydengalyeanportfolio.onrender.com/)
+- [Email](mailto:haydengalyeanbiz@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/hayden-galyean-42a518189/)
 
 Neil Kang
+
 - [Github]()
 - [Website]()
 - [Email]()
