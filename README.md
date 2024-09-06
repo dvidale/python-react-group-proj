@@ -12,9 +12,9 @@ https://dashdine-0s4v.onrender.com
 - [Technologies Used](#technologies-used)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
-- [Technical Implementations](#tech-details)
-- [Wiki Documentation](#wiki)
-- [Contact](#contact)
+- [Technical Implementations](#technical-implementations)
+- [Wiki Documentation](#wiki-documentation)
+- [Contact](#Contact)
 
 ## Features
 
