@@ -88,9 +88,10 @@ export const fetchARestaurant = (id) => async (dispatch) => {
 		const data = await response.json();
 		dispatch(getARestaurant(data));
 
-		return data;
+		
 	} else {
-		return 'Error: No Restaurants';
+		const serverError = await response.json()
+		return serverError;
 	}
 };
 
@@ -150,12 +151,9 @@ export const deleteRestaurant = (id) => async (dispatch) => {
 	if (response.ok) {
 		dispatch(deleteARestaurant(id));
 	} else {
-		const error = { message: 'Error deleting restaurant' };
-		return error;
+		const serverError = await response.json()
+		return serverError;
 	}
-
-	const data = await response.json();
-	return data;
 };
 
 //* -------------------------------------REDUCERS

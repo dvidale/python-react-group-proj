@@ -9,13 +9,16 @@ import * as restaurantsActions from '../../redux/restaurants';
 import RestaurantInfoBox from '../RestaurantInfoBox/RestaurantInfoBox';
 import RestaurantInfoText from '../RestaurantInfoText/RestaurantInfoText';
 import { reviewSummary } from '../../redux/reviews';
+import { useModal } from '../../context/Modal';
 import './restaurant_page.css';
+import ServerMessageModal from '../ServerErrorModal/ServerMessageModal';
 
 export const RestaurantPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const reviewsSectionRef = useRef(null);
+	const { setModalContent } = useModal()
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const savedLocation = useSelector((state) => state.location);
@@ -28,9 +31,16 @@ export const RestaurantPage = () => {
 	const state = sessionUser?.state || savedLocation.state;
 
 	useEffect(() => {
-		dispatch(restaurantsActions.getRestaurants());
-		dispatch(reviewSummary(id));
-	}, [dispatch, id]);
+		dispatch(restaurantsActions.fetchARestaurant(id)).then((serverError)=>{
+			if(serverError){
+				setModalContent(< ServerMessageModal message={serverError.error} />)
+				navigate('/')
+			}
+		})
+		.then(dispatch(restaurantsActions.getRestaurants()))
+		.then(dispatch(reviewSummary(id)))
+			
+	}, [dispatch, id, setModalContent, navigate]);
 
 	// Function to scroll to the reviews section
 	const scrollToReviews = () => {

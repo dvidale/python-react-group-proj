@@ -50,6 +50,10 @@ export const router = createBrowserRouter([
 				path: '/restaurants/current',
 				element: <RestaurantManagement />,
 			},
+			{
+				path:'/*',
+				element: <HomePage />
+			}			
 		],
 	},
 ]);
