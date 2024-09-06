@@ -1,4 +1,4 @@
-# ==DashDine
+# DashDine
 
 DashDine is a website for users to order delivery and rate restaurants and services. It is a full-stack application built using Flask in the backend and React in the frontend. It incorporates CSS for styling, offering a sleek and modern user interface. The platform provides essential functionalities such as signup and login for users to access their accounts, add menu items to their shopping carts, and manage listings for restaurants they own. Furthermore, the shopping cart uses cookies to save the user's shopping cart between visits, ensuring a seamless shopping experience.
 
@@ -8,12 +8,37 @@ https://dashdine-0s4v.onrender.com
 
 ## Table of Contents
 
-- [Features](#features)
 - [Technologies Used](#technologies-used)
+- [Features](#features)
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
 - [Wiki Documentation](#wiki-documentation)
 - [Contact](#Contact)
+
+## Technologies Used
+
+### Frameworks and Libraries
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Flask.svg">
+   <img src="https://img.shields.io/badge/SQLALCHEMY-darkblue?style=for-the-badge&logo=sqlalchemy&logoColor=white
+   ">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Python.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/JavaScript.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/React.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Redux.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/HTML.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/CSS.svg">
+   <img src="https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white">
+
+
+
+
+
+### Database
+   <img src="react-vite/public/assets/Screenshots/technologies_used/PostgreSQL.svg">
+
+### Hosting
+   <img src="react-vite/public/assets/Screenshots/technologies_used/GitHub.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Render.svg">
 
 ## Features
 
@@ -43,32 +68,6 @@ https://dashdine-0s4v.onrender.com
 
 - Users should be able to upload their restaurant cover photo.
 - Users should be able to upload menu item photos.
-
-## Technologies Used
-
-### Frameworks and Libraries
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Flask.svg">
-   <img src="https://img.shields.io/badge/SQLALCHEMY-darkblue?style=for-the-badge&logo=sqlalchemy&logoColor=white
-   ">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Python.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/JavaScript.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/React.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Redux.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/HTML.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/CSS.svg">
-   <img src="https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white">
-
-
-
-
-
-### Database
-   <img src="react-vite/public/assets/Screenshots/technologies_used/PostgreSQL.svg">
-
-### Hosting
-   <img src="react-vite/public/assets/Screenshots/technologies_used/GitHub.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Git.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Render.svg">
 
 
 ## Set Up
