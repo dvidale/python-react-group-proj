@@ -13,7 +13,7 @@ https://dashdine-0s4v.onrender.com
 - [Set Up ](#set-up)
 - [Screenshots](#screenshots)
 - [Technical Implementations](#tech-details)
-- [Wiki Documentation] (#wiki)
+- [Wiki Documentation](#wiki)
 - [Contact](#contact)
 
 ## Features
