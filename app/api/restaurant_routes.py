@@ -47,6 +47,9 @@ def get_all_restaurants():
 @restaurant_routes.route("/<int:id>")
 def get_a_restaurant(id):
     restaurant = Restaurant.query.get(id)
+    if(restaurant == None):
+        return {'error': 'Restaurant not found'}, 404
+
     return restaurant.to_dict()
 
 
@@ -233,10 +236,14 @@ def update_restaurant_form(id):
 # ? DELETE A RESTAURANT
 @restaurant_routes.route('/<int:id>', methods=["DELETE"])
 def delete_restaurant(id):
-    query = Restaurant.query.get(id)
 
-    db.session.delete(query)
-    db.session.commit()
+    try:
+        query = Restaurant.query.get(id)
+
+        db.session.delete(query)
+        db.session.commit()
+    except:
+        return {'error': 'Error deleting restaurant'}, 500
 
     return {"message" : "Delete Successful"}, 200
 

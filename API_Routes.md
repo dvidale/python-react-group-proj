@@ -51,14 +51,14 @@
 * Error Response: HTTP Status 404
     ```python
         {
-            'error': No restaurant categories found.
+            'error': 'No restaurants found.'
         }
     ```
 
 
 ### GET RESTAURANT DETAILS
 
-* Purpose : This fetch populates the home page with all the restaurants currently offering delivery.
+* Purpose : This fetch gathers detailed information for a specific restaurant.
 * Method: `GET`
 * URL: `/restaurants/:id`
 
@@ -81,6 +81,13 @@
             'average_rating': FLOAT
         }
 
+    ```
+
+* Error Response: HTTP Status 404
+    ```python
+        {
+            'error': 'Restaurant not found.'
+        }
     ```
 
 
@@ -212,12 +219,17 @@ Purpose : This request updates an existing restaurant listing owned by the curre
 
 * Successful Response: HTTP Status 200
 ``` python
-{
-    "message" : "Delete Successful"
-}
+    {
+        "message" : "Delete Successful"
+    }
 ```
 
-
+* Error Response: HTTP Status 500
+``` python
+    {
+        'error': 'Error deleting restaurant'
+    }
+```
 # REVIEWS
 
 
