@@ -135,7 +135,8 @@ To set up and run the project locally, follow these steps:
 - [Database Schema](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-DB-Schema)
 - [Features List](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-Features-List)
 - [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/DashDine-User-Stories)
-- [Redux Store Tree](#redux-store)
+- [API Endpoints](https://github.com/dvidale/python-react-group-proj/wiki/API-Endpoints)
+- [Redux Store Tree](https://github.com/dvidale/python-react-group-proj/wiki/Redux-Store-Tree)
 
 ## Contact Developers
 
