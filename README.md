@@ -157,5 +157,5 @@ Neil Kang
 
 - [Github](https://github.com/fullstackneil)
 - [Website]()
-- [Email](mailto: neil.kang@utexas.edu)
+- [Email](mailto:neil.kang@utexas.edu)
 - [LinkedIn](https://www.linkedin.com/in/neil-kang/)
