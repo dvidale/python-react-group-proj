@@ -47,14 +47,30 @@ https://dashdine-0s4v.onrender.com
 
 ## Technologies Used
 
-- **React**: JavaScript library for building user interfaces.
-- **Vite**: Fast, modern build tooling for frontend development.
-- **Flask**: Python server framework for reliable and versatile API structure
-- **WTForms**: Python library for user data backend validations
-- **SQLAlchemy**: Python library for SQL Database Management through Object Relational Mapping and translation of Python syntax into raw SQL commands
-- **Bcrypt**: Hashing algorithm for creating strong password encryption
-- **Git**: For version control and managing distributed developer contributons
-<!-- - **Responsive For Mobile** -->
+### Frameworks and Libraries
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Flask.svg">
+   <img src="https://img.shields.io/badge/SQLALCHEMY-darkblue?style=for-the-badge&logo=sqlalchemy&logoColor=white
+   ">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Python.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/JavaScript.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/React.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Redux.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/HTML.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/CSS.svg">
+   <img src="https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white">
+
+
+
+
+
+### Database
+   <img src="react-vite/public/assets/Screenshots/technologies_used/PostgreSQL.svg">
+
+### Hosting
+   <img src="react-vite/public/assets/Screenshots/technologies_used/GitHub.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Git.svg">
+   <img src="react-vite/public/assets/Screenshots/technologies_used/Render.svg">
+
 
 ## Set Up
 
