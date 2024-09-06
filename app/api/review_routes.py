@@ -9,9 +9,13 @@ review_routes = Blueprint('reviews', __name__)
 @review_routes.route('/')
 def get_all_reviews():
     reviews_query = Review.query.all()
+
+    if not reviews_query:
+        return {'Error': 'There are no reviews.'}, 404
+
     reviews_lst = [ review.to_dict() for review in reviews_query]
 
-    return reviews_lst
+    return reviews_lst, 200
 
 
 # GET A SPECIFIC REVIEW
@@ -19,7 +23,11 @@ def get_all_reviews():
 def get_one_review(review_id):
 
     review = Review.query.get(review_id)
-    return review.to_dict()
+
+    if not review:
+        return {'Error': 'This review does not exist.'}
+
+    return review.to_dict(), 200
 
 
 
@@ -31,7 +39,10 @@ def update_review(review_id):
     review = Review.query.get(review_id)
 
     if not review:
-        return {"Error": "There is no review to edit"}
+        return {"Error": "Review could not be found."}, 404
+
+    if not data:
+        return {"Error": "Error processing data."}, 404
 
     if 'rating' in data:
         review.rating = data['rating']
@@ -40,7 +51,7 @@ def update_review(review_id):
 
     db.session.commit()
 
-    return review.to_dict()
+    return review.to_dict(), 200
 
 
 # DELETE A REVIEW
@@ -48,8 +59,11 @@ def update_review(review_id):
 def delete_review(review_id):
 
     review = Review.query.get(review_id)
-    
+
+    if not review:
+        return {"Error": "Review could not be found."}, 404
+
     db.session.delete(review)
     db.session.commit()
 
-    return {'message': 'Review was successfully deleted'}
+    return {'message': 'Review was successfully deleted.'}, 200
