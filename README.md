@@ -184,7 +184,7 @@ Hayden Galyean
 
 Neil Kang
 
-- [Github]()
+- [Github](https://github.com/fullstackneil)
 - [Website]()
-- [Email]()
-- [LinkedIn]()
+- [Email](mailto:neil.kang@utexas.edu)
+- [LinkedIn](https://www.linkedin.com/in/neil-kang/)
