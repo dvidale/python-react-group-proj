@@ -18,16 +18,7 @@ https://dashdine-0s4v.onrender.com
 ## Technologies Used
 
 ### Frameworks and Libraries
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Flask.svg">
-   <img src="https://img.shields.io/badge/SQLALCHEMY-darkblue?style=for-the-badge&logo=sqlalchemy&logoColor=white
-   ">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Python.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/JavaScript.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/React.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/Redux.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/HTML.svg">
-   <img src="react-vite/public/assets/Screenshots/technologies_used/CSS.svg">
-   <img src="https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white">
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![BCRYPT](https://img.shields.io/badge/BCRYPT-darkgreen?style=for-the-badge&logo=CryptPad&logoColor=white)
 
 
 
