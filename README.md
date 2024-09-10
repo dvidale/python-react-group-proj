@@ -142,7 +142,8 @@ To set up and run the project locally, follow these steps:
 - [User Stories](https://github.com/dvidale/python-react-group-proj/wiki/User-Stories)
 - [API Endpoints](https://github.com/dvidale/python-react-group-proj/wiki/API-Endpoints)
 - [Redux Store Tree](https://github.com/dvidale/python-react-group-proj/wiki/Redux-Store-Tree)
-
+- [Technical Implementations](https://github.com/dvidale/python-react-group-proj/wiki/Technical-Implementations)
+  
 ## Contact
 
 DeAndré Vidale
