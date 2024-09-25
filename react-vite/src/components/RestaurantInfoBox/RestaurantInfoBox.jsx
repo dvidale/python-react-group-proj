@@ -1,16 +1,32 @@
 import './RestaurantInfoBox.css';
 
 function RestaurantInfoBox({ restaurant, city, state }) {
+	const today = new Date()
+	
+	const openHours = restaurant.open_time.split(":")[0]
 
-	let openHours = restaurant.open_time.split(":")[0]
-	const normalClockOpen = openHours < 10 ? +(openHours)[1] : +(openHours)  
+	const openMinutes = restaurant.open_time.split(":")[1]
 
-	let openMinutes = restaurant.open_time.split(":")[1]
+	const todaysOpenHours = today.setHours(openHours, openMinutes)
+	
+	const restaurant_open = new Intl.DateTimeFormat('en-US', {
+		hour12: true,
+		hour: 'numeric',
+		minute:'numeric'
+		}).format(todaysOpenHours)
 
-	let closeHours = restaurant.close_time.split(":")[0]
-	const normalClockClose = +(closeHours) - 12
 
-	let closeMinutes = restaurant.close_time.split(":")[1]
+	const closeHours = restaurant.close_time.split(":")[0]
+	
+	const closeMinutes = restaurant.close_time.split(":")[1]
+
+	const todaysCloseHours = today.setHours(closeHours, closeMinutes)
+
+	const restaurant_close = new Intl.DateTimeFormat('en-US', {
+		hour12: true,
+		hour: 'numeric',
+		minute:'numeric'
+		}).format(todaysCloseHours)
 
 
 	return (
@@ -29,9 +45,9 @@ function RestaurantInfoBox({ restaurant, city, state }) {
 				<h3 className='delivery-fee-text-p'>Sun - Sat</h3>
 				<br />
 
-				<h3 className='delivery-fee-text-p'>Open: {normalClockOpen}:{openMinutes}{normalClockOpen < 12 ? `AM` : `PM`}</h3>
+				<h3 className='delivery-fee-text-p'>Open: {restaurant_open} </h3>
 				<br />
-				<h3 className='delivery-fee-text-p'>Close: {normalClockClose}:{closeMinutes}PM</h3>
+				<h3 className='delivery-fee-text-p'>Close: {restaurant_close} </h3>
 			</div>
 		</div>
 	);
