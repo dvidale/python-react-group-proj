@@ -9,7 +9,7 @@ function HomeDeliveryHeader({city}) {
 					you want to order breakfast, lunch, dinner, or a snack.
 				</p>
 				<br/>
-				<p>Find more restaurants nearby{city && <span> in {city} </span> }.</p>
+				<p>Find more restaurants nearby{city && <span> in <span id='submitted-city-text'> {city} </span></span> }.</p>
 			</div>
 		</div>
 	);

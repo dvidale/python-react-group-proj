@@ -49,6 +49,7 @@ function LocationForm() {
 					<label className='location-text'>
 						City:
 						<input
+							id="city-input"
 							type='text'
 							value={city}
 							onChange={(e) => setCity(e.target.value)}
@@ -61,6 +62,7 @@ function LocationForm() {
 					<label className='location-text'>
 						State:
 						<input
+							id="state-input"
 							type='text'
 							value={state}
 							onChange={(e) => setState(e.target.value.toUpperCase())}
@@ -73,6 +75,7 @@ function LocationForm() {
 				</div>
 			
 				<button
+					id='location-submit'
 					className='location-form-btn'
 					type='submit'
 					>
